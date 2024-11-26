@@ -1,13 +1,68 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic);
+
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,200,300,regular,500,600,700,800,900);
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "IBM Plex Mono", "Noto Sans KR", sans-serif;
+  height: 3000px;
+}
+
+.container {
+  padding: 1rem;
+  width: 100%;
+  margin: auto;
+  max-width: 1280px;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Common Button Style */
+.btn {
+  padding: 0.25rem 0.75rem;
+  background: skyblue;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+/* Custom Swiper Style */
+.swiper {
+  padding: 50px 10px !important;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
+.swiper .swiper-slide {
+  text-align: center;
+  border: 1px solid;
+  height: 100px;
+}
+
+/* .swiper .swiper-pagination {
+  bottom: -100px !important;
+} */
+
+.swiper .swiper-button-prev {
+  right: 200px
+}
+
+.swiper .swiper-button-next {
+  left: 200px;
 }
