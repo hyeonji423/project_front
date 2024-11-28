@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { fetchPostAuthData } from '../redux/slices/authSlice'
 
 const Register = () => {
+  const dispatch = useDispatch()
+  const navigator = useNavigate()
+
   const [value, setValue] = useState({
     username: "",
     email: "",
@@ -15,12 +20,34 @@ const Register = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault() // 쿼리가 잡히지 않게(경로 표시X)
 
     if(value.username === '' || value.email === '' || value.password === '') {
       alert("이름, 이메일, 비밀번호는 필수 입력값입니다.")
       return
+    }
+
+    // const formData = new FormData()
+    // formData.append('username', value.username)
+    // formData.append('email', value.email)
+    // formData.append('password', value.password)
+
+    try {
+      const response = await dispatch(fetchPostAuthData(value)).unwrap()
+      // console.log(response);
+      if(response.status === 201){
+        alert(response.data.msg)
+        navigator('/login')
+        return
+      }
+      if(response.data.success === false){
+        alert(response.data.msg)
+        return
+      }
+    }
+    catch (error) {
+      alert(error.msg)
     }
   }
 
