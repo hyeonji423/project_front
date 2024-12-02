@@ -21,7 +21,7 @@ const NewPage = () => {
         const parser = new XMLParser();
         const rssData = parser.parse(response.data.contents);
         const items = rssData.rss.channel.item;
-        setArticles(items);
+        setArticles(Array.isArray(items) ? items : [items]);
       } catch (error) {
         console.error("RSS 피드를 가져오는 중 오류 발생:", error);
       }
@@ -173,6 +173,9 @@ const NewPage = () => {
                             >
                               {article.title}
                             </a>
+                            <p className="text-sm text-gray-600 mt-1">
+                              {article.description}
+                            </p>
                             <p className="text-gray-600 text-sm mt-2">
                               게시일:{" "}
                               {new Date(article.pubDate).toLocaleDateString(
