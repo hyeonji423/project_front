@@ -1,37 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+
+const itemsPerPage = 5;
 
 function App() {
-  return (
-    <div className="container mx-auto p-4">
-      <header className="flex justify-between items-center border-b-2 pb-2">
-        <h1 className="text-2xl font-bold">Medibook</h1>
-        <nav className="space-x-4"></nav>
-      </header>
+  const data = Array.from({ length: 15 }, (_, index) => `Item ${index + 1}`);
+  
+  // 페이지 번호 상태
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentItems, setCurrentItems] = useState([]);
 
-      <div className="flex justify-between mt-4">
-        <div className="w-2/3">
-          <h2 className="font-bold">NEWS</h2>
-          <div className="flex flex-col space-x-4 space-y-4 mt-2">
-            <div className="w-1/2 h-24 bg-gray-200"></div>
-            <div className="w-1/2 h-24 bg-gray-200"></div>
-          </div>
-        </div>
-        <div className="w-1/3">
-          <ul className="list-disc pl-5">
-            <ul className="flex space-x-4 mt-8 ">
-              <ul className="w-1/2 h-24 bg-gray-200">
-                <li>NEWS 기사 타이틀</li>
-                <li>NEWS 기사 타이틀</li>
-                <li>NEWS 기사 타이틀</li>
-                <li>NEWS 기사 타이틀</li>
+  useEffect(() => {
+    // 현재 페이지에 맞는 데이터만 추출
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    setCurrentItems(currentItems);
+  }, [currentPage]);
+
+  // 전체 페이지 수 계산
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  // 페이지 번호 클릭 시 호출되는 함수
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  
+  return (
+    <div className="flex flex-col justify-center items-center w-full">
+      <div className="news w-[70%] mt-10">
+        <div className="news-main">
+          <h2 className="text-3xl font-bold mb-6">NEWS</h2>
+          <div className="flex justify-between">
+            <div className="news-main w-2/3 flex flex-col gap-4">
+              <div className="h-24 bg-gray-200"></div>
+              <div className="h-24 bg-gray-300"></div>
+            </div>
+
+            <div className="news-title w-[20%]">
+              <ul className="flex flex-col h-auto bg-gray-200">
+              {currentItems.map((item, index) => (
+                <li key={index}>{item}</li>
+               ))}
               </ul>
-            </ul>
-          </ul>
+
+              {/* 페이지 번호 버튼 표시 */}
+      <div>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            style={{
+              fontWeight: currentPage === index + 1 ? 'bold' : 'normal', 
+              margin: '0 5px',
+            }}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <section className="mt-8">
-        <h2 className="font-bold">건강정보</h2>
+      <div className="health mt-20 w-[70%]">
+        <h2 className="text-3xl font-bold mb-6">건강정보</h2>
         <div className="grid grid-cols-3 gap-4 mt-4">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="border p-4 rounded-lg">
@@ -41,11 +75,7 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
-
-      <footer className="mt-8 border-t-2 pt-2">
-        <p>푸터: 페이지 소개/전화번호/주소/로그인/카피라이트 등</p>
-      </footer>
+      </div>
     </div>
   );
 }
