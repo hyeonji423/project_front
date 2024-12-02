@@ -1,18 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { navItems } from './../constants/data';
-import profile from '../assets/profile.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { clearToken } from '../redux/slices/loginSlice';
 
 const Header = () => {
-  const isLoggedIn = false
+  const dispatch = useDispatch()
+  // const isLoggedIn = false
+  const user = useSelector((state)=>state.login.user)
+  console.log(user);
+
+  const handleLogout = () => {
+    dispatch(clearToken())
+  }
 
   return (
     <div className='w-full shadow-custom sticky top-0 z-50 bg-white'>
-      <div className='container flex justify-between items-center'>
-        <div className="logo">
-          <img src="/logo192.png" className='w-7 h-7' alt="" />
+      <div className='container flex flex-col justify-end items-center'>
+        <div className='gap-8'>
+          <div className="info">
+            <ul className='flex gap-6 items-center'>
+              {user !== null ? (
+                <>
+                <li>{user.username}님</li>
+                <li>
+                  <button className='btn' onClick={handleLogout}>로그아웃</button>
+                </li>
+                </>
+              ):(
+                <li>
+                  <Link to='/login' className='btn'>로그인</Link>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
-        <div className='flex gap-8'>
+        
+        <div className='gap-8'>
           <div className="navi">
             <ul className='flex gap-6'>
               {
@@ -22,24 +46,6 @@ const Header = () => {
                   </li>
                 ))
               }
-            </ul>
-          </div>
-          <div className="info">
-            <ul className='flex gap-6 items-center'>
-              {isLoggedIn ? (
-                <>
-                <li><img src={profile} className='w-7 h-7 rounded-full overflow-hidden' alt="" /></li>
-                <li>hyeonji 님</li>
-                <li>
-                  <button className='btn'>Logout</button>
-                </li>
-                </>
-              ):(
-                <li>
-                  <Link to='/login' className='btn'>Login</Link>
-                </li>
-              )}
-              
             </ul>
           </div>
         </div>

@@ -68,6 +68,7 @@ const Register = () => {
             <label htmlFor="password" className='block text-neutral-700'>Password</label>
             <input type="password" placeholder='Enter password' className='w-full px-3 py-2 border' name='password' onChange={handleChange}/>
           </div>
+          <input type="file" />
           <button className='btn w-full h-12 !text-base'>Submit</button>
         </form>
         <div className='mt-4'>

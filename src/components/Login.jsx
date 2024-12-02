@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { fetchPostLoginData } from '../redux/slices/authSlice';
+import { setToken } from '../redux/slices/loginSlice';
 
 const Login = () => {
   const dispatch = useDispatch()
+  const navigator = useNavigate()
   
   const [value, setValue] = useState({
     email: "",
@@ -26,11 +29,15 @@ const Login = () => {
     }
 
     try {
-      const response = await dispatch(fetchPostAuthData(value)).unwrap()
+      const response = await dispatch(fetchPostLoginData(value)).unwrap()
       // console.log(response);
       if(response.status === 201){
         alert(response.data.msg)
-        navigator('/login')
+        localStorage.setItem('token', response.data.token) // 로컬 스토리지에 저장 - localStorage.setItem('저장할 이름', 저장할 값)
+        // getItem('저장된 이름(key)') - 저장된 이름의 값을 가져옴
+        // removeItem('저장된 이름(key)'): 저장된 이름의 값을 삭제
+        dispatch(setToken(response.data.token))
+        navigator('/')
         return
       }
       if(response.data.success === false){

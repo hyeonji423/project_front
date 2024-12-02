@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { POST_AUTH_API_URL } from '../../utils/apiUrl'
+import { POST_AUTH_API_URL, POST_LOGIN_API_URL } from '../../utils/apiUrl'
 import { postRequest } from '../../utils/requestMethods'
 
 
-// update item thunk function 정의
+
 const postAuthFetchThunk = (actionType, apiURL)=>{
   return createAsyncThunk(actionType, async (postData, { rejectWithValue }) => {
     // console.log(postData);
@@ -23,10 +23,34 @@ const postAuthFetchThunk = (actionType, apiURL)=>{
   });
 }
 
-// update item thunk 함수 호출
 export const fetchPostAuthData = postAuthFetchThunk(
   'fetchPostAuth', // action type
   POST_AUTH_API_URL // 요청 url
+)
+
+
+const postLoginThunk = (actionType, apiURL)=>{
+  return createAsyncThunk(actionType, async (postData, { rejectWithValue }) => {
+    // console.log(postData);
+    try {
+      const options = {
+        body: JSON.stringify(postData), // 표준 JSON 문자열로 변환 json 형식일 때
+        // method: "POST",
+        // body: postData, // json 형식이 아닐 때
+      };
+      const response = await postRequest(apiURL, options);
+      return response; // { status, data } 형태로 반환
+    }
+    catch (error) {
+      // 에러 시 상태 코드와 메시지를 포함한 값을 rejectWithValue로 전달
+      return rejectWithValue(error);
+    }
+  });
+}
+
+export const fetchPostLoginData = postLoginThunk(
+  'fetchPostLogin', // action type
+  POST_LOGIN_API_URL // 요청 url
 )
 
 
@@ -48,12 +72,16 @@ const authSlice = createSlice({
   initialState: {
     // 초기 상태 지정
     postAuthData: null,
+    postLoginData: null,
   },
   
   extraReducers: (builder)=>{
     builder
       .addCase(fetchPostAuthData.fulfilled, handleFulfilled('postAuthData'))
       .addCase(fetchPostAuthData.rejected, handleRejected)
+
+      .addCase(fetchPostLoginData.fulfilled, handleFulfilled('postLoginData'))
+      .addCase(fetchPostLoginData.rejected, handleRejected)
   }
 })  // slice 객체 저장
 
