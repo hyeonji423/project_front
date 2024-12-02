@@ -16,14 +16,6 @@ function App() {
         <div className="App">
           <Header />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/mypage" element={<Mypage />} />
-          <Route path="/healthinfo" element={<HealthInfo />} />
-        </Routes>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/features" element={<Features />} />
@@ -31,6 +23,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/newpage" element={<NewPage />} />
+            <Route path="/healthinfo" element={<HealthInfo />} />
           </Routes>
 
           <Footer />
