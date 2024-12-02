@@ -98,3 +98,11 @@ export const heroLinks = [
   { to: "start-for-free", text: "start for free" },
   { to: "documentation", text: "documentation" },
 ];
+
+export const medi_detail = [
+  {
+    id: 1,
+    number: 197900277,
+    
+  }
+]
