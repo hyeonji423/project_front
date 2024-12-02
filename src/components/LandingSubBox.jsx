@@ -1,6 +1,9 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import { symptom, text } from "../constants/data";
+import previc from "../assets/previc.png"
+import nextic from "../assets/nextic.png"
 
 
 import "swiper/css/navigation";
@@ -19,7 +22,7 @@ export default () => {
   return (
     <div className="box-wrapper w-full flex justify-between items-center p-4 bg-white border">
       <div className="text-center w-[20%]">
-        <h3>
+        <h3 className="text-xl font-semibold">
           자주 나타나는
           <br />
           증상
@@ -28,17 +31,16 @@ export default () => {
       <div className="relative w-[80%]">
         <div className="flex gap-3 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 absolute justify-between w-full">
           <button className="text-xl" ref={prevRef}>
-            &lt;
+            <img src={previc} alt="" className="w-5 h-5" />
           </button>
           <button className="text-xl" ref={nextRef}>
-            &gt;
+            <img src={nextic} alt="" className="w-5 h-5" />
           </button>
         </div>
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={15}
           slidesPerView={4}
-          pagination={{ clickable: true }}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
@@ -47,12 +49,16 @@ export default () => {
             swiper.navigation.update();
           }}
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
+          {
+            symptom.map((symptom, index) => (
+              <SwiperSlide key={index} className="rounded-lg overflow-hidden shadow-inner-lg">
+                <div className="absolute opacity-30 overlay w-full h-full bg-white z-10 left-0 top-0"></div>
+                <h5 className="absolute w-full text-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-white text-xl font-semibold drop-shadow-md">{symptom.text}</h5>
+                <img src={symptom.image} alt="symptom" className="overflow-hidden"/>
+              </SwiperSlide>
+            ))
+          }
+          {/* <SwiperSlide>{symptom.image}</SwiperSlide> */}
         </Swiper>
       </div>
     </div>

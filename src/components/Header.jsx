@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { navItems } from './../constants/data';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearToken } from '../redux/slices/loginSlice';
+import mediLogo from '../assets/medi_logo.png';
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -15,42 +16,48 @@ const Header = () => {
   }
 
   return (
-    <div className='w-full shadow-custom sticky top-0 z-50 bg-white'>
-      <div className='container flex flex-col justify-end items-center'>
-        <div className='gap-8'>
-          <div className="info">
-            <ul className='flex gap-6 items-center'>
+    <div className='w-full flex justify-center shadow-custom sticky top-0 z-50 bg-white'>
+      <div className='container flex justify-between items-center'>
+        <div className='logo left-0'>
+          <img src={mediLogo} alt="메디 로고" className='w-[150px]' />
+        </div>
+        <div className='head-all'>
+          <div className="head-top w-full text-sm info mt-2">
+            <ul className='flex gap-6 items-center justify-end'>
               {user !== null ? (
                 <>
-                <li>{user.username}님</li>
                 <li>
-                  <button className='btn' onClick={handleLogout}>로그아웃</button>
+                  <button onClick={handleLogout}>로그아웃</button>
                 </li>
                 </>
               ):(
                 <li>
-                  <Link to='/login' className='btn'>로그인</Link>
+                  <Link to='/login'>로그인</Link>
                 </li>
               )}
+              <li>
+                <Link to='/register'>회원가입</Link>
+              </li>
+              <li>
+                <Link to='/mypage'>마이페이지</Link>
+              </li>
             </ul>
           </div>
+            
+          <div className='head-bottom w-full text-lg py-2'>
+              <ul className='flex gap-6 items-center justify-end'>
+                {
+                  navItems.map((item, idx)=>(
+                    <li key={idx}>
+                      <Link to={item.to}>{item.label}</Link>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
         </div>
-        
-        <div className='gap-8'>
-          <div className="navi">
-            <ul className='flex gap-6'>
-              {
-                navItems.map((item, idx)=>(
-                  <li key={idx}>
-                    <Link to={item.to}>{item.label}</Link>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
         </div>
       </div>
-    </div>
   )
 }
 

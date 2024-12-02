@@ -13,11 +13,17 @@ const Register = () => {
     password: "",
   })
 
+  const [file, setFile] = useState(null)
+
   const handleChange = (e) => {
     setValue({
       ...value,
       [e.target.name]: e.target.value,
     })
+  }
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0])
   }
 
   const handleSubmit = async(e) => {
@@ -28,13 +34,16 @@ const Register = () => {
       return
     }
 
-    // const formData = new FormData()
-    // formData.append('username', value.username)
-    // formData.append('email', value.email)
-    // formData.append('password', value.password)
+    const formData = new FormData()
+    formData.append('username', value.username)
+    formData.append('email', value.email)
+    formData.append('password', value.password)
+    if(file) {
+      formData.append('profile_img', file) // 파일 추가
+    }
 
     try {
-      const response = await dispatch(fetchPostAuthData(value)).unwrap()
+      const response = await dispatch(fetchPostAuthData(formData)).unwrap()
       // console.log(response);
       if(response.status === 201){
         alert(response.data.msg)
@@ -68,7 +77,7 @@ const Register = () => {
             <label htmlFor="password" className='block text-neutral-700'>Password</label>
             <input type="password" placeholder='Enter password' className='w-full px-3 py-2 border' name='password' onChange={handleChange}/>
           </div>
-          <input type="file" />
+          <input type="file" name='profile_img' onChange={handleFileChange} />
           <button className='btn w-full h-12 !text-base'>Submit</button>
         </form>
         <div className='mt-4'>

@@ -4,7 +4,7 @@ import { jwtDecode } from '../../utils/jwtDecode'
 const initialToken = localStorage.getItem('token')
 const initialState = {
   token: initialToken || null,
-  user: null,
+  user: initialToken ? jwtDecode(initialToken) : null,
 }
 
 const loginSlice = createSlice({

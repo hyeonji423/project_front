@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchPostLoginData } from '../redux/slices/authSlice';
 import { setToken } from '../redux/slices/loginSlice';
+import Sidebar from './Sidebar';
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -33,7 +34,7 @@ const Login = () => {
       // console.log(response);
       if(response.status === 201){
         alert(response.data.msg)
-        localStorage.setItem('token', response.data.token) // 로컬 스토리지에 저장 - localStorage.setItem('저장할 이름', 저장할 값)
+        // localStorage.setItem('token', response.data.token) // 로컬 스토리지에 저장 - localStorage.setItem('저장할 이름', 저장할 값)
         // getItem('저장된 이름(key)') - 저장된 이름의 값을 가져옴
         // removeItem('저장된 이름(key)'): 저장된 이름의 값을 삭제
         dispatch(setToken(response.data.token))
@@ -51,7 +52,7 @@ const Login = () => {
   }
 
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <div className='flex justify-center items-center h-screen w-full'>
       <div className='shadow-lg px-8 py-5 w-[30%] border'>
         <h2 className='text-lg font-bold mb-4'>LOGIN</h2>
         <form onSubmit={handleSubmit}>
