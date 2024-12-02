@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { XMLParser } from "fast-xml-parser";
 
 const NewPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [medicinePage, setMedicinePage] = useState(1);
   const [newsPage, setNewsPage] = useState(1);
-  const itemsPerPage = 4;
+  const [articles, setArticles] = useState([]);
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    const fetchRSS = async () => {
+      const proxyUrl = "https://api.allorigins.win/get?url=";
+      const feedUrl = encodeURIComponent(
+        "https://news.google.com/rss/search?q=건강&hl=ko&gl=KR&ceid=KR:ko"
+      );
+
+      try {
+        const response = await axios.get(`${proxyUrl}${feedUrl}`);
+        const parser = new XMLParser();
+        const rssData = parser.parse(response.data.contents);
+        const items = rssData.rss.channel.item;
+        setArticles(items);
+      } catch (error) {
+        console.error("RSS 피드를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchRSS();
+  }, []);
 
   // 약품 데이터 예시 (실제 데이터로 교체 필요)
-  const medicineData = Array.from({ length: 10 }, (_, i) => ({
+  const medicineData = Array.from({ length: 5 }, (_, i) => ({
     id: i + 1,
     name: `약품 ${i + 1}`,
     description: `설명 ${i + 1}`,
   }));
 
   // 뉴스 데이터 예시 (실제 데이터로 교체 필요)
-  const newsData = Array.from({ length: 10 }, (_, i) => ({
+  const newsData = Array.from({ length: 5 }, (_, i) => ({
     id: i + 1,
     title: `뉴스 제목 ${i + 1}`,
     content: `뉴스 내용 ${i + 1}`,
@@ -79,8 +103,8 @@ const NewPage = () => {
   ];
 
   return (
-    <div className="w-full h-auto flex">
-      <div className="w-[70%] h-[62vh] rounded-md bg-[skyblue] ml-10">
+    <div className="w-full h-full flex">
+      <div className="w-[70%] h-[79vh] rounded-md bg-[skyblue] ml-10">
         <div>
           <div className="flex bg-white last:border-b border-gray-300 mb-4">
             {tabs.map((tab, index) => (
@@ -99,15 +123,15 @@ const NewPage = () => {
             ))}
           </div>
 
-          <div className="p-4 bg-white rounded-md ml-4 mr-4">
+          <div className=" p-4 bg-white rounded-md ml-4 mr-4">
             <h2 className="text-xl font-semibold mb-4">
               {tabs[activeTab].content}
             </h2>
             {/* 탭 내용에 따른 컴포넌트 렌더링 */}
             {activeTab === 0 && (
-              <div>
+              <div className="">
                 {/* 약품 목록 */}
-                <div className="grid gap-4">
+                <div className="] grid gap-4">
                   {getPaginatedData(
                     medicineData,
                     medicinePage
@@ -131,24 +155,48 @@ const NewPage = () => {
             )}
             {activeTab === 1 && (
               <div>
-                {/* 뉴스 목록 */}
-                <div className="grid gap-4">
-                  {getPaginatedData(newsData, newsPage).currentItems.map(
-                    (item) => (
-                      <div key={item.id} className="p-4 border rounded">
-                        <h3 className="font-bold">{item.title}</h3>
-                        <p>{item.content}</p>
-                      </div>
-                    )
-                  )}
-                </div>
+                <h2 className="text-xl font-bold mb-4">건강 관련 뉴스</h2>
+                {articles.length > 0 ? (
+                  <>
+                    <div className="grid gap-4">
+                      {getPaginatedData(articles, newsPage).currentItems.map(
+                        (article, index) => (
+                          <div
+                            key={index}
+                            className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow"
+                          >
+                            <a
+                              href={article.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 font-semibold"
+                            >
+                              {article.title}
+                            </a>
+                            <p className="text-gray-600 text-sm mt-2">
+                              게시일:{" "}
+                              {new Date(article.pubDate).toLocaleDateString(
+                                "ko-KR"
+                              )}
+                            </p>
+                          </div>
+                        )
+                      )}
+                    </div>
 
-                {/* 뉴스 페이지네이션 */}
-                <PaginationControls
-                  currentPage={newsPage}
-                  totalPages={getPaginatedData(newsData, newsPage).totalPages}
-                  onPageChange={handleNewsPageChange}
-                />
+                    <PaginationControls
+                      currentPage={newsPage}
+                      totalPages={
+                        getPaginatedData(articles, newsPage).totalPages
+                      }
+                      onPageChange={handleNewsPageChange}
+                    />
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <p>뉴스를 불러오는 중입니다...</p>
+                  </div>
+                )}
               </div>
             )}
           </div>
