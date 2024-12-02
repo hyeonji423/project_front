@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sample from "./Sample";
+import Sidebar from "./Sidebar";
 
 const NewPage = () => {
   const [activeTab, setActiveTab] = useState(0);
