@@ -1,12 +1,14 @@
-import React from 'react'
-import Management from './Management'
+import React from "react";
+import Management from "./Management";
+import Sidebar from "./Sidebar";
 
 const Mypage = () => {
   return (
     <div>
-      <Management/>
+      <Sidebar />
+      <Management />
     </div>
-  )
-}
+  );
+};
 
-export default Mypage
+export default Mypage;
