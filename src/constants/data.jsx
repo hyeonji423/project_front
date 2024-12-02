@@ -1,48 +1,48 @@
-import symptom1 from "../assets/symptom/symptom1.jpg"
-import symptom2 from "../assets/symptom/symptom2.jpg"
-import symptom3 from "../assets/symptom/symptom3.jpg"
-import symptom4 from "../assets/symptom/symptom4.jpg"
-import symptom5 from "../assets/symptom/symptom5.jpg"
-import symptom6 from "../assets/symptom/symptom6.jpg"
-import symptom7 from "../assets/symptom/symptom7.jpg"
+import symptom1 from "../assets/symptom/symptom1.jpg";
+import symptom2 from "../assets/symptom/symptom2.jpg";
+import symptom3 from "../assets/symptom/symptom3.jpg";
+import symptom4 from "../assets/symptom/symptom4.jpg";
+import symptom5 from "../assets/symptom/symptom5.jpg";
+import symptom6 from "../assets/symptom/symptom6.jpg";
+import symptom7 from "../assets/symptom/symptom7.jpg";
 
 export const symptom = [
   {
     image: symptom1,
     text: "#두통",
-    to: "/headache"
+    to: "/headache",
   },
   {
     image: symptom2,
     text: "#마른기침",
-    to: "/cough"
+    to: "/cough",
   },
   {
     image: symptom3,
     text: "#피부발진",
-    to: "/rash"
+    to: "/rash",
   },
   {
     image: symptom4,
     text: "#미열",
-    to: "/fever"
+    to: "/fever",
   },
   {
     image: symptom5,
     text: "#근육통",
-    to: "/muscle_pain"
+    to: "/muscle_pain",
   },
   {
     image: symptom6,
     text: "#불면증",
-    to: "/insomnia"
+    to: "/insomnia",
   },
   {
     image: symptom7,
     text: "#변비",
-    to: "/constipation"
+    to: "/constipation",
   },
-]
+];
 
 export const navItems = [
   { label: "챗봇", to: "/" },
@@ -50,7 +50,6 @@ export const navItems = [
   { label: "약품정보", to: "/" },
   { label: "고객문의", to: "/" },
 ];
-
 
 export const navMenus = [
   {
@@ -60,7 +59,7 @@ export const navMenus = [
   },
   {
     label: "약품 관리",
-    to: "/",
+    to: "/newpage",
     idx: 2,
   },
   {
@@ -98,3 +97,11 @@ export const heroLinks = [
   { to: "start-for-free", text: "start for free" },
   { to: "documentation", text: "documentation" },
 ];
+
+export const medi_detail = [
+  {
+    id: 1,
+    number: 197900277,
+    
+  }
+]

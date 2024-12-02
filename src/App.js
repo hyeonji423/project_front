@@ -7,13 +7,14 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Mypage from "./components/Mypage";
 import HealthInfo from "./components/HealthInfo"
+import NewPage from "./components/NewPage";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <div className="App">
-        <Header />
+        <div className="App">
+          <Header />
 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,10 +24,18 @@ function App() {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/healthinfo" element={<HealthInfo />} />
         </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/mypage" element={<Mypage />} />
+            <Route path="/newpage" element={<NewPage />} />
+          </Routes>
 
-        <Footer />
-      </div>
-    </BrowserRouter>
+          <Footer />
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
