@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Sidebar from "./Sidebar";
 
 const NewPage = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -81,81 +80,77 @@ const NewPage = () => {
 
   return (
     <div className="w-full h-auto flex">
-      <div className="w-full flex">
-        <Sample />
-
-        <div className="w-[70%] bg-[skyblue] ml-10">
-          <div>
-            <div className="flex bg-white last:border-b border-gray-300 mb-4">
-              {tabs.map((tab, index) => (
-                <button
-                  key={index}
-                  className={`px-4 py-2 border cursor-pointer focus:outline-none hover:bg-gray-700 transition-colors
+      <div className="w-[70%] bg-[skyblue] ml-10">
+        <div>
+          <div className="flex bg-white last:border-b border-gray-300 mb-4">
+            {tabs.map((tab, index) => (
+              <button
+                key={index}
+                className={`px-4 py-2 border cursor-pointer focus:outline-none hover:bg-gray-700 transition-colors
                   ${
                     activeTab === index
                       ? "bg-white border-t border-x border-gray-300"
                       : "bg-gray-300"
                   }`}
-                  onClick={() => setActiveTab(index)}
-                >
-                  {tab.title}
-                </button>
-              ))}
-            </div>
+                onClick={() => setActiveTab(index)}
+              >
+                {tab.title}
+              </button>
+            ))}
+          </div>
 
-            <div className="p-4 bg-white rounded-md ml-4 mr-4">
-              <h2 className="text-xl font-semibold mb-4">
-                {tabs[activeTab].content}
-              </h2>
-              {/* 탭 내용에 따른 컴포넌트 렌더링 */}
-              {activeTab === 0 && (
-                <div>
-                  {/* 약품 목록 */}
-                  <div className="grid gap-4">
-                    {getPaginatedData(
-                      medicineData,
-                      medicinePage
-                    ).currentItems.map((item) => (
+          <div className="p-4 bg-white rounded-md ml-4 mr-4">
+            <h2 className="text-xl font-semibold mb-4">
+              {tabs[activeTab].content}
+            </h2>
+            {/* 탭 내용에 따른 컴포넌트 렌더링 */}
+            {activeTab === 0 && (
+              <div>
+                {/* 약품 목록 */}
+                <div className="grid gap-4">
+                  {getPaginatedData(
+                    medicineData,
+                    medicinePage
+                  ).currentItems.map((item) => (
+                    <div key={item.id} className="p-4 border rounded">
+                      <h3 className="font-bold">{item.name}</h3>
+                      <p>{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 약품 페이지네이션 */}
+                <PaginationControls
+                  currentPage={medicinePage}
+                  totalPages={
+                    getPaginatedData(medicineData, medicinePage).totalPages
+                  }
+                  onPageChange={handleMedicinePageChange}
+                />
+              </div>
+            )}
+            {activeTab === 1 && (
+              <div>
+                {/* 뉴스 목록 */}
+                <div className="grid gap-4">
+                  {getPaginatedData(newsData, newsPage).currentItems.map(
+                    (item) => (
                       <div key={item.id} className="p-4 border rounded">
-                        <h3 className="font-bold">{item.name}</h3>
-                        <p>{item.description}</p>
+                        <h3 className="font-bold">{item.title}</h3>
+                        <p>{item.content}</p>
                       </div>
-                    ))}
-                  </div>
-
-                  {/* 약품 페이지네이션 */}
-                  <PaginationControls
-                    currentPage={medicinePage}
-                    totalPages={
-                      getPaginatedData(medicineData, medicinePage).totalPages
-                    }
-                    onPageChange={handleMedicinePageChange}
-                  />
+                    )
+                  )}
                 </div>
-              )}
-              {activeTab === 1 && (
-                <div>
-                  {/* 뉴스 목록 */}
-                  <div className="grid gap-4">
-                    {getPaginatedData(newsData, newsPage).currentItems.map(
-                      (item) => (
-                        <div key={item.id} className="p-4 border rounded">
-                          <h3 className="font-bold">{item.title}</h3>
-                          <p>{item.content}</p>
-                        </div>
-                      )
-                    )}
-                  </div>
 
-                  {/* 뉴스 페이지네이션 */}
-                  <PaginationControls
-                    currentPage={newsPage}
-                    totalPages={getPaginatedData(newsData, newsPage).totalPages}
-                    onPageChange={handleNewsPageChange}
-                  />
-                </div>
-              )}
-            </div>
+                {/* 뉴스 페이지네이션 */}
+                <PaginationControls
+                  currentPage={newsPage}
+                  totalPages={getPaginatedData(newsData, newsPage).totalPages}
+                  onPageChange={handleNewsPageChange}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
