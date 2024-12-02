@@ -10,7 +10,11 @@ import HealthInfo from "./components/HealthInfo";
 import NewPage from "./components/NewPage";
 import Management from "./components/Management";
 import Medidetail from "./components/Medidetail";
+<<<<<<< HEAD
 import MediInfo from "./components/MediInfo";
+=======
+import Symptom from "./components/Symptom";
+>>>>>>> 71e0d05934cde821c36872b18b77613269074895
 
 function App() {
   return (
@@ -29,7 +33,11 @@ function App() {
             <Route path="/healthinfo" element={<HealthInfo />} />
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
+<<<<<<< HEAD
             <Route path="/mediinfo" element={<MediInfo />} />
+=======
+            <Route path="/symptom" element={<Symptom />} />
+>>>>>>> 71e0d05934cde821c36872b18b77613269074895
           </Routes>
 
           <Footer />

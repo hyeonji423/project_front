@@ -10,7 +10,7 @@ export const symptom = [
   {
     image: symptom1,
     text: "#두통",
-    to: "/headache",
+    to: "/Symptom",
   },
   {
     image: symptom2,
