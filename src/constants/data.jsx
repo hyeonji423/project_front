@@ -47,7 +47,7 @@ export const symptom = [
 export const navItems = [
   { label: "챗봇", to: "/" },
   { label: "건강정보", to: "/healthinfo" },
-  { label: "약품정보", to: "/" },
+  { label: "약품정보", to: "/mediDetail" },
   { label: "고객문의", to: "/" },
 ];
 
@@ -93,13 +93,13 @@ export const heroLinks = [
   { to: "documentation", text: "documentation" },
 ];
 
-export const medi_detail_test = [
+export const mediDetailTest = [
   {
     id: 1,
     number: 197900277,
     name: "게보린정(수출명:돌로린정)",
     company_name: "삼진제약(주)",
-    main_ngredient: "아세트아미노펜,카페인무수물,이소프로필안티피린",
+    main_ingredient: "아세트아미노펜,카페인무수물,이소프로필안티피린",
     efficacy: "이 약은 두통, 치통, 발치(이를 뽑음)후 동통(통증), 인후(목구멍)통, 귀의 통증, 관절통, 신경통, 요(허리)통, 근육통, 견통(어깨통증), 타박통, 골절통, 염좌통(삔 통증), 월경통(생리통), 외상(상처)통의 진통과 오한(춥고 떨리는 증상), 발열시의 해열에 사용합니다.",
     use: "성인은 1회 1정 1일 3회까지 공복시를 피해 복용합니다. 복용간격은 4시간 이상으로 합니다. 이 약은 원칙적으로 단기간 복용합니다.",
     precaution: "매일 세잔 이상 정기적 음주자가 이 약 또는 다른 해열진통제를 복용할 때는 의사 또는 약사와 상의하십시오. 간손상을 일으킬 수 있습니다. 아세트아미노펜으로 일일 최대 용량(4,000 mg)을 초과하여 복용하지 마십시오. 간손상을 일으킬 수 있습니다. 아세트아미노펜을 포함하는 다른 제품과 함께 복용하지 마십시오.",

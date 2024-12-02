@@ -9,6 +9,7 @@ import Mypage from "./components/Mypage";
 import HealthInfo from "./components/HealthInfo"
 import NewPage from "./components/NewPage";
 import Management from "./components/Management";
+import Medidetail from "./components/Medidetail";
 
 function App() {
   return (
@@ -25,8 +26,8 @@ function App() {
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/newpage" element={<NewPage />} />
             <Route path="/healthinfo" element={<HealthInfo />} />
-            <Route path="/management" element={<Management
-            />} />
+            <Route path="/management" element={<Management />} />
+            <Route path="/mediDetail" element={<Medidetail />} />
           </Routes>
 
           <Footer />
