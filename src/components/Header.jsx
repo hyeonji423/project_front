@@ -19,7 +19,9 @@ const Header = () => {
     <div className='w-full flex justify-center shadow-custom sticky top-0 z-50 bg-white'>
       <div className='container flex justify-between items-center'>
         <div className='logo left-0'>
-          <img src={mediLogo} alt="메디 로고" className='w-[150px]' />
+          <Link to='/'>
+            <img src={mediLogo} alt="메디 로고" className='w-[150px]' />
+          </Link>
         </div>
         <div className='head-all'>
           <div className="head-top w-full text-sm info mt-2">
