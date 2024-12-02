@@ -10,6 +10,7 @@ import HealthInfo from "./components/HealthInfo"
 import NewPage from "./components/NewPage";
 import Management from "./components/Management";
 import Medidetail from "./components/Medidetail";
+import Symptom from "./components/Symptom";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/healthinfo" element={<HealthInfo />} />
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
+            <Route path="/symptom" element={<Symptom />} />
           </Routes>
 
           <Footer />
