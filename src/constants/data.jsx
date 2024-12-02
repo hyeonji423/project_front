@@ -9,31 +9,38 @@ import symptom7 from "../assets/symptom/symptom7.jpg"
 export const symptom = [
   {
     image: symptom1,
-    text: "#편두통",
+    text: "#두통",
+    to: "/headache"
   },
   {
     image: symptom2,
-    text: "#마른기침"
+    text: "#마른기침",
+    to: "/cough"
   },
   {
     image: symptom3,
-    text: "#피부발진"
+    text: "#피부발진",
+    to: "/rash"
   },
   {
     image: symptom4,
-    text: "#미열"
+    text: "#미열",
+    to: "/fever"
   },
   {
     image: symptom5,
-    text: "#근육통"
+    text: "#근육통",
+    to: "/muscle_pain"
   },
   {
     image: symptom6,
-    text: "#불면증"
+    text: "#불면증",
+    to: "/insomnia"
   },
   {
     image: symptom7,
-    text: "#변비"
+    text: "#변비",
+    to: "/constipation"
   },
 ]
 
