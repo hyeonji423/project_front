@@ -80,7 +80,7 @@ const NewPage = () => {
 
   return (
     <div className="w-full h-auto flex">
-      <div className="w-[70%] bg-[skyblue] ml-10">
+      <div className="w-[70%] h-[62vh] rounded-md bg-[skyblue] ml-10">
         <div>
           <div className="flex bg-white last:border-b border-gray-300 mb-4">
             {tabs.map((tab, index) => (
