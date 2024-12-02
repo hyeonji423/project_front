@@ -96,3 +96,14 @@ footer ul a:hover{
   display: inline-block;
   width: 8.125rem;
 }
+
+/* MediDetail Style */
+.description {
+  border: skyblue;
+  padding: 6px;
+  background: skyblue;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  width: fit-content;
+}
