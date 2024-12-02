@@ -8,7 +8,7 @@ const Sidebar = () => {
       <nav className="rounded-sm py-10 px-4 flex flex-col justify-center items-center">
         <div className="flex w-full items-center justify-center gap-8">
           <h2 className="font-semibold text-xl text-black hidden lg:block">
-            <Link to="/">MyPage</Link>
+            <Link to="/mypage">MyPage</Link>
           </h2>
         </div>
 

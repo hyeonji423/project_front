@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Mypage from "./components/Mypage";
+import HealthInfo from "./components/HealthInfo"
 import NewPage from "./components/NewPage";
 import Management from "./components/Management";
 
@@ -23,6 +24,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/newpage" element={<NewPage />} />
+            <Route path="/healthinfo" element={<HealthInfo />} />
+            <Route path="/management" element={<Management
+            />} />
           </Routes>
 
           <Footer />
