@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Mypage from "./components/Mypage";
 import NewPage from "./components/NewPage";
+import Management from "./components/Management";
 
 function App() {
   return (
