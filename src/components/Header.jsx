@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { navItems } from './../constants/data';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearToken } from '../redux/slices/loginSlice';
-import mediLogo from '../assets/medi_logo3.png';
+import mediLogo from '../assets/medi_logo.png';
 
 const Header = () => {
   const dispatch = useDispatch()
