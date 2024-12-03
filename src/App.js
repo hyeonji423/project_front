@@ -35,8 +35,6 @@ function App() {
             <Route path="/mediinfo" element={<MediInfo />} />
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
-            <Route path="/healthnews" element={<HealthNews />} />
-            <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/service" element={<Service />} />
           </Routes>
 
