@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { POST_MY_MEDI_API_URL, GET_MY_MEDI_LIST_API_URL } from '../../utils/apiUrl'
-import { postRequest, getRequest } from '../../utils/requestMethods'
+import { POST_MY_MEDI_API_URL, GET_MY_MEDI_LIST_API_URL, DELETE_MY_MEDI_LIST_API_URL } from '../../utils/apiUrl'
+import { postRequest, getRequest, deleteRequest } from '../../utils/requestMethods'
 
 
 // 약품 등록 요청 함수
@@ -44,6 +44,24 @@ export const fetchGetMyMediListData = getMyMediListFetchThunk(
   GET_MY_MEDI_LIST_API_URL // 요청 url
 ); // thunk 함수 호출
 
+// delete thunk function 정의
+const deleteMyMediListFetchThunk = (actionType, apiURL) => {
+  return createAsyncThunk(actionType, async (id) => {
+    // console.log(apiURL, id);
+    const options = {
+      method: "DELETE",
+    };
+    const fullPath = `${apiURL}/${id}`;
+    return await deleteRequest(fullPath, options);
+  });
+};
+
+// delete_item
+export const fetchDeleteMyMediListData = deleteMyMediListFetchThunk(
+  "fetchDeleteMyMediList",
+  DELETE_MY_MEDI_LIST_API_URL
+);
+
 
 // handleFulfilled 함수 정의 : 요청 성공 시 상태 업데이트 로직을 별도의 함수로 분리
 const handleFulfilled = (stateKey) => (state, action) => {
@@ -64,6 +82,7 @@ const myMediSlice = createSlice({
     // 초기 상태 지정
     postMyMediData: null,
     getMyMediListData: null,
+    deleteMyMediListData: null,
     
   },
   
@@ -73,8 +92,10 @@ const myMediSlice = createSlice({
       .addCase(fetchPostMyMediData.rejected, handleRejected)
 
       .addCase(fetchGetMyMediListData.fulfilled, handleFulfilled("getMyMediListData")) //요청 성공시
-      .addCase(fetchGetMyMediListData.rejected, handleRejected); // 요청 실패시
+      .addCase(fetchGetMyMediListData.rejected, handleRejected) // 요청 실패시
 
+      .addCase(fetchDeleteMyMediListData.fulfilled, handleFulfilled("deleteMyMediListData")) //요청 성공시
+      .addCase(fetchDeleteMyMediListData.rejected, handleRejected);
     
   }
 })  // slice 객체 저장
