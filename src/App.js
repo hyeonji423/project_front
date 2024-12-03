@@ -1,21 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-<<<<<<< HEAD
-import Home from "./components/Home";
-import Features from "./components/Features";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Mypage from "./components/Mypage";
-import HealthInfo from "./components/HealthInfo";
-import NewPage from "./components/NewPage";
-import Management from "./components/Management";
-import Medidetail from "./components/Medidetail";
-import MediInfo from "./components/MediInfo";
-import Symptom from "./components/Symptom";
-import HealthNews from "./components/HealthNews";
-import Chatbot from "./components/Chatbot";
-=======
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Home from './components/main/Home';
@@ -31,7 +14,6 @@ import HealthNews from './components/details/HealthNews';
 import Chatbot from './components/category/Chatbot';
 import Service from './components/category/Service';
 
->>>>>>> 80c7175836feb3990315f4f34db7b37a864abe2b
 
 function App() {
   return (
@@ -50,15 +32,9 @@ function App() {
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
-<<<<<<< HEAD
-            <Route path="/symptom" element={<Symptom />} />
-            <Route path="/healthnews" element={<HealthNews />} />
-            <Route path="/chatbot" element={<Chatbot />} />
-=======
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/service" element={<Service />} />
->>>>>>> 80c7175836feb3990315f4f34db7b37a864abe2b
           </Routes>
 
           <Footer />
