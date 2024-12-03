@@ -12,11 +12,8 @@ import Management from "./components/Management";
 import Medidetail from "./components/Medidetail";
 import MediInfo from "./components/MediInfo";
 import Symptom from "./components/Symptom";
-<<<<<<< HEAD
-=======
 import HealthNews from "./components/HealthNews";
 import Chatbot from "./components/Chatbot";
->>>>>>> acb42de921121ade2b84ba5ac5f7210ffee94cfa
 
 function App() {
   return (
@@ -37,11 +34,8 @@ function App() {
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
             <Route path="/symptom" element={<Symptom />} />
-<<<<<<< HEAD
-=======
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
->>>>>>> acb42de921121ade2b84ba5ac5f7210ffee94cfa
           </Routes>
 
           <Footer />
