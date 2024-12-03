@@ -29,7 +29,7 @@ function App() {
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/newpage" element={<NewPage />} />
             <Route path="/healthinfo" element={<HealthInfo />} />
-            <Route path="/mediDetail" element={<Medidetaill />} />
+            <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
