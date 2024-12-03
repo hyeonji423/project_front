@@ -1,14 +1,9 @@
-<<<<<<< HEAD:src/components/Management.jsx
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPostMyMediData } from './../redux/slices/myMediSlice';
+import { fetchPostMyMediData } from './../../redux/slices/myMediSlice';
 import { useNavigate } from "react-router-dom";
 
-=======
-import React from "react";
-import Sidebar from './Sidebar';
->>>>>>> 80c7175836feb3990315f4f34db7b37a864abe2b:src/components/details/Management.jsx
 
 const Management = () => {
   const dispatch = useDispatch();
