@@ -9,12 +9,17 @@ import NewPage from "./components/details/NewPage";
 import HealthInfo from "./components/category/HealthInfo";
 import MediInfo from "./components/category/MediInfo";
 import HealthNews from "./components/details/HealthNews";
-import Chatbot from "./components/category/Chatbot";
-import HealthDetail from "./components/details/HealthDetail";
-import MemberInfo from "./components/details/MemberInfo";
-import Management from "./components/details/Management";
-import Medidetail from "./components/details/Medidetail";
-import Service from "./components/category/Service";
+import Chatbot from './components/category/Chatbot';
+import HealthDetail from './components/details/HealthDetail';
+import MemberInfo from './components/details/MemberInfo';
+import Management from './components/details/Management';
+import Medidetail from './components/details/Medidetail';
+import Service from './components/category/Service';
+import Pannel from "./components/mymedi/Pannel";
+import Modal from './components/mymedi/Modal';
+import Item from "./components/mymedi/Item";
+import AddItem from "./components/mymedi/AddItem";
+
 
 function App() {
   return (
@@ -38,6 +43,10 @@ function App() {
             <Route path="/memberinfo" element={<MemberInfo />} />
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
+            <Route path="/mymedi_list" element={<Pannel />} />
+            <Route path="/" element={<Modal />} />
+            <Route path="/" element={<Item />} />
+            <Route path="/" element={<AddItem />} />
           </Routes>
 
           <Footer />
