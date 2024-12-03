@@ -4,7 +4,16 @@ import HealthInfoDatabase from "../../constants/healthdata";
 
 const HealthDetail = () => {
   const { id } = useParams();
-  const healthInfo = HealthInfoDatabase[0]; // 현재는 첫 번째 데이터만 사용
+  console.log("현재 id:", id);
+  console.log("데이터베이스:", HealthInfoDatabase);
+
+  const healthInfo = HealthInfoDatabase.find((info) => info.id === Number(id));
+
+  if (!healthInfo) {
+    return (
+      <div className="text-center py-8">존재하지 않는 건강 정보입니다.</div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
