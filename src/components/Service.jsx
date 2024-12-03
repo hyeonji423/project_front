@@ -1,6 +1,6 @@
 import React from "react";
 
-function App() {
+function Service() {
   return (
     <div className="p-8">
       <div className="mb-4">
@@ -49,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default Service;
