@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { navItems } from './../constants/data';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearToken } from '../redux/slices/loginSlice';
-import mediLogo from '../assets/medi_logo.png';
+import mediLogo from '../assets/medi_logo3.png';
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const Header = () => {
       <div className='container flex justify-between items-center'>
         <div className='logo left-0'>
           <Link to='/'>
-            <img src={mediLogo} alt="메디 로고" className='w-[150px]' />
+            <img src={mediLogo} alt="메디 로고" className='w-[200px]' />
           </Link>
         </div>
         <div className='head-all'>

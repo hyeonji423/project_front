@@ -54,7 +54,7 @@ export default () => {
             symptom.map((symptom, index) => (
               <SwiperSlide key={index} className="rounded-lg overflow-hidden shadow-inner-lg">
                 <Link to={symptom.to}>
-                  <div className="absolute opacity-30 overlay w-full h-full bg-white z-10 left-0 top-0"></div>
+                  <div className="absolute opacity-30 overlay w-full h-full bg-black z-10 left-0 top-0"></div>
                   <h5 className="absolute w-full text-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-white text-xl font-semibold drop-shadow-md">{symptom.text}</h5>
                   <img src={symptom.image} alt="symptom"/>
                 </Link>
