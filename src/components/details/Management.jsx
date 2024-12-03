@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPostMyMediData } from './../../redux/slices/myMediSlice';
+import { fetchPostMyMediData } from '../../redux/slices/myMediSlice';
 import { useNavigate } from "react-router-dom";
 
 

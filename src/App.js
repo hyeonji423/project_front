@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Home from "./components/main/Home";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
@@ -29,13 +30,14 @@ function App() {
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/newpage" element={<NewPage />} />
             <Route path="/healthinfo" element={<HealthInfo />} />
-            <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/service" element={<Service />} />
+            <Route path="/healthdetail" element={<HealthDetail />} />
             <Route path="/memberinfo" element={<MemberInfo />} />
+            <Route path="/management" element={<Management />} />
           </Routes>
 
           <Footer />
