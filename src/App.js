@@ -1,18 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from './components/common/Header';
-import Footer from './components/common/Footer';
-import Home from './components/main/Home';
-import Login from './components/category/Login';
-import Register from './components/category/Register';
-import Mypage from './components/category/Mypage';
-import NewPage from './components/details/NewPage';
-import HealthInfo from './components/category/HealthInfo';
-import Medidetail from './components/details/Medidetail';
-import MediInfo from './components/category/MediInfo';
-import HealthNews from './components/details/HealthNews';
-import Chatbot from './components/category/Chatbot';
-import Service from './components/category/Service';
 
+import Home from "./components/main/Home";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Login from "./components/category/Login";
+import Register from "./components/category/Register";
+import Mypage from "./components/category/Mypage";
+import HealthInfo from "./components/category/HealthInfo";
+import NewPage from "./components/details/detailsNewPage";
+import Management from "./components/details/Management";
+import Medidetail from "./components/details/Medidetail";
+import MediInfo from "./components/category/MediInfo";
+import HealthNews from "./components/HealthNews";
+import Service from "./components/Service";
+import MemberInfo from "./components/MemberInfo";
+import Chatbot from "./components/category/Chatbot";
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/service" element={<Service />} />
+            <Route path="/healthdetail" element={<HealthDetail />} />
+            <Route path="/memberinfo" element={<MemberInfo />} />
+            <Route path="/management" element={<Management />} />
           </Routes>
 
           <Footer />
