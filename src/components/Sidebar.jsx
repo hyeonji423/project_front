@@ -13,16 +13,17 @@ const Sidebar = () => {
         </div>
 
         <ul className="menus">
-        {
-          navMenus.map((menu, idx)=>(
+          {navMenus.map((menu, idx) => (
             <li key={idx} className={`${menu.idx}`}>
-              <Link to={menu.to} className='flex gap-2 items-center py-2 px-4 lg:px-8'>
-                <span className='hidden lg:inline'>{menu.label}</span>
+              <Link
+                to={menu.to}
+                className="flex gap-2 items-center py-2 px-4 lg:px-8"
+              >
+                <span className="hidden lg:inline">{menu.label}</span>
               </Link>
             </li>
-          ))
-        }
-      </ul>
+          ))}
+        </ul>
       </nav>
     </div>
   );

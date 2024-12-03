@@ -6,15 +6,13 @@ import symptom5 from "../assets/symptom/symptom5.jpg";
 import symptom6 from "../assets/symptom/symptom6.jpg";
 import symptom7 from "../assets/symptom/symptom7.jpg";
 
-
 // 메인 헤더 카테고리
 export const navItems = [
   { label: "챗봇", to: "/chatbot" },
   { label: "건강정보", to: "/healthinfo" },
   { label: "약품정보", to: "/mediinfo" },
-  { label: "건의사항", to: "/service" },,
+  { label: "건의사항", to: "/service" },
 ];
-
 
 // 메인 자주 나타나는 증상
 export const symptom = [
@@ -55,12 +53,11 @@ export const symptom = [
   },
 ];
 
-
 // 마이페이지 사이드바
 export const navMenus = [
   {
     label: "회원정보 수정",
-    to: "/",
+    to: "/memberinfo",
     idx: 1,
   },
   {
@@ -91,4 +88,3 @@ export const mediDetailTest = [
       "습기와 빛을 피해 실온에서 보관하십시오.어린이의 손이 닿지 않는 곳에 보관하십시오.",
   },
 ];
-
