@@ -18,12 +18,17 @@ const HealthNews = () => {
         const xmlDoc = parser.parseFromString(text, 'application/xml');
         const items = Array.from(xmlDoc.getElementsByTagName('item'));
 
-        const news = items.map((item) => ({
-          title: item.getElementsByTagName('title')[0]?.textContent,
-          link: item.getElementsByTagName('link')[0]?.textContent,
-          description: item.getElementsByTagName('description')[0]?.textContent,
-          pubDate: item.getElementsByTagName('pubDate')[0]?.textContent,
-        }));
+        const news = items.map((item) => {
+          const title = item.getElementsByTagName('title')[0]?.textContent;
+          const description = item.getElementsByTagName('description')[0]?.textContent;
+          
+          return {
+            title: title ? decodeHTML(title) : '',  // HTML 엔티티 디코딩
+            link: item.getElementsByTagName('link')[0]?.textContent,
+            description: description ? decodeHTML(description) : '',  // HTML 엔티티 디코딩
+            pubDate: item.getElementsByTagName('pubDate')[0]?.textContent,
+          };
+        });
 
         setNewsList(news);
       } catch (err) {
@@ -33,9 +38,18 @@ const HealthNews = () => {
 
     fetchNews();
   }, []);
+  
+
+  // HTML 엔티티 디코딩 함수
+  const decodeHTML = (html) => {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="news">
       <div className="grid grid-cols-12 gap-6">
         {/* 메인 뉴스 섹션 */}
         <div className="col-span-8">
@@ -53,13 +67,13 @@ const HealthNews = () => {
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <h2 className="text-xl font-bold mb-2">
+                    <h2 className="text-xl font-bold mb-2 hover:text-blue-700">
                       {news.title.replace(/<\/?b>/g, '')}
                     </h2>
                     <p className="text-gray-600 text-sm">
                       {news.description.replace(/<\/?b>/g, '')}
                     </p>
-                    <p className="text-gray-400 text-xs">
+                    <p className="text-gray-400 text-xs pt-2">
                       {new Date(news.pubDate).toLocaleDateString('ko-KR')}
                     </p>
                   </a>
