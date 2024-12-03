@@ -1,4 +1,27 @@
 import React, { useState } from "react";
+
+function ButtonTextChanger() {
+  const [text, setText] = useState("기본 텍스트");
+
+  return (
+    <div>
+      <button onClick={() => setText("Button 1이 눌렸습니다.")}>
+        Button 1
+      </button>
+      <button onClick={() => setText("Button 2이 눌렸습니다.")}>
+        Button 2
+      </button>
+      <button onClick={() => setText("Button 3이 눌렸습니다.")}>
+        Button 3
+      </button>
+      <button onClick={() => setText("Button 4이 눌렸습니다.")}>
+        Button 4
+      </button>
+      <div className="text-div">{text}</div>
+    </div>
+  );
+}
+
 // DrugInfo 컴포넌트 생성
 function DrugInfo({ title, description }) {
   return (
@@ -14,6 +37,7 @@ function MediInfo() {
   const [searchTerm, setSearchTerm] = useState("");
   const [drugInfo, setDrugInfo] = useState(null);
   const [error, setError] = useState(null);
+  const [infoText, setInfoText] = useState("약에 대한 기본 정보 txt");
 
   const handleSearch = async () => {
     try {
@@ -65,14 +89,38 @@ function MediInfo() {
           </section>
         )}
 
-        <section className="flex space-x-4 mb-4 items-center justify-center">
-          <div className="border p-4 w-72 h-64 bg-gray-200 flex  justify-center ">
+        <section className="flex space-x-4 mb-4 items-start justify-center">
+          <div className="border p-4 w-48 h-48 bg-gray-200 flex justify-center items-center">
             약. img
           </div>
-          <div className="border p-4 flex flex-col space-y-2">
-            <button className="border p-2">약 이름(약품 상세 Page 링크)</button>
-            <div className="border p-2 w-96 h-40">약에 대한 기본 정보 txt</div>
+
+          <div className="flex flex-col space-y-2">
+            <button
+              className="border p-2 w-64"
+              onClick={() => setInfoText("약 이름 1에 대한 정보")}
+            >
+              약 이름 1
+            </button>
+            <button
+              className="border p-2 w-64"
+              onClick={() => setInfoText("약 이름 2에 대한 정보")}
+            >
+              약 이름 2
+            </button>
+            <button
+              className="border p-2 w-64"
+              onClick={() => setInfoText("약 이름 3에 대한 정보")}
+            >
+              약 이름 3
+            </button>
+            <button
+              className="border p-2 w-64"
+              onClick={() => setInfoText("약 이름 4에 대한 정보")}
+            >
+              약 이름 4
+            </button>
           </div>
+          <div className="border p-4 w-96 h-48">{infoText}</div>
         </section>
 
         <section className="border-t-2 pt-4">
@@ -90,3 +138,4 @@ function MediInfo() {
 }
 
 export default MediInfo;
+export { ButtonTextChanger };
