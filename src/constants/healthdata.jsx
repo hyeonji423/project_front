@@ -3,6 +3,7 @@ import ManagementImage from "../assets/healthimg/management.jpg";
 
 const HealthInfoDatabase = [
   {
+    id: 0,
     title: "알코올 대신 건강! 음주 없이도 즐거운 연말 보내세요.",
     sections: [
       {
