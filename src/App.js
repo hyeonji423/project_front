@@ -13,7 +13,7 @@ import Medidetail from "./components/details/Medidetail";
 import MediInfo from "./components/category/MediInfo";
 import HealthNews from "./components/details/HealthNews";
 import Service from "./components/category/Service";
-import MemberInfo from "./components/MemberInfo";
+import MemberInfo from "./components/Member";
 import Chatbot from "./components/category/Chatbot";
 
 function App() {
