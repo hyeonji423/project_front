@@ -25,7 +25,7 @@ const Login = () => {
     e.preventDefault() // 쿼리가 잡히지 않게(경로 표시X)
 
     if(value.email === '' || value.password === '') {
-      alert("이메일, 비밀번호는 필수 입력값입니다.")
+      alert("email, password는 필수 입력값입니다.")
       return
     }
 
