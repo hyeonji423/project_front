@@ -1,5 +1,5 @@
 import React from "react";
-import { navMenus } from "../constants/data";
+import { navMenus } from "../../constants/data";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {

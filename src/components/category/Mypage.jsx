@@ -1,7 +1,6 @@
 import React from "react";
-import Management from "./Management";
-import Sidebar from "./Sidebar";
-import NewPage from "./NewPage";
+import Sidebar from "../details/Sidebar";
+import NewPage from './../details/NewPage';
 
 const Mypage = () => {
   return (

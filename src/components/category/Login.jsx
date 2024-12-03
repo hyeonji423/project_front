@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { fetchPostLoginData } from '../redux/slices/authSlice';
-import { setToken } from '../redux/slices/loginSlice';
-import Sidebar from './Sidebar';
+import { fetchPostLoginData } from '../../redux/slices/authSlice';
+import { setToken } from '../../redux/slices/loginSlice';
 
 const Login = () => {
   const dispatch = useDispatch()

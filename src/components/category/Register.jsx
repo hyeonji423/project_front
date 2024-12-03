@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchPostAuthData } from "../redux/slices/authSlice";
+import { fetchPostAuthData } from "../../redux/slices/authSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
