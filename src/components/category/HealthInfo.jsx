@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import HealthNews from "./../details/HealthNews";
 import HealthInfoDatabase from "../../constants/healthdata";
 import { Link } from "react-router-dom";
+import BeerImage from "../../assets/healthimg/beer.jpg";
 
 function App() {
   return (
@@ -20,7 +21,9 @@ function App() {
             <Link to={`/healthdetail/${index}`} key={index}>
               <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow">
                 <h3 className="font-bold">{info.title}</h3>
-                <p>{info.sections[0].content?.substring(0, 50)}...</p>
+                <p className="text-gray-600 text-sm">
+                  {info.sections[0].content?.substring(0, 50)}...
+                </p>
                 {info.sections[0].image && (
                   <img
                     src={info.sections[0].image}
@@ -29,7 +32,13 @@ function App() {
                   />
                 )}
                 {!info.sections[0].image && (
-                  <div className="h-24 bg-gray-200 mt-2">이미지 없음</div>
+                  <div className="h-24 mt-2">
+                    <img
+                      src={BeerImage}
+                      alt="beer"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 )}
               </div>
             </Link>
