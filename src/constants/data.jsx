@@ -45,7 +45,7 @@ export const symptom = [
 ];
 
 export const navItems = [
-  { label: "챗봇", to: "/" },
+  { label: "챗봇", to: "/chatbot" },
   { label: "건강정보", to: "/healthinfo" },
   { label: "약품정보", to: "/mediinfo" },
   { label: "고객문의", to: "/" },
