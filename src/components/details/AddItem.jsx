@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from './Sidebar';
 
-const Management = () => {
+const AddItem = () => {
   return (
     <div>
       <Sidebar />
@@ -48,4 +48,4 @@ const Management = () => {
     </div>
   );
 };
-export default Management;
+export default AddItem;
