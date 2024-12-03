@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./details/Sidebar";
+import Sidebar from "../../components/details/Sidebar";
 
 const MemberInfo = () => {
   return (
