@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
-import Contact from "./components/Contact";
 import Features from "./components/Features";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,6 +11,7 @@ import NewPage from "./components/NewPage";
 import Management from "./components/Management";
 import Medidetail from "./components/Medidetail";
 import MediInfo from "./components/MediInfo";
+<<<<<<< HEAD
 import Symptom from "./components/Symptom";
 import Cough from "./components/Cough";
 import Rush from "./components/Rush";
@@ -19,6 +19,8 @@ import Fever from "./components/Fever";
 import Muscle_pain from "./components/Muscle_pain";
 import Insomnia from "./components/Insomnia";
 import Constipation from "./components/Constipation";
+=======
+>>>>>>> ed2aa5cc6a324c860a1cca31b518ea06638656c2
 import HealthNews from "./components/HealthNews";
 import Chatbot from "./components/Chatbot";
 import Service from "./components/Service";
@@ -41,6 +43,7 @@ function App() {
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
+<<<<<<< HEAD
             <Route path="/symptom" element={<Symptom />} />
             <Route path="/cough" element={<Cough />} />
             <Route path="/rash" element={<Rush />} />
@@ -52,6 +55,10 @@ function App() {
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
 
+=======
+            <Route path="/healthnews" element={<HealthNews />} />
+            <Route path="/chatbot" element={<Chatbot />} />
+>>>>>>> ed2aa5cc6a324c860a1cca31b518ea06638656c2
             <Route path="/service" element={<Service />} />
           </Routes>
 

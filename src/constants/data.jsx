@@ -12,7 +12,7 @@ export const navItems = [
   { label: "챗봇", to: "/chatbot" },
   { label: "건강정보", to: "/healthinfo" },
   { label: "약품정보", to: "/mediinfo" },
-  { label: "고객문의", to: "/" },
+  { label: "건의사항", to: "/service" },,
 ];
 
 
@@ -55,15 +55,6 @@ export const symptom = [
   },
 ];
 
-<<<<<<< HEAD
-=======
-export const navItems = [
-  { label: "챗봇", to: "/chatbot" },
-  { label: "건강정보", to: "/healthinfo" },
-  { label: "약품정보", to: "/mediinfo" },
-  { label: "건의사항", to: "/service" },
-];
->>>>>>> eab782244b30c3c52b2caf949e9334f8df0ddca4
 
 // 마이페이지 사이드바
 export const navMenus = [
