@@ -1,48 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import { communityLinks, platformLinks, resourcesLinks } from '../constants/data';
+import React from "react";
+import mediLogo from '../assets/medi_logo.png';
 
 const Footer = () => {
-  return <footer className="mt-20 border-t py-10 border-neutral-700">
-    <div className="container grid grid-cols-2 lg:grid-cols-3 gap-y-16">
-      <div>
-        <h3 className="footer_title">Resources</h3>
-        <ul className="space-y-2">
-        {
-          resourcesLinks.map((link, index)=>(
-            <li key={index}>
-              <Link to={link.to}>{link.text}</Link>
-            </li>
-          ))
-        }
-        </ul>
+  return (
+    <footer className="bg-white border-t border-gray-200 py-8">
+      <div className="container mx-auto px-4">
+        {/* 로고 및 주소 정보 */}
+        <div className="flex flex-col lg:flex-row justify-between mb-6">
+          <div className="mb-4 lg:mb-0">
+            <img src={mediLogo} alt="로고" className="h-6 mb-2" />
+            <p className="text-sm text-gray-600">
+              (08503) 서울 금천구 가산디지털2로 144 현대테라타워 가산DK A동 20층
+            </p>
+            <p className="text-sm text-gray-600">
+              총장: 황현지 | 대표전화: 02-2038-0800 | FAX: 02-000-0000
+            </p>
+          </div>
+        </div>
+
+        {/* 저작권 정보 */}
+        <div className="border-t border-gray-200 pt-4 mt-4">
+          <p className="text-sm text-gray-500 text-center">
+            COPYRIGHT © by CodeLab. All rights reserved.
+          </p>
+        </div>
       </div>
-      <div>
-        <h3 className="footer_title">Flatform</h3>
-        <ul className="space-y-2">
-          {
-            platformLinks.map((link, index)=>(
-              <li key={index}>
-                <Link to={link.to}>{link.text}</Link>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div>
-        <h3 className="footer_title">Community</h3>
-        <ul className="space-y-2">
-          {
-            communityLinks.map((link, index)=>(
-              <li key={index}>
-                <Link to={link.to}>{link.text}</Link>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-  </footer>
+    </footer>
+  );
 };
 
 export default Footer;
