@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import cb036119003 from '../assets/CK_cb036119003.jpg';
+import tc01500001303 from '../assets/CK_tc01500001303.jpg';
 
-const Symptom = () => {
+const Constipation = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState(true);  // 보이기/숨기기 상태
   const [selectedMedicine, setSelectedMedicine] = useState(null);
@@ -20,22 +20,22 @@ const Symptom = () => {
     {
       id: 1,
       title: "1단계",
-      detail: "1.코 간지러움 시작"      
+      detail: "1.목 뒤가 간지럽고 건조하며, 가벼운 마른기침이 시작됨"      
     },
     {
       id: 2,
       title: "2단계",
-      detail: "2.몸이 으실으실되지며 기침이 많아짐"     
+      detail: "2.기침이 잦아지고 목이 따갑거나 쉰 목소리가 나타남"     
     },
     {
       id: 3,
       title: "3단계",
-      detail: "3.변비가 생기며 목도 많이 간지러움"      
+      detail: "3.밤에 기침이 심해지고 가슴이 답답하며 수면장애가 발생"      
     },
     {
       id: 4,
       title: "4단계",
-      detail: "4.몸이 추워지며 잠이 잘안오는 증상"     
+      detail: "4.지속적인 기침으로 인한 피로감, 두통, 근육통이 동반됨"     
     }
   ];
   // 기존 symptoms 배열은 유지
@@ -43,31 +43,31 @@ const Symptom = () => {
   const medicines = [
     {
       id: 1,
-      name: "타이레놀",
-      type: "해열/진통제",
-      description: "열과 통증을 가라앉히는데 효과적",
-      caution: "하루 4000mg 이하로 복용"
+      name: "레보투스",
+      type: "진해거담제",
+      description: "기침을 가라앉히고 가래를 묽게 하는데 효과적",
+      caution: "임산부, 수유부는 복용 전 의사와 상담 필요"
     },
     {
       id: 2,
-      name: "판콜에이",
-      type: "종합감기약",
-      description: "기침, 콧물, 두통 등 전반적인 감기 증상 완화",
-      caution: "졸음이 올 수 있으니 운전 주의"
+      name: "코데날시럽",
+      type: "기침억제제",
+      description: "마른기침을 진정시키고 기도 자극을 감소",
+      caution: "운전 및 기계조작 시 주의, 졸음 유발 가능"
     },
     {
       id: 3,
-      name: "신신파스아렉스",
-      type: "외용제",
-      description: "근육통과 몸살 증상 완화",
-      caution: "상처 난 곳에는 사용 금지"
+      name: "액티피드",
+      type: "항히스타민제",
+      description: "알레르기성 기침 증상 완화와 가래 감소",
+      caution: "복용 후 졸음이 올 수 있으며 장시간 운전 금지"
     },
     {
       id: 4,
-      name: "베아제",
-      type: "소화제",
-      description: "감기약 복용 시 胃(위) 보호",
-      caution: "공복에 복용 시 위장 자극 가능"
+      name: "뮤코졸정",
+      type: "점액용해제",
+      description: "기도 점액을 묽게 하여 기침 증상 완화",
+      caution: "위장장애가 있는 경우 식후 복용 권장"
     }
   ];
   
@@ -95,8 +95,8 @@ const Symptom = () => {
     if (searchTerm.trim() === "") {
       setSearchResults([]);
       setIsSearching(false);
-      console.log("검색어를 입력해주세요!");
-      alert("검색어를 입력해주세요!");
+      console.log("약품검색명을 입력해주세요!");
+      alert("약품검색명을 입력해주세요!");
       return;
     }
 
@@ -120,13 +120,13 @@ const Symptom = () => {
   return (<div>     
     <center><h1><p className="mt-8 -ml-[1200px] text-lg rounded"><b>대표증상</b></p></h1></center>
     <div className="flex mt-8 ml-[300px] h-[220px]">
-    <img src={cb036119003} alt="sickimg1" />
-    <div className="ml-8 border border-black bg-orange-400 w-[900px]">    
-    <center><p className="mt-8 text-blue-900">#감기&심한몸살 관련 질환</p><br/>
-    1.가볍게 코가 간지럽거나 기침이 조금씩나온다!<br/>
-    2.몸이 으실으실 추워지면서 기침이 많아지기 시작한다!<br/>
-    3.변비가 생기면서 목도 많이 간지러워진다!<br/>
-    4.약간 몸이 엄청 추워지며 잠이 잘안온다?! 약사를 보거나 병원내방을 해야한다!
+    <img src={tc01500001303} alt="sickimg1" />
+    <div className="ml-8 border border-black bg-yellow-800 w-[900px]">    
+    <center><p className="mt-8 text-blue-900">#변비 관련 질환</p><br/>
+    1.목 뒤가 간지럽고 건조하며, 가벼운 마른기침이 시작됨!<br/>
+    2.기침이 잦아지고 목이 따갑거나 쉰 목소리가 나타남!<br/>
+    3.밤에 기침이 심해지고 가슴이 답답하며 수면장애가 발생!<br/>
+    4.지속적인 기침으로 인한 피로감, 두통, 근육통이 동반됨!
     </center>    
     </div>
     </div>  
@@ -173,7 +173,7 @@ const Symptom = () => {
                 </div>      
                 ))}    
               <p className="justify-center items-center relative col-span-2">
-                ※Take medicine with water, not on an empty stomach!
+                ※Please stop dry coughing!
               </p>
             </div>
           </div>
@@ -197,7 +197,7 @@ const Symptom = () => {
                 </div>      
                 ))}    
     <p className="justify-center items-center relative col-span-2">
-      ※tive for colds. Please consult your physician before use.
+      ※please medibook에서 약품을 찾아보세요!
     </p>
   </div>
 </div>
@@ -221,7 +221,7 @@ const Symptom = () => {
                 </div>      
                 ))}    
     <p className="justify-center items-center relative col-span-2">
-      ※항생제는 감기에 효과가 없으며, 의사의 처방 없이 복용하지 마세요!
+      ※에헤이~ medibook에서 약품이 필요합니다!
     </p>
   </div>
 </div>
@@ -245,7 +245,7 @@ const Symptom = () => {
                 </div>      
                 ))}    
     <p className="justify-center items-center relative col-span-2">
-      ※열과 몸살이 심해진다면 반드시 medibook에서 약품을 찾아보세요!
+      ※살려줘 medibook에서 약품을 찾아보세요!
     </p>
   </div>
 </div>
@@ -261,7 +261,7 @@ const Symptom = () => {
             <p className="mt-[20px] text-base">
           <input 
             type="text" 
-            placeholder="ex)타이레놀" 
+            placeholder="ex)레보투스" 
             value={searchTerm}
             onChange={handleSearchInput}
           />
@@ -288,7 +288,7 @@ const Symptom = () => {
               </div>      
             ))}       
             <p className="justify-center items-center relative col-span-2">
-      *감기약이 필요하거나 몸살 초기엔 딱이니 어서 처방하세요!
+      *마른기침 초기엔 딱이니 어서 처방하세요!
     </p>     
             {searchResults.length === 0 && (
               <p className="col-span-2 text-center text-gray-500">
@@ -301,4 +301,4 @@ const Symptom = () => {
     </div>);   
 };
 
-export default Symptom;
+export default Constipation;
