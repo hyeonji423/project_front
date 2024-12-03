@@ -62,7 +62,7 @@ export const navMenus = [
   },
   {
     label: "약품 관리",
-    to: "/management",
+    to: "/mymedi_list",
     idx: 2,
   },
 ];
