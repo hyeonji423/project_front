@@ -9,13 +9,13 @@ function App() {
     <div className="flex flex-col justify-center items-center w-full">
       <div className="news w-[70%] mt-10">
         <div className="news-main">
-          <h2 className="text-3xl font-bold mb-6">NEWS</h2>
+          <h2 className="text-3xl font-bold mb-4">NEWS</h2>
           <HealthNews />
         </div>
       </div>
 
-      <div className="health mt-20 w-[70%]">
-        <h2 className="text-3xl font-bold mb-6">건강정보</h2>
+      <div className="health mt-12 w-[70%]">
+        <h2 className="text-3xl font-bold mb-4">건강정보</h2>
         <div className="grid grid-cols-3 gap-4 mt-4">
           {HealthInfoDatabase.map((info, index) => (
             <Link to={`/healthdetail/${index}`} key={index}>

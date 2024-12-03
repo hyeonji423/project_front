@@ -4,7 +4,7 @@ const HealthNews = () => {
   const [newsList, setNewsList] = useState([]); // 전체 뉴스 목록
   const [error, setError] = useState(null); // 에러 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [newsPerPage] = useState(6); // 한 페이지에 표시할 뉴스 수
+  const [newsPerPage] = useState(5); // 한 페이지에 표시할 뉴스 수
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -76,14 +76,14 @@ const HealthNews = () => {
           ) : (
             <div className="space-y-4">
               {newsList.slice(0, 2).map((news, index) => (
-                <div key={index} className="border border-gray-200 p-4">
+                <div key={index} className="border border-gray-200 hover:border-blue-400 group p-4">
                   <a 
                     href={news.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <h2 className="text-xl font-bold mb-2 hover:text-blue-700">
+                    <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700">
                       {news.title.replace(/<\/?b>/g, '')}
                     </h2>
                     <p className="text-gray-600 text-sm">
@@ -103,17 +103,16 @@ const HealthNews = () => {
         <div className="col-span-4 border border-gray-200 p-4">
           <ul className="space-y-2">
           {currentNews.map((news, index) => (
-              <li key={index}>
+              <li key={index} className='w-full border px-2 py-1 rounded-md hover:border-blue-400'>
                 <a 
                   href={news.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:text-blue-600"
                 >
-                  <span className="w-2 h-2 bg-black rounded-full mr-2 flex-shrink-0"></span>
-                  <span className="line-clamp-1">
-                    {news.title.replace(/<\/?b>/g, '')}
-                  </span>
+                    <span className="line-clamp-1">
+                      {news.title.replace(/<\/?b>/g, '')}
+                    </span>
                 </a>
               </li>
             ))}
