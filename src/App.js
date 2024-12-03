@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
+import Contact from "./components/Contact";
 import Features from "./components/Features";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,6 +13,12 @@ import Management from "./components/Management";
 import Medidetail from "./components/Medidetail";
 import MediInfo from "./components/MediInfo";
 import Symptom from "./components/Symptom";
+import Cough from "./components/Cough";
+import Rush from "./components/Rush";
+import Fever from "./components/Fever";
+import Muscle_pain from "./components/Muscle_pain";
+import Insomnia from "./components/Insomnia";
+import Constipation from "./components/Constipation";
 <<<<<<< HEAD
 =======
 import HealthNews from "./components/HealthNews";
@@ -36,7 +43,13 @@ function App() {
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
-            <Route path="/symptom" element={<Symptom />} />
+             <Route path="/symptom" element={<Symptom />} />   
+            <Route path="/cough" element={<Cough />} />
+            <Route path="/rash" element={<Rush />} />
+            <Route path="/fever" element={<Fever />} />      
+            <Route path="/muscle_pain" element={<Muscle_pain  />} />   
+            <Route path="/insomnia" element={<Insomnia  />} />  
+            <Route path="/constipation" element={<Constipation  />} />
 <<<<<<< HEAD
 =======
             <Route path="/healthnews" element={<HealthNews />} />
