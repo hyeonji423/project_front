@@ -16,10 +16,20 @@ const Landing = () => {
           셀프 메디케이션을 할 수 있도록 돕는<br/>
           가정용 약물 정보 및 관리 사이트입니다.
           </p>
-          <form>
-            <input type="text" />
-            <button>돋보기</button>
+          
+          <form class="flex items-center max-w-sm" action='http//localhost:8000/medi_info'>   
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative w-full">
+                <input type="text" id="simple-search" class="bg-white text-md block w-full p-2.5" placeholder="증상 or 일반의약품 검색" required />
+            </div>
+            <button type="submit" class="p-2.5 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800">
+                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+                <span class="sr-only">Search</span>
+            </button>
           </form>
+
         </div>
         <img src={landingImg} className='w-full' alt="" />
       </div>

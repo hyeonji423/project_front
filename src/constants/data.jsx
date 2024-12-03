@@ -6,6 +6,17 @@ import symptom5 from "../assets/symptom/symptom5.jpg";
 import symptom6 from "../assets/symptom/symptom6.jpg";
 import symptom7 from "../assets/symptom/symptom7.jpg";
 
+
+// 메인 헤더 카테고리
+export const navItems = [
+  { label: "챗봇", to: "/chatbot" },
+  { label: "건강정보", to: "/healthinfo" },
+  { label: "약품정보", to: "/mediinfo" },
+  { label: "고객문의", to: "/" },
+];
+
+
+// 메인 자주 나타나는 증상
 export const symptom = [
   {
     image: symptom1,
@@ -44,13 +55,8 @@ export const symptom = [
   },
 ];
 
-export const navItems = [
-  { label: "챗봇", to: "/chatbot" },
-  { label: "건강정보", to: "/healthinfo" },
-  { label: "약품정보", to: "/mediinfo" },
-  { label: "고객문의", to: "/" },
-];
 
+// 마이페이지 사이드바
 export const navMenus = [
   {
     label: "회원정보 수정",
@@ -64,35 +70,7 @@ export const navMenus = [
   },
 ];
 
-export const resourcesLinks = [
-  { to: "/Getting-Started", text: "Getting Started" },
-  { to: "/Documentation", text: "Documentation" },
-  { to: "/Tutorials", text: "Tutorials" },
-  { to: "/API-Reference", text: "API Reference" },
-  { to: "/Community-Forums", text: "Community Forums" },
-];
-
-export const platformLinks = [
-  { to: "Features", text: "Features" },
-  { to: "Supported-Devices", text: "Supported Devices" },
-  { to: "System-Requirements", text: "System Requirements" },
-  { to: "Downloads", text: "Downloads" },
-  { to: "Release-Notes", text: "Release Notes" },
-];
-
-export const communityLinks = [
-  { to: "Events", text: "Events" },
-  { to: "Meetups", text: "Meetups" },
-  { to: "Conferences", text: "Conferences" },
-  { to: "Hackathons", text: "Hackathons" },
-  { to: "Jobs", text: "Jobs" },
-];
-
-export const heroLinks = [
-  { to: "start-for-free", text: "start for free" },
-  { to: "documentation", text: "documentation" },
-];
-
+// 테스트용
 export const mediDetailTest = [
   {
     id: 1,
@@ -113,3 +91,4 @@ export const mediDetailTest = [
       "습기와 빛을 피해 실온에서 보관하십시오.어린이의 손이 닿지 않는 곳에 보관하십시오.",
   },
 ];
+
