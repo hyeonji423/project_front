@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import HealthInfoDatabase from "../constants/healthdata";
+import HealthInfoDatabase from "../../constants/healthdata";
 
 const HealthDetail = () => {
   const { id } = useParams();
