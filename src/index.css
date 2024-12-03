@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'PretendardVariable';
-  src: url('assets/fonts/PretendardVariable.ttf') format('truetype');
+  font-family: 'Pretendard';
+  src: url('assets/fonts/Pretendard-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'LemonMilk';
+  src: url(assets/fonts/LEMONMILK-Medium.otf) format('opentype');
 }
 
 * {
@@ -14,7 +19,7 @@
 }
 
 body {
-  font-family: 'PretendardVariable', sans-serif;
+  font-family: 'Pretendard', sans-serif;
 }
 
 .container {

@@ -14,6 +14,7 @@ const loginSlice = createSlice({
     setToken: (state, action)=>{
       state.token = action.payload // action으로 전달받은 결과값
       state.user = jwtDecode(action.payload)
+      localStorage.setItem('token', action.payload)
     },
     clearToken: (state)=>{
       state.token = null
