@@ -14,6 +14,7 @@ import MediInfo from "./components/MediInfo";
 import HealthNews from "./components/HealthNews";
 import Chatbot from "./components/Chatbot";
 import Service from "./components/Service";
+import MemberInfo from "./components/MemberInfo";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
             <Route path="/service" element={<Service />} />
+            <Route path="/memberinfo" element={<MemberInfo />} />
           </Routes>
 
           <Footer />

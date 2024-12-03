@@ -1,5 +1,5 @@
 import React from "react";
-import mediLogo from '../assets/medi_logo.png';
+import mediLogo from '../../assets/medi_logo.png';
 
 const Footer = () => {
   return (

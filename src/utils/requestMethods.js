@@ -26,6 +26,37 @@ export async function postRequest(url, options) {
   }
 }
 
+
+// myMedi 요청 함수
+export async function postMyMediRequest(url, options) {
+  const defaultOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+    ...options,
+  };
+
+  try {
+    const response = await fetch(url, defaultOptions);
+    const data = await response.json();
+
+    if (!response.ok) {
+      // 상태 코드와 메시지를 포함하여 명확한 에러 전달
+      throw { status: response.status, msg: data.msg || "Request failed" };
+    }
+    return { status: response.status, data }; // 성공 시 상태 코드와 데이터를 반환
+  }
+  catch (error) {
+    // 네트워크 오류나 다른 오류를 처리
+    throw error.status
+      ? error // 서버 응답 오류
+      : { status: 500, msg: error.message || "Unknown error occurred" }; // 네트워크 오류 등
+  }
+}
+
+
 // useDispatch-업데이트 useSelector-가져오는거
 
 export async function postFormRequest(url, options) {

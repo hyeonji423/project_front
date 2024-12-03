@@ -1,5 +1,5 @@
 import React from "react";
-import { mediDetailTest } from "../constants/data";
+import { mediDetailTest } from "../../constants/data";
 
 const Medidetail = () => {
   return (

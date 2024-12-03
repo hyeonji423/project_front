@@ -1,9 +1,9 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { symptom } from "../constants/data";
-import previc from "../assets/previc.png"
-import nextic from "../assets/nextic.png"
+import { symptom } from "../../constants/data";
+import previc from "../../assets/previc.png"
+import nextic from "../../assets/nextic.png"
 
 
 import "swiper/css/navigation";
