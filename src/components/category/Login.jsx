@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD:src/components/Login.jsx
 import { fetchPostLoginData } from '../redux/slices/authSlice';
 import { setToken } from '../redux/slices/loginSlice';
+=======
+import { fetchPostLoginData } from '../../redux/slices/authSlice';
+import { setToken } from '../../redux/slices/loginSlice';
+>>>>>>> 80c7175836feb3990315f4f34db7b37a864abe2b:src/components/category/Login.jsx
 
 const Login = () => {
   const dispatch = useDispatch()

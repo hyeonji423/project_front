@@ -10,7 +10,7 @@ function DrugInfo({ title, description }) {
   );
 }
 
-function App() {
+function MediInfo() {
   const [searchTerm, setSearchTerm] = useState("");
   const [drugInfo, setDrugInfo] = useState(null);
   const [error, setError] = useState(null);
@@ -89,4 +89,4 @@ function App() {
   );
 }
 
-export default App;
+export default MediInfo;

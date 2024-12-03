@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+<<<<<<< HEAD
 import Home from "./components/Home";
 import Features from "./components/Features";
 import Header from "./components/Header";
@@ -14,6 +15,23 @@ import MediInfo from "./components/MediInfo";
 import Symptom from "./components/Symptom";
 import HealthNews from "./components/HealthNews";
 import Chatbot from "./components/Chatbot";
+=======
+import Header from './components/common/Header';
+import Footer from './components/common/Footer';
+import Home from './components/main/Home';
+import Login from './components/category/Login';
+import Register from './components/category/Register';
+import Mypage from './components/category/Mypage';
+import NewPage from './components/details/NewPage';
+import HealthInfo from './components/category/HealthInfo'
+import Management from './components/details/Management';
+import Medidetail from './components/details/Medidetail';
+import MediInfo from './components/category/MediInfo';
+import HealthNews from './components/details/HealthNews';
+import Chatbot from './components/category/Chatbot';
+import Service from './components/category/Service';
+
+>>>>>>> 80c7175836feb3990315f4f34db7b37a864abe2b
 
 function App() {
   return (
@@ -24,7 +42,6 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/features" element={<Features />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/mypage" element={<Mypage />} />
@@ -33,9 +50,15 @@ function App() {
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
+<<<<<<< HEAD
             <Route path="/symptom" element={<Symptom />} />
             <Route path="/healthnews" element={<HealthNews />} />
             <Route path="/chatbot" element={<Chatbot />} />
+=======
+            <Route path="/healthnews" element={<HealthNews />} />
+            <Route path="/chatbot" element={<Chatbot />} />
+            <Route path="/service" element={<Service />} />
+>>>>>>> 80c7175836feb3990315f4f34db7b37a864abe2b
           </Routes>
 
           <Footer />

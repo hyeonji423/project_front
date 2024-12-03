@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HealthNews from './HealthNews';
+import HealthNews from './../details/HealthNews';
 
 
 function App() {
