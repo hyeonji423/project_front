@@ -43,7 +43,7 @@ function App() {
             <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mediinfo" element={<MediInfo />} />
-             <Route path="/symptom" element={<Symptom />} />   
+            <Route path="/symptom" element={<Symptom />} />   
             <Route path="/cough" element={<Cough />} />
             <Route path="/rash" element={<Rush />} />
             <Route path="/fever" element={<Fever />} />      
