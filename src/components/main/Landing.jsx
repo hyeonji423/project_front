@@ -23,7 +23,7 @@ const Landing = () => {
             <div class="relative w-full">
                 <input type="text" id="simple-search" class="bg-white text-md block w-full p-2.5" placeholder="증상 or 일반의약품 검색" required />
             </div>
-            <button type="submit" class="p-2.5 text-sm font-medium text-white bg-blue-700 hover:bg-blue-800">
+            <button type="submit" class="p-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
                 <img src={icon} alt="" className='w-[26px]' />
                 <span class="sr-only">Search</span>
             </button>
