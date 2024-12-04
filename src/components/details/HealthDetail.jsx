@@ -111,16 +111,21 @@ const HealthDetail = () => {
               {HealthInfoDatabase.map((info, index) => (
                 <tr key={index} className="border-b border-t">
                   <td className="py-3">
-                    <a href={`/health/${info.id}`} className="hover:text-blue-500 px-1">
+                    <a
+                      href={`/health/${info.id}`}
+                      className="hover:text-blue-500 px-1"
+                    >
                       {info.title}
                     </a>
                   </td>
                   <td className="text-gray-500 text-right whitespace-nowrap">
-                    {new Date(2024, 9 - index, 17 - index).toLocaleDateString('ko-KR', {
-                      year: 'numeric',
-                      month: 'numeric',
-                      day: 'numeric'
-                    }).replace(/\./g, '. ')}
+                    {new Date(2024, 9 - index, 17 - index)
+                      .toLocaleDateString("ko-KR", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                      })
+                      .replace(/\./g, ". ")}
                   </td>
                 </tr>
               ))}

@@ -2,19 +2,16 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { symptom } from "../../constants/data";
-import previc from "../../assets/previc.png"
-import nextic from "../../assets/nextic.png"
-
+import previc from "../../assets/previc.png";
+import nextic from "../../assets/nextic.png";
 
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 
 // Import Swiper styles
 import "swiper/css";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-
 
 export default () => {
   const prevRef = useRef(null);
@@ -50,21 +47,23 @@ export default () => {
             swiper.navigation.update();
           }}
         >
-          {
-            symptom.map((symptom, index) => (
-              <SwiperSlide key={index} className="rounded-lg overflow-hidden shadow-inner-lg">
-                <Link to={symptom.to}>
-                  <div className="absolute opacity-30 overlay w-full h-full bg-black z-10 left-0 top-0"></div>
-                  <h5 className="absolute w-full text-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-white text-xl font-semibold drop-shadow-md">{symptom.text}</h5>
-                  <img src={symptom.image} alt="symptom"/>
-                </Link>
-              </SwiperSlide>
-            ))
-          }
+          {symptom.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              className="rounded-lg overflow-hidden shadow-inner-lg"
+            >
+              <Link to={`/symptomdetail/${item.id}`}>
+                <div className="absolute opacity-30 overlay w-full h-full bg-black z-10 left-0 top-0"></div>
+                <h5 className="absolute w-full text-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-white text-xl font-semibold drop-shadow-md">
+                  {item.text}
+                </h5>
+                <img src={item.image} alt={item.text} />
+              </Link>
+            </SwiperSlide>
+          ))}
           {/* <SwiperSlide>{symptom.image}</SwiperSlide> */}
         </Swiper>
       </div>
     </div>
   );
 };
-
