@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import HealthNews from "./../details/HealthNews";
 import HealthInfoDatabase from "../../constants/healthdata";
 import { Link } from "react-router-dom";
-import BeerImage from "../../assets/healthimg/beer.jpg";
 
 function App() {
   return (
@@ -34,8 +33,8 @@ function App() {
                 {!info.sections[0].image && (
                   <div className="h-24 mt-2">
                     <img
-                      src={BeerImage}
-                      alt="beer"
+                      src={info.defaultImage}
+                      alt={info.title}
                       className="w-full h-full object-cover"
                     />
                   </div>

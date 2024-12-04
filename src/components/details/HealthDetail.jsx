@@ -96,6 +96,13 @@ const HealthDetail = () => {
             )}
           </div>
         ))}
+
+        <div className="border border-gray-200 w-[70%] mt-10"></div>
+
+        {/* 하단 박스 */}
+        <div className="border-t pt-4 mt-8">
+          <p className="text-center text-gray-500">1/2/3/4</p>
+        </div>
       </div>
     </div>
   );
