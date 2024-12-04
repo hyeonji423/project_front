@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 const HealthNews = () => {
   const [newsList, setNewsList] = useState([]); // 전체 뉴스 목록
@@ -9,7 +9,9 @@ const HealthNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('/v1/search/news.xml?query=의약품&display=30');
+        const response = await fetch(
+          "/v1/search/news.xml?query=의약품&display=30"
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -17,18 +19,19 @@ const HealthNews = () => {
 
         const text = await response.text();
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(text, 'application/xml');
-        const items = Array.from(xmlDoc.getElementsByTagName('item'));
+        const xmlDoc = parser.parseFromString(text, "application/xml");
+        const items = Array.from(xmlDoc.getElementsByTagName("item"));
 
         const news = items.map((item) => {
-          const title = item.getElementsByTagName('title')[0]?.textContent;
-          const description = item.getElementsByTagName('description')[0]?.textContent;
-          
+          const title = item.getElementsByTagName("title")[0]?.textContent;
+          const description =
+            item.getElementsByTagName("description")[0]?.textContent;
+
           return {
-            title: title ? decodeHTML(title) : '',  // HTML 엔티티 디코딩
-            link: item.getElementsByTagName('link')[0]?.textContent,
-            description: description ? decodeHTML(description) : '',
-            pubDate: item.getElementsByTagName('pubDate')[0]?.textContent,
+            title: title ? decodeHTML(title) : "", // HTML 엔티티 디코딩
+            link: item.getElementsByTagName("link")[0]?.textContent,
+            description: description ? decodeHTML(description) : "",
+            pubDate: item.getElementsByTagName("pubDate")[0]?.textContent,
           };
         });
 
@@ -40,11 +43,10 @@ const HealthNews = () => {
 
     fetchNews();
   }, []);
-  
 
   // HTML 엔티티 디코딩 함수
   const decodeHTML = (html) => {
-    const txt = document.createElement('textarea');
+    const txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
   };
@@ -63,7 +65,6 @@ const HealthNews = () => {
     pageNumbers.push(i);
   }
 
-
   return (
     <div className="news">
       <div className="grid grid-cols-12 gap-6">
@@ -76,21 +77,24 @@ const HealthNews = () => {
           ) : (
             <div className="space-y-4">
               {newsList.slice(0, 2).map((news, index) => (
-                <div key={index} className="border border-gray-200 hover:border-blue-400 group p-4">
-                  <a 
+                <div
+                  key={index}
+                  className="border border-gray-200 hover:border-blue-400 group p-4"
+                >
+                  <a
                     href={news.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
                   >
                     <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700">
-                      {news.title.replace(/<\/?b>/g, '')}
+                      {news.title.replace(/<\/?b>/g, "")}
                     </h2>
                     <p className="text-gray-600 text-sm">
-                      {news.description.replace(/<\/?b>/g, '')}
+                      {news.description.replace(/<\/?b>/g, "")}
                     </p>
                     <p className="text-gray-400 text-xs pt-2">
-                      {new Date(news.pubDate).toLocaleDateString('ko-KR')}
+                      {new Date(news.pubDate).toLocaleDateString("ko-KR")}
                     </p>
                   </a>
                 </div>
@@ -102,44 +106,53 @@ const HealthNews = () => {
         {/* 사이드 뉴스 목록 */}
         <div className="col-span-4 border border-gray-200 p-4">
           <ul className="space-y-2">
-          {currentNews.map((news, index) => (
-              <li key={index} className='w-full border px-2 py-1 rounded-md hover:border-blue-400'>
-                <a 
+            {currentNews.map((news, index) => (
+              <li
+                key={index}
+                className="w-full border px-2 py-1 rounded-md hover:border-blue-400"
+              >
+                <a
                   href={news.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:text-blue-600"
                 >
-                    <span className="line-clamp-1">
-                      {news.title.replace(/<\/?b>/g, '')}
-                    </span>
+                  <span className="line-clamp-1">
+                    {news.title.replace(/<\/?b>/g, "")}
+                  </span>
                 </a>
               </li>
             ))}
           </ul>
-          
+
           {/* 페이지 네비게이션 */}
           <div className="flex justify-center mt-4 space-x-2">
-            <span 
-              className="cursor-pointer"
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
+            <span
+              className={`cursor-pointer ${
+                currentPage === 1 ? "text-gray-400" : ""
+              }`}
+              onClick={() => currentPage > 1 && paginate(currentPage - 1)}
             >
               &lt;
             </span>
             {pageNumbers.map((page) => (
-              <span 
+              <span
                 key={page}
-                className={`cursor-pointer ${currentPage === page ? 'text-blue-600' : ''}`}
+                className={`cursor-pointer ${
+                  currentPage === page ? "text-blue-600" : ""
+                }`}
                 onClick={() => paginate(page)}
               >
                 {page}
               </span>
             ))}
-            <span 
-              className="cursor-pointer"
-              onClick={() => paginate(currentPage + 1)}
-              disabled={currentPage === pageNumbers.length}
+            <span
+              className={`cursor-pointer ${
+                currentPage === pageNumbers.length ? "text-gray-400" : ""
+              }`}
+              onClick={() =>
+                currentPage < pageNumbers.length && paginate(currentPage + 1)
+              }
             >
               &gt;
             </span>
@@ -148,6 +161,6 @@ const HealthNews = () => {
       </div>
     </div>
   );
-}
+};
 
-export default HealthNews
+export default HealthNews;
