@@ -1,31 +1,25 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import HealthInfoDatabase from "../../constants/healthdata";
-
 const HealthDetail = () => {
   const { id } = useParams();
   console.log("현재 id:", id);
   console.log("데이터베이스:", HealthInfoDatabase);
-
   const healthInfo = HealthInfoDatabase.find((info) => info.id === Number(id));
-
   if (!healthInfo) {
     return (
       <div className="text-center py-8">존재하지 않는 건강 정보입니다.</div>
     );
   }
-
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
       <div className="w-[70%] max-w-[1200px]">
         {/* 제목 */}
         <h1 className="text-3xl font-bold mb-8">{healthInfo.title}</h1>
-
         {/* 섹션별 내용 */}
         {healthInfo.sections.map((section, index) => (
           <div key={index} className="mb-12">
             <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
-
             {/* 일반 콘텐츠 */}
             {section.content && (
               <div
@@ -33,7 +27,6 @@ const HealthDetail = () => {
                 dangerouslySetInnerHTML={{ __html: section.content }}
               />
             )}
-
             {/* 진단 기준 */}
             {section.diagnosticCriteria && (
               <div className="mb-6">
@@ -45,7 +38,6 @@ const HealthDetail = () => {
                 ))}
               </div>
             )}
-
             {/* 질문과 답변 */}
             {section.items &&
               section.items.map((item, idx) => (
@@ -59,7 +51,6 @@ const HealthDetail = () => {
                   />
                 </div>
               ))}
-
             {/* 단계별 내용 */}
             {section.steps &&
               section.steps.map((step, idx) => (
@@ -75,7 +66,6 @@ const HealthDetail = () => {
                     ))}
                 </div>
               ))}
-
             {/* 이미지 */}
             {section.image && (
               <div className="mb-6">
@@ -86,7 +76,6 @@ const HealthDetail = () => {
                 />
               </div>
             )}
-
             {/* 메시지 */}
             {section.message && (
               <div
@@ -96,9 +85,7 @@ const HealthDetail = () => {
             )}
           </div>
         ))}
-
         <div className="border border-gray-200 w-full mt-10"></div>
-
         {/* 게시글 목록 추가 */}
         <div className="mt-8">
           <h2 className="text-xl mb-2 pl-1 font-medium">목록</h2>
@@ -132,7 +119,6 @@ const HealthDetail = () => {
             </tbody>
           </table>
         </div>
-
         {/* 페이지네이션 */}
         <div className="pt-4">
           <div className="flex justify-center items-center gap-2">
@@ -155,5 +141,4 @@ const HealthDetail = () => {
     </div>
   );
 };
-
 export default HealthDetail;
