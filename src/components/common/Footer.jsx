@@ -3,8 +3,8 @@ import mediLogo from '../../assets/medi_logo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-gray-200 py-8">
-      <div className="container mx-auto px-4">
+    <footer className="flex justify-center items-center pt-8 border-t">
+      <div className="flex justify-between flex-wrap container mx-auto px-4">
         {/* 로고 및 주소 정보 */}
         <div className="flex flex-col lg:flex-row justify-between mb-6">
           <div className="mb-4 lg:mb-0">
@@ -19,7 +19,7 @@ const Footer = () => {
         </div>
 
         {/* 저작권 정보 */}
-        <div className="border-t border-gray-200 pt-4 mt-4">
+        <div className="border-gray-200 pt-4 mt-4">
           <p className="text-sm text-gray-500 text-center">
             COPYRIGHT © by CodeLab. All rights reserved.
           </p>

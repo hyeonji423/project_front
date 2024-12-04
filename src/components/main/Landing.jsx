@@ -2,6 +2,8 @@ import React from 'react'
 import landingImg from '../../assets/main_landing.jpg'
 import icon from '../../assets/searchic.png'
 import LandingSubBox from './LandingSubBox'
+import HealthDetail from './../details/HealthDetail';
+import HealthList from '../details/HealthList';
 
 const Landing = () => {
   return (
