@@ -101,13 +101,17 @@ const HealthDetail = () => {
 
         {/* 게시글 목록 추가 */}
         <div className="mt-8">
-          <h2 className="text-xl font-bold mb-2">글 제목</h2>
-          <table className="w-full">
+          <h2 className="text-xl mb-2 pl-1 font-medium">목록</h2>
+          <div className="flex justify-between items-center text-sm mb-2 text-gray-400 mx-1">
+            <span>글 제목</span>
+            <span>작성일</span>
+          </div>
+          <table className="w-full px-2">
             <tbody>
               {HealthInfoDatabase.map((info, index) => (
                 <tr key={index} className="border-b border-t">
                   <td className="py-3">
-                    <a href={`/health/${info.id}`} className="hover:text-blue-500">
+                    <a href={`/health/${info.id}`} className="hover:text-blue-500 px-1">
                       {info.title}
                     </a>
                   </td>
@@ -125,7 +129,7 @@ const HealthDetail = () => {
         </div>
 
         {/* 페이지네이션 */}
-        <div className="border-t pt-4 mt-8">
+        <div className="pt-4">
           <div className="flex justify-center items-center gap-2">
             {[1, 2, 3, 4, 5].map((num) => (
               <button
