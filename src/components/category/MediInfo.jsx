@@ -1,22 +1,6 @@
 import React, { useState } from "react";
 import { mediDetailTest } from "../../constants/data";
 
-function ButtonTextChanger() {
-  const [text, setText] = useState("기본 텍스트");
-  const buttonLabels = ["Button 1", "Button 2", "Button 3", "Button 4"];
-
-  return (
-    <div>
-      {buttonLabels.map((label, index) => (
-        <button key={index} onClick={() => setText(`${label}이 눌렸습니다.`)}>
-          {label}
-        </button>
-      ))}
-      <div className="text-div">{text}</div>
-    </div>
-  );
-}
-
 function DrugInfo({ title, description }) {
   return (
     <div className="border p-4 text-center">
@@ -27,29 +11,23 @@ function DrugInfo({ title, description }) {
   );
 }
 
-function DrugInfoGrid({ drugInfo }) {
-  return (
-    <div className="grid grid-cols-4 divide-x divide-gray-300 text-center">
-      {["productName", "ingredientName", "companyName", "itemCategory"].map(
-        (key) => (
-          <div key={key} className="bg-white p-2">
-            {drugInfo[key]}
-          </div>
-        )
-      )}
-    </div>
-  );
-}
-
 function MediInfo() {
   const [searchTerm, setSearchTerm] = useState("");
   const [drugInfo, setDrugInfo] = useState(null);
   const [error, setError] = useState(null);
-  const [infoText, setInfoText] = useState("약에 대한 기본 정보 txt");
+  const [infoText, setInfoText] = useState("약 설명");
 
   const handleSearch = () => {
-    const foundDrug = mediDetailTest.find((drug) =>
-      drug.name.includes(searchTerm)
+    if (!searchTerm.trim()) {
+      setDrugInfo(null);
+      setError(null);
+      return;
+    }
+
+    const foundDrug = mediDetailTest.find(
+      (drug) =>
+        drug.name.includes(searchTerm) ||
+        drug.main_ingredient.includes(searchTerm)
     );
     if (foundDrug) {
       setDrugInfo(foundDrug);
@@ -64,7 +42,7 @@ function MediInfo() {
     <div className="container mx-auto p-4">
       <main className="mt-4">
         <section className="border p-4 mb-4">
-          <h2 className="text-lg font-semibold mb-2">약품 및 성분명 검색</h2>
+          <h2 className="text-lg font-semibold mb-2">약품명 검색</h2>
           <div className="flex space-x-2 mb-2">
             <input
               type="text"
@@ -82,14 +60,19 @@ function MediInfo() {
 
         <section className="border p-4 mb-4">
           <div className="grid grid-cols-4 divide-x divide-gray-300 text-center">
-            {["제품명", "성분명", "업체명", "일련번호"].map((header, index) => (
-              <div key={index} className="bg-gray-100 p-2">
-                {header}
-              </div>
-            ))}
+            {["제품명", "성분명", "업체명", "일련 번호"].map(
+              (header, index) => (
+                <div key={index} className="bg-gray-100 p-2">
+                  {header}
+                </div>
+              )
+            )}
           </div>
           {drugInfo && (
-            <div className="grid grid-cols-4 divide-x divide-gray-300 text-center">
+            <div
+              className="grid grid-cols-4 divide-x divide-gray-300 text-center"
+              id="root > div > div > div.container.mx-auto.p-4 > main > section:nth-child(2) > div:nth-child(2)"
+            >
               <div className="bg-white p-2">{drugInfo.name}</div>
               <div className="bg-white p-2">{drugInfo.main_ingredient}</div>
               <div className="bg-white p-2">{drugInfo.company_name}</div>
@@ -121,18 +104,29 @@ function MediInfo() {
                 {drug.name}
               </button>
             ))}
+            {["db2", "db3", "db4"].map((db, index) => (
+              <button
+                key={index}
+                className="border p-2 w-64"
+                onClick={() => setInfoText(db)}
+              >
+                {db}
+              </button>
+            ))}
           </div>
           <div className="border p-4 w-96 h-48">{infoText}</div>
         </section>
 
         <section className="border-t-2 pt-4">
           <h2 className="text-lg font-semibold mb-2">많이 사용되는 약품</h2>
-          <div className="grid grid-cols-3 gap-4">
-            {mediDetailTest.slice(0, 3).map((drug, index) => (
+          <div className="grid grid-cols-3 gap-4 items-center">
+            {Array.from({ length: 3 }).map((_, index) => (
               <DrugInfo
                 key={index}
-                title={drug.name}
-                description={drug.efficacy}
+                title={mediDetailTest[index]?.name || "제품명 없음"}
+                description={
+                  mediDetailTest[index]?.efficacy || "효능 정보 없음"
+                }
               />
             ))}
           </div>
@@ -143,4 +137,3 @@ function MediInfo() {
 }
 
 export default MediInfo;
-export { ButtonTextChanger };
