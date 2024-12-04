@@ -97,11 +97,54 @@ const HealthDetail = () => {
           </div>
         ))}
 
-        <div className="border border-gray-200 w-[70%] mt-10"></div>
+        <div className="border border-gray-200 w-full mt-10"></div>
 
-        {/* 하단 박스 */}
-        <div className="border-t pt-4 mt-8">
-          <p className="text-center text-gray-500">1/2/3/4</p>
+        {/* 게시글 목록 추가 */}
+        <div className="mt-8">
+          <h2 className="text-xl mb-2 pl-1 font-medium">목록</h2>
+          <div className="flex justify-between items-center text-sm mb-2 text-gray-400 mx-1">
+            <span>글 제목</span>
+            <span>작성일</span>
+          </div>
+          <table className="w-full px-2">
+            <tbody>
+              {HealthInfoDatabase.map((info, index) => (
+                <tr key={index} className="border-b border-t">
+                  <td className="py-3">
+                    <a href={`/health/${info.id}`} className="hover:text-blue-500 px-1">
+                      {info.title}
+                    </a>
+                  </td>
+                  <td className="text-gray-500 text-right whitespace-nowrap">
+                    {new Date(2024, 9 - index, 17 - index).toLocaleDateString('ko-KR', {
+                      year: 'numeric',
+                      month: 'numeric',
+                      day: 'numeric'
+                    }).replace(/\./g, '. ')}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* 페이지네이션 */}
+        <div className="pt-4">
+          <div className="flex justify-center items-center gap-2">
+            {[1, 2, 3, 4, 5].map((num) => (
+              <button
+                key={num}
+                className={`px-2 py-1 ${
+                  num === 1 ? "text-blue-500" : "text-gray-500"
+                } hover:text-blue-700`}
+              >
+                {num}
+              </button>
+            ))}
+            <button className="text-gray-500 hover:text-blue-700 ml-2">
+              다음 ＞
+            </button>
+          </div>
         </div>
       </div>
     </div>
