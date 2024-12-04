@@ -12,22 +12,23 @@ const HealthList = () => {
                 <p className="text-gray-600 text-sm">
                   {info.sections[0].content?.substring(0, 50)}...
                 </p>
-                {info.sections[0].image && (
-                  <img
-                    src={info.sections[0].image}
-                    alt={info.title}
-                    className="h-24 w-full object-cover mt-2"
-                  />
-                )}
-                {!info.sections[0].image && (
-                  <div className="h-32 mt-2">
-                    <img
-                      src={info.defaultImage}
-                      alt={info.title}
-                      className="w-full h-full object-cover rounded-md"
-                    />
-                  </div>
-                )}
+                {info.defaultImage ? (
+                <img
+                  src={info.defaultImage}
+                  alt={info.title}
+                  className="w-full h-32 object-cover rounded-md mt-2"
+                />
+              ) : info.sections[0].image ? (
+                <img
+                  src={info.sections[0].image}
+                  alt={info.title}
+                  className="h-24 w-full object-cover mt-2"
+                />
+              ) : (
+                <div className="h-32 mt-2 bg-gray-200 rounded-md flex items-center justify-center">
+                  <p className="text-gray-400 text-sm">이미지 없음</p>
+                </div>
+              )}
               </div>
             </Link>
           ))}
