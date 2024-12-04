@@ -12,7 +12,6 @@ import HealthNews from "./components/details/HealthNews";
 import Chatbot from './components/category/Chatbot';
 import HealthDetail from './components/details/HealthDetail';
 import MemberInfo from './components/details/MemberInfo';
-import Management from './components/details/Management';
 import Medidetail from './components/details/Medidetail';
 import Service from './components/category/Service';
 import Pannel from "./components/mymedi/Pannel";
@@ -41,7 +40,6 @@ function App() {
             <Route path="/service" element={<Service />} />
             <Route path="/healthdetail/:id" element={<HealthDetail />} />
             <Route path="/memberinfo" element={<MemberInfo />} />
-            <Route path="/management" element={<Management />} />
             <Route path="/mediDetail" element={<Medidetail />} />
             <Route path="/mymedi_list" element={<Pannel />} />
             <Route path="/" element={<Modal />} />

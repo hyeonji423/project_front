@@ -4,12 +4,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from './slices/authSlice'
 import loginReducer from './slices/loginSlice'
 import myMediReducer from './slices/myMediSlice'
+import modalReducer from './slices/modalSlice'
 
 const store = configureStore({
   reducer: combineReducers({
     auth: authReducer, // 값은 만드는 이름
     login: loginReducer,
     myMedi: myMediReducer,
+    modal: modalReducer,
   })
 })
 
