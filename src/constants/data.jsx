@@ -17,39 +17,46 @@ export const navItems = [
 // 메인 자주 나타나는 증상
 export const symptom = [
   {
+    id: 0,
     image: symptom1,
     text: "#두통",
-    to: "/Symptom",
+    to: "/Symptomdetail",
   },
   {
+    id: 1,
     image: symptom2,
     text: "#마른기침",
-    to: "/cough",
+    to: "/Symptomdetail",
   },
   {
+    id: 2,
     image: symptom3,
     text: "#피부발진",
-    to: "/rash",
+    to: "/Symptomdetail",
   },
   {
+    id: 3,
     image: symptom4,
     text: "#미열",
-    to: "/fever",
+    to: "/Symptomdetail",
   },
   {
+    id: 4,
     image: symptom5,
     text: "#근육통",
-    to: "/muscle_pain",
+    to: "/Symptomdetail",
   },
   {
+    id: 5,
     image: symptom6,
     text: "#불면증",
-    to: "/insomnia",
+    to: "/Symptomdetail",
   },
   {
+    id: 6,
     image: symptom7,
     text: "#변비",
-    to: "/constipation",
+    to: "/Symptomdetail",
   },
 ];
 
