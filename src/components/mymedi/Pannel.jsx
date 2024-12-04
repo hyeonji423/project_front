@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetMyMediListData } from "../../redux/slices/myMediSlice";
 import { openModal } from "../../redux/slices/modalSlice";
 import AddItem from "./AddItem";
+=======
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGetMyMediListData } from '../../redux/slices/myMediSlice';
+>>>>>>> ec16e5473a63b9a08f9ec66f1b13d495c74daadd
 
 const Pannel = () => {
   const loginData = useSelector((state) => state.login.user);
@@ -26,9 +32,15 @@ const Pannel = () => {
     fetchMyMediList();
   }, [dispatch, userKey]);
 
+<<<<<<< HEAD
   const handleOpenModal = () => {
     dispatch(openModal({ modalType: "create", myMediList: null }));
   };
+=======
+  const handleOpenModal = ()=>{
+    // dispatch(openModal({modalType: "create", myMediList: null}))
+  }
+>>>>>>> ec16e5473a63b9a08f9ec66f1b13d495c74daadd
 
   return (
     <div className="pannel lg:w-4/5 h-full rounded-md border border-neutral-500 py-5 px-4 overflow-y-auto">
