@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { mediDetailTest } from "../../constants/data";
+import {
+  mediDetailTest,
+  mediDetailTest2,
+  mediDetailTest3,
+  mediDetailTest4,
+} from "../../constants/data";
 
 function DrugInfo({ title, description }) {
   return (
@@ -24,10 +29,18 @@ function MediInfo() {
       return;
     }
 
-    const foundDrug = mediDetailTest.find(
-      (drug) =>
-        drug.name.includes(searchTerm) ||
-        drug.main_ingredient.includes(searchTerm)
+    const foundDrug = [mediDetailTest, mediDetailTest2, mediDetailTest3].reduce(
+      (found, currentArray) => {
+        return (
+          found ||
+          currentArray.find(
+            (drug) =>
+              drug.name.includes(searchTerm) ||
+              drug.main_ingredient.includes(searchTerm)
+          )
+        );
+      },
+      null
     );
     if (foundDrug) {
       setDrugInfo(foundDrug);
@@ -104,15 +117,39 @@ function MediInfo() {
                 {drug.name}
               </button>
             ))}
-            {["db2", "db3", "db4"].map((db, index) => (
-              <button
-                key={index}
-                className="border p-2 w-64"
-                onClick={() => setInfoText(db)}
-              >
-                {db}
-              </button>
-            ))}
+            <div className="flex flex-col space-y-2">
+              {mediDetailTest2.map((db, index) => (
+                <button
+                  key={index}
+                  className="border p-2 w-64"
+                  onClick={() => setInfoText(db.efficacy)}
+                >
+                  {db.name}
+                </button>
+              ))}
+              <div className="flex flex-col space-y-2">
+                {mediDetailTest3.map((db, index) => (
+                  <button
+                    key={index}
+                    className="border p-2 w-64"
+                    onClick={() => setInfoText(db.efficacy)}
+                  >
+                    {db.name}
+                  </button>
+                ))}
+                <div className="flex flex-col space-y-2">
+                  {mediDetailTest4.map((db, index) => (
+                    <button
+                      key={index}
+                      className="border p-2 w-64"
+                      onClick={() => setInfoText(db.efficacy)}
+                    >
+                      {db.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="border p-4 w-96 h-48">{infoText}</div>
         </section>
@@ -120,13 +157,25 @@ function MediInfo() {
         <section className="border-t-2 pt-4">
           <h2 className="text-lg font-semibold mb-2">많이 사용되는 약품</h2>
           <div className="grid grid-cols-3 gap-4 items-center">
-            {Array.from({ length: 3 }).map((_, index) => (
+            {Array.from({ length: 1 }).map((_, index) => (
               <DrugInfo
-                key={index}
-                title={mediDetailTest[index]?.name || "제품명 없음"}
-                description={
-                  mediDetailTest[index]?.efficacy || "효능 정보 없음"
-                }
+                key={`test1-${index}`}
+                title={mediDetailTest[index]?.name}
+                description={mediDetailTest[index]?.efficacy}
+              />
+            ))}
+            {Array.from({ length: 1 }).map((_, index) => (
+              <DrugInfo
+                key={`test2-${index}`}
+                title={mediDetailTest2[index]?.name}
+                description={mediDetailTest2[index]?.efficacy}
+              />
+            ))}
+            {Array.from({ length: 1 }).map((_, index) => (
+              <DrugInfo
+                key={`test3-${index}`}
+                title={mediDetailTest3[index]?.name}
+                description={mediDetailTest3[index]?.efficacy}
               />
             ))}
           </div>
