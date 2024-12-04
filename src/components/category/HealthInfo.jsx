@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HealthNews from "./../details/HealthNews";
 import HealthInfoDatabase from "../../constants/healthdata";
 import { Link } from "react-router-dom";
