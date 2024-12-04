@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetMyMediListData } from '../../redux/slices/myMediSlice';
 
@@ -27,7 +27,7 @@ const Pannel = () => {
   },[dispatch, userKey])
 
   const handleOpenModal = ()=>{
-    dispatch(openModal({modalType: "create", myMediList: null}))
+    // dispatch(openModal({modalType: "create", myMediList: null}))
   }
 
   return (
