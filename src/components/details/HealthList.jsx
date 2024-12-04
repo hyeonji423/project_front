@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HealthInfoDatabase from '../../constants/healthdata'
-
 const HealthList = () => {
   return (
     <div>
@@ -21,11 +20,11 @@ const HealthList = () => {
                   />
                 )}
                 {!info.sections[0].image && (
-                  <div className="h-24 mt-2">
+                  <div className="h-32 mt-2">
                     <img
                       src={info.defaultImage}
                       alt={info.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-md"
                     />
                   </div>
                 )}
@@ -36,5 +35,4 @@ const HealthList = () => {
     </div>
   )
 }
-
 export default HealthList
