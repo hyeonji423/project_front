@@ -19,9 +19,14 @@ import Toothbrush3 from "../assets/healthimg/toothbrush3.jpg";
 
 import Candy from "../assets/healthmain/candy.jpg";
 import Beer from "../assets/healthmain/beer.jpg";
-import SumAndWin from "../assets/healthmain/sumandwin.jpg";
-import Bone from "../assets/healthmain/bone.jpg";
-import PimpleMain from "../assets/healthmain/pimple.jpg";
+import SumAndWin from '../assets/healthmain/sumandwin.jpg'
+import Bone from '../assets/healthmain/bone.jpg'
+import Summer from '../assets/healthmain/summer.jpg'
+import Allergy from '../assets/healthmain/allergy.jpg'
+import Mouth from '../assets/healthmain/mouth.jpg'
+import Vacation from '../assets/healthmain/vacation.jpg'
+import Press from '../assets/healthmain/press.jpg'
+
 
 const HealthInfoDatabase = [
   {
@@ -224,7 +229,7 @@ const HealthInfoDatabase = [
   {
     id: 4,
     title: "여름철 피부 고민, 걱정하지 마세요!",
-    defaultImage: PimpleMain,
+    defaultImage: Summer,
     content:
       "여름철, 강렬한 자외선과 높은 기온이 우리의 피부에 미치는 영향은 생각보다 큽니다. 무더운 날씨로 인해 피부 관리가 소홀해질 수 있지만, 사실 이 시기에 더욱 세심한 피부 관리가 필요합니다. 8월 이달의 건강정보에서는 여름철에 흔히 발생하는 피부 문제와 그에 대한 효과적인 대처방법을 살펴보겠습니다. 국가건강정보포털과 함께 여름철에도 건강한 피부를 유지해 보세요.",
     sections: [
@@ -289,7 +294,7 @@ const HealthInfoDatabase = [
   {
     id: 5,
     title: "건강하게, 안전하게! 여름 여행 안전 가이드",
-    defaultImage: Infection,
+    defaultImage: Vacation,
     content:
       "여름은 뜨거운 햇살 아래 일상의 스트레스를 벗어나 새로운 곳에서 즐거움을 만끽하기에 더없이 좋은 계절입니다. 푸른 바다로의 휴가, 시원한 산속의 캠핑, 문화가 넘치는 도시 여행 등 다양한 여름 여행 계획이 가득하겠지만, 아무리 즐거운 여행이라도 건강과 안전을 소홀히 하면 기대했던 즐거움이 불안과 걱정으로 바뀔 수 있습니다. 여름 여행을 더욱 건강하고 안전하게 즐길 수 있도록 여행을 떠나기 전 준비해야 할 사항부터 이동 중 주의할 점, 그리고 여행지에서의 안전 수칙까지, 꼭 알아두어야 할 내용을 알아보겠습니다.",
     sections: [
@@ -367,7 +372,7 @@ const HealthInfoDatabase = [
   {
     id: 6,
     title: "고민되는 입냄새, 해결할 수 있을까요?",
-    defaultImage: Toothbrush,
+    defaultImage: Mouth,
     content:
       "입냄새로 인해 입을 가리고 말한 적이 있나요? 아니면 옆 사람의 입냄새 때문에 불쾌함을 느낀 적이 있나요? 입냄새는 매우 흔한 문제로, 인구의 절반 이상이 경험하고 있습니다. 입냄새의 주된 원인은 입 안의 세균이 음식물 찌꺼기, 침, 떨어진 구강점막세포 등의 단백질을 분해하며 발생하는 휘발성 황화합물 때문입니다. 입냄새를 본인 스스로 느끼는 순간부터 심리적으로 위축될 수 있고, 심할 때는 사회생활에도 지장을 줄 수 있습니다. 이달의 건강정보에서는 입냄새의 원인을 정확히 이해하고, 효과적으로 관리하는 방법을 알려드리겠습니다.",
     sections: [
