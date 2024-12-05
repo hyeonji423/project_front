@@ -1,18 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import HealthInfoDatabase from '../../constants/healthdata'
+import React from "react";
+import { Link } from "react-router-dom";
+import HealthInfoDatabase from "../../constants/healthdata";
 const HealthList = () => {
   return (
     <div>
       <div className="grid grid-cols-3 gap-4 mt-4">
-          {HealthInfoDatabase.map((info, index) => (
-            <Link to={`/healthdetail/${index}`} key={index}>
-              <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow">
-                <h3 className="font-bold">{info.title}</h3>
-                <p className="text-gray-600 text-sm">
-                  {info.sections[0].content?.substring(0, 50)}...
-                </p>
-                {info.defaultImage ? (
+        {HealthInfoDatabase.map((info, index) => (
+          <Link to={`/healthdetail/${info.id}`} key={index}>
+            <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow">
+              <h3 className="font-bold">{info.title}</h3>
+              <p className="text-gray-600 text-sm">
+                {info.sections[0].content?.substring(0, 50)}...
+              </p>
+              {info.defaultImage ? (
                 <img
                   src={info.defaultImage}
                   alt={info.title}
@@ -29,11 +29,11 @@ const HealthList = () => {
                   <p className="text-gray-400 text-sm">이미지 없음</p>
                 </div>
               )}
-              </div>
-            </Link>
-          ))}
-        </div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
-  )
-}
-export default HealthList
+  );
+};
+export default HealthList;

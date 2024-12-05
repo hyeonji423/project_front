@@ -1,5 +1,5 @@
 import AlcoholHealthImage from "../assets/healthimg/question.jpg";
-import Diabetes from '../assets/healthimg/diabetes.jpg'
+import Diabetes from "../assets/healthimg/diabetes.jpg";
 import ManagementImage from "../assets/healthimg/management.jpg";
 import Medical from "../assets/healthimg/medical.jpg";
 import Medicalhealth from "../assets/healthimg/medicalhealth.jpg";
@@ -17,13 +17,11 @@ import Toothbrush from "../assets/healthimg/toothbrush.jpg";
 import Toothbrush2 from "../assets/healthimg/toothbrush2.jpg";
 import Toothbrush3 from "../assets/healthimg/toothbrush3.jpg";
 
-
 import Candy from "../assets/healthmain/candy.jpg";
 import Beer from "../assets/healthmain/beer.jpg";
-import SumAndWin from '../assets/healthmain/sumandwin.jpg'
-import Bone from '../assets/healthmain/bone.jpg'
-import PimpleMain from '../assets/healthmain/pimple.jpg'
-
+import SumAndWin from "../assets/healthmain/sumandwin.jpg";
+import Bone from "../assets/healthmain/bone.jpg";
+import PimpleMain from "../assets/healthmain/pimple.jpg";
 
 const HealthInfoDatabase = [
   {
