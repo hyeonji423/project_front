@@ -105,7 +105,7 @@ const HealthDetail = () => {
                 <tr key={index} className="border-b border-t">
                   <td className="py-3">
                     <a
-                      href={`/health/${info.id}`}
+                      href={`/healthdetail/${info.id}`}
                       className="hover:text-blue-500 px-1"
                     >
                       {info.title}

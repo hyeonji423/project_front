@@ -52,7 +52,7 @@ function MediInfo() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="mx-auto p-4 max-w-4x1 items-center justify-center">
       <main className="mt-4">
         <section className="border p-4 mb-4">
           <h2 className="text-lg font-semibold mb-2">약품명 검색</h2>
