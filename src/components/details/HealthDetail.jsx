@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import HealthInfoDatabase from "../../constants/healthdata";
 const HealthDetail = () => {
   const { id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   console.log("현재 id:", id);
   console.log("데이터베이스:", HealthInfoDatabase);
   const healthInfo = HealthInfoDatabase.find((info) => info.id === Number(id));
@@ -11,6 +16,7 @@ const HealthDetail = () => {
       <div className="text-center py-8">존재하지 않는 건강 정보입니다.</div>
     );
   }
+  
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
       <div className="w-[70%] max-w-[1200px]">
