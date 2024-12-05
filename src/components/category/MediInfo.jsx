@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   mediDetailTest,
   mediDetailTest2,
@@ -29,7 +29,7 @@ function MediInfo() {
     ...mediDetailTest4,
   ];
 
-  const handleSearch = () => {
+  useEffect(() => {
     if (!searchTerm.trim()) {
       setDrugInfo(null);
       setError(null);
@@ -49,12 +49,12 @@ function MediInfo() {
       setDrugInfo(null);
       setError("검색 결과가 없습니다.");
     }
-  };
+  }, [searchTerm]);
 
   return (
     <div className="mx-auto p-4 max-w-4x1 items-center justify-center">
       <main className="mt-4">
-        <section className="border p-4 mb-4">
+        <section className="border p-2 mb-2">
           <h2 className="text-lg font-semibold mb-2">약품명 검색</h2>
           <div className="flex space-x-2 mb-2">
             <input
@@ -64,15 +64,18 @@ function MediInfo() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={handleSearch} className="border p-2">
+            <button
+              onClick={() => setSearchTerm(searchTerm)}
+              className="border p-2"
+            >
               검색
             </button>
           </div>
           {error && <div className="text-red-500">{error}</div>}
         </section>
 
-        <section className="border p-4 mb-4">
-          <div className="grid grid-cols-4 divide-x divide-gray-300 text-center">
+        <section className="border p-2 mb-2 flex flex-col">
+          <div className="grid grid-cols-4 divide-x divide-gray-300 text-center text-sm p-1">
             {["제품명", "성분명", "업체명", "일련 번호"].map(
               (header, index) => (
                 <div key={index} className="bg-gray-100 p-2">
@@ -94,8 +97,8 @@ function MediInfo() {
           )}
         </section>
 
-        <section className="flex space-x-4 mb-4 items-start justify-center">
-          <div className="border p-4 w-48 h-48 bg-gray-200 flex justify-center items-center">
+        <section className="flex space-x-4 mb-2 items-start justify-center">
+          <div className="border p-2 w-48 h-48 bg-gray-200 flex justify-center items-center">
             {drugInfo?.imageUrl ? (
               <img
                 src={drugInfo.imageUrl}
@@ -118,10 +121,10 @@ function MediInfo() {
               </button>
             ))}
           </div>
-          <div className="border p-4 w-96 h-48">{infoText}</div>
+          <div className="border p-2 w-96 h-48">{infoText}</div>
         </section>
 
-        <section className="border-t-2 pt-4">
+        <section className="border-t-2 pt-2">
           <h2 className="text-lg font-semibold mb-2">많이 사용되는 약품</h2>
           <div className="grid grid-cols-3 gap-4 items-center">
             {allMediDetails.slice(0, 3).map((drug, index) => (

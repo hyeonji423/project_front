@@ -19,14 +19,13 @@ import Toothbrush3 from "../assets/healthimg/toothbrush3.jpg";
 
 import Candy from "../assets/healthmain/candy.jpg";
 import Beer from "../assets/healthmain/beer.jpg";
-import SumAndWin from '../assets/healthmain/sumandwin.jpg'
-import Bone from '../assets/healthmain/bone.jpg'
-import Summer from '../assets/healthmain/summer.jpg'
-import Allergy from '../assets/healthmain/allergy.jpg'
-import Mouth from '../assets/healthmain/mouth.jpg'
-import Vacation from '../assets/healthmain/vacation.jpg'
-import Press from '../assets/healthmain/press.jpg'
-
+import SumAndWin from "../assets/healthmain/sumandwin.jpg";
+import Bone from "../assets/healthmain/bone.jpg";
+import Summer from "../assets/healthmain/summer.jpeg";
+import Allergy from "../assets/healthmain/allergy.jpeg";
+import Mouth from "../assets/healthmain/mouth.jpeg";
+import Vacation from "../assets/healthmain/vacation.jpeg";
+import Press from "../assets/healthmain/press.jpeg";
 
 const HealthInfoDatabase = [
   {
