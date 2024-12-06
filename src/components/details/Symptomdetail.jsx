@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { symptoms, disease } from "../../constants/symptomdata";
+import { symptoms, disease, summary } from "../../constants/symptomdata";
 import { symptom } from "../../constants/data";
 
 const SymptomDetail = () => {
@@ -9,7 +9,7 @@ const SymptomDetail = () => {
   const { id } = params;
   const symptomImage = symptom.find((s) => s.id === Number(id))?.image;
 
-  const symptomInfo = symptoms.find((info) => info.id === Number(id));
+  const symptomInfo = summary.find((info) => info.id === Number(id));
 
   if (!symptomInfo) {
     return (
@@ -34,7 +34,7 @@ const SymptomDetail = () => {
           {symptomInfo.title}
           {/* 증상 */}
           <div className="flex w-full text-[16px] font-medium flex-col gap-4 mt-8">
-            {symptomInfo.sections[0].content.map((item, index) => (
+            {symptomInfo.content.map((item, index) => (
               <p key={index} className="leading-relaxed">
                 {item}
               </p>
@@ -44,8 +44,11 @@ const SymptomDetail = () => {
       </div>
 
       {/* 탭 버튼 */}
-      <div className="flex w-[70%] max-w-[1200px] mt-8 border-t border-x border-gray-200 rounded-t-lg overflow-hidden">
-        {disease[0].types.map((item) => (
+      <div className="w-[70%] max-w-[1200px] mt-8">
+        <h1 className="text-2xl font-bold mb-4">세부증상</h1>
+      </div>
+      <div className="flex w-[70%] max-w-[1200px] border-t border-x border-gray-200 rounded-t-lg overflow-hidden">
+        {disease[Number(id)].types.map((item) => (
           <button
             key={item.id}
             onClick={() => setActiveTab(item.id)}
@@ -58,9 +61,20 @@ const SymptomDetail = () => {
         ))}
       </div>
 
-      {/* 탭 내용 */}
+      {/* 세부증상 탭 내용 */}
       <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-b-lg p-6">
-        {disease[0].types.map(
+        {symptoms[Number(id)].types.map(
+          (item) =>
+            activeTab === item.id && <div key={item.id}>{item.content}</div>
+        )}
+      </div>
+
+      {/* 치료방법 섹션 */}
+      <div className="w-[70%] max-w-[1200px] mt-4">
+        <h1 className="text-2xl font-bold mb-4">치료방법</h1>
+      </div>
+      <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-lg p-6">
+        {disease[Number(id)].types.map(
           (item) =>
             activeTab === item.id && <div key={item.id}>{item.content}</div>
         )}
