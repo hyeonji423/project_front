@@ -20,6 +20,7 @@ import Pannel from "./components/mymedi/Pannel";
 import Modal from "./components/mymedi/Modal";
 import Item from "./components/mymedi/Item";
 import AddItem from "./components/mymedi/AddItem";
+import MediList from "./components/category/MediList";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="/" element={<Modal />} />
             <Route path="/" element={<Item />} />
             <Route path="/" element={<AddItem />} />
+            <Route path="/medilist" element={<MediList />} />
           </Routes>
 
           <Footer />
