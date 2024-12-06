@@ -33,7 +33,7 @@ const SymptomDetail = () => {
         <div className="w-[70%] text-2xl font-bold gap-4 ml-8">
           {symptomInfo.title}
           {/* 증상 */}
-          <div className="flex w-full text-[16px] font-medium flex-col gap-4 mt-8">
+          <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-8">
             {symptomInfo.content.map((item, index) => (
               <p key={index} className="leading-relaxed">
                 {item}
