@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HealthNews from "./../details/HealthNews";
+import HealthNews from "../details/HealthNews";
 import HealthList from "../details/HealthList";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
       <div className="health mt-12 w-[70%] mb-14">
         <h2 className="text-3xl font-bold mb-4">건강정보</h2>
-        <HealthList/>
+        <HealthList />
       </div>
     </div>
   );

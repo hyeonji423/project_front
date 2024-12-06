@@ -10,7 +10,7 @@ import symptom7 from "../assets/symptom/symptom7.jpg";
 export const navItems = [
   { label: "챗봇", to: "/chatbot" },
   { label: "건강정보", to: "/healthinfo" },
-  { label: "약품정보", to: "/mediinfo" },
+  { label: "약품정보", to: "/medilist" },
   { label: "건의사항", to: "/service" },
 ];
 

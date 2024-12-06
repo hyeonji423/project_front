@@ -85,10 +85,7 @@ function MediInfo() {
             )}
           </div>
           {drugInfo && (
-            <div
-              className="grid grid-cols-4 divide-x divide-gray-300 text-center"
-              id="root > div > div > div.container.mx-auto.p-4 > main > section:nth-child(2) > div:nth-child(2)"
-            >
+            <div className="grid grid-cols-4 divide-x divide-gray-300 text-center">
               <div className="bg-white p-2">{drugInfo.name}</div>
               <div className="bg-white p-2">{drugInfo.main_ingredient}</div>
               <div className="bg-white p-2">{drugInfo.company_name}</div>
