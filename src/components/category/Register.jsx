@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchPostAuthData } from "../../redux/slices/authSlice";
+import mediLogo from "../../assets/medi_logo.png";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -76,9 +77,12 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="shadow-lg px-8 py-5 w-[30%] border">
-        <h2 className="text-lg font-bold mb-4">SIGNUP</h2>
+    <div className="flex flex-col justify-center items-center h-auto">
+      <div className='logo w-[350px] mt-20 mb-8'>
+        <img src={mediLogo} alt="" />
+      </div>
+      <div className="shadow-lg px-8 py-5 w-[30%] border mb-16">
+        <h2 className="text-lg font-bold mb-4 text-center">회원가입</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             {/* <label htmlFor="username" className="block text-neutral-700">
@@ -94,11 +98,11 @@ const Register = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="email" className="block text-neutral-700">
-              Email
+              이메일
             </label>
             <input
               type="email"
-              placeholder="이메일을 입력하세요."
+              placeholder="Email"
               className="w-full px-3 py-2 border"
               name="email"
               onChange={handleChange}
@@ -106,11 +110,11 @@ const Register = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block text-neutral-700">
-              Password
+              비밀번호
             </label>
             <input
               type="password"
-              placeholder="비밀번호를 입력하세요."
+              placeholder="Password"
               className="w-full px-3 py-2 border"
               name="password"
               onChange={handleChange}
@@ -118,11 +122,11 @@ const Register = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="confirmPassword" className="block text-neutral-700">
-              Confirm Password
+              비밀번호 확인
             </label>
             <input
               type="password"
-              placeholder="비밀번호를 다시 입력하세요."
+              placeholder="Comfirm Password"
               className="w-full px-3 py-2 border"
               name="confirm_password"
               onChange={handleChange}
@@ -130,7 +134,7 @@ const Register = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="birth_date" className="block text-neutral-700">
-              Birth Date
+              생년월일
             </label>
             <input
               type="date"
@@ -140,9 +144,9 @@ const Register = () => {
             />
           </div>
           {/* <input type="file" name="profile_img" onChange={handleFileChange} /> */}
-          <button className="btn w-full h-12 !text-base">Submit</button>
+          <button className="btn w-full h-12 !text-base">회원가입</button>
         </form>
-        <div className="mt-4">
+        <div className="mt-4 text-center">
           <span>이미 회원이라면 | </span>
           <Link to="/login" className="underline hover:italic">
             로그인 하기
