@@ -9,8 +9,8 @@ const Landing = () => {
   return (
     <div className='relative'>
       <div className='overflow-hidden flex justify-center items-center relative max-h-[600px]'>
-        <div className="absolute opacity-30 overlay w-full h-full bg-white z-10 left-0 top-0"></div>
-        <div className="slogan-box absolute left-[20%] top-[25%] z-30 flex flex-col gap-4">
+        <div className="absolute opacity-30 overlay w-full h-full bg-white left-0 top-0"></div>
+        <div className="slogan-box absolute left-[20%] top-[25%] flex flex-col gap-4">
           <h2 style={{fontFamily: 'LemonMilk'}} className='text-7xl'>
             MediBook
           </h2>
@@ -34,7 +34,7 @@ const Landing = () => {
         </div>
         <img src={landingImg} className='w-full' alt="" />
       </div>
-      <div className='bottom-box absolute bottom-[-25%] z-50 w-[60%] left-1/2 transform -translate-x-1/2'>
+      <div className='bottom-box absolute bottom-[-25%] z-0 w-[60%] left-1/2 transform -translate-x-1/2'>
         <LandingSubBox/>
       </div>
     </div>

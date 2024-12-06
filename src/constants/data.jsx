@@ -72,6 +72,11 @@ export const navMenus = [
     to: "/mymedi_list",
     idx: 2,
   },
+  {
+    label: "열람 목록",
+    to: "/",
+    idx: 3,
+  }
 ];
 
 // 테스트용
