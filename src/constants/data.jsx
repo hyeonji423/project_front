@@ -25,7 +25,7 @@ export const symptom = [
   {
     id: 1,
     image: symptom2,
-    text: "#마른기침",
+    text: "#기침",
     to: "/Symptomdetail",
   },
   {
@@ -76,7 +76,7 @@ export const navMenus = [
     label: "열람 목록",
     to: "/",
     idx: 3,
-  }
+  },
 ];
 
 // 테스트용
