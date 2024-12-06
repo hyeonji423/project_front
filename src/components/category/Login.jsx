@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchPostLoginData } from '../../redux/slices/authSlice';
 import { setToken } from '../../redux/slices/loginSlice';
+import mediLogo from "../../assets/medi_logo.png";
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -51,23 +52,26 @@ const Login = () => {
   }
 
   return (
-    <div className='flex justify-center items-center h-screen w-full'>
-      <div className='shadow-lg px-8 py-5 w-[30%] border'>
-        <h2 className='text-lg font-bold mb-4'>LOGIN</h2>
+    <div className='flex flex-col justify-center items-center h-auto w-full'>
+      <div className='logo w-[350px] mt-20 mb-8'>
+        <img src={mediLogo} alt="" />
+      </div>
+      <div className='shadow-lg px-8 py-5 w-[30%] border mb-16'>
+        <h2 className='text-xl font-extrabold mb-4 text-center'>로그인</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
-            <label htmlFor="email" className='block text-neutral-700'>Email</label>
-            <input type="email" placeholder='Enter Email' className='w-full px-3 py-2 border' name='email' onChange={handleChange}/>
+            <label htmlFor="email" className='block text-neutral-700'>이메일</label>
+            <input type="email" placeholder='Email' className='w-full px-3 py-2 border' name='email' onChange={handleChange}/>
           </div>
           <div className='mb-4'>
-            <label htmlFor="password" className='block text-neutral-700'>Password</label>
-            <input type="password" placeholder='Enter password' className='w-full px-3 py-2 border' name='password' onChange={handleChange}/>
+            <label htmlFor="password" className='block text-neutral-700'>비밀번호</label>
+            <input type="password" placeholder='Password' className='w-full px-3 py-2 border' name='password' onChange={handleChange}/>
           </div>
-          <button className='btn w-full h-12 !text-base'>Submit</button>
+          <button className='btn w-full h-12 !text-base'>로그인</button>
         </form>
-        <div className='mt-4'>
+        <div className='mt-4 text-center'>
           <span>회원이 아니라면 | </span>
-          <Link to='/register' className='underline hover:italic'>회원가입 하기</Link>
+          <Link to='/register' className='underline hover:italic text-center'>회원가입 하기</Link>
         </div>
       </div>
     </div>
