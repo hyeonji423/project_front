@@ -10,9 +10,9 @@ const AddItem = () => {
     dispatch(openModal({modalType: "create", myMediList: null}));
   }
   return (
-    <div className='container mx-auto px-40 flex justify-center'>
-      <div className='add-item w-full'>
-        <button className='w-full border border-blue-400 rounded-md bg bg-blue-400 hover:bg-blue-600 py-3 px-4 flex items-center justify-center' onClick={handleOpenModal}>
+    <div className='add-item w-full mx-auto'>
+      <div className='flex justify-center'>
+        <button className='w-full border border-sky-300 rounded-md bg bg-sky-300 hover:bg-blue-600 hover:border-blue-600 py-4 px-4 flex items-center justify-center' onClick={handleOpenModal}>
           <div className='flex items-center gap-2'>
             <IoIosAddCircleOutline className='w-6 h-6 text-white font-light hover:text-neutral-200 cursor-pointer' />
             <span className='text-white hover:text-neutral-200 cursor-pointer mb-px'>Add List</span>

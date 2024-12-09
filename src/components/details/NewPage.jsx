@@ -104,17 +104,17 @@ const NewPage = () => {
 
   return (
     <div className="w-full h-full flex">
-      <div className="w-[70%] h-[79vh] rounded-md bg-[skyblue] ml-10">
+      <div className="w-[70%] h-[79vh] rounded-md bg-sky-300 ml-10">
         <div>
           <div className="flex bg-white last:border-b border-gray-300 mb-4">
             {tabs.map((tab, index) => (
               <button
                 key={index}
-                className={`px-4 py-2 border cursor-pointer focus:outline-none hover:bg-gray-700 transition-colors
+                className={`px-4 py-2 border cursor-pointer focus:outline-none hover:bg-blue-600 transition-colors hover:text-white
                   ${
                     activeTab === index
-                      ? "bg-white border-t border-x border-gray-300"
-                      : "bg-gray-300"
+                      ? "bg-sky-300 border-t border-x border-sky-300"
+                      : "bg-gray-200"
                   }`}
                 onClick={() => setActiveTab(index)}
               >

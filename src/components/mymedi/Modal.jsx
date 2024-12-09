@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchGetMyMediListData,
   fetchPostMyMediData,
+  fetchUpdateMyMediListData,
 } from "../../redux/slices/myMediSlice";
 import { closeModal } from "../../redux/slices/modalSlice";
 
@@ -11,11 +12,10 @@ import { closeModal } from "../../redux/slices/modalSlice";
 
 const Modal = () => {
   const dispatch = useDispatch();
-  const { modalType, myMediList } = useSelector((state) => state.modal);
+  const { modalType, myMediList, isOpen } = useSelector((state) => state.modal);
   // const navigator = useNavigate();
   const user = useSelector((state) => state.login.user);
-  console.log(user);
-
+    
   const [value, setValue] = useState({
     mediName: "",
     companyName: "",
@@ -35,7 +35,7 @@ const Modal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user.sub) {
+    if (!user) {
       alert("로그인 후 이용해주세요.");
       return;
     }
@@ -49,10 +49,10 @@ const Modal = () => {
       if (modalType === "create" && myMediList === null) {
         await dispatch(fetchPostMyMediData(value)).unwrap();
         alert("등록되었습니다.");
+      } else if (modalType === "update" && myMediList) {
+        await dispatch(fetchUpdateMyMediListData(value)).unwrap();
+        alert("수정되었습니다.");
       }
-      //  else if(modalType === "update" && myMediList) {
-      //   await dispatch(fetchUpdateMyMediData(value)).unwrap();
-      //   alert("수정되었습니다.");
 
       handleCloseModal();
 
@@ -93,7 +93,7 @@ const Modal = () => {
         expDate: myMediList.expDate,
         mainSymptom: myMediList.mainSymptom,
         memo: myMediList.memo,
-        user_id: user.id,
+        user_id: user?.id,
       });
     } else {
       setValue({
@@ -103,10 +103,10 @@ const Modal = () => {
         expDate: "",
         mainSymptom: "",
         memo: "",
-        user_id: user.id,
+        user_id: user?.id,
       });
     }
-  }, [modalType, myMediList, user.id]);
+  }, [modalType, myMediList, user?.id]);
 
   console.log(myMediList);
 
@@ -134,12 +134,13 @@ const Modal = () => {
   // } catch (error) {
   //   alert(error.msg);
   // }
+  if (!isOpen) return null;
 
   return (
-    <div>
-      <div className="flex justify-center items-center h-screen w-full">
-        <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%]">
-          <div className="wrapper border border-gray-300 rounded-lg p-10 flex flex-col gap-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 overflow-auto">
+      <div className="flex justify-center items-center min-h-screen w-full">
+        <div className="relative bg-white rounded-lg p-10 flex flex-col gap-6">
+          <div className="wrapper">
             <h2 className="title text-2xl font-bold flex justify-center">
               My 상비약 관리 (일반 의약품) <br></br>
               {modalTitle}
