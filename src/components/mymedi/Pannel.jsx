@@ -51,7 +51,7 @@ const Pannel = () => {
               </button>
             </div>
 
-            <div className="items flex flex-wrap gap-4">
+            <div className="items w-full flex flex-wrap gap-4">
               {getMyMediList?.length > 0 ? (
                 getMyMediList.map((item) => <Item key={item.created_at} myMedi={item} />)
               ) : (

@@ -1,6 +1,7 @@
 import React from "react";
 import { MdEditDocument, MdDelete } from "react-icons/md";
 import { BiSolidMessageAltDetail } from "react-icons/bi";
+import { FaCalendarCheck } from "react-icons/fa6";
 import favi from "../../assets/medi_favi.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -94,18 +95,19 @@ const Item = ({ myMedi }) => {
 
   return (
     <div className="item w-full mx-auto ">
-      <div className="w-full shadow-md border py-3 px-4 flex items-center gap-4 justify-around">
-        <div className="title-box px-3 py-1 flex flex-col items-end">
+      <div className="w-full shadow-md border py-3 px-7 flex items-center gap-4">
+        <div className="w-[8%] flex items-center"><img src={favi} alt="list" className="w-6 h-6" /></div>
+        <div className="title-box w-[20%] px-3 py-1 flex">
           <h2 className="item-title text-xl font-semibold">{medi_name}</h2>
         </div>
-        <p className="px-1 text-[17px]">대표증상: {main_symptom}</p>
-        <div className="exp-date-box flex items-center">
+        <p className="w-[30%] px-1 text-[17px]">대표증상: {main_symptom}</p>
+        <div className="exp-date-box w-[30%] flex items-center">
           <p className="px-1 text-[17px]">유효기간: {formatDate(exp_date)}</p>
-          <button className="w-8 h-8 rounded-full bg-blue-100 my-1 flex justify-center items-center">
-            <img src={favi} alt="" className="w-4 h-4" />
+          <button >
+            <FaCalendarCheck className="w-4 h-4 text-yellow-300" />
           </button>
         </div>
-        <div className="btn-box flex items-center gap-2">
+        <div className="btn-box w-[12%] flex items-center gap-2">
           <button onClick={handleOpenDetailModal}>
             <BiSolidMessageAltDetail className="w-6 h-6 text-blue-600" />
           </button>

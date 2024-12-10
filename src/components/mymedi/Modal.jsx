@@ -23,6 +23,7 @@ const Modal = () => {
     expDate: "",
     mainSymptom: "",
     memo: "",
+    user_id: user?.id
   });
 
   const handleChange = (e) => {
@@ -45,9 +46,15 @@ const Modal = () => {
       return;
     }
 
+    const submitData = {
+      ...value,
+      user_id: user.id
+    }
+    console.log(submitData);
+
     try {
       if (modalType === "create" && myMediList === null) {
-        await dispatch(fetchPostMyMediData(value)).unwrap();
+        await dispatch(fetchPostMyMediData(submitData)).unwrap();
         alert("등록되었습니다.");
       } else if (modalType === "update" && myMediList) {
         await dispatch(fetchUpdateMyMediListData(value)).unwrap();
@@ -56,7 +63,7 @@ const Modal = () => {
 
       handleCloseModal();
 
-      await dispatch(fetchGetMyMediListData(user?.sub)).unwrap();
+      await dispatch(fetchGetMyMediListData(user?.id)).unwrap();
     } catch (error) {
       console.error("등록 중 오류가 발생했습니다.", error);
     }
@@ -79,7 +86,7 @@ const Modal = () => {
 
   const modalTitle = showModalTitle(modalType, "수정", "상세", "등록");
 
-  const btnTitle = showModalTitle(modalType, "수정", "등록");
+  const btnTitle = showModalTitle(modalType, "수정", "", "등록");
 
   useEffect(() => {
     if (
@@ -198,7 +205,7 @@ const Modal = () => {
                     {...(modalType === "details" && { disabled: true })}
                   />
                 </div>
-                <button className="btn">알림설정</button>
+                <button className="bg-blue-600 text-white text-sm   rounded-md px-3 py-1">알림설정</button>
               </div>
               <div className="form-item">
                 <label htmlFor="main_symptom">대표증상</label>
@@ -223,7 +230,7 @@ const Modal = () => {
                   {...(modalType === "details" && { disabled: true })}
                 ></textarea>
               </div>
-              <button className={`btn h-10 !text-sm ${modalType === "details" ? "hidden" : ""}`} type="submit">{btnTitle}</button>
+              <button className={`btn h-10 !text-lg ${modalType === "details" ? "hidden" : ""}`} type="submit">{btnTitle}</button>
             </form>
           </div>
         </div>
