@@ -1,9 +1,12 @@
 import React from "react";
 import { MdEditDocument, MdDelete } from "react-icons/md";
-import { IoNotifications } from "react-icons/io5";
 import { BiSolidMessageAltDetail } from "react-icons/bi";
+import favi from "../../assets/medi_favi.png";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDeleteMyMediListData, fetchGetMyMediListData } from "../../redux/slices/myMediSlice";
+import {
+  fetchDeleteMyMediListData,
+  fetchGetMyMediListData,
+} from "../../redux/slices/myMediSlice";
 import { openModal } from "../../redux/slices/modalSlice";
 
 const Item = ({ myMedi }) => {
@@ -90,18 +93,16 @@ const Item = ({ myMedi }) => {
   };
 
   return (
-    <div className="item w-full mx-auto">
-      <div className="w-full border border-blue-600 bg-slate-100 rounded-md py-3 px-4 flex items-center gap-4 justify-around">
-        <div className="title-box flex items-center bg-sky-300 rounded-md px-3 py-1">
-          <h2 className="item-title border-blue-600 text-xl font-semibold">
-            {medi_name}
-          </h2>
+    <div className="item w-full mx-auto ">
+      <div className="w-full shadow-md border py-3 px-4 flex items-center gap-4 justify-around">
+        <div className="title-box px-3 py-1 flex flex-col items-end">
+          <h2 className="item-title text-xl font-semibold">{medi_name}</h2>
         </div>
         <p className="px-1 text-[17px]">대표증상: {main_symptom}</p>
         <div className="exp-date-box flex items-center">
           <p className="px-1 text-[17px]">유효기간: {formatDate(exp_date)}</p>
-          <button>
-            <IoNotifications className="text-yellow-300 w-6 h-6" />
+          <button className="w-8 h-8 rounded-full bg-blue-100 my-1 flex justify-center items-center">
+            <img src={favi} alt="" className="w-4 h-4" />
           </button>
         </div>
         <div className="btn-box flex items-center gap-2">
@@ -111,7 +112,7 @@ const Item = ({ myMedi }) => {
           <button onClick={handleOpenUpdateModal}>
             <MdEditDocument className="w-6 h-6 text-sky-300" />
           </button>
-          <button className="delete text-red-400" onClick={handleDeleteItem}>
+          <button className="delete text-gray-700" onClick={handleDeleteItem}>
             <MdDelete className="w-6 h-6" />
           </button>
         </div>
