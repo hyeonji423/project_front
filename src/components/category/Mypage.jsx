@@ -23,6 +23,27 @@ const Mypage = ({ user, onClose, onLogout }) => {
     };
   }, [onClose]);
   
+  if (!user) {
+    return (
+      <div ref={modalRef} className="absolute right-0 top-full w-60 bg-white rounded-lg p-4 z-50 shadow-[0_2px_6px_rgba(0,0,0,0.05),0_-2px_6px_rgba(0,0,0,0.05)]">
+        <div className="flex flex-col items-center mb-4">
+          <div className="w-20 h-20 rounded-full bg-blue-100 my-1 flex justify-center items-center">
+            <img src={favi} alt="" className="w-12 h-12" />
+          </div>
+          <h3 className="text-lg font-bold mt-2">guest</h3>
+        </div>
+        
+        <span className="mb-4 border-b-2 border-blue-200 w-3/5 block mx-auto"></span>
+
+        <ul className="space-y-2">
+          <li className="p-1 hover:bg-gray-100 rounded">
+            <Link to="/login" onClick={onClose}>로그인</Link>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
 
   return (
     <div ref={modalRef} className="absolute right-0 top-full w-60 bg-white rounded-lg p-4 z-50 shadow-[0_2px_6px_rgba(0,0,0,0.05),0_-2px_6px_rgba(0,0,0,0.05)]">
@@ -30,7 +51,7 @@ const Mypage = ({ user, onClose, onLogout }) => {
         <div className="w-20 h-20 rounded-full bg-blue-100 my-1 flex justify-center items-center">
           <img src={favi} alt="" className="w-12 h-12" />
         </div>
-        <h3 className="text-lg font-bold mt-2">{user?.email || 'email@example.com'}</h3>
+        <h3 className="text-lg font-bold mt-2">{user?.email}</h3>
       </div>
       
       <span className="mb-4 border-b-2 border-blue-200 w-3/5 block mx-auto"></span>
