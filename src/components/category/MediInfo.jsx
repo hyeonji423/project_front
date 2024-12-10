@@ -11,17 +11,17 @@ function DrugInfo({ title, description, efficacy, image }) {
     <div className="flex border p-4 mb-4">
       <div className="w-1/5 mr-4">{image}</div>
       <div className="w-4/5">
-        <div className="flex justify-between mb-2 border-b pb-2">
-          <div className="font-bold text-sm">제품명</div>
-          <div className="text-sm text-left !important">{title}</div>
+        <div className="flex mb-2 border-b pb-2">
+          <div className="font-bold text-sm w-[10%]">제품명</div>
+          <div className="flex items-start text-sm w-[90%]">{title}</div>
         </div>
-        <div className="flex justify-between mb-2 border-b pb-2">
-          <div className="font-bold text-sm">주성분</div>
-          <div className="text-xs text-left !important">{description}</div>
+        <div className="flex mb-2 border-b pb-2">
+          <div className="font-bold text-sm w-[10%]">주성분</div>
+          <div className="text-xs w-[90%]">{description}</div>
         </div>
-        <div className="flex justify-between mb-2 border-b pb-2">
+        <div className="flex mb-2 border-b pb-2 text-left">
           <div className="font-bold text-base w-[10%]">효능</div>
-          <div className="text-xs w-[90%] text-left !important">{efficacy}</div>
+          <div className="text-xs w-[90%]">{efficacy}</div>
         </div>
       </div>
     </div>
