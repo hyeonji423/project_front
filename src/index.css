@@ -43,9 +43,16 @@ a {
 /* Common Button Style */
 .btn {
   padding: 0.25rem 0.75rem;
-  background: skyblue;
-  font-size: 0.75rem;
+  background: #007bff;
+  color: #fff;
+  font-size: 1.25rem;
   border-radius: 0.25rem;
+  margin: 0.5rem 0;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: #0056b3;
 }
 
 /* Custom Swiper Style */
