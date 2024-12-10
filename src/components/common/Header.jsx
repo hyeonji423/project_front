@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { navItems } from "../../constants/data";
 import { useDispatch, useSelector } from "react-redux";
 import { clearToken } from "../../redux/slices/loginSlice";
 import mediLogo from "../../assets/medi_logo.png";
+import Mypage from "../category/Mypage";
 
 const Header = () => {
   const dispatch = useDispatch();
   // const isLoggedIn = false
   const user = useSelector((state) => state.login.user);
-  console.log(user);
+  // console.log(user);
+  const [showMypage, setShowMypage] = useState(false);
 
   const handleLogout = () => {
     dispatch(clearToken());
   };
+
+  const toggleMypage = (e) => {
+    e.preventDefault();
+    setShowMypage(!showMypage);
+  }
 
   return (
     <div className="w-full flex justify-center shadow-custom sticky top-0 z-50 bg-white">
@@ -40,8 +47,15 @@ const Header = () => {
               <li>
                 <Link to="/register">회원가입</Link>
               </li>
-              <li>
-                <Link to="/mypage">마이페이지</Link>
+              <li className="relative">
+                <Link onClick={toggleMypage}>마이페이지</Link>
+                {showMypage && (
+                  <Mypage 
+                    user={user}
+                    onClose={() => setShowMypage(false)}
+                    onLogout={handleLogout}
+                  />
+                )}
               </li>
             </ul>
           </div>

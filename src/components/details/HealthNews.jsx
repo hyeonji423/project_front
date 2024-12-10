@@ -65,6 +65,18 @@ const HealthNews = () => {
     pageNumbers.push(i);
   }
 
+  // 뉴스 클릭 시 호출될 함수
+  const handleNewsClick = (news) => {
+    // localStorage에서 기존 열람 기록 가져오기
+    const viewedNews = JSON.parse(localStorage.getItem("viewedNews") || "[]");
+
+    // 중복 체크 후 새로운 기사 추가
+    if (!viewedNews.some((item) => item.link === news.link)) {
+      const updatedNews = [...viewedNews, news];
+      localStorage.setItem("viewedNews", JSON.stringify(updatedNews));
+    }
+  };
+
   return (
     <div className="news">
       <div className="grid grid-cols-12 gap-6">
@@ -86,6 +98,7 @@ const HealthNews = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
+                    onClick={() => handleNewsClick(news)}
                   >
                     <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700">
                       {news.title.replace(/<\/?b>/g, "")}
@@ -116,6 +129,7 @@ const HealthNews = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:text-blue-600"
+                  onClick={() => handleNewsClick(news)}
                 >
                   <span className="line-clamp-1">
                     {news.title.replace(/<\/?b>/g, "")}
