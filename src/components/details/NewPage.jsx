@@ -7,6 +7,7 @@ const NewPage = () => {
   const [medicinePage, setMedicinePage] = useState(1);
   const [newsPage, setNewsPage] = useState(1);
   const [articles, setArticles] = useState([]);
+  const [viewedNews, setViewedNews] = useState([]);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -28,6 +29,12 @@ const NewPage = () => {
     };
 
     fetchRSS();
+  }, []);
+
+  useEffect(() => {
+    // localStorage에서 열람한 뉴스 가져오기
+    const storedNews = JSON.parse(localStorage.getItem("viewedNews") || "[]");
+    setViewedNews(storedNews);
   }, []);
 
   // 약품 데이터 예시 (실제 데이터로 교체 필요)
@@ -155,27 +162,26 @@ const NewPage = () => {
             )}
             {activeTab === 1 && (
               <div>
-                <h2 className="text-xl font-bold mb-4">건강 관련 뉴스</h2>
-                {articles.length > 0 ? (
+                <h2 className="text-xl font-bold mb-4">열람한 뉴스</h2>
+                {viewedNews.length > 0 ? (
                   <>
                     <div className="grid gap-4">
-                      {getPaginatedData(articles, newsPage).currentItems.map(
-                        (article, index) => (
+                      {getPaginatedData(viewedNews, newsPage).currentItems.map(
+                        (news, index) => (
                           <div
                             key={index}
                             className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow"
                           >
                             <a
-                              href={article.link}
+                              href={news.link}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-600 hover:text-blue-800 font-semibold"
                             >
-                              {article.title}
+                              {news.title.replace(/<\/?b>/g, "")}
                             </a>
                             <p className="text-gray-600 text-sm mt-2">
-                              게시일:{" "}
-                              {new Date(article.pubDate).toLocaleDateString(
+                              {new Date(news.pubDate).toLocaleDateString(
                                 "ko-KR"
                               )}
                             </p>
@@ -187,14 +193,14 @@ const NewPage = () => {
                     <PaginationControls
                       currentPage={newsPage}
                       totalPages={
-                        getPaginatedData(articles, newsPage).totalPages
+                        getPaginatedData(viewedNews, newsPage).totalPages
                       }
                       onPageChange={handleNewsPageChange}
                     />
                   </>
                 ) : (
                   <div className="text-center py-8">
-                    <p>뉴스를 불러오는 중입니다...</p>
+                    <p>열람한 뉴스가 없습니다.</p>
                   </div>
                 )}
               </div>
