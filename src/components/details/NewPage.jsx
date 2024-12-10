@@ -101,11 +101,11 @@ const NewPage = () => {
   const tabs = [
     {
       title: "약품열람목록",
-      content: "약품열람목록 내용",
+      content: "열람한 약품목록",
     },
     {
       title: "News 열람목록",
-      content: "News 열람목록 내용",
+      content: "열람한 NEWS",
     },
   ];
 
@@ -162,7 +162,6 @@ const NewPage = () => {
             )}
             {activeTab === 1 && (
               <div>
-                <h2 className="text-xl font-bold mb-4">열람한 뉴스</h2>
                 {viewedNews.length > 0 ? (
                   <>
                     <div className="grid gap-4">
