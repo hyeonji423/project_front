@@ -5,8 +5,26 @@ import {
   mediDetailTest3,
   mediDetailTest4,
 } from "../../constants/data";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
+
 
 function DrugInfo({ title, description, efficacy, image }) {
+  const dispatch = useDispatch();
+  const getMediInfoData = useSelector((state) => state.medicine.getMediInfoData);
+  console.log(getMediInfoData);
+  
+  useEffect(() => {
+    const fetchGetMediItems = async () => {
+      try {
+        await dispatch(fetchGetMediInfoData()).unwrap();
+      } catch (error) {
+        console.error("Error fetching medicine data:", error);
+      }
+    };
+    fetchGetMediItems();
+  }, [dispatch]);
+
   return (
     <div className="flex border p-4 mb-4">
       <div className="w-1/5 mr-4">{image}</div>

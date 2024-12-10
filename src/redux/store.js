@@ -5,6 +5,7 @@ import authReducer from './slices/authSlice'
 import loginReducer from './slices/loginSlice'
 import myMediReducer from './slices/myMediSlice'
 import modalReducer from './slices/modalSlice'
+import medicineReducer from './slices/medicineSlice'
 
 const store = configureStore({
   reducer: combineReducers({
@@ -12,6 +13,7 @@ const store = configureStore({
     login: loginReducer,
     myMedi: myMediReducer,
     modal: modalReducer,
+    medicine: medicineReducer,
   })
 })
 
