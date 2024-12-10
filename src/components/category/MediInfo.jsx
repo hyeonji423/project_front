@@ -9,7 +9,7 @@ import {
 function DrugInfo({ title, description, efficacy, image }) {
   return (
     <div className="flex border p-4 mb-4">
-      <div className="w-1/5 mr-4">{image}</div>
+      <div className="w-1/5 mr-8">{image}</div>
       <div className="w-4/5">
         <div className="flex mb-2 border-b pb-2">
           <div className="font-bold text-sm w-[10%]">제품명</div>
