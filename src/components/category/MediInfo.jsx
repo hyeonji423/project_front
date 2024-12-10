@@ -8,12 +8,21 @@ import {
 
 function DrugInfo({ title, description, efficacy, image }) {
   return (
-    <div className="flex border p-4">
-      <div className="w-60 h-50 bg-gray-200 mr-4">{image}</div>
-      <div className="w-2/3 text-center">
-        <div className="font-bold text-lg">{title}</div>
-        <div className="text-sm">{description}</div>
-        <div className="text-base mt-1">{efficacy}</div>
+    <div className="flex border p-4 mb-4">
+      <div className="w-1/5 mr-4">{image}</div>
+      <div className="w-4/5">
+        <div className="flex justify-between mb-2 border-b pb-2">
+          <div className="font-bold text-sm">제품명</div>
+          <div className="text-sm text-left !important">{title}</div>
+        </div>
+        <div className="flex justify-between mb-2 border-b pb-2">
+          <div className="font-bold text-sm">주성분</div>
+          <div className="text-xs text-left !important">{description}</div>
+        </div>
+        <div className="flex justify-between mb-2 border-b pb-2">
+          <div className="font-bold text-base w-[10%]">효능</div>
+          <div className="text-xs w-[90%] text-left !important">{efficacy}</div>
+        </div>
       </div>
     </div>
   );
@@ -52,7 +61,7 @@ function MediInfo() {
     <div className="mx-auto p-4 max-w-4xl">
       <main className="mt-4">
         <section className="border p-2 mb-2">
-          <h2 className="text-lg font-semibold mb-2">약품명 검색</h2>
+          <h2 className="text-lg font-semibold mb-2">약품 및 성분명 검색</h2>
           <div className="flex space-x-2 mb-2">
             <input
               type="text"
