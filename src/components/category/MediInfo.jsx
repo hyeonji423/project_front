@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   mediDetailTest,
   mediDetailTest2,
@@ -6,12 +6,15 @@ import {
   mediDetailTest4,
 } from "../../constants/data";
 
-function DrugInfo({ title, description }) {
+function DrugInfo({ title, description, efficacy, image }) {
   return (
-    <div className="border p-4 text-center">
-      <div className="font-bold">{title}</div>
-      <div>{description}</div>
-      <div className="h-24 bg-gray-200 mt-2">img</div>
+    <div className="flex border p-4">
+      <div className="w-60 h-50 bg-gray-200 mr-4">{image}</div>
+      <div className="w-2/3 text-center">
+        <div className="font-bold text-lg">{title}</div>
+        <div className="text-sm">{description}</div>
+        <div className="text-base mt-1">{efficacy}</div>
+      </div>
     </div>
   );
 }
@@ -20,12 +23,15 @@ function MediInfo() {
   const [searchTerm, setSearchTerm] = useState("");
   const [drugInfo, setDrugInfo] = useState(null);
 
-  const allMediDetails = [
-    ...mediDetailTest,
-    ...mediDetailTest2,
-    ...mediDetailTest3,
-    ...mediDetailTest4,
-  ];
+  const allMediDetails = useMemo(
+    () => [
+      ...mediDetailTest,
+      ...mediDetailTest2,
+      ...mediDetailTest3,
+      ...mediDetailTest4,
+    ],
+    []
+  );
 
   useEffect(() => {
     if (!searchTerm.trim()) {
@@ -64,12 +70,23 @@ function MediInfo() {
           </div>
         </section>
 
-        <section className="grid grid-cols-2 gap-4 mb-4">
+        <section className="grid grid-cols-1 gap-4 mb-4">
           {drugInfo ? (
-            <DrugInfo title={drugInfo.name} description={drugInfo.main_ingredient} />
+            <DrugInfo
+              title={drugInfo.name}
+              description={drugInfo.main_ingredient}
+              efficacy={drugInfo.efficacy}
+              image={<img src={drugInfo.image} alt={drugInfo.name} />}
+            />
           ) : (
             allMediDetails.map((drug) => (
-              <DrugInfo key={drug.name} title={drug.name} description={drug.main_ingredient} />
+              <DrugInfo
+                key={drug.name}
+                title={drug.name}
+                description={drug.main_ingredient}
+                efficacy={drug.efficacy}
+                image={<img src={drug.image} alt={drug.name} />}
+              />
             ))
           )}
         </section>
