@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   mediDetailTest,
   mediDetailTest2,
@@ -6,14 +7,22 @@ import {
   mediDetailTest4,
 } from "../../constants/data";
 
-function DrugInfo({ title, description, efficacy, image }) {
+function DrugInfo({ title, description, efficacy, image, onClick }) {
   return (
     <div className="flex border p-4 mb-4">
       <div className="w-1/5 mr-8">{image}</div>
       <div className="w-4/5">
         <div className="flex mb-2 border-b pb-2">
           <div className="font-bold text-sm w-[10%]">제품명</div>
-          <div className="flex items-start text-sm w-[90%]">{title}</div>
+
+          <div className="flex text-sm w-[90%]">
+            <button
+              className="font-bold text-sm w-[30%] cursor-pointer"
+              onClick={onClick}
+            >
+              {title}
+            </button>
+          </div>
         </div>
         <div className="flex mb-2 border-b pb-2">
           <div className="font-bold text-sm w-[10%]">주성분</div>
@@ -31,6 +40,7 @@ function DrugInfo({ title, description, efficacy, image }) {
 function MediInfo() {
   const [searchTerm, setSearchTerm] = useState("");
   const [drugInfo, setDrugInfo] = useState(null);
+  const navigate = useNavigate();
 
   const allMediDetails = useMemo(
     () => [
@@ -86,15 +96,17 @@ function MediInfo() {
               description={drugInfo.main_ingredient}
               efficacy={drugInfo.efficacy}
               image={<img src={drugInfo.image} alt={drugInfo.name} />}
+              onClick={() => navigate(`/medidetail/${drugInfo.id}`)}
             />
           ) : (
             allMediDetails.map((drug) => (
               <DrugInfo
-                key={drug.name}
+                key={drug.id}
                 title={drug.name}
                 description={drug.main_ingredient}
                 efficacy={drug.efficacy}
                 image={<img src={drug.image} alt={drug.name} />}
+                onClick={() => navigate(`/medidetail/${drug.id}`)}
               />
             ))
           )}
