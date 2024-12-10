@@ -43,7 +43,7 @@ function App() {
             <Route path="/symptomdetail/:id" element={<SymptomDetail />} />
             <Route path="/memberinfo" element={<MemberInfo />} />
             <Route path="/management" element={<Management />} />
-            <Route path="/mediDetail" element={<Medidetail />} />
+            <Route path="/mediDetail/:id" element={<Medidetail />} />
             <Route path="/mymedi_list" element={<Pannel />} />
             <Route path="/" element={<Modal />} />
             <Route path="/" element={<Item />} />
