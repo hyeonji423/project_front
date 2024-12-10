@@ -56,22 +56,22 @@ const Login = () => {
       <div className='logo w-[350px] mt-20 mb-8'>
         <img src={mediLogo} alt="" />
       </div>
-      <div className='shadow-lg px-8 py-5 w-[30%] border mb-16'>
-        <h2 className='text-xl font-extrabold mb-4 text-center'>로그인</h2>
+      <div className='shadow-lg px-12 py-8 w-[40%] border mb-16'>
+        <h2 className='text-3xl font-extrabold mb-4 text-center'>로그인</h2>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
-            <label htmlFor="email" className='block text-neutral-700'>이메일</label>
-            <input type="email" placeholder='Email' className='w-full px-3 py-2 border' name='email' onChange={handleChange}/>
+            <label htmlFor="email" className='block text-neutral-700 text-xl mb-1'>이메일</label>
+            <input type="email" placeholder='Email' className='w-full px-3 py-2 border mb-2' name='email' onChange={handleChange}/>
           </div>
           <div className='mb-4'>
-            <label htmlFor="password" className='block text-neutral-700'>비밀번호</label>
+            <label htmlFor="password" className='block text-neutral-700 text-xl mb-1'>비밀번호</label>
             <input type="password" placeholder='Password' className='w-full px-3 py-2 border' name='password' onChange={handleChange}/>
           </div>
-          <button className='btn w-full h-12 !text-base'>로그인</button>
+          <button className='btn w-full h-12'>로그인 하기</button>
         </form>
-        <div className='mt-4 text-center'>
-          <span>회원이 아니라면 | </span>
-          <Link to='/register' className='underline hover:italic text-center'>회원가입 하기</Link>
+        <div className='mt-4 text-center text-gray-500 text-lg'>
+          <span>회원이 아니라면 &nbsp; | &nbsp; </span>
+          <Link to='/register' className='underline text-center hover:text-blue-500'>회원가입 하기</Link>
         </div>
       </div>
     </div>

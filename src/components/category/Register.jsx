@@ -81,8 +81,8 @@ const Register = () => {
       <div className='logo w-[350px] mt-20 mb-8'>
         <img src={mediLogo} alt="" />
       </div>
-      <div className="shadow-lg px-8 py-5 w-[30%] border mb-16">
-        <h2 className="text-lg font-bold mb-4 text-center">회원가입</h2>
+      <div className="shadow-lg px-12 py-8 w-[40%] border mb-16">
+        <h2 className="text-3xl font-bold mb-4 text-center">회원가입</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             {/* <label htmlFor="username" className="block text-neutral-700">
@@ -97,7 +97,7 @@ const Register = () => {
             /> */}
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-neutral-700">
+            <label htmlFor="email" className="block text-neutral-700 text-xl mb-1">
               이메일
             </label>
             <input
@@ -109,7 +109,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-neutral-700">
+            <label htmlFor="password" className="block text-neutral-700 text-xl mb-1">
               비밀번호
             </label>
             <input
@@ -121,7 +121,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block text-neutral-700">
+            <label htmlFor="confirmPassword" className="block text-neutral-700 text-xl mb-1">
               비밀번호 확인
             </label>
             <input
@@ -133,7 +133,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="birth_date" className="block text-neutral-700">
+            <label htmlFor="birth_date" className="block text-neutral-700 text-xl mb-1">
               생년월일
             </label>
             <input
@@ -144,11 +144,11 @@ const Register = () => {
             />
           </div>
           {/* <input type="file" name="profile_img" onChange={handleFileChange} /> */}
-          <button className="btn w-full h-12 !text-base">회원가입</button>
+          <button className="btn w-full h-12">회원가입 하기</button>
         </form>
-        <div className="mt-4 text-center">
-          <span>이미 회원이라면 | </span>
-          <Link to="/login" className="underline hover:italic">
+        <div className="mt-4 text-center text-gray-500 text-lg">
+          <span>이미 회원이라면 &nbsp; | &nbsp; </span>
+          <Link to="/login" className="u text-center hover:text-blue-500">
             로그인 하기
           </Link>
         </div>

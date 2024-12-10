@@ -65,7 +65,15 @@ const SymptomDetail = () => {
       <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-b-lg p-6">
         {symptoms[Number(id)].types.map(
           (item) =>
-            activeTab === item.id && <div key={item.id}>{item.content}</div>
+            activeTab === item.id && (
+              <div key={item.id}>
+                {item.content.map((line, index) => (
+                  <p key={index} className="mb-2">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            )
         )}
       </div>
 
@@ -76,8 +84,27 @@ const SymptomDetail = () => {
       <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-lg p-6">
         {disease[Number(id)].types.map(
           (item) =>
-            activeTab === item.id && <div key={item.id}>{item.content}</div>
+            activeTab === item.id && (
+              <div key={item.id}>
+                {item.content.map((line, index) => (
+                  <p key={index} className="mb-2">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            )
         )}
+        <div>
+          <h3 className="text-lg font-bold mt-4 mb-2">
+            위 성분이 포함되어 있는 약품
+          </h3>
+        </div>
+        <div className="flex flex-col gap-2">
+          <li>1. 레보투스</li>
+          <li>2. 코데날시럽</li>
+          <li>3. 액티피드</li>
+          <li>4. 뮤코졸정</li>
+        </div>
       </div>
     </div>
   );
