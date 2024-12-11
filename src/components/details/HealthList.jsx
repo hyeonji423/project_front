@@ -9,9 +9,9 @@ const HealthList = () => {
         {HealthInfoDatabase.map((info, index) => (
           <Link to={`/healthdetail/${info.id}`} key={index}>
             <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow h-[200px] flex flex-col">
-              <h3 className="font-bold">{info.title.substring(0, 20)}...</h3>
+              <h3 className="font-bold">{info.title.substring(0, 18)}...</h3>
               <p className="text-gray-600 text-sm h-[48px] overflow-hidden">
-                {info.sections[0].content?.substring(0, 50)}...
+                {info.sections[0].content?.substring(0, 45)}...
               </p>
               {info.defaultImage ? (
                 <img

@@ -67,7 +67,7 @@ const HealthNews = () => {
 
   // 뉴스 클릭 시 호출될 함수
   const handleNewsClick = (news) => {
-    // localStorage에서 기존 열람 기록 가져오기
+    // localStorage에 기존 열람 기록 가져오기
     const viewedNews = JSON.parse(localStorage.getItem("viewedNews") || "[]");
 
     // 중복 체크 후 새로운 기사 추가
@@ -91,7 +91,7 @@ const HealthNews = () => {
               {newsList.slice(0, 2).map((news, index) => (
                 <div
                   key={index}
-                  className="border border-gray-200 hover:border-blue-400 group p-4"
+                  className="rounded-lg border border-gray-200 hover:border-blue-400 group p-4"
                 >
                   <a
                     href={news.link}
@@ -101,10 +101,14 @@ const HealthNews = () => {
                     onClick={() => handleNewsClick(news)}
                   >
                     <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700">
-                      {news.title.replace(/<\/?b>/g, "")}
+                      {news.title.replace(/<\/?b>/g, "").length > 50
+                        ? `${news.title.replace(/<\/?b>/g, "").slice(0, 50)}...`
+                        : news.title.replace(/<\/?b>/g, "")}
                     </h2>
                     <p className="text-gray-600 text-sm">
-                      {news.description.replace(/<\/?b>/g, "")}
+                      {news.description.replace(/<\/?b>/g, "").length > 100
+                        ? `${news.description.replace(/<\/?b>/g, "").slice(0, 100)}...`
+                        : news.description.replace(/<\/?b>/g, "")}
                     </p>
                     <p className="text-gray-400 text-xs pt-2">
                       {new Date(news.pubDate).toLocaleDateString("ko-KR")}
@@ -117,22 +121,24 @@ const HealthNews = () => {
         </div>
 
         {/* 사이드 뉴스 목록 */}
-        <div className="col-span-4 border border-gray-200 p-4">
+        <div className="rounded-lg col-span-4 border border-gray-200 p-4">
           <ul className="space-y-2">
             {currentNews.map((news, index) => (
               <li
                 key={index}
-                className="w-full border px-2 py-1 rounded-md hover:border-blue-400"
+                className="w-full px-1 py-1"
               >
                 <a
                   href={news.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center hover:text-blue-600"
+                  className="flex items-center hover:underline"
                   onClick={() => handleNewsClick(news)}
                 >
                   <span className="line-clamp-1">
-                    {news.title.replace(/<\/?b>/g, "")}
+                    {news.title.replace(/<\/?b>/g, "").length > 50
+                      ? `${news.title.replace(/<\/?b>/g, "").slice(0, 50)}...`
+                      : news.title.replace(/<\/?b>/g, "")}
                   </span>
                 </a>
               </li>
@@ -143,7 +149,7 @@ const HealthNews = () => {
           <div className="flex justify-center mt-4 space-x-2">
             <span
               className={`cursor-pointer ${
-                currentPage === 1 ? "text-gray-400" : ""
+                currentPage === 1 ? "text-gray-300" : ""
               }`}
               onClick={() => currentPage > 1 && paginate(currentPage - 1)}
             >
@@ -153,7 +159,7 @@ const HealthNews = () => {
               <span
                 key={page}
                 className={`cursor-pointer ${
-                  currentPage === page ? "text-blue-600" : ""
+                  currentPage === page ? "text-gray-800" : "text-gray-400"
                 }`}
                 onClick={() => paginate(page)}
               >
@@ -162,7 +168,7 @@ const HealthNews = () => {
             ))}
             <span
               className={`cursor-pointer ${
-                currentPage === pageNumbers.length ? "text-gray-400" : ""
+                currentPage === pageNumbers.length ? "text-gray-300" : ""
               }`}
               onClick={() =>
                 currentPage < pageNumbers.length && paginate(currentPage + 1)
