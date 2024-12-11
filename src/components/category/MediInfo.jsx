@@ -10,9 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 
 
-<<<<<<< HEAD
-function DrugInfo({ title, description, efficacy, image, onClick }) {
-=======
 function DrugInfo({ title, description, efficacy, image }) {
   const dispatch = useDispatch();
   const getMediInfoData = useSelector((state) => state.medicine.getMediInfoData);
@@ -29,7 +26,6 @@ function DrugInfo({ title, description, efficacy, image }) {
     fetchGetMediItems();
   }, [dispatch]);
 
->>>>>>> ab01af3f97e5d1b2de1e9737159e7e57ae8affe2
   return (
     <div className="flex border p-4 mb-4">
       <div className="w-1/5 mr-8">{image}</div>
