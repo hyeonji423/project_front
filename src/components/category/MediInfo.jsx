@@ -45,11 +45,11 @@ function DrugInfo({ title, description, efficacy, image, onClick }) {
         </div>
         <div className="flex mb-2 border-b pb-2">
           <div className="font-bold text-sm w-[10%]">주성분</div>
-          <div className="text-xs w-[90%]">{description}</div>
+          <div className="text-sm w-[90%]">{description}</div>
         </div>
         <div className="flex mb-2 border-b pb-2 text-left">
           <div className="font-bold text-base w-[10%]">효능</div>
-          <div className="text-xs w-[90%]">{efficacy}</div>
+          <div className="text-sm w-[90%]">{efficacy}</div>
         </div>
       </div>
     </div>
