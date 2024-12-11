@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { POST_MY_MEDI_API_URL, GET_MY_MEDI_LIST_API_URL, DELETE_MY_MEDI_LIST_API_URL } from '../../utils/apiUrl'
-import { postRequest, getRequest, deleteRequest } from '../../utils/requestMethods'
+import { POST_MY_MEDI_API_URL, GET_MY_MEDI_LIST_API_URL, DELETE_MY_MEDI_LIST_API_URL, UPDATE_MY_MEDI_LIST_API_URL } from '../../utils/apiUrl'
+import { postRequest, getRequest, deleteRequest, putRequest } from '../../utils/requestMethods'
 
 
 // 약품 등록 요청 함수
@@ -47,7 +47,8 @@ export const fetchGetMyMediListData = getMyMediListFetchThunk(
 // delete thunk function 정의
 const deleteMyMediListFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (id) => {
-    // console.log(apiURL, id);
+    console.log("삭제 요청 URL:", `${apiURL}/${id}`);
+    console.log("삭제할 ID:", id);
     const options = {
       method: "DELETE",
     };
@@ -62,6 +63,22 @@ export const fetchDeleteMyMediListData = deleteMyMediListFetchThunk(
   DELETE_MY_MEDI_LIST_API_URL
 );
 
+// update thunk function 정의
+const updateMyMediListFetchThunk = (actionType, apiURL) => {
+  return createAsyncThunk(actionType, async (updateData) => {
+    // console.log(updateData);
+    const options = {
+      body: JSON.stringify(updateData), // 표준 json 문자열로 변환
+    };
+    return await putRequest(apiURL, options);
+  });
+};
+
+// update_item
+export const fetchUpdateMyMediListData = updateMyMediListFetchThunk(
+  "fetchUpdateMyMediList",
+  UPDATE_MY_MEDI_LIST_API_URL
+);
 
 // handleFulfilled 함수 정의 : 요청 성공 시 상태 업데이트 로직을 별도의 함수로 분리
 const handleFulfilled = (stateKey) => (state, action) => {
@@ -83,7 +100,7 @@ const myMediSlice = createSlice({
     postMyMediData: null,
     getMyMediListData: null,
     deleteMyMediListData: null,
-    
+    updateMyMediListData: null,
   },
   
   extraReducers: (builder)=>{
@@ -95,7 +112,10 @@ const myMediSlice = createSlice({
       .addCase(fetchGetMyMediListData.rejected, handleRejected) // 요청 실패시
 
       .addCase(fetchDeleteMyMediListData.fulfilled, handleFulfilled("deleteMyMediListData")) //요청 성공시
-      .addCase(fetchDeleteMyMediListData.rejected, handleRejected);
+      .addCase(fetchDeleteMyMediListData.rejected, handleRejected)
+
+      .addCase(fetchUpdateMyMediListData.fulfilled, handleFulfilled("updateMyMediListData")) //요청 성공시
+      .addCase(fetchUpdateMyMediListData.rejected, handleRejected); // 요청 실패시
     
   }
 })  // slice 객체 저장

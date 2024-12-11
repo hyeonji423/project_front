@@ -36,7 +36,6 @@ function DrugInfo({ title, description, efficacy, image }) {
           <div className="flex text-sm w-[90%]">
             <button
               className="font-bold text-sm w-[30%] cursor-pointer"
-              onClick={onClick}
             >
               {title}
             </button>

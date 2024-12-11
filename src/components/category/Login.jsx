@@ -54,7 +54,7 @@ const Login = () => {
   return (
     <div className='flex flex-col justify-center items-center h-auto w-full'>
       <div className='logo w-[350px] mt-20 mb-8'>
-        <img src={mediLogo} alt="" />
+        <img src={mediLogo} alt="medibook logo" />
       </div>
       <div className='shadow-lg px-12 py-8 w-[40%] border mb-16'>
         <h2 className='text-3xl font-extrabold mb-4 text-center'>로그인</h2>

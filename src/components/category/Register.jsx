@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchPostAuthData } from "../../redux/slices/authSlice";
@@ -7,6 +7,14 @@ import mediLogo from "../../assets/medi_logo.png";
 const Register = () => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      alert("이미 로그인된 상태입니다.");
+      navigator("/");
+    }
+  }, [navigator]);
 
   const [value, setValue] = useState({
     email: "",
