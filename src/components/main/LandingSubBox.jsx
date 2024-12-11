@@ -5,12 +5,15 @@ import { symptom } from "../../constants/data";
 import previc from "../../assets/previc.png";
 import nextic from "../../assets/nextic.png";
 
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // Import Swiper styles
+import "swiper/css";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
-const LandingSubBox = () => {
+export default () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   // console.log(prevRef.current);
@@ -63,6 +66,4 @@ const LandingSubBox = () => {
       </div>
     </div>
   );
-}
-
-export default LandingSubBox;
+};
