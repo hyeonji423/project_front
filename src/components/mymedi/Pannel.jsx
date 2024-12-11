@@ -53,7 +53,7 @@ const Pannel = () => {
 
             <div className="items w-full flex flex-wrap gap-4">
               {getMyMediList?.length > 0 ? (
-                getMyMediList.map((item) => <Item key={item.created_at} myMedi={item} />)
+                getMyMediList.map((item) => <Item key={item.created_at} myMediList={item} />)
               ) : (
                 <p>등록된 약이 없습니다.</p>
               )}

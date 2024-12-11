@@ -15,6 +15,7 @@ const Modal = () => {
   const { modalType, myMediList, isOpen } = useSelector((state) => state.modal);
   // const navigator = useNavigate();
   const user = useSelector((state) => state.login.user);
+  // console.log(modalType, myMediList, isOpen);
     
   const [value, setValue] = useState({
     mediName: "",
@@ -27,10 +28,11 @@ const Modal = () => {
   });
 
   const handleChange = (e) => {
-    setValue({
-      ...value,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setValue((prev) =>({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -46,15 +48,15 @@ const Modal = () => {
       return;
     }
 
-    const submitData = {
-      ...value,
-      user_id: user.id
-    }
-    console.log(submitData);
+    // const submitData = {
+    //   ...value,
+    //   user_id: user.id
+    // }
+    // console.log(submitData);
 
     try {
       if (modalType === "create" && myMediList === null) {
-        await dispatch(fetchPostMyMediData(submitData)).unwrap();
+        await dispatch(fetchPostMyMediData(value)).unwrap();
         alert("등록되었습니다.");
       } else if (modalType === "update" && myMediList) {
         await dispatch(fetchUpdateMyMediListData(value)).unwrap();
@@ -90,16 +92,17 @@ const Modal = () => {
 
   useEffect(() => {
     if (
-      (modalType === "update" && myMediList) ||
-      (modalType === "details" && myMediList)
+      (modalType === "details" && myMediList) ||
+      (modalType === "update" && myMediList)
     ) {
       setValue({
-        mediName: myMediList.mediName,
-        companyName: myMediList.companyName,
-        buyingDate: myMediList.buyingDate,
-        expDate: myMediList.expDate,
-        mainSymptom: myMediList.mainSymptom,
+        mediName: myMediList.medi_name,
+        companyName: myMediList.company_name,
+        buyingDate: myMediList.buying_date ? new Date(myMediList.buying_date).toISOString().split('T')[0] : "",
+        expDate: myMediList.exp_date ? new Date(myMediList.exp_date).toISOString().split('T')[0] : "",
+        mainSymptom: myMediList.main_symptom,
         memo: myMediList.memo,
+        mediId: myMediList.medicine_id,
         user_id: user?.id,
       });
     } else {

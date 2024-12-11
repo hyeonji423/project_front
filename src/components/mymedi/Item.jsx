@@ -10,8 +10,8 @@ import {
 } from "../../redux/slices/myMediSlice";
 import { openModal } from "../../redux/slices/modalSlice";
 
-const Item = ({ myMedi }) => {
-  // console.log(myMedi);
+const Item = ({ myMediList }) => {
+  // console.log(myMediList);
   const {
     user_email,
     medicine_id,
@@ -22,7 +22,7 @@ const Item = ({ myMedi }) => {
     main_symptom,
     memo,
     medicine_created_at,
-  } = myMedi;
+  } = myMediList;
   // console.log(
   //   user_email,
   //   medicine_id,
@@ -86,11 +86,11 @@ const Item = ({ myMedi }) => {
     }
   };
   const handleOpenDetailModal = () => {
-    dispatch(openModal({ modalType: "details", myMedi }));
+    dispatch(openModal({ modalType: "details", myMediList }));
   };
 
   const handleOpenUpdateModal = () => {
-    dispatch(openModal({ modalType: "update", myMedi }));
+    dispatch(openModal({ modalType: "update", myMediList }));
   };
 
   return (
