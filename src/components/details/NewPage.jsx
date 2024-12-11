@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { XMLParser } from "fast-xml-parser";
+import { useNavigate } from "react-router-dom";
 
 const NewPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
   const [medicinePage, setMedicinePage] = useState(1);
   const [newsPage, setNewsPage] = useState(1);
   const [articles, setArticles] = useState([]);
   const [viewedNews, setViewedNews] = useState([]);
+  const [viewedMedicines, setViewedMedicines] = useState([]);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -37,12 +40,16 @@ const NewPage = () => {
     setViewedNews(storedNews);
   }, []);
 
+  useEffect(() => {
+    // localStorage에서 열람한 약품 가져오기
+    const storedMedicines = JSON.parse(
+      localStorage.getItem("viewedMedicines") || "[]"
+    );
+    setViewedMedicines(storedMedicines);
+  }, []);
+
   // 약품 데이터 예시 (실제 데이터로 교체 필요)
-  const medicineData = Array.from({ length: 5 }, (_, i) => ({
-    id: i + 1,
-    name: `약품 ${i + 1}`,
-    description: `설명 ${i + 1}`,
-  }));
+  const medicineData = viewedMedicines;
 
   // 뉴스 데이터 예시 (실제 데이터로 교체 필요)
   const newsData = Array.from({ length: 5 }, (_, i) => ({
@@ -136,28 +143,51 @@ const NewPage = () => {
             </h2>
             {/* 탭 내용에 따른 컴포넌트 렌더링 */}
             {activeTab === 0 && (
-              <div className="">
-                {/* 약품 목록 */}
-                <div className="] grid gap-4">
-                  {getPaginatedData(
-                    medicineData,
-                    medicinePage
-                  ).currentItems.map((item) => (
-                    <div key={item.id} className="p-4 border rounded">
-                      <h3 className="font-bold">{item.name}</h3>
-                      <p>{item.description}</p>
+              <div>
+                {viewedMedicines.length > 0 ? (
+                  <>
+                    <div className="grid gap-4">
+                      {getPaginatedData(
+                        viewedMedicines,
+                        medicinePage
+                      ).currentItems.map((item) => (
+                        <div
+                          key={item.id}
+                          className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                          onClick={() => navigate(`/medidetail/${item.id}`)}
+                        >
+                          <div className="flex items-center gap-4">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-16 h-16 object-cover"
+                            />
+                            <div>
+                              <h3 className="font-bold">{item.name}</h3>
+                              <p className="text-sm text-gray-600">
+                                {item.main_ingredient}
+                              </p>
+                              <p className="text-sm mt-2">{item.efficacy}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
 
-                {/* 약품 페이지네이션 */}
-                <PaginationControls
-                  currentPage={medicinePage}
-                  totalPages={
-                    getPaginatedData(medicineData, medicinePage).totalPages
-                  }
-                  onPageChange={handleMedicinePageChange}
-                />
+                    <PaginationControls
+                      currentPage={medicinePage}
+                      totalPages={
+                        getPaginatedData(viewedMedicines, medicinePage)
+                          .totalPages
+                      }
+                      onPageChange={handleMedicinePageChange}
+                    />
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <p>열람한 약품이 없습니다.</p>
+                  </div>
+                )}
               </div>
             )}
             {activeTab === 1 && (

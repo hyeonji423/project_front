@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   mediDetailTest,
   mediDetailTest2,
@@ -33,6 +33,26 @@ const Medidetail = () => {
   ];
 
   const drugDetail = allMediDetails.find((item) => item.id === parseInt(id));
+
+  useEffect(() => {
+    if (drugDetail) {
+      // 열람한 약품을 localStorage에 저장
+      const viewedMedicines = JSON.parse(
+        localStorage.getItem("viewedMedicines") || "[]"
+      );
+      const isAlreadyViewed = viewedMedicines.some(
+        (medicine) => medicine.id === drugDetail.id
+      );
+
+      if (!isAlreadyViewed) {
+        const updatedMedicines = [...viewedMedicines, drugDetail];
+        localStorage.setItem(
+          "viewedMedicines",
+          JSON.stringify(updatedMedicines)
+        );
+      }
+    }
+  }, [drugDetail]);
 
   if (!drugDetail) {
     return <div>약품 정보를 찾을 수 없습니다.</div>;
