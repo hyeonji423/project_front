@@ -9,12 +9,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 
-
-function DrugInfo({ title, description, efficacy, image }) {
+function DrugInfo({ title, description, efficacy, image, onClick }) {
   const dispatch = useDispatch();
-  const getMediInfoData = useSelector((state) => state.medicine.getMediInfoData);
+  const getMediInfoData = useSelector(
+    (state) => state.medicine.getMediInfoData
+  );
   console.log(getMediInfoData);
-  
+
   useEffect(() => {
     const fetchGetMediItems = async () => {
       try {
@@ -36,6 +37,7 @@ function DrugInfo({ title, description, efficacy, image }) {
           <div className="flex text-sm w-[90%]">
             <button
               className="font-bold text-sm w-[30%] cursor-pointer"
+              onClick={onClick}
             >
               {title}
             </button>
