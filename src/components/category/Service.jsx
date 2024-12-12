@@ -6,13 +6,12 @@ const Service = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [email, setEmail] = useState("");
+  const [category, setCategory] = useState("추가 약품 요청");
   const [response, setResponse] = useState("");
   const [useUserEmail, setUseUserEmail] = useState(true);
 
-  // Redux store에서 사용자 정보 가져오기
   const user = useSelector((state) => state.login.user);
 
-  // 컴포넌트 마운트 시 사용자 이메일 설정
   useEffect(() => {
     if (user?.email) {
       setEmail(user.email);
@@ -33,6 +32,19 @@ const Service = () => {
     }
   };
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleCheckboxChange = (e) => {
+    setUseUserEmail(e.target.checked);
+    if (e.target.checked && user?.email) {
+      setEmail(user.email);
+    } else {
+      setEmail("");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,10 +53,16 @@ const Service = () => {
       return;
     }
 
+    if (!email.trim()) {
+      setResponse("이메일 주소를 입력해주세요.");
+      return;
+    }
+
     const data = {
       title,
       content,
       email,
+      category
     };
 
     try {
@@ -53,10 +71,14 @@ const Service = () => {
         data
       );
       setResponse(result.data.message);
-      // 폼 초기화
-      setTitle("");
-      setContent("");
-      setEmail("");
+      // 성공시 폼 초기화
+      if (result.data.success) {
+        setTitle("");
+        setContent("");
+        if (!useUserEmail) {
+          setEmail("");
+        }
+      }
     } catch (error) {
       setResponse(
         error.response?.data?.message || "이메일 전송에 실패했습니다."
@@ -66,8 +88,8 @@ const Service = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
-      <div className="w-[40%] max-w-[1200px] ">
-        <h2 className="flex  justify-center items-center text-2xl font-bold mb-4">
+      <div className="w-[40%] max-w-[1200px]">
+        <h2 className="flex justify-center items-center text-2xl font-bold mb-4">
           건의사항
         </h2>
         <div className="flex mb-4">
@@ -77,10 +99,14 @@ const Service = () => {
             </div>
           </div>
           <div className="w-3/4">
-            <select className="w-full rounded-r-md border p-2">
-              <option>추가 약품 요청</option>
-              <option>정보 수정요청</option>
-              <option>기타 불만사항</option>
+            <select 
+              className="w-full rounded-r-md border p-2"
+              value={category}
+              onChange={handleCategoryChange}
+            >
+              <option value="추가 약품 요청">추가 약품 요청</option>
+              <option value="정보 수정요청">정보 수정요청</option>
+              <option value="기타 불만사항">기타 불만사항</option>
             </select>
           </div>
         </div>
@@ -93,6 +119,7 @@ const Service = () => {
               value={title}
               onChange={handleTitleChange}
               className="w-full rounded-md border p-2"
+              placeholder="제목을 입력해주세요"
             />
           </div>
           <div className="mb-4">
@@ -102,17 +129,24 @@ const Service = () => {
               value={content}
               onChange={handleContentChange}
               className="w-full rounded-md border p-2 h-32"
+              placeholder="내용을 입력해주세요"
             />
           </div>
           <div className="flex items-center mb-4">
             <label className="mr-2">수신받을 이메일</label>
-            <input type="checkbox" className="mr-2" checked={useUserEmail} />
+            <input 
+              type="checkbox" 
+              className="mr-2"
+              checked={useUserEmail}
+              onChange={handleCheckboxChange}
+            />
             <input
               type="email"
               value={email}
               onChange={handleEmailChange}
               className="border rounded-md p-2 flex-grow"
               disabled={useUserEmail}
+              placeholder="이메일 주소를 입력해주세요"
             />
           </div>
           <div>
@@ -121,7 +155,9 @@ const Service = () => {
             </button>
           </div>
         </form>
-        <p>{response}</p>
+        {response && (
+          <p className="mt-4 text-center text-blue-600">{response}</p>
+        )}
       </div>
     </div>
   );
