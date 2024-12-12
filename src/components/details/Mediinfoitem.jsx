@@ -36,11 +36,11 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
 
   return (
     <div
-      className="border p-4 mb-4 w-full max-w-2xl cursor-pointer"
+      className="border p-4 mb-4 w-full max-w-full cursor-pointer"
       onClick={onClick}
     >
       <div className="flex w-full p-4 shadow-md border-b">
-        <div className="w-1/5 mr-8">
+        <div className="w-[40%] mr-10">
           <img src="/medicine_default.png" alt={제품명} className="w-full" />
         </div>
         <div className="w-4/5">
