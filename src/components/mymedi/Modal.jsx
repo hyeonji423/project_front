@@ -16,7 +16,7 @@ const Modal = () => {
   // const navigator = useNavigate();
   const user = useSelector((state) => state.login.user);
   // console.log(modalType, myMediList, isOpen);
-    
+
   const [value, setValue] = useState({
     mediName: "",
     companyName: "",
@@ -24,12 +24,12 @@ const Modal = () => {
     expDate: "",
     mainSymptom: "",
     memo: "",
-    user_id: user?.id
+    user_id: user?.id,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setValue((prev) =>({
+    setValue((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -100,8 +100,12 @@ const Modal = () => {
       setValue({
         mediName: myMediList.medi_name,
         companyName: myMediList.company_name,
-        buyingDate: myMediList.buying_date ? new Date(myMediList.buying_date).toISOString().split('T')[0] : "",
-        expDate: myMediList.exp_date ? new Date(myMediList.exp_date).toISOString().split('T')[0] : "",
+        buyingDate: myMediList.buying_date
+          ? new Date(myMediList.buying_date).toISOString().split("T")[0]
+          : "",
+        expDate: myMediList.exp_date
+          ? new Date(myMediList.exp_date).toISOString().split("T")[0]
+          : "",
         mainSymptom: myMediList.main_symptom,
         memo: myMediList.memo,
         mediId: myMediList.medicine_id,
@@ -155,9 +159,9 @@ const Modal = () => {
         <div className="relative bg-white rounded-lg p-10 flex flex-col gap-6">
           <div className="wrapper">
             <h2 className="title text-2xl font-bold flex justify-center">
-              My 상비약 관리 (일반 의약품) <br></br>
-              {modalTitle}
+              My 상비약 관리 {modalTitle}
             </h2>
+            <br></br>
             <IoMdClose
               className="absolute top-2 right-2 cursor-pointer"
               onClick={handleCloseModal}
@@ -211,7 +215,9 @@ const Modal = () => {
                     {...(modalType === "details" && { disabled: true })}
                   />
                 </div>
-                <button className="bg-blue-600 text-white text-sm   rounded-md px-3 py-1">알림설정</button>
+                <button className="bg-blue-600 text-white text-sm   rounded-md px-3 py-1">
+                  알림설정
+                </button>
               </div>
               <div className="form-item">
                 <label htmlFor="main_symptom">대표증상</label>
@@ -236,7 +242,14 @@ const Modal = () => {
                   {...(modalType === "details" && { disabled: true })}
                 ></textarea>
               </div>
-              <button className={`btn h-10 !text-lg ${modalType === "details" ? "hidden" : ""}`} type="submit">{btnTitle}</button>
+              <button
+                className={`btn h-10 !text-lg ${
+                  modalType === "details" ? "hidden" : ""
+                }`}
+                type="submit"
+              >
+                {btnTitle}
+              </button>
             </form>
           </div>
         </div>

@@ -33,7 +33,7 @@ const Login = () => {
       const response = await dispatch(fetchPostLoginData(value)).unwrap()
       // console.log(response);
       if(response.status === 201){
-        alert(response.data.msg)
+        // alert(response.data.msg)
         // localStorage.setItem('token', response.data.token) // 로컬 스토리지에 저장 - localStorage.setItem('저장할 이름', 저장할 값)
         // getItem('저장된 이름(key)') - 저장된 이름의 값을 가져옴
         // removeItem('저장된 이름(key)'): 저장된 이름의 값을 삭제
@@ -52,26 +52,36 @@ const Login = () => {
   }
 
   return (
-    <div className='flex flex-col justify-center items-center h-auto w-full'>
-      <div className='logo w-[350px] mt-20 mb-8'>
-        <img src={mediLogo} alt="medibook logo" />
+    <div className='flex flex-col justify-center items-center h-auto w-full mb-16'>
+      <div className='logo w-[350px] mt-32 mb-12'>
+        <img src={mediLogo} alt="logo" />
       </div>
-      <div className='shadow-lg px-12 py-8 w-[40%] border mb-16'>
-        <h2 className='text-3xl font-extrabold mb-4 text-center'>로그인</h2>
+      <div className='shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg'>
+        <h2 className='text-3xl font-extrabold mb-6 text-center'>로그인</h2>
+        
         <form onSubmit={handleSubmit}>
-          <div className='mb-4'>
-            <label htmlFor="email" className='block text-neutral-700 text-xl mb-1'>이메일</label>
-            <input type="email" placeholder='Email' className='w-full px-3 py-2 border mb-2' name='email' onChange={handleChange}/>
+          <div className='mb-3'>
+            <label htmlFor="email" className='block text-neutral-700 text-lg mb-1'>이메일</label>
+            <input type="email" placeholder='Email' className='w-full px-3 py-2 border mb-2 rounded-md' name='email' onChange={handleChange}/>
           </div>
-          <div className='mb-4'>
-            <label htmlFor="password" className='block text-neutral-700 text-xl mb-1'>비밀번호</label>
-            <input type="password" placeholder='Password' className='w-full px-3 py-2 border' name='password' onChange={handleChange}/>
+          <div className='mb-1'>
+            <label htmlFor="password" className='block text-neutral-700 text-lg mb-1'>비밀번호</label>
+            <input type="password" placeholder='Password' className='w-full px-3 py-2 border rounded-md' name='password' onChange={handleChange}/>
           </div>
-          <button className='btn w-full h-12'>로그인 하기</button>
+          <button className='btn w-full h-12' type='submit'>로그인 하기</button>
+          <Link to='/register'>
+            <button className='w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200' to='/register'>
+              이메일 회원가입
+            </button>
+          </Link>
         </form>
-        <div className='mt-4 text-center text-gray-500 text-lg'>
-          <span>회원이 아니라면 &nbsp; | &nbsp; </span>
-          <Link to='/register' className='underline text-center hover:text-blue-500'>회원가입 하기</Link>
+        
+        <div className='mt-10 mb-2 text-center text-gray-500'>
+          <Link to='/' className='hover:text-black hover:underline'>이메일 찾기</Link>
+          <span> &nbsp; | &nbsp; </span>
+          <Link to='/' className='hover:text-black hover:underline'>비밀번호 찾기</Link>
+          <span> &nbsp; | &nbsp; </span>
+          <Link to='/register' className='hover:text-black hover:underline'>회원가입</Link>
         </div>
       </div>
     </div>

@@ -85,14 +85,14 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-auto">
-      <div className='logo w-[350px] mt-20 mb-8'>
-        <img src={mediLogo} alt="" />
+    <div className="flex flex-col justify-center items-center h-auto mb-16">
+      <div className='logo w-[350px] mt-32 mb-12'>
+        <img src={mediLogo} alt="logo" />
       </div>
-      <div className="shadow-lg px-12 py-8 w-[40%] border mb-16">
-        <h2 className="text-3xl font-bold mb-4 text-center">회원가입</h2>
+      <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
+        <h2 className="text-3xl font-bold mb-6 text-center">회원가입</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-3">
             {/* <label htmlFor="username" className="block text-neutral-700">
               Username
             </label>
@@ -104,62 +104,61 @@ const Register = () => {
               onChange={handleChange}
             /> */}
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="email" className="block text-neutral-700 text-lg mb-1">
               이메일
             </label>
             <input
               type="email"
               placeholder="Email"
-              className="w-full px-3 py-2 border"
+              className="w-full px-3 py-2 border rounded-md mb-2"
               name="email"
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="password" className="block text-neutral-700 text-lg mb-1">
               비밀번호
             </label>
             <input
               type="password"
               placeholder="Password"
-              className="w-full px-3 py-2 border"
+              className="w-full px-3 py-2 border rounded-md mb-2"
               name="password"
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="confirmPassword" className="block text-neutral-700 text-lg mb-1">
               비밀번호 확인
             </label>
             <input
               type="password"
               placeholder="Comfirm Password"
-              className="w-full px-3 py-2 border"
+              className="w-full px-3 py-2 border rounded-md mb-2"
               name="confirm_password"
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="birth_date" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="birth_date" className="block text-neutral-700 text-lg mb-1">
               생년월일
             </label>
             <input
               type="date"
-              className="w-full px-3 py-2 border"
+              className="w-full px-3 py-2 border rounded-md mb-6"
               name="birth_date"
               onChange={handleChange}
             />
           </div>
-          {/* <input type="file" name="profile_img" onChange={handleFileChange} /> */}
-          <button className="btn w-full h-12">회원가입 하기</button>
+          <div className="flex justify-between items-center gap-2 mb-6">
+            <button className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200" type="submit">가입 하기</button>
+            <Link to='/' className="w-full h-12">
+              <button className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200">가입 취소</button>
+            </Link>
+          </div>
         </form>
-        <div className="mt-4 text-center text-gray-500 text-lg">
-          <span>이미 회원이라면 &nbsp; | &nbsp; </span>
-          <Link to="/login" className="u text-center hover:text-blue-500">
-            로그인 하기
-          </Link>
-        </div>
+        
       </div>
     </div>
   );

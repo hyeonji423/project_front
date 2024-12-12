@@ -15,6 +15,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(clearToken());
+    alert("로그아웃 되었습니다.");
   };
 
   const toggleMypage = (e) => {
@@ -35,20 +36,20 @@ const Header = () => {
             <ul className="flex gap-6 items-center justify-end">
               {user !== null ? (
                 <>
-                  <li>
+                  <li className="text-neutral-500 hover:text-black transition-all duration-100">
                     <button onClick={handleLogout}>로그아웃</button>
                   </li>
                 </>
               ) : (
-                <li>
+                <li className="text-neutral-500 hover:text-black transition-all duration-100">
                   <Link to="/login">로그인</Link>
                 </li>
               )}
-              <li>
+              <li className="text-neutral-500 hover:text-black transition-all duration-100">
                 <Link to="/register">회원가입</Link>
               </li>
               <li className="relative">
-                <Link onClick={toggleMypage}>마이페이지</Link>
+                <Link onClick={toggleMypage} className="text-neutral-500 hover:text-black transition-all duration-100">마이페이지</Link>
                 {showMypage && (
                   <Mypage 
                     user={user}
@@ -64,7 +65,9 @@ const Header = () => {
             <ul className="flex gap-6 items-center justify-end">
               {navItems.map((item, idx) => (
                 <li key={idx}>
-                  <Link to={item.to}>{item.label}</Link>
+                  <Link to={item.to} className="hover:text-blue-600 transition-all duration-100">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

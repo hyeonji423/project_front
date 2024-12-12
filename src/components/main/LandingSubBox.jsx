@@ -50,11 +50,11 @@ export default () => {
           {symptom.map((item) => (
             <SwiperSlide
               key={item.id}
-              className="rounded-lg overflow-hidden shadow-inner-lg group"
+              className="rounded-lg overflow-hidden shadow-inner-lg"
             >
               <Link to={`/symptomdetail/${item.id}`} className="group">
-                <div className="absolute opacity-30 overlay w-full h-full bg-black z-10 left-0 top-0 group-hover:bg-white"></div>
-                <h5 className="absolute w-full text-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-white text-xl font-semibold drop-shadow-md group-hover:text-black group-hover:drop-shadow-0">
+                <div className="absolute opacity-30 overlay w-full h-full bg-black z-0 left-0 top-0 group-hover:bg-white"></div>
+                <h5 className="absolute w-full text-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl font-semibold drop-shadow-md group-hover:text-black group-hover:drop-shadow-0">
                   {item.text}
                 </h5>
                 <img src={item.image} alt={item.text} />
