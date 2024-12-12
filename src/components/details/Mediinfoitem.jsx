@@ -17,30 +17,30 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
     품목일련번호,
     효능,
   } = mediitem;
-  console.log(
-    공개일자,
-    보관방법,
-    사용법,
-    사용전주의사항,
-    수정일자,
-    아이디,
-    약음식주의사항,
-    업체명,
-    이상반응,
-    제품명,
-    주성분,
-    주의사항,
-    품목일련번호,
-    효능
-  );
+  // console.log(
+  //   공개일자,
+  //   보관방법,
+  //   사용법,
+  //   사용전주의사항,
+  //   수정일자,
+  //   아이디,
+  //   약음식주의사항,
+  //   업체명,
+  //   이상반응,
+  //   제품명,
+  //   주성분,
+  //   주의사항,
+  //   품목일련번호,
+  //   효능
+  // );
 
   return (
     <div
-      className="border p-4 mb-4 w-full max-w-2xl cursor-pointer"
+      className="border p-4 mb-4 w-full max-w-full cursor-pointer"
       onClick={onClick}
     >
       <div className="flex w-full p-4 shadow-md border-b">
-        <div className="w-1/5 mr-8">
+        <div className="w-[40%] mr-10">
           <img src="/medicine_default.png" alt={제품명} className="w-full" />
         </div>
         <div className="w-4/5">

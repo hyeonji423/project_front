@@ -23,17 +23,17 @@ const Item = ({ myMediList }) => {
     memo,
     medicine_created_at,
   } = myMediList;
-  console.log(
-    user_email,
-    medicine_id,
-    medi_name,
-    company_name,
-    buying_date,
-    exp_date,
-    main_symptom,
-    memo,
-    medicine_created_at
-  );
+  // console.log(
+  //   user_email,
+  //   medicine_id,
+  //   medi_name,
+  //   company_name,
+  //   buying_date,
+  //   exp_date,
+  //   main_symptom,
+  //   memo,
+  //   medicine_created_at
+  // );
 
   const dispatch = useDispatch();
 

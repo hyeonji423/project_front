@@ -55,6 +55,24 @@ const Modal = () => {
     // console.log(submitData);
 
     try {
+
+      if (value.notification) {
+        const expDate = new Date(value.expDate);
+        const notificationDate = new Date(expDate);
+        notificationDate.setDate(notificationDate.getDate() - 7);
+
+        const notificationData = {
+          userId: user.id,
+          mediName: value.mediName,
+          expDate: value.expDate,
+          notificationDate: notificationDate,
+          email: user.email
+        };
+
+        // 알림 설정 API 호출
+        // await axios.post('/api/notifications', notificationData);
+      }
+
       if (modalType === "create" && myMediList === null) {
         await dispatch(fetchPostMyMediData(value)).unwrap();
         alert("등록되었습니다.");
@@ -124,30 +142,7 @@ const Modal = () => {
 
   console.log(myMediList);
 
-  // const data = {
-  //   mediName: value.mediName,
-  //   companyName: value.companyName,
-  //   buyingDate: value.buyingDate,
-  //   expDate: value.expDate,
-  //   mainSymptom: value.mainSymptom,
-  //   memo: value.memo,
-  //   user_id: user.id,
-  // };
-  // try {
-  //   const response = await dispatch(fetchPostMyMediData(data)).unwrap();
-  //   // console.log(response);
-  //   if (response.status === 201) {
-  //     alert(response.data.msg);
-  //     // navigator("/myPage");
-  //     return;
-  //   }
-  //   if (response.data.success === false) {
-  //     alert(response.data.msg);
-  //     return;
-  //   }
-  // } catch (error) {
-  //   alert(error.msg);
-  // }
+  
   if (!isOpen) return null;
 
   return (
@@ -200,8 +195,8 @@ const Modal = () => {
                   {...(modalType === "details" && { disabled: true })}
                 />
               </div>
-              <div className="form-item flex justify-between">
-                <div>
+              <div className="form-item">
+                <div className="expDate-box">
                   <label htmlFor="exp_date">유효기간</label>
                   <input
                     type="date"
@@ -212,9 +207,34 @@ const Modal = () => {
                     {...(modalType === "details" && { disabled: true })}
                   />
                 </div>
-                <button className="bg-blue-600 text-white text-sm   rounded-md px-3 py-1">
-                  알림설정
-                </button>
+                <div className="flex justify-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="notification"
+                    name="notification"
+                    checked={value.notification}
+                    onChange={(e) =>
+                      setValue((prev) => ({
+                        ...prev,
+                        notification: e.target.checked,
+                      }))
+                    }
+                    {...(modalType === "details" && { disabled: true })}
+                    className="w-4 h-4"
+                  />
+                  <label
+                    htmlFor="notification"
+                    className="text-sm text-blue-700"
+                  >
+                    유효기간 알림 받기
+                  </label>
+                </div>
+
+                {value.notification && (
+                  <p className="text-sm text-gray-500 mt-1">
+                    ※ 유효기간 7일 전에 이메일로 알림을 보내드립니다.
+                  </p>
+                )}
               </div>
               <div className="form-item">
                 <label htmlFor="main_symptom">대표증상</label>
