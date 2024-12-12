@@ -8,7 +8,7 @@ const Service = () => {
   const [email, setEmail] = useState("");
   const [category, setCategory] = useState("추가 약품 요청");
   const [response, setResponse] = useState("");
-  const [useUserEmail, setUseUserEmail] = useState(true);
+  const [useUserEmail, setUseUserEmail] = useState(false);
 
   const user = useSelector((state) => state.login.user);
 
@@ -17,6 +17,14 @@ const Service = () => {
       setEmail(user.email);
     }
   }, [user]);
+
+  useEffect(() => {
+    const emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+      emailInput.disabled = !useUserEmail;
+      emailInput.style.color = useUserEmail ? 'black' : 'gray';
+    }
+  }, []);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -38,10 +46,18 @@ const Service = () => {
 
   const handleCheckboxChange = (e) => {
     setUseUserEmail(e.target.checked);
-    if (e.target.checked && user?.email) {
-      setEmail(user.email);
+    const emailInput = document.getElementById('emailInput');
+    
+    if (e.target.checked) {
+      setEmail('');
+      emailInput.disabled = false;
+      emailInput.style.color = 'black';
     } else {
-      setEmail("");
+      if (user?.email) {
+        setEmail(user.email);
+      }
+      emailInput.disabled = true;
+      emailInput.style.color = 'gray';
     }
   };
 
@@ -134,21 +150,24 @@ const Service = () => {
               placeholder="내용을 입력해주세요"
             />
           </div>
-          <div className="flex items-center mb-4">
-            <label className="mr-2">수신받을 이메일</label>
-            <input 
-              type="checkbox" 
-              className="mr-2"
-              checked={useUserEmail}
-              onChange={handleCheckboxChange}
-            />
+          <div className="mb-3">
+            <label htmlFor="email" className="block text-neutral-700 text-lg mb-1">이메일</label>
+            <div className="flex items-center gap-2 mb-2">
+              <input
+                type="checkbox"
+                checked={useUserEmail}
+                onChange={handleCheckboxChange}
+                id="useCustomEmail"
+              />
+              <label htmlFor="useCustomEmail" className="text-sm text-gray-600">다른 이메일 사용</label>
+            </div>
             <input
               type="email"
+              id="emailInput"
               value={email}
-              onChange={handleEmailChange}
-              className="border rounded-md p-2 flex-grow"
-              placeholder={user?.userId || "이메일을 입력해주세요"}
-              disabled={useUserEmail}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 border rounded-md"
+              placeholder="이메일 주소 입력"
             />
           </div>
           <button className="rounded-md bg-blue-500 text-white p-2 w-full">

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import favi from '../../assets/medi_favi.png'
+import { LuLogIn } from "react-icons/lu";
+import { LuLogOut } from "react-icons/lu";
 
 const Mypage = ({ user, onClose, onLogout }) => {
   const modalRef = useRef()
@@ -8,6 +10,7 @@ const Mypage = ({ user, onClose, onLogout }) => {
   const handleLogout = () => {
     onLogout()
     onClose()
+    alert('로그아웃 되었습니다.')
   }
 
   useEffect(() => {
@@ -36,9 +39,12 @@ const Mypage = ({ user, onClose, onLogout }) => {
         <span className="mb-4 border-b-2 border-blue-200 w-3/5 block mx-auto"></span>
 
         <ul className="space-y-2">
-          <li className="p-1 hover:bg-gray-100 rounded">
-            <Link to="/login" onClick={onClose}>로그인</Link>
+        <Link to="/login" onClick={onClose}>
+          <li className="p-1 hover:bg-gray-100 rounded flex items-center justify-between">
+            로그인
+            <LuLogIn />
           </li>
+        </Link>
         </ul>
       </div>
     );
@@ -66,9 +72,12 @@ const Mypage = ({ user, onClose, onLogout }) => {
         <li className="p-1 hover:bg-gray-100 rounded">
           <Link to="/memberinfo" onClick={onClose}>회원정보 수정</Link>
         </li>
-        <li className="p-1 hover:bg-gray-100 rounded">
-          <button onClick={handleLogout}>로그아웃</button>
-        </li>
+        <Link onClick={handleLogout} to="/">
+          <li className="p-1 hover:bg-gray-100 rounded flex items-center justify-between mt-2">
+            로그아웃
+            <LuLogOut />
+          </li>
+        </Link>
       </ul>
     </div>
   );
