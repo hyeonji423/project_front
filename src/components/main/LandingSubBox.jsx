@@ -27,7 +27,7 @@ export default () => {
         </h3>
       </div>
       <div className="relative w-[80%]">
-        <div className="flex gap-3 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 absolute justify-between w-full">
+        <div className="flex gap-3 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute justify-between w-full">
           <button className="text-xl" ref={prevRef}>
             <img src={previc} alt="" className="w-5 h-5" />
           </button>
@@ -53,7 +53,7 @@ export default () => {
               className="rounded-lg overflow-hidden shadow-inner-lg"
             >
               <Link to={`/symptomdetail/${item.id}`} className="group">
-                <div className="absolute opacity-30 overlay w-full h-full bg-black z-0 left-0 top-0 group-hover:bg-white"></div>
+                <div className="absolute opacity-30 overlay w-full h-full bg-black left-0 top-0 group-hover:bg-white"></div>
                 <h5 className="absolute w-full text-center left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl font-semibold drop-shadow-md group-hover:text-black group-hover:drop-shadow-0">
                   {item.text}
                 </h5>
