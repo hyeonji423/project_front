@@ -47,8 +47,8 @@ const Header = () => {
               <li className="text-neutral-500 hover:text-black transition-all duration-100">
                 <Link to="/register">회원가입</Link>
               </li>
-              <li className="relative text-neutral-500 hover:text-black transition-all duration-100">
-                <Link onClick={toggleMypage}>마이페이지</Link>
+              <li className="relative">
+                <Link onClick={toggleMypage} className="text-neutral-500 hover:text-black transition-all duration-100">마이페이지</Link>
                 {showMypage && (
                   <Mypage 
                     user={user}
