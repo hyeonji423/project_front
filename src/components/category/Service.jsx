@@ -6,7 +6,11 @@ const Service = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [email, setEmail] = useState("");
+<<<<<<< HEAD
   const [reponse, setReponse] = useState("");
+=======
+  const [response, setResponse] = useState("");
+>>>>>>> origin/main
   const [useUserEmail, setUseUserEmail] = useState(true);
 
   // Redux store에서 사용자 정보 가져오기
@@ -27,15 +31,6 @@ const Service = () => {
     setContent(e.target.value);
   };
 
-  const handleCheckboxChange = (e) => {
-    setUseUserEmail(e.target.checked);
-    if (e.target.checked && user?.email) {
-      setEmail(user.email);
-    } else {
-      setEmail("");
-    }
-  };
-
   const handleEmailChange = (e) => {
     if (!useUserEmail) {
       setEmail(e.target.value);
@@ -44,7 +39,15 @@ const Service = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     console.log(title, content, email);
+=======
+
+    if (!title.trim() || !content.trim()) {
+      setResponse("제목과 내용을 입력해주세요.");
+      return;
+    }
+>>>>>>> origin/main
 
     const data = {
       title,
@@ -57,7 +60,15 @@ const Service = () => {
         "http://localhost:8000/email/send-email",
         data
       );
+<<<<<<< HEAD
       setReponse("건의사항이 전달 되었습니다.");
+=======
+      setResponse(result.data.message);
+      // 폼 초기화
+      setTitle("");
+      setContent("");
+      setEmail("");
+>>>>>>> origin/main
     } catch (error) {
       setReponse("이메일 전송이 실패했습니다. 다시 시도해주세요.");
     }
@@ -65,8 +76,13 @@ const Service = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
+<<<<<<< HEAD
       <div className="w-[30%] max-w-[1200px] ">
         <h2 className="flex  justify-center items-center text-2xl font-bold mb-8">
+=======
+      <div className="w-[40%] max-w-[1200px] ">
+        <h2 className="flex  justify-center items-center text-2xl font-bold mb-4">
+>>>>>>> origin/main
           건의사항
         </h2>
         <div className="flex mb-8">
@@ -105,12 +121,16 @@ const Service = () => {
           </div>
           <div className="flex items-center mb-4">
             <label className="mr-2">수신받을 이메일</label>
+<<<<<<< HEAD
             <input
               type="checkbox"
               className="mr-2"
               checked={useUserEmail}
               onChange={handleCheckboxChange}
             />
+=======
+            <input type="checkbox" className="mr-2" checked={useUserEmail} />
+>>>>>>> origin/main
             <input
               type="email"
               value={email}
