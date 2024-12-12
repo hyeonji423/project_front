@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 import Mediinfoitem from "../details/Mediinfoitem";
@@ -16,16 +16,29 @@ function MediInfo() {
   const getMediInfoData = useSelector(
     (state) => state.medicine.getMediInfoData
   );
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchGetMediInfoData());
   }, [dispatch]);
 
   useEffect(() => {
-    if (getMediInfoData && Array.isArray(getMediInfoData)) {
-      setFilteredData(getMediInfoData);
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get("search");
+    if (searchQuery) {
+      setSearchTerm(searchQuery);
+      const filtered = getMediInfoData?.filter(
+        (item) =>
+          item.제품명.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.주성분.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      if (filtered) {
+        setFilteredData(filtered);
+        setCurrentPage(1);
+        setCurrentGroup(1);
+      }
     }
-  }, [searchTerm, getMediInfoData]);
+  }, [location.search, getMediInfoData]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
