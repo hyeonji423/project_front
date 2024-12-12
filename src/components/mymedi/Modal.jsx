@@ -70,7 +70,7 @@ const Modal = () => {
         };
 
         // 알림 설정 API 호출
-        await axios.post('/api/notifications', notificationData);
+        // await axios.post('/api/notifications', notificationData);
       }
 
       if (modalType === "create" && myMediList === null) {
