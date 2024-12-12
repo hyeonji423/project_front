@@ -1,9 +1,9 @@
 /* ====== Common Post Request Function ====== */
 export async function postRequest(url, options) {
   const defaultOptions = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     ...options,
   };
@@ -17,23 +17,21 @@ export async function postRequest(url, options) {
       throw { status: response.status, msg: data.msg || "Request failed" };
     }
     return { status: response.status, data }; // 성공 시 상태 코드와 데이터를 반환
-  }
-  catch (error) {
+  } catch (error) {
     // 네트워크 오류나 다른 오류를 처리
     throw error.status
       ? error // 서버 응답 오류
       : { status: 500, msg: error.message || "Unknown error occurred" }; // 네트워크 오류 등
   }
 }
-
 
 // myMedi 요청 함수
 export async function postMyMediRequest(url, options) {
   const defaultOptions = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     ...options,
   };
@@ -47,15 +45,13 @@ export async function postMyMediRequest(url, options) {
       throw { status: response.status, msg: data.msg || "Request failed" };
     }
     return { status: response.status, data }; // 성공 시 상태 코드와 데이터를 반환
-  }
-  catch (error) {
+  } catch (error) {
     // 네트워크 오류나 다른 오류를 처리
     throw error.status
       ? error // 서버 응답 오류
       : { status: 500, msg: error.message || "Unknown error occurred" }; // 네트워크 오류 등
   }
 }
-
 
 // useDispatch-업데이트 useSelector-가져오는거
 
@@ -70,7 +66,6 @@ export async function postFormRequest(url, options) {
           },
   });
 
-
   const responseData = await response.json();
 
   if (!response.ok) {
@@ -82,54 +77,65 @@ export async function postFormRequest(url, options) {
   return { status: response.status, data: responseData }; // 상태 코드와 데이터를 함께 반환
 }
 
-
 /* ====== Common Put Request Function ====== */
 export async function putRequest(url, options) {
   const defaultOptions = {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     ...options,
   };
-  
+
   return await fetch(url, defaultOptions).then((response) => {
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     return response.json();
   });
 }
-
 
 /* ====== Common Patch Request Function ====== */
 export async function patchRequest(url, options) {
   return await fetch(url, options).then((response) => {
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     return response.json();
   });
 }
-
 
 /* ====== Common Delete Request Function ====== */
 export async function deleteRequest(url, options) {
   return await fetch(url, options).then((response) => {
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error("Network response was not ok");
     }
     return response.json();
   });
 }
 
-
 /* ====== Common GET Request Function ====== */
 export async function getRequest(url) {
-  return await fetch(url).then((response) => {
+  try {
+    console.log("요청 URL:", url); // URL 확인용 로그
+
+    const response = await fetch(url);
+
+    // 응답 상태 확인용 로그
+    console.log("응답 상태:", response.status);
+
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      const errorData = await response.json();
+      console.error("응답 에러:", errorData);
+      throw new Error(errorData.message || "서버 요청 실패");
     }
-    return response.json();
-  });
+
+    const data = await response.json();
+    console.log("응답 데이터:", data); // 데이터 확인용 로그
+    return data;
+  } catch (error) {
+    console.error("요청 처리 중 오류 발생:", error);
+    throw error;
+  }
 }

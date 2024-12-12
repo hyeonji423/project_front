@@ -6,8 +6,13 @@ const Service = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [email, setEmail] = useState("");
+<<<<<<< HEAD
   const [category, setCategory] = useState("추가 약품 요청");
   const [response, setResponse] = useState("");
+=======
+  const [reponse, setReponse, setResponse] = useState("");
+
+>>>>>>> 69f0969026799515d9de339de0bc7d9cae1d776c
   const [useUserEmail, setUseUserEmail] = useState(true);
 
   const user = useSelector((state) => state.login.user);
@@ -17,6 +22,15 @@ const Service = () => {
       setEmail(user.email);
     }
   }, [user]);
+
+  const handleCheckboxChange = (e) => {
+    setUseUserEmail(e.target.checked);
+    if (e.target.checked && user?.email) {
+      setEmail(user.email);
+    } else {
+      setEmail("");
+    }
+  };
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -48,6 +62,8 @@ const Service = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(title, content, email);
+
     if (!title.trim() || !content.trim()) {
       setResponse("제목과 내용을 입력해주세요.");
       return;
@@ -70,6 +86,8 @@ const Service = () => {
         "http://localhost:8000/email/send-email",
         data
       );
+      setReponse("건의사항이 전달 되었습니다.");
+
       setResponse(result.data.message);
       // 성공시 폼 초기화
       if (result.data.success) {
@@ -80,19 +98,23 @@ const Service = () => {
         }
       }
     } catch (error) {
-      setResponse(
-        error.response?.data?.message || "이메일 전송에 실패했습니다."
-      );
+      setReponse("이메일 전송이 실패했습니다. 다시 시도해주세요.");
     }
   };
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
+<<<<<<< HEAD
       <div className="w-[40%] max-w-[1200px]">
         <h2 className="flex justify-center items-center text-2xl font-bold mb-4">
           건의사항
+=======
+      <div className="w-[30%] max-w-[1200px] ">
+        <h2 className="flex  justify-center items-center text-2xl font-bold mb-8">
+          건의사항 건의사항
+>>>>>>> 69f0969026799515d9de339de0bc7d9cae1d776c
         </h2>
-        <div className="flex mb-4">
+        <div className="flex mb-8">
           <div className="w-1/4">
             <div className="w-full rounded-l-md bg-blue-500 text-white p-2">
               Category
@@ -134,8 +156,13 @@ const Service = () => {
           </div>
           <div className="flex items-center mb-4">
             <label className="mr-2">수신받을 이메일</label>
+<<<<<<< HEAD
             <input 
               type="checkbox" 
+=======
+            <input
+              type="checkbox"
+>>>>>>> 69f0969026799515d9de339de0bc7d9cae1d776c
               className="mr-2"
               checked={useUserEmail}
               onChange={handleCheckboxChange}
@@ -145,19 +172,22 @@ const Service = () => {
               value={email}
               onChange={handleEmailChange}
               className="border rounded-md p-2 flex-grow"
+              placeholder={user?.userId || "이메일을 입력해주세요"}
               disabled={useUserEmail}
               placeholder="이메일 주소를 입력해주세요"
             />
           </div>
-          <div>
-            <button className="rounded-md bg-blue-500 text-white p-2 w-full">
-              보내기
-            </button>
-          </div>
+          <button className="rounded-md bg-blue-500 text-white p-2 w-full">
+            보내기
+          </button>
         </form>
+<<<<<<< HEAD
         {response && (
           <p className="mt-4 text-center text-blue-600">{response}</p>
         )}
+=======
+        <p>{reponse}</p>
+>>>>>>> 69f0969026799515d9de339de0bc7d9cae1d776c
       </div>
     </div>
   );

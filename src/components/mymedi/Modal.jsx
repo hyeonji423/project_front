@@ -48,20 +48,18 @@ const Modal = () => {
       return;
     }
 
-    const submitData = {
-      ...value,
-      companyName: value.companyName || null,
-      buyingDate: value.buyingDate || null,
-      mainSymptom: value.mainSymptom || null,
-      memo: value.memo || null
-    };
+    // const submitData = {
+    //   ...value,
+    //   user_id: user.id
+    // }
+    // console.log(submitData);
 
     try {
       if (modalType === "create" && myMediList === null) {
-        await dispatch(fetchPostMyMediData(submitData)).unwrap();
+        await dispatch(fetchPostMyMediData(value)).unwrap();
         alert("등록되었습니다.");
       } else if (modalType === "update" && myMediList) {
-        await dispatch(fetchUpdateMyMediListData(submitData)).unwrap();
+        await dispatch(fetchUpdateMyMediListData(value)).unwrap();
         alert("수정되었습니다.");
       }
 
@@ -124,8 +122,7 @@ const Modal = () => {
     }
   }, [modalType, myMediList, user?.id]);
 
-  // console.log(myMediList);
-  console.log(value)
+  console.log(myMediList);
 
   // const data = {
   //   mediName: value.mediName,

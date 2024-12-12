@@ -23,17 +23,17 @@ const Item = ({ myMediList }) => {
     memo,
     medicine_created_at,
   } = myMediList;
-  // console.log(
-  //   user_email,
-  //   medicine_id,
-  //   medi_name,
-  //   company_name,
-  //   buying_date,
-  //   exp_date,
-  //   main_symptom,
-  //   memo,
-  //   medicine_created_at
-  // );
+  console.log(
+    user_email,
+    medicine_id,
+    medi_name,
+    company_name,
+    buying_date,
+    exp_date,
+    main_symptom,
+    memo,
+    medicine_created_at
+  );
 
   const dispatch = useDispatch();
 
@@ -96,14 +96,16 @@ const Item = ({ myMediList }) => {
   return (
     <div className="item w-full mx-auto ">
       <div className="w-full shadow-md border py-3 px-7 flex items-center gap-4">
-        <div className="w-[8%] flex items-center"><img src={favi} alt="list" className="w-6 h-6" /></div>
+        <div className="w-[8%] flex items-center">
+          <img src={favi} alt="list" className="w-6 h-6" />
+        </div>
         <div className="title-box w-[20%] px-3 py-1 flex">
           <h2 className="item-title text-xl font-semibold">{medi_name}</h2>
         </div>
         <p className="w-[30%] px-1 text-[17px]">대표증상: {main_symptom}</p>
         <div className="exp-date-box w-[30%] flex items-center">
           <p className="px-1 text-[17px]">유효기간: {formatDate(exp_date)}</p>
-          <button >
+          <button>
             <FaCalendarCheck className="w-4 h-4 text-yellow-300" />
           </button>
         </div>
