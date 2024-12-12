@@ -77,14 +77,14 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-auto">
-      <div className='logo w-[350px] mt-20 mb-8'>
+    <div className="flex flex-col justify-center items-center h-auto w-full mb-16">
+      <div className='logo w-[350px] mt-32 mb-12'>
         <img src={mediLogo} alt="" />
       </div>
-      <div className="shadow-lg px-12 py-8 w-[40%] border mb-16">
-        <h2 className="text-3xl font-bold mb-4 text-center">회원정보 수정</h2>
+      <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
+        <h2 className="text-3xl font-extrabold mb-6 text-center">회원정보 수정</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-3">
             {/* <label htmlFor="username" className="block text-neutral-700">
               Username
             </label>
@@ -96,57 +96,34 @@ const Register = () => {
               onChange={handleChange}
             /> */}
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="email" className="block text-neutral-700 text-lg mb-1">
               이메일 변경
             </label>
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full px-3 py-2 border"
-              name="email"
-              onChange={handleChange}
-            />
+            <input type="email" placeholder='Email' className='w-full px-3 py-2 border mb-2 rounded-md' name='email' onChange={handleChange} id="emailInput"/>
           </div>
           
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="password" className="block text-neutral-700 text-lg mb-1">
               비밀번호 변경
             </label>
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full px-3 py-2 border"
-              name="password"
-              onChange={handleChange}
-            />
+            <input type="password" placeholder='Password' className='w-full px-3 py-2 border rounded-md' name='password' onChange={handleChange}/>
           </div>
           
-          <div className="mb-4">
-            <label htmlFor="confirmPassword" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="confirmPassword" className="block text-neutral-700 text-lg mb-1">
               비밀번호 변경 확인
             </label>
-            <input
-              type="password"
-              placeholder="Comfirm Password"
-              className="w-full px-3 py-2 border"
-              name="confirm_password"
-              onChange={handleChange}
-            />
+            <input type="password" placeholder='Password' className='w-full px-3 py-2 border rounded-md' name='confirm_password' onChange={handleChange}/>
           </div>
-          <div className="mb-4">
-            <label htmlFor="birth_date" className="block text-neutral-700 text-xl mb-1">
+          <div className="mb-1">
+            <label htmlFor="birth_date" className="block text-neutral-700 text-lg mb-1">
               생년월일 수정
             </label>
-            <input
-              type="date"
-              className="w-full px-3 py-2 border"
-              name="birth_date"
-              onChange={handleChange}
-            />
+            <input type="date" className="w-full px-3 py-2 border" name="birth_date" onChange={handleChange} />
           </div>
           {/* <input type="file" name="profile_img" onChange={handleFileChange} /> */}
-          <button className="btn w-full h-12">수정 완료하기</button>
+          <button className="btn w-full h-12" type="submit">수정 완료하기</button>
         </form>
       </div>
     </div>
