@@ -5,7 +5,20 @@ const Service = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [email, setEmail] = useState("");
-  const [reponse, setReponse] = useState("");
+  const [category, setCategory] = useState("추가 약품 요청");
+  const [response, setResponse] = useState("");
+  const [isEmailEnabled, setIsEmailEnabled] = useState(false); // 체크박스 상태 추가
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleCheckboxChange = (e) => {
+    setIsEmailEnabled(e.target.checked);
+    if (!e.target.checked) {
+      setEmail(""); // 체크박스 해제시 이메일 초기화
+    }
+  };
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -21,12 +34,22 @@ const Service = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title, content, email);
+
+    if (!title.trim() || !content.trim()) {
+      setResponse("제목과 내용을 입력해주세요.");
+      return;
+    }
+
+    if (isEmailEnabled && !email.trim()) {
+      setResponse("이메일 주소를 입력해주세요.");
+      return;
+    }
 
     const data = {
       title,
       content,
-      email,
+      email: isEmailEnabled ? email : null,
+      category,
     };
 
     try {
@@ -34,9 +57,16 @@ const Service = () => {
         "http://localhost:8000/email/send-email",
         data
       );
-      setReponse("건의사항이 전달 되었습니다.");
+      setResponse(result.data.message);
+      // 폼 초기화
+      setTitle("");
+      setContent("");
+      setEmail("");
+      setCategory("추가 약품 요청");
     } catch (error) {
-      setReponse("이메일 전송이 실패했습니다. 다시 시도해주세요.");
+      setResponse(
+        error.response?.data?.message || "이메일 전송에 실패했습니다."
+      );
     }
   };
 
@@ -44,16 +74,18 @@ const Service = () => {
     <div className="w-full flex flex-col justify-center items-center py-8">
       <div className="w-[70%] max-w-[1200px]">
         <h2 className="flex justify-center items-center text-2xl font-bold mb-4">
-         건의사항
+          건의사항
         </h2>
         <div className="flex mb-4">
           <div className="w-1/4">
-            <div className="w-full bg-blue-500 text-white p-2">
-               Category
-            </div>
+            <div className="w-full bg-blue-500 text-white p-2">Category</div>
           </div>
           <div className="w-3/4">
-            <select className="w-full border p-2">
+            <select
+              className="w-full border p-2"
+              value={category}
+              onChange={handleCategoryChange}
+            >
               <option>추가 약품 요청</option>
               <option>정보 수정요청</option>
               <option>기타 불만사항</option>
@@ -82,12 +114,18 @@ const Service = () => {
           </div>
           <div className="flex items-center mb-4">
             <label className="mr-2">수신받을 이메일</label>
-            <input type="checkbox" className="mr-2" />
+            <input
+              type="checkbox"
+              className="mr-2"
+              checked={isEmailEnabled}
+              onChange={handleCheckboxChange}
+            />
             <input
               type="email"
               value={email}
               onChange={handleEmailChange}
               className="border p-2 flex-grow"
+              disabled={!isEmailEnabled}
             />
           </div>
           <div>
@@ -96,7 +134,7 @@ const Service = () => {
             </button>
           </div>
         </form>
-        <p>{reponse}</p>
+        <p>{response}</p>
       </div>
     </div>
   );

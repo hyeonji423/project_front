@@ -1,10 +1,19 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { POST_MY_MEDI_API_URL, GET_MY_MEDI_LIST_API_URL, DELETE_MY_MEDI_LIST_API_URL, UPDATE_MY_MEDI_LIST_API_URL } from '../../utils/apiUrl'
-import { postRequest, getRequest, deleteRequest, putRequest } from '../../utils/requestMethods'
-
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  POST_MY_MEDI_API_URL,
+  GET_MY_MEDI_LIST_API_URL,
+  DELETE_MY_MEDI_LIST_API_URL,
+  UPDATE_MY_MEDI_LIST_API_URL,
+} from "../../utils/apiUrl";
+import {
+  postRequest,
+  getRequest,
+  deleteRequest,
+  putRequest,
+} from "../../utils/requestMethods";
 
 // 약품 등록 요청 함수
-const postMyMediFetchThunk = (actionType, apiURL)=>{
+const postMyMediFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (postData, { rejectWithValue }) => {
     // console.log(postData);
     try {
@@ -15,18 +24,17 @@ const postMyMediFetchThunk = (actionType, apiURL)=>{
       };
       const response = await postRequest(apiURL, options);
       return response; // { status, data } 형태로 반환
-    }
-    catch (error) {
+    } catch (error) {
       // 에러 시 상태 코드와 메시지를 포함한 값을 rejectWithValue로 전달
       return rejectWithValue(error);
     }
   });
-}
+};
 
 export const fetchPostMyMediData = postMyMediFetchThunk(
-  'fetchPostMyMedi', // action type
+  "fetchPostMyMedi", // action type
   POST_MY_MEDI_API_URL // 요청 url
-)
+);
 
 // get thunk function 정의
 const getMyMediListFetchThunk = (actionType, apiURL) => {
@@ -66,11 +74,12 @@ export const fetchDeleteMyMediListData = deleteMyMediListFetchThunk(
 // update thunk function 정의
 const updateMyMediListFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (updateData) => {
-    // console.log(updateData);
+    const fullPath = `${apiURL}/${updateData.mediId}`;
+    // console.log(updateData, apiURL);
     const options = {
       body: JSON.stringify(updateData), // 표준 json 문자열로 변환
     };
-    return await putRequest(apiURL, options);
+    return await putRequest(fullPath, options);
   });
 };
 
@@ -89,12 +98,11 @@ const handleFulfilled = (stateKey) => (state, action) => {
 const handleRejected = (state, action) => {
   // console.log('Error', action.payload);
   state.isError = true;
-  state.errorMessage = action.payload?.msg || "Something went wrong"
+  state.errorMessage = action.payload?.msg || "Something went wrong";
 };
 
-
 const myMediSlice = createSlice({
-  name: 'myMedi', // slice 기능 이름
+  name: "myMedi", // slice 기능 이름
   initialState: {
     // 초기 상태 지정
     postMyMediData: null,
@@ -102,23 +110,30 @@ const myMediSlice = createSlice({
     deleteMyMediListData: null,
     updateMyMediListData: null,
   },
-  
-  extraReducers: (builder)=>{
+
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchPostMyMediData.fulfilled, handleFulfilled('postMyMediData'))
+      .addCase(fetchPostMyMediData.fulfilled, handleFulfilled("postMyMediData"))
       .addCase(fetchPostMyMediData.rejected, handleRejected)
 
-      .addCase(fetchGetMyMediListData.fulfilled, handleFulfilled("getMyMediListData")) //요청 성공시
+      .addCase(
+        fetchGetMyMediListData.fulfilled,
+        handleFulfilled("getMyMediListData")
+      ) //요청 성공시
       .addCase(fetchGetMyMediListData.rejected, handleRejected) // 요청 실패시
 
-      .addCase(fetchDeleteMyMediListData.fulfilled, handleFulfilled("deleteMyMediListData")) //요청 성공시
+      .addCase(
+        fetchDeleteMyMediListData.fulfilled,
+        handleFulfilled("deleteMyMediListData")
+      ) //요청 성공시
       .addCase(fetchDeleteMyMediListData.rejected, handleRejected)
 
-      .addCase(fetchUpdateMyMediListData.fulfilled, handleFulfilled("updateMyMediListData")) //요청 성공시
+      .addCase(
+        fetchUpdateMyMediListData.fulfilled,
+        handleFulfilled("updateMyMediListData")
+      ) //요청 성공시
       .addCase(fetchUpdateMyMediListData.rejected, handleRejected); // 요청 실패시
-    
-  }
-})  // slice 객체 저장
-
+  },
+}); // slice 객체 저장
 
 export default myMediSlice.reducer;
