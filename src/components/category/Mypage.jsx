@@ -63,15 +63,21 @@ const Mypage = ({ user, onClose, onLogout }) => {
       <span className="mb-4 border-b-2 border-blue-200 w-3/5 block mx-auto"></span>
 
       <ul className="space-y-2">
-      <li className="p-1 hover:bg-gray-100 rounded">
-          <Link to="/mymedi_list" onClick={onClose}>약품 관리</Link>
-        </li>
-        <li className="p-1 hover:bg-gray-100 rounded">
-          <Link to="/newpage" onClick={onClose}>열람 목록</Link>
-        </li>
-        <li className="p-1 hover:bg-gray-100 rounded">
-          <Link to="/memberinfo" onClick={onClose}>회원정보 수정</Link>
-        </li>
+        <Link to="/mymedi_list" onClick={onClose}>
+          <li className="p-1 hover:bg-gray-100 rounded">
+            약품 관리
+          </li>
+        </Link>
+        <Link to="/newpage" onClick={onClose}>
+          <li className="p-1 hover:bg-gray-100 rounded">
+            열람 목록
+          </li>
+        </Link>
+        <Link to="/memberinfo" onClick={onClose}>
+          <li className="p-1 hover:bg-gray-100 rounded">
+            회원정보 수정
+          </li>
+        </Link>
         <Link onClick={handleLogout} to="/">
           <li className="p-1 hover:bg-gray-100 rounded flex items-center justify-between mt-2">
             로그아웃
