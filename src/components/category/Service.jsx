@@ -18,7 +18,6 @@ const Service = () => {
     }
   }, [user]);
 
-
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -137,8 +136,8 @@ const Service = () => {
           </div>
           <div className="flex items-center mb-4">
             <label className="mr-2">수신받을 이메일</label>
-            <input
-              type="checkbox"
+            <input 
+              type="checkbox" 
               className="mr-2"
               checked={useUserEmail}
               onChange={handleCheckboxChange}
@@ -150,7 +149,6 @@ const Service = () => {
               className="border rounded-md p-2 flex-grow"
               placeholder={user?.userId || "이메일을 입력해주세요"}
               disabled={useUserEmail}
-              placeholder="이메일 주소를 입력해주세요"
             />
           </div>
           <button className="rounded-md bg-blue-500 text-white p-2 w-full">
