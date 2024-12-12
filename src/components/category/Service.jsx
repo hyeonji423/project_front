@@ -65,11 +65,11 @@ const Service = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
-      <div className="w-[40%] max-w-[1200px] ">
-        <h2 className="flex  justify-center items-center text-2xl font-bold mb-4">
+      <div className="w-[30%] max-w-[1200px] ">
+        <h2 className="flex  justify-center items-center text-2xl font-bold mb-8">
           건의사항
         </h2>
-        <div className="flex mb-4">
+        <div className="flex mb-8">
           <div className="w-1/4">
             <div className="w-full rounded-l-md bg-blue-500 text-white p-2">
               Category
