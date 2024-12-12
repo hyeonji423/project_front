@@ -15,6 +15,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(clearToken());
+    alert("로그아웃 되었습니다.");
   };
 
   const toggleMypage = (e) => {
