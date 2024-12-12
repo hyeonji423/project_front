@@ -1,5 +1,5 @@
 import React from "react";
-import mediLogo from '../../assets/medi_logo.png';
+import mediLogo from "../../assets/medi_logo.png";
 
 const Footer = () => {
   return (
@@ -13,7 +13,11 @@ const Footer = () => {
               (08503) 서울 금천구 가산디지털2로 144 현대테라타워 가산DK A동 20층
             </p>
             <p className="text-sm text-gray-600">
+<<<<<<< HEAD
               대표전화: 02-1234-5678 &nbsp; | &nbsp; FAX: 02-000-0000
+=======
+              대표: 황현지 | 대표전화: 02-2038-0800 | FAX: 02-000-0000
+>>>>>>> 6d084272c0beb829e44950b8b245ca1f64d31cef
             </p>
           </div>
         </div>
