@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const NewPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
@@ -8,18 +9,45 @@ const NewPage = () => {
   const [viewedNews, setViewedNews] = useState([]);
   const [viewedMedicines, setViewedMedicines] = useState([]);
   const itemsPerPage = 5;
+  const user = useSelector((state) => state.login.user);
 
   useEffect(() => {
-    const storedNews = JSON.parse(localStorage.getItem("viewedNews") || "[]");
-    setViewedNews(storedNews.reverse());
-  }, []);
+    if (user) {
+      // 로그인한 사용자의 열람 기록 가져오기
+      const storedMedicines = JSON.parse(
+        localStorage.getItem(`viewedMedicines_${user.userId}`) || "[]"
+      );
+      // 최신순으로 정렬
+      const sortedMedicines = storedMedicines.sort(
+        (a, b) => new Date(b.viewedAt) - new Date(a.viewedAt)
+      );
+      setViewedMedicines(sortedMedicines);
 
-  useEffect(() => {
-    const storedMedicines = JSON.parse(
-      localStorage.getItem("viewedMedicines") || "[]"
+      const storedNews = JSON.parse(
+        localStorage.getItem(`viewedNews_${user.userId}`) || "[]"
+      );
+      // 최신순으로 정렬
+      const sortedNews = storedNews.sort(
+        (a, b) => new Date(b.viewedAt) - new Date(a.viewedAt)
+      );
+      setViewedNews(sortedNews);
+    } else {
+      // 로그인하지 않은 경우 빈 배열 설정
+      setViewedMedicines([]);
+      setViewedNews([]);
+    }
+  }, [user]);
+
+  // 로그인하지 않은 경우 메시지 표시
+  if (!user) {
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <div className="text-center py-8">
+          <p>로그인이 필요한 서비스입니다.</p>
+        </div>
+      </div>
     );
-    setViewedMedicines(storedMedicines.reverse());
-  }, []);
+  }
 
   const getPaginatedData = (data, currentPage) => {
     const indexOfLastItem = currentPage * itemsPerPage;

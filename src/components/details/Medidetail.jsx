@@ -19,6 +19,7 @@ function Medidetail() {
     부작용: "",
     이미지URL: "",
   });
+  const user = useSelector((state) => state.login.user);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,9 +50,34 @@ function Medidetail() {
           이미지URL:
             selectedMedicine.이미지URL || "/default-medicine-image.png",
         });
+
+        if (user) {
+          const viewedMedicines = JSON.parse(
+            localStorage.getItem(`viewedMedicines_${user.userId}`) || "[]"
+          );
+
+          const medicineInfo = {
+            id: selectedMedicine.아이디,
+            name: selectedMedicine.제품명,
+            main_ingredient: selectedMedicine.주성분,
+            efficacy: selectedMedicine.효능,
+            image: selectedMedicine.이미지URL || "/default-medicine-image.png",
+            viewedAt: new Date().toISOString(),
+          };
+
+          const updatedMedicines = [
+            medicineInfo,
+            ...viewedMedicines.filter((item) => item.id !== medicineInfo.id),
+          ];
+
+          localStorage.setItem(
+            `viewedMedicines_${user.userId}`,
+            JSON.stringify(updatedMedicines)
+          );
+        }
       }
     }
-  }, [getMediInfoData, id]);
+  }, [getMediInfoData, id, user]);
 
   if (isLoading) return <div className="text-center py-8">로딩 중...</div>;
   if (error)
