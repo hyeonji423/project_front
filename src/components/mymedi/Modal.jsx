@@ -25,13 +25,15 @@ const Modal = () => {
     mainSymptom: "",
     memo: "",
     user_id: user?.id,
+    mediId: "",
+    notification: false,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, checked, type } = e.target;
     setValue((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -48,14 +50,7 @@ const Modal = () => {
       return;
     }
 
-    // const submitData = {
-    //   ...value,
-    //   user_id: user.id
-    // }
-    // console.log(submitData);
-
     try {
-
       if (value.notification) {
         const expDate = new Date(value.expDate);
         const notificationDate = new Date(expDate);
@@ -66,7 +61,7 @@ const Modal = () => {
           mediName: value.mediName,
           expDate: value.expDate,
           notificationDate: notificationDate,
-          email: user.email
+          email: user.email,
         };
 
         // 알림 설정 API 호출
@@ -126,6 +121,7 @@ const Modal = () => {
         memo: myMediList.memo,
         mediId: myMediList.medicine_id,
         user_id: user?.id,
+        notification: myMediList.notification,
       });
     } else {
       setValue({
@@ -135,14 +131,15 @@ const Modal = () => {
         expDate: "",
         mainSymptom: "",
         memo: "",
+        mediId: "",
         user_id: user?.id,
+        notification: false,
       });
     }
   }, [modalType, myMediList, user?.id]);
 
   console.log(myMediList);
 
-  
   if (!isOpen) return null;
 
   return (
