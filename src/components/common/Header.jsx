@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { navItems } from "../../constants/data";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,36 +13,52 @@ const Header = () => {
   // console.log(user);
   const [showMypage, setShowMypage] = useState(false);
 
+  useEffect(() => {
+    console.log('마이페이지 상태:', showMypage);
+  }, [showMypage]);
+
   const handleLogout = () => {
     dispatch(clearToken());
-    alert("로그아웃 되었습니다.");
+    alert('로그아웃 되었습니다.')
+    setShowMypage(false)
   };
 
   const toggleMypage = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setShowMypage(!showMypage);
   };
-  const openChatWindow = (e) => {
-    e.preventDefault();
-    const width = 390;
-    const height = 600;
-    const left = (window.innerWidth - width) / 2;
-    const top = (window.innerHeight - height) / 2;
 
-    window.open(
-      "/",
-      "chatWindow",
-      `width=${width}, height=${height}, left=${left}, top=${top}`
-    );
-  };
+  // 외부 클릭 시 마이페이지 닫기
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showMypage && !event.target.closest('.mypage-container')) {
+        setShowMypage(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showMypage]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   return (
     <div className="w-full flex justify-center shadow-custom sticky top-0 z-50 bg-white">
       <div className="container flex justify-between items-center">
         <div className="logo left-0">
           <Link to="/">
-            <img src={mediLogo} alt="메디 로고" className="w-[200px]" />
+            <img src={mediLogo} alt="메디 로고" className="w-[200px]" onClick={scrollToTop} />
           </Link>
         </div>
+        <div onClick={toggleMypage}>aaa</div>
+        {showMypage && (
+          <div className="w-4 h-4 bg-red-500 fixed top-100 left-100 z-50"></div>
+        )}
         <div className="head-all">
           <div className="head-top w-full text-sm info mt-2">
             <ul className="flex gap-6 items-center justify-end">
@@ -61,16 +77,12 @@ const Header = () => {
                 <Link to="/register">회원가입</Link>
               </li>
               <li className="relative">
-                <Link
-                  onClick={toggleMypage}
-                  className="text-neutral-500 hover:text-black transition-all duration-100"
-                >
-                  마이페이지
-                </Link>
+                <Link onClick={toggleMypage} className="text-neutral-500 hover:text-black transition-all duration-100">마이페이지</Link>
                 {showMypage && (
-                  <Mypage
+                  <Mypage 
                     user={user}
-                    onClose={() => setShowMypage(false)}
+                    // onClose={() => setShowMypage(false)}
+                    onClose={() => {}}
                     onLogout={handleLogout}
                   />
                 )}
@@ -82,22 +94,9 @@ const Header = () => {
             <ul className="flex gap-6 items-center justify-end">
               {navItems.map((item, idx) => (
                 <li key={idx}>
-                  {item.to === "/chat" ? (
-                    <Link
-                      to={item.to}
-                      className="hover:text-blue-600 transition-all duration-100"
-                      onClick={openChatWindow}
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <Link
-                      to={item.to}
-                      className="hover:text-blue-600 transition-all duration-100"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
+                  <Link to={item.to} className="hover:text-blue-600 transition-all duration-100">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
