@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import favi from '../../assets/medi_favi.png'
-import { LuLogIn } from "react-icons/lu";
-import { LuLogOut } from "react-icons/lu";
+import { LuLogIn, LuLogOut } from "react-icons/lu";
+import { IoClose } from "react-icons/io5";
 
 const Mypage = ({ user, onClose, onLogout }) => {
   const modalRef = useRef()
@@ -29,6 +29,9 @@ const Mypage = ({ user, onClose, onLogout }) => {
   if (!user) {
     return (
       <div ref={modalRef} className="absolute right-0 top-full w-60 bg-white rounded-lg p-4 z-50 shadow-[0_2px_6px_rgba(0,0,0,0.05),0_-2px_6px_rgba(0,0,0,0.05)]">
+        <div className="flex justify-end">
+          <IoClose onClick={onClose} className="cursor-pointer text-xl text-gray-500 hover:text-black" />
+        </div>
         <div className="flex flex-col items-center mb-4">
           <div className="w-20 h-20 rounded-full bg-blue-100 my-1 flex justify-center items-center">
             <img src={favi} alt="" className="w-12 h-12" />
@@ -53,6 +56,10 @@ const Mypage = ({ user, onClose, onLogout }) => {
 
   return (
     <div ref={modalRef} className="absolute right-0 top-full w-60 bg-white rounded-lg p-4 z-50 shadow-[0_2px_6px_rgba(0,0,0,0.05),0_-2px_6px_rgba(0,0,0,0.05)]">
+      <div className="flex justify-end">
+        <IoClose onClick={onClose} className="cursor-pointer text-xl text-gray-500 hover:text-black" />
+      </div>
+      
       <div className="flex flex-col items-center mb-4">
         <div className="w-20 h-20 rounded-full bg-blue-100 my-1 flex justify-center items-center">
           <img src={favi} alt="" className="w-12 h-12" />
