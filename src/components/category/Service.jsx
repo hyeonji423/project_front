@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Service = () => {
   const [title, setTitle] = useState("");
@@ -118,7 +119,7 @@ const Service = () => {
           </div>
           <div className="w-3/4">
             <select 
-              className="w-full rounded-r-md border-2 border-gray-300 p-2"
+              className="w-full rounded-r-md border border-gray-300 p-2"
               value={category}
               onChange={handleCategoryChange}
             >
@@ -137,7 +138,7 @@ const Service = () => {
               type="text"
               value={title}
               onChange={handleTitleChange}
-              className="w-full rounded-md border p-2"
+              className="w-full rounded-md border border-gray-300 p-2"
               placeholder="제목을 입력해주세요"
             />
           </div>
@@ -147,7 +148,7 @@ const Service = () => {
               id="content"
               value={content}
               onChange={handleContentChange}
-              className="w-full rounded-md border p-2 h-32"
+              className="w-full rounded-md border border-gray-300 p-2 h-32"
               placeholder="내용을 입력해주세요"
             />
           </div>
@@ -158,10 +159,10 @@ const Service = () => {
               id="emailInput"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
               placeholder="이메일 주소 입력"
             />
-            <div className="flex items-center gap-2 my-2">
+            <div className="flex items-center gap-2 my-2 ml-1">
               <input
                 type="checkbox"
                 checked={useUserEmail}
@@ -171,9 +172,12 @@ const Service = () => {
               <label htmlFor="useCustomEmail" className="text-sm text-gray-600">다른 이메일 사용</label>
             </div>
           </div>
-          <button className="rounded-md bg-blue-500 text-white p-2 w-full">
-            보내기
-          </button>
+          <div className="flex justify-between items-center gap-2 mb-6 mt-10">
+            <button className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200" type="submit">전송하기</button>
+            <Link to='/' className="w-full h-12">
+              <button className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200">전송 취소</button>
+            </Link>
+          </div>
         </form>
         {response && (
           <p className="mt-4 text-center text-blue-600">{response}</p>
