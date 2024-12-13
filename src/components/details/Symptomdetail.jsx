@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
-import { symptoms, disease, summary } from "../../constants/symptomdata";
+import {
+  symptoms,
+  disease,
+  summary,
+  medicines,
+} from "../../constants/symptomdata";
 import { symptom } from "../../constants/data";
 
 const SymptomDetail = () => {
@@ -45,6 +51,12 @@ const SymptomDetail = () => {
       return medi.효능 && medi.효능.includes(symptomInfo.title);
     })
     .slice(0, 4); // 최대 4개만 선택
+
+  // medicines에서 현재 증상에 해당하는 약품 찾기
+  const currentMedicines = medicines.find(
+    (medicine) =>
+      medicine.title === disease[Number(id)].types[activeTab - 1].title
+  );
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
@@ -123,11 +135,16 @@ const SymptomDetail = () => {
           <h3 className="text-lg font-bold mt-4 mb-2">
             위 성분이 포함되어 있는 약품
           </h3>
-          {filteredMediInfo.map((medi, index) => (
-            <p key={index} className="mb-2">
-              - {medi.제품명}
-            </p>
-          ))}
+          {currentMedicines &&
+            currentMedicines.types.map((medicine) => (
+              <Link
+                to={medicine.link}
+                key={medicine.id}
+                className="mb-2 block hover:text-blue-500"
+              >
+                - {medicine.name}
+              </Link>
+            ))}
         </div>
       </div>
     </div>

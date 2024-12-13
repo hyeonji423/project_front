@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const disease = [
   {
     id: 0,
@@ -476,32 +478,46 @@ const summary = [
 
 const medicines = [
   {
+    id: 0,
+    title: "긴장두통",
+    types: [
+      {
+        id: 0,
+        name: "바이엘아스피린정500밀리그람",
+        link: "/medicine/1427",
+      },
+      {
+        id: 1,
+        name: "타이레놀정500밀리그람(아세트아미노펜)",
+        link: "/medicine/34",
+      },
+      {
+        id: 2,
+        name: "부루펜정200밀리그램(이부프로펜)",
+        link: "/medicine/1632",
+      },
+    ],
+  },
+  {
     id: 1,
-    name: "레보투스",
-    type: "진해거담제",
-    description: "기침을 가라앉히고 가래를 묽게 하는데 효과적",
-    caution: "임산부, 수유부는 복용 전 의사와 상담 필요",
-  },
-  {
-    id: 2,
-    name: "코데날시럽",
-    type: "기침억제제",
-    description: "마른기침을 진정시키고 기도 자극을 감소",
-    caution: "운전 및 기계조작 시 주의, 졸음 유발 가능",
-  },
-  {
-    id: 3,
-    name: "액티피드",
-    type: "항히스타민제",
-    description: "알레르기성 기침 증상 완화와 가래 감소",
-    caution: "복용 후 졸음이 올 수 있으며 장시간 운전 금지",
-  },
-  {
-    id: 4,
-    name: "뮤코졸정",
-    type: "점액용해제",
-    description: "기도 점액을 묽게 하여 기침 증상 완화",
-    caution: "위장장애가 있는 경우 식후 복용 권장",
+    title: "편두통",
+    types: [
+      {
+        id: 0,
+        name: "타이레놀정500밀리그람(아세트아미노펜)",
+        link: "/medicine/34",
+      },
+      {
+        id: 1,
+        name: "타이레놀정500밀리그람(아세트아미노펜)",
+        link: "/medicine/34",
+      },
+      {
+        id: 2,
+        name: "타이레놀정500밀리그람(아세트아미노펜)",
+        link: "/medicine/34",
+      },
+    ],
   },
 ];
 
