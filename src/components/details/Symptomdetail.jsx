@@ -125,7 +125,7 @@ const SymptomDetail = () => {
           </h3>
           {filteredMediInfo.map((medi, index) => (
             <p key={index} className="mb-2">
-              {medi.제품명}
+              - {medi.제품명}
             </p>
           ))}
         </div>
