@@ -105,20 +105,20 @@ const Service = () => {
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-center py-8">
+    <div className="w-full flex flex-col justify-center items-center py-20">
       <div className="w-[40%] max-w-[1200px]">
-        <h2 className="flex justify-center items-center text-2xl font-bold mb-4">
+        <h2 className="text-3xl font-extrabold mb-6 text-center">
           건의사항
         </h2>
-        <div className="flex mb-8">
+        <div className="flex mb-8 items-center">
           <div className="w-1/4">
-            <div className="w-full rounded-l-md bg-blue-500 text-white p-2">
-              Category
+            <div className="w-full rounded-l-md bg-blue-500 text-white p-2 text-center">
+              카테고리
             </div>
           </div>
           <div className="w-3/4">
             <select 
-              className="w-full rounded-r-md border p-2"
+              className="w-full rounded-r-md border-2 border-gray-300 p-2"
               value={category}
               onChange={handleCategoryChange}
             >
@@ -128,9 +128,10 @@ const Service = () => {
             </select>
           </div>
         </div>
+        
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="title">제목</label>
+            <label htmlFor="title" className="block text-xl mb-1">제목</label>
             <input
               id="title"
               type="text"
@@ -141,7 +142,7 @@ const Service = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="content">내용</label>
+            <label htmlFor="content" className="block text-xl mb-1">내용</label>
             <textarea
               id="content"
               value={content}
@@ -151,16 +152,7 @@ const Service = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="email" className="block text-neutral-700 text-lg mb-1">이메일</label>
-            <div className="flex items-center gap-2 mb-2">
-              <input
-                type="checkbox"
-                checked={useUserEmail}
-                onChange={handleCheckboxChange}
-                id="useCustomEmail"
-              />
-              <label htmlFor="useCustomEmail" className="text-sm text-gray-600">다른 이메일 사용</label>
-            </div>
+            <label htmlFor="email" className="block text-xl mb-1">이메일</label>
             <input
               type="email"
               id="emailInput"
@@ -169,6 +161,15 @@ const Service = () => {
               className="w-full px-3 py-2 border rounded-md"
               placeholder="이메일 주소 입력"
             />
+            <div className="flex items-center gap-2 my-2">
+              <input
+                type="checkbox"
+                checked={useUserEmail}
+                onChange={handleCheckboxChange}
+                id="useCustomEmail"
+              />
+              <label htmlFor="useCustomEmail" className="text-sm text-gray-600">다른 이메일 사용</label>
+            </div>
           </div>
           <button className="rounded-md bg-blue-500 text-white p-2 w-full">
             보내기
