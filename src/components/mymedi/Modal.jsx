@@ -8,11 +8,10 @@ import {
 } from "../../redux/slices/myMediSlice";
 import { closeModal } from "../../redux/slices/modalSlice";
 
-
 const Modal = () => {
   const dispatch = useDispatch();
   const { modalType, myMediList, isOpen } = useSelector((state) => state.modal);
-  // console.log(modalType, myMediList, isOpen);
+  console.log(modalType, myMediList, isOpen);
   const user = useSelector((state) => state.login.user);
 
   const [value, setValue] = useState({
@@ -84,6 +83,12 @@ const Modal = () => {
 
   const btnTitle = showModalTitle(modalType, "수정", "", "등록");
 
+  const convertToKST = (date) => {
+    const koreaTime = new Date(date);
+    koreaTime.setHours(koreaTime.getHours() + 9); // KST는 UTC+9
+    return koreaTime.toISOString().split("T")[0]; // 날짜만 반환 (yyyy-mm-dd)
+  };
+
   useEffect(() => {
     if (
       (modalType === "details" && myMediList) ||
@@ -93,10 +98,10 @@ const Modal = () => {
         mediName: myMediList.medi_name,
         companyName: myMediList.company_name,
         buyingDate: myMediList.buying_date
-          ? new Date(myMediList.buying_date).toISOString().split("T")[0]
+          ? convertToKST(myMediList.buying_date) // 한국 시간으로 변환
           : "",
         expDate: myMediList.exp_date
-          ? new Date(myMediList.exp_date).toISOString().split("T")[0]
+          ? convertToKST(myMediList.exp_date) // 한국 시간으로 변환
           : "",
         mainSymptom: myMediList.main_symptom,
         memo: myMediList.memo,
