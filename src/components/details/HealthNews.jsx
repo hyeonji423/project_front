@@ -10,6 +10,30 @@ const HealthNews = () => {
   // 로그인한 사용자 정보 가져오기
   const user = useSelector((state) => state.login.user);
 
+  // 화면 크기에 따른 글자 수 제한 함수 추가
+  const getTruncateLength = () => {
+    if (window.innerWidth >= 1280) { // xl
+      return { title: 70, desc: 150 };
+    } else if (window.innerWidth >= 1024) { // lg
+      return { title: 50, desc: 100 };
+    } else {
+      return { title: 30, desc: 60 };
+    }
+  };
+
+  // useState 추가
+  const [truncateLength, setTruncateLength] = useState(getTruncateLength());
+
+  // useEffect에 리사이즈 이벤트 리스너 추가
+  useEffect(() => {
+    const handleResize = () => {
+      setTruncateLength(getTruncateLength());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -101,7 +125,7 @@ const HealthNews = () => {
     <div className="news">
       <div className="grid grid-cols-12 gap-6">
         {/* 메인 뉴스 섹션 */}
-        <div className="col-span-8">
+        <div className="col-span-12 lg:col-span-8">
           {error ? (
             <p className="text-red-500">{error}</p>
           ) : newsList.length === 0 ? (
@@ -121,15 +145,15 @@ const HealthNews = () => {
                     onClick={() => handleNewsClick(news)}
                   >
                     <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700">
-                      {news.title.replace(/<\/?b>/g, "").length > 50
-                        ? `${news.title.replace(/<\/?b>/g, "").slice(0, 50)}...`
+                      {news.title.replace(/<\/?b>/g, "").length > truncateLength.title
+                        ? `${news.title.replace(/<\/?b>/g, "").slice(0, truncateLength.title)}...`
                         : news.title.replace(/<\/?b>/g, "")}
                     </h2>
                     <p className="text-gray-600 text-sm">
-                      {news.description.replace(/<\/?b>/g, "").length > 100
+                      {news.description.replace(/<\/?b>/g, "").length > truncateLength.desc
                         ? `${news.description
                             .replace(/<\/?b>/g, "")
-                            .slice(0, 100)}...`
+                            .slice(0, truncateLength.desc)}...`
                         : news.description.replace(/<\/?b>/g, "")}
                     </p>
                     <p className="text-gray-400 text-xs pt-2">
@@ -143,7 +167,7 @@ const HealthNews = () => {
         </div>
 
         {/* 사이드 뉴스 목록 */}
-        <div className="rounded-lg col-span-4 border border-gray-200 p-4">
+        <div className="hidden lg:block col-span-12 lg:col-span-4 rounded-lg border border-gray-200 p-4">
           <ul className="space-y-2">
             {currentNews.map((news, index) => (
               <li key={index} className="w-full px-1 py-1">
@@ -155,8 +179,8 @@ const HealthNews = () => {
                   onClick={() => handleNewsClick(news)}
                 >
                   <span className="line-clamp-1">
-                    {news.title.replace(/<\/?b>/g, "").length > 50
-                      ? `${news.title.replace(/<\/?b>/g, "").slice(0, 50)}...`
+                    {news.title.replace(/<\/?b>/g, "").length > truncateLength.title
+                      ? `${news.title.replace(/<\/?b>/g, "").slice(0, truncateLength.title)}...`
                       : news.title.replace(/<\/?b>/g, "")}
                   </span>
                 </a>

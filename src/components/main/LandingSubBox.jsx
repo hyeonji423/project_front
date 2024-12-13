@@ -20,7 +20,7 @@ export default () => {
   return (
     <div className="box-wrapper w-full flex justify-between items-center p-4 bg-white border rounded-md">
       <div className="text-center w-[20%]">
-        <h3 className="text-xl font-semibold">
+        <h3 className="text-base lg:text-xl font-semibold">
           자주 나타나는
           <br />
           증상
@@ -37,8 +37,22 @@ export default () => {
         </div>
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={15}
+          spaceBetween={20}
           slidesPerView={4}
+          breakpoints={{
+            1024: {
+              slidesPerView: 4,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            480: {
+              slidesPerView: 2,
+            },
+            0: {
+              slidesPerView: 1,
+            },
+          }}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
