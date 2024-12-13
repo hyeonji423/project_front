@@ -9,6 +9,7 @@ import {
 import { closeModal } from "../../redux/slices/modalSlice";
 
 // import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -62,10 +63,11 @@ const Modal = () => {
           expDate: value.expDate,
           notificationDate: notificationDate,
           email: user.email,
+          isActive: value.notification,
         };
 
         // 알림 설정 API 호출
-        // await axios.post('/api/notifications', notificationData);
+        await axios.post('http://localhost:8000/email/notifications', notificationData);
       }
 
       if (modalType === "create" && myMediList === null) {
