@@ -484,17 +484,17 @@ const medicines = [
       {
         id: 0,
         name: "바이엘아스피린정500밀리그람",
-        link: "/medicine/1427",
+        mediid: 1427,
       },
       {
         id: 1,
         name: "타이레놀정500밀리그람(아세트아미노펜)",
-        link: "/medicine/34",
+        mediid: 34,
       },
       {
         id: 2,
         name: "부루펜정200밀리그램(이부프로펜)",
-        link: "/medicine/1632",
+        mediid: 1632,
       },
     ],
   },

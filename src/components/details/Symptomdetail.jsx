@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 import {
@@ -16,6 +15,11 @@ const SymptomDetail = () => {
   const params = useParams();
   const { id } = params;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleMediItemClick = (itemId) => {
+    navigate(`/medidetail/${itemId}`);
+  };
 
   useEffect(() => {
     dispatch(fetchGetMediInfoData());
@@ -137,13 +141,13 @@ const SymptomDetail = () => {
           </h3>
           {currentMedicines &&
             currentMedicines.types.map((medicine) => (
-              <Link
-                to={medicine.link}
+              <button
+                onClick={() => handleMediItemClick(medicine.id)}
                 key={medicine.id}
                 className="mb-2 block hover:text-blue-500"
               >
                 - {medicine.name}
-              </Link>
+              </button>
             ))}
         </div>
       </div>
