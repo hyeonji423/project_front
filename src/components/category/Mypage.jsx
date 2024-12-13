@@ -40,7 +40,7 @@ const Mypage = ({ user, onClose, onLogout }) => {
 
         <ul className="space-y-2">
         <Link to="/login" onClick={onClose}>
-          <li className="p-1 hover:bg-gray-100 rounded flex items-center justify-between">
+          <li className="p-1 hover:bg-blue-50 rounded flex items-center justify-between">
             로그인
             <LuLogIn />
           </li>
@@ -64,22 +64,22 @@ const Mypage = ({ user, onClose, onLogout }) => {
 
       <ul className="space-y-2">
         <Link to="/mymedi_list" onClick={onClose}>
-          <li className="p-1 hover:bg-gray-100 rounded">
+          <li className="p-1 hover:bg-blue-50 rounded mb-1">
             약품 관리
           </li>
         </Link>
         <Link to="/newpage" onClick={onClose}>
-          <li className="p-1 hover:bg-gray-100 rounded">
+          <li className="p-1 hover:bg-blue-50 rounded mb-1">
             열람 목록
           </li>
         </Link>
         <Link to="/memberinfo" onClick={onClose}>
-          <li className="p-1 hover:bg-gray-100 rounded">
+          <li className="p-1 hover:bg-blue-50 rounded mb-1">
             회원정보 수정
           </li>
         </Link>
         <Link onClick={handleLogout} to="/">
-          <li className="p-1 hover:bg-gray-100 rounded flex items-center justify-between mt-2">
+          <li className="p-1 hover:bg-blue-50 rounded flex items-center justify-between mb-1">
             로그아웃
             <LuLogOut />
           </li>

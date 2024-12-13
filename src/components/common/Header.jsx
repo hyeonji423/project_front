@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { navItems } from "../../constants/data";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,14 +13,38 @@ const Header = () => {
   // console.log(user);
   const [showMypage, setShowMypage] = useState(false);
 
+  useEffect(() => {
+    console.log('마이페이지 상태:', showMypage);
+  }, [showMypage]);
+
   const handleLogout = () => {
     dispatch(clearToken());
     alert('로그아웃 되었습니다.')
+    setShowMypage(false)
   };
 
   const toggleMypage = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setShowMypage(!showMypage);
+  };
+
+  // 외부 클릭 시 마이페이지 닫기
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showMypage && !event.target.closest('.mypage-container')) {
+        setShowMypage(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showMypage]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   return (
@@ -28,7 +52,7 @@ const Header = () => {
       <div className="container flex justify-between items-center">
         <div className="logo left-0">
           <Link to="/">
-            <img src={mediLogo} alt="메디 로고" className="w-[200px]" />
+            <img src={mediLogo} alt="메디 로고" className="w-[200px]" onClick={scrollToTop} />
           </Link>
         </div>
         <div className="head-all">
@@ -53,7 +77,8 @@ const Header = () => {
                 {showMypage && (
                   <Mypage 
                     user={user}
-                    onClose={() => setShowMypage(false)}
+                    // onClose={() => setShowMypage(false)}
+                    onClose={() => {}}
                     onLogout={handleLogout}
                   />
                 )}
