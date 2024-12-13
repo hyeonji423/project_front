@@ -10,7 +10,7 @@ const AddItem = () => {
     dispatch(openModal({modalType: "create", myMediList: null}));
   }
   return (
-    <div className='add-item w-full mx-auto'>
+    <div className='add-item w-3/5 mx-auto'>
       <div className='flex justify-center'>
         <button className='w-full border shadow-md border-sky-300 bg bg-sky-300 hover:bg-blue-600 hover:border-blue-600 py-4 px-4 flex items-center justify-center' onClick={handleOpenModal}>
           <div className='flex items-center gap-2'>
