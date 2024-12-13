@@ -21,7 +21,8 @@ const Item = ({ myMediList }) => {
     exp_date,
     main_symptom,
     memo,
-    medicine_created_at,
+    created_at,
+    notification,
   } = myMediList;
   // console.log(
   //   user_email,
@@ -32,7 +33,8 @@ const Item = ({ myMediList }) => {
   //   exp_date,
   //   main_symptom,
   //   memo,
-  //   medicine_created_at
+  //   created_at,
+  //   notification
   // );
 
   const dispatch = useDispatch();
@@ -62,6 +64,7 @@ const Item = ({ myMediList }) => {
 
   //   return text;
   // };
+
   const loginData = useSelector((state) => state.login.user);
   const userKey = loginData?.id;
 
@@ -105,9 +108,11 @@ const Item = ({ myMediList }) => {
         <p className="w-[30%] px-1 text-[17px]">대표증상: {main_symptom}</p>
         <div className="exp-date-box w-[30%] flex items-center">
           <p className="px-1 text-[17px]">유효기간: {formatDate(exp_date)}</p>
-          <button>
-            <FaCalendarCheck className="w-4 h-4 text-yellow-300" />
-          </button>
+          { notification && (
+            <button>
+              <FaCalendarCheck className="w-4 h-4 text-yellow-300" />
+            </button>
+          )}
         </div>
         <div className="btn-box w-[12%] flex items-center gap-2">
           <button onClick={handleOpenDetailModal}>

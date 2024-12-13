@@ -66,11 +66,12 @@ export const fetchDeleteMyMediListData = deleteMyMediListFetchThunk(
 // update thunk function 정의
 const updateMyMediListFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (updateData) => {
-    // console.log(updateData);
+    // console.log(updateData , apiURL);
     const options = {
       body: JSON.stringify(updateData), // 표준 json 문자열로 변환
     };
-    return await putRequest(apiURL, options);
+    const fullPath = `${apiURL}/${updateData.mediId}`;
+    return await putRequest(fullPath, options);
   });
 };
 
