@@ -15,14 +15,26 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(clearToken());
-    alert('로그아웃 되었습니다.')
+    alert("로그아웃 되었습니다.");
   };
 
   const toggleMypage = (e) => {
     e.preventDefault();
     setShowMypage(!showMypage);
-  }
+  };
+  const openChatWindow = (e) => {
+    e.preventDefault();
+    const width = 390;
+    const height = 600;
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
 
+    window.open(
+      "/",
+      "chatWindow",
+      `width=${width}, height=${height}, left=${left}, top=${top}`
+    );
+  };
   return (
     <div className="w-full flex justify-center shadow-custom sticky top-0 z-50 bg-white">
       <div className="container flex justify-between items-center">
@@ -49,9 +61,14 @@ const Header = () => {
                 <Link to="/register">회원가입</Link>
               </li>
               <li className="relative">
-                <Link onClick={toggleMypage} className="text-neutral-500 hover:text-black transition-all duration-100">마이페이지</Link>
+                <Link
+                  onClick={toggleMypage}
+                  className="text-neutral-500 hover:text-black transition-all duration-100"
+                >
+                  마이페이지
+                </Link>
                 {showMypage && (
-                  <Mypage 
+                  <Mypage
                     user={user}
                     onClose={() => setShowMypage(false)}
                     onLogout={handleLogout}
@@ -65,9 +82,22 @@ const Header = () => {
             <ul className="flex gap-6 items-center justify-end">
               {navItems.map((item, idx) => (
                 <li key={idx}>
-                  <Link to={item.to} className="hover:text-blue-600 transition-all duration-100">
-                    {item.label}
-                  </Link>
+                  {item.to === "/chat" ? (
+                    <Link
+                      to={item.to}
+                      className="hover:text-blue-600 transition-all duration-100"
+                      onClick={openChatWindow}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <Link
+                      to={item.to}
+                      className="hover:text-blue-600 transition-all duration-100"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

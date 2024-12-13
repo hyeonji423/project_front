@@ -20,6 +20,7 @@ import Pannel from "./components/mymedi/Pannel";
 import Modal from "./components/mymedi/Modal";
 import Item from "./components/mymedi/Item";
 import AddItem from "./components/mymedi/AddItem";
+import Chat from "./components/chat/Chat";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="/" element={<Modal />} />
             <Route path="/" element={<Item />} />
             <Route path="/" element={<AddItem />} />
+            <Route path="/chat" element={<Chat />} />
           </Routes>
 
           <Footer />

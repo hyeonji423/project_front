@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import landingImg from "../../assets/main_landing.jpg";
 import LandingSubBox from "./LandingSubBox";
 import { useNavigate } from "react-router-dom";
+import { summary } from "../../constants/symptomdata";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -9,7 +10,15 @@ const Landing = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/mediinfo?search=${encodeURIComponent(searchTerm)}`);
+    const matchedSymptom = summary.find((symptom) =>
+      symptom.title.includes(searchTerm)
+    );
+
+    if (matchedSymptom) {
+      navigate(`/symptomdetail/${matchedSymptom.id}`);
+    } else {
+      alert("해당 증상을 찾을 수 없습니다.");
+    }
   };
 
   return (
@@ -27,17 +36,6 @@ const Landing = () => {
             <br />
             가정용 약물 정보 및 관리 사이트입니다.
           </p>
-
-          {/* <form class="flex items-center max-w-sm" action='http//localhost:8000/medi_info'>
-            <label for="simple-search" class="sr-only">Search</label>
-            <div class="relative w-full">
-                <input type="text" id="simple-search" class="bg-white text-md block w-full p-2.5 rounded-full" placeholder=" 증상 or 일반의약품 검색" required />
-            </div>
-            <button type="submit" class="p-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
-                <img src={icon} alt="" className='w-[26px]' />
-                <span class="sr-only">Search</span>
-            </button>
-          </form> */}
 
           <form
             className="flex items-center w-full max-w-xl mx-auto"

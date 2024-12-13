@@ -8,7 +8,7 @@ import symptom7 from "../assets/symptom/symptom7.jpg";
 
 // 메인 헤더 카테고리
 export const navItems = [
-  { label: "챗봇", to: "/chatbot" },
+  { label: "챗봇", to: "/chat" },
   { label: "약품정보", to: "/mediinfo" },
   { label: "건강정보", to: "/healthinfo" },
   { label: "건의사항", to: "/service" },
