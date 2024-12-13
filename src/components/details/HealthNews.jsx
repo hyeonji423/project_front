@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux"; // Redux 추가
 
 const HealthNews = () => {
   const [newsList, setNewsList] = useState([]); // 전체 뉴스 목록
   const [error, setError] = useState(null); // 에러 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [newsPerPage] = useState(5); // 한 페이지에 표시할 뉴스 수
+
+  // 로그인한 사용자 정보 가져오기
+  const user = useSelector((state) => state.login.user);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -67,13 +71,29 @@ const HealthNews = () => {
 
   // 뉴스 클릭 시 호출될 함수
   const handleNewsClick = (news) => {
-    // localStorage에 기존 열람 기록 가져오기
-    const viewedNews = JSON.parse(localStorage.getItem("viewedNews") || "[]");
+    if (user) {
+      // 로그인한 사용자의 열람 기록 가져오기
+      const viewedNews = JSON.parse(
+        localStorage.getItem(`viewedNews_${user.userId}`) || "[]"
+      );
 
-    // 중복 체크 후 새로운 기사 추가
-    if (!viewedNews.some((item) => item.link === news.link)) {
-      const updatedNews = [...viewedNews, news];
-      localStorage.setItem("viewedNews", JSON.stringify(updatedNews));
+      // 현재 시간과 함께 뉴스 정보 저장
+      const newsInfo = {
+        ...news,
+        viewedAt: new Date().toISOString(),
+      };
+
+      // 중복 제거 후 최신 항목 추가 (10개 제한 제거)
+      const updatedNews = [
+        newsInfo,
+        ...viewedNews.filter((item) => item.link !== news.link),
+      ];
+
+      // 사용자별 열람 기록 저장
+      localStorage.setItem(
+        `viewedNews_${user.userId}`,
+        JSON.stringify(updatedNews)
+      );
     }
   };
 
@@ -107,7 +127,9 @@ const HealthNews = () => {
                     </h2>
                     <p className="text-gray-600 text-sm">
                       {news.description.replace(/<\/?b>/g, "").length > 100
-                        ? `${news.description.replace(/<\/?b>/g, "").slice(0, 100)}...`
+                        ? `${news.description
+                            .replace(/<\/?b>/g, "")
+                            .slice(0, 100)}...`
                         : news.description.replace(/<\/?b>/g, "")}
                     </p>
                     <p className="text-gray-400 text-xs pt-2">
@@ -124,10 +146,7 @@ const HealthNews = () => {
         <div className="rounded-lg col-span-4 border border-gray-200 p-4">
           <ul className="space-y-2">
             {currentNews.map((news, index) => (
-              <li
-                key={index}
-                className="w-full px-1 py-1"
-              >
+              <li key={index} className="w-full px-1 py-1">
                 <a
                   href={news.link}
                   target="_blank"
