@@ -51,11 +51,17 @@ function MediInfo() {
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleSearch = () => {
-    const filtered = getMediInfoData.filter(
-      (item) =>
-        item.제품명.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.주성분.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filtered = getMediInfoData.filter((item) => {
+      const productName = item.제품명 ? item.제품명.toLowerCase() : "";
+      const mainIngredient = item.주성분 ? item.주성분.toLowerCase() : "";
+      const efficacy = item.효능 ? item.효능.toLowerCase() : "";
+
+      return (
+        productName.includes(searchTerm.toLowerCase()) ||
+        mainIngredient.includes(searchTerm.toLowerCase()) ||
+        efficacy.includes(searchTerm.toLowerCase())
+      );
+    });
     setFilteredData(filtered);
     setCurrentPage(1);
     setCurrentGroup(1);

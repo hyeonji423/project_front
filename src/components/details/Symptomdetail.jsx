@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 import { symptoms, disease, summary } from "../../constants/symptomdata";
 import { symptom } from "../../constants/data";
 
@@ -7,8 +9,22 @@ const SymptomDetail = () => {
   const [activeTab, setActiveTab] = useState(1);
   const params = useParams();
   const { id } = params;
-  const symptomImage = symptom.find((s) => s.id === Number(id))?.image;
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchGetMediInfoData());
+  }, [dispatch]);
+
+  const getMediInfoData = useSelector(
+    (state) => state.medicine.getMediInfoData
+  );
+
+  // 데이터가 로드되지 않았을 때 로딩 상태 표시
+  if (!getMediInfoData || !symptom || !summary || !disease) {
+    return <div>로딩 중...</div>;
+  }
+
+  const symptomImage = symptom.find((s) => s.id === Number(id))?.image;
   const symptomInfo = summary.find((info) => info.id === Number(id));
 
   if (!symptomInfo) {
@@ -16,6 +32,17 @@ const SymptomDetail = () => {
       <div className="text-center py-8">존재하지 않는 증상 정보입니다.</div>
     );
   }
+
+  // 약품 필터링
+  const filteredMediInfo = getMediInfoData
+    .filter((medi) => {
+      if (symptomInfo.title === "미열") {
+        return medi.효능 && medi.효능.includes("해열");
+      }
+      return medi.효능 && medi.효능.includes(symptomInfo.title);
+    })
+    .slice(0, 4); // 최대 4개만 선택
+
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
       <div className="w-[70%] max-w-[1200px] flex flex-col gap-8">
@@ -29,10 +56,8 @@ const SymptomDetail = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        {/* 제목 */}
         <div className="w-[70%] text-2xl font-bold gap-4 ml-8">
           {symptomInfo.title}
-          {/* 증상 */}
           <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-8">
             {symptomInfo.content.map((item, index) => (
               <p key={index} className="leading-relaxed">
@@ -43,7 +68,6 @@ const SymptomDetail = () => {
         </div>
       </div>
 
-      {/* 탭 버튼 */}
       <div className="w-[70%] max-w-[1200px] mt-8">
         <h1 className="text-2xl font-bold mb-4">세부증상</h1>
       </div>
@@ -61,7 +85,6 @@ const SymptomDetail = () => {
         ))}
       </div>
 
-      {/* 세부증상 탭 내용 */}
       <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-b-lg p-6">
         {symptoms[Number(id)].types.map(
           (item) =>
@@ -77,7 +100,6 @@ const SymptomDetail = () => {
         )}
       </div>
 
-      {/* 치료방법 섹션 */}
       <div className="w-[70%] max-w-[1200px] mt-4">
         <h1 className="text-2xl font-bold mb-4">치료방법</h1>
       </div>
@@ -98,12 +120,11 @@ const SymptomDetail = () => {
           <h3 className="text-lg font-bold mt-4 mb-2">
             위 성분이 포함되어 있는 약품
           </h3>
-        </div>
-        <div className="flex flex-col gap-2">
-          <li>1. 레보투스</li>
-          <li>2. 코데날시럽</li>
-          <li>3. 액티피드</li>
-          <li>4. 뮤코졸정</li>
+          {filteredMediInfo.map((medi, index) => (
+            <p key={index} className="mb-2">
+              {medi.name} - {medi.제품명}
+            </p>
+          ))}
         </div>
       </div>
     </div>
