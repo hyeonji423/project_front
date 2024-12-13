@@ -55,6 +55,10 @@ const Header = () => {
             <img src={mediLogo} alt="메디 로고" className="w-[200px]" onClick={scrollToTop} />
           </Link>
         </div>
+        <div onClick={toggleMypage}>aaa</div>
+        {showMypage && (
+          <div className="w-4 h-4 bg-red-500 fixed top-100 left-100 z-50"></div>
+        )}
         <div className="head-all">
           <div className="head-top w-full text-sm info mt-2">
             <ul className="flex gap-6 items-center justify-end">
