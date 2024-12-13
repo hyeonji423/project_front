@@ -22,14 +22,19 @@ const Landing = () => {
   };
 
   return (
-    <div className="relative">
-      <div className="overflow-hidden flex justify-center items-center relative max-h-[600px]">
+    <div className="relative min-w-[320px]">
+      <div className="overflow-hidden flex justify-center items-center relative max-h-[600px] min-h-[300px]">
         <div className="absolute opacity-30 overlay w-full h-full bg-white left-0 top-0"></div>
-        <div className="slogan-box absolute left-[20%] top-[25%] flex flex-col gap-4">
-          <h2 style={{ fontFamily: "LemonMilk" }} className="text-6xl">
+        <div className="slogan-box absolute 
+          left-[20%] 
+          top-[10%]
+          md:top-[20%]
+          lg:top-[25%] 
+          flex flex-col gap-4">
+          <h2 style={{ fontFamily: "LemonMilk" }} className="text-4xl lg:text-6xl">
             MediBook
           </h2>
-          <p className="text-lg tracking-tight">
+          <p className="text-base lg:text-lg tracking-tight">
             약물의 효능, 성분, 부작용을 잘 파악하여 안전한
             <br />
             셀프 메디케이션을 할 수 있도록 돕는
@@ -76,9 +81,19 @@ const Landing = () => {
             </div>
           </form>
         </div>
-        <img src={landingImg} className="w-full" alt="" />
+        <img src={landingImg} className="w-full max-h-[600px] min-h-[300px]" alt="" />
       </div>
-      <div className="bottom-box absolute bottom-[-25%] z-0 w-[60%] left-1/2 transform -translate-x-1/2">
+
+      <div className="bottom-box absolute 
+        bottom-[-50%]
+        sm:bottom-[-40%] 
+        md:bottom-[-30%] 
+        lg:bottom-[-20%] 
+        z-0 w-[90%] 
+        sm:w-[600px] 
+        lg:w-[800px] 
+        xl:w-[1100px] 
+        left-1/2 transform -translate-x-1/2">
         <LandingSubBox />
       </div>
     </div>

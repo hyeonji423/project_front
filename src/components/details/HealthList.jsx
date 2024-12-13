@@ -5,7 +5,7 @@ import HealthInfoDatabase from "../../constants/healthdata";
 const HealthList = () => {
   return (
     <div>
-      <div className="grid grid-cols-3 gap-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {HealthInfoDatabase.map((info, index) => (
           <Link to={`/healthdetail/${info.id}`} key={index}>
             <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow h-[200px] flex flex-col">
