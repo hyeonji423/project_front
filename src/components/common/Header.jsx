@@ -51,8 +51,8 @@ const Header = () => {
           </Link>
         </div>
         <div className="head-all">
-          <div className="head-top w-full text-sm info mt-2">
-            <ul className="flex gap-6 items-center justify-end">
+          <div className="head-top w-full text-xs md:text-sm info mt-2">
+            <ul className="flex gap-4 md:gap-6 items-center justify-end">
               {user !== null ? (
                 <>
                   <li className="text-neutral-500 hover:text-black transition-all duration-100">
