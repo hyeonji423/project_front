@@ -26,15 +26,13 @@ const Landing = () => {
       <div className="overflow-hidden flex justify-center items-center relative max-h-[600px] min-h-[300px]">
         <div className="absolute opacity-30 overlay w-full h-full bg-white left-0 top-0"></div>
         <div className="slogan-box absolute 
-          left-[20%] 
-          top-[10%]
-          md:top-[20%]
-          lg:top-[25%] 
-          flex flex-col gap-4">
-          <h2 style={{ fontFamily: "LemonMilk" }} className="text-4xl lg:text-6xl">
+          left-1/2 transform -translate-x-1/2 
+          lg:left-[20%] lg:transform-none 
+          top-[25%] flex flex-col gap-4">
+          <h2 style={{ fontFamily: "LemonMilk" }} className="text-6xl hidden lg:block">
             MediBook
           </h2>
-          <p className="text-base lg:text-lg tracking-tight">
+          <p className="text-base lg:text-lg tracking-tight hidden lg:block">
             약물의 효능, 성분, 부작용을 잘 파악하여 안전한
             <br />
             셀프 메디케이션을 할 수 있도록 돕는
