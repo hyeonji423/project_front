@@ -39,6 +39,9 @@ const SymptomDetail = () => {
       if (symptomInfo.title === "미열") {
         return medi.효능 && medi.효능.includes("해열");
       }
+      if (symptomInfo.title === "피부발진") {
+        return medi.효능 && medi.효능.includes("피부");
+      }
       return medi.효능 && medi.효능.includes(symptomInfo.title);
     })
     .slice(0, 4); // 최대 4개만 선택
@@ -122,7 +125,7 @@ const SymptomDetail = () => {
           </h3>
           {filteredMediInfo.map((medi, index) => (
             <p key={index} className="mb-2">
-              {medi.name} - {medi.제품명}
+              {medi.제품명}
             </p>
           ))}
         </div>
