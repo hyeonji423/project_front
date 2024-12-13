@@ -40,6 +40,12 @@ function MediInfo() {
     }
   }, [location.search, getMediInfoData]);
 
+  useEffect(() => {
+    if (getMediInfoData && Array.isArray(getMediInfoData)) {
+      setFilteredData(getMediInfoData);
+    }
+  }, [getMediInfoData]);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
@@ -123,17 +129,17 @@ function MediInfo() {
         </section>
         <section>
           <div className="flex flex-col justify-center items-center">
-            {currentItems.length > 0 ? (
-              currentItems.map((item) => (
-                <Mediinfoitem
-                  key={item.아이디}
-                  mediitem={item}
-                  onClick={() => handleMediItemClick(item.아이디)}
-                />
-              ))
-            ) : (
-              <div className="text-center py-4">검색 결과가 없습니다.</div>
-            )}
+            {filteredData.length > 0
+              ? currentItems.map((item) => (
+                  <Mediinfoitem
+                    key={item.아이디}
+                    mediitem={item}
+                    onClick={() => handleMediItemClick(item.아이디)}
+                  />
+                ))
+              : searchTerm && (
+                  <div className="text-center py-4">검색 결과가 없습니다.</div>
+                )}
           </div>
 
           {filteredData.length > itemsPerPage && (
