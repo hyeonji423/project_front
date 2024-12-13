@@ -60,11 +60,11 @@ const Mypage = ({ user, onClose, onLogout }) => {
         <IoClose onClick={onClose} className="cursor-pointer text-xl text-gray-500 hover:text-black" />
       </div>
       
-      <div className="flex flex-col items-center mb-4">
+      <div className="flex flex-col items-center mb-3">
         <div className="w-20 h-20 rounded-full bg-blue-100 my-1 flex justify-center items-center">
           <img src={favi} alt="" className="w-12 h-12" />
         </div>
-        <h3 className="text-lg font-bold mt-2">{user?.email}</h3>
+        <h3 className="text-base font-bold mt-4">{user?.email}</h3>
       </div>
       
       <span className="mb-4 border-b-2 border-blue-200 w-3/5 block mx-auto"></span>
