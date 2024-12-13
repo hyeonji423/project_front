@@ -8,15 +8,12 @@ import {
 } from "../../redux/slices/myMediSlice";
 import { closeModal } from "../../redux/slices/modalSlice";
 
-// import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 
 const Modal = () => {
   const dispatch = useDispatch();
   const { modalType, myMediList, isOpen } = useSelector((state) => state.modal);
-  // const navigator = useNavigate();
-  const user = useSelector((state) => state.login.user);
   // console.log(modalType, myMediList, isOpen);
+  const user = useSelector((state) => state.login.user);
 
   const [value, setValue] = useState({
     mediName: "",
@@ -52,24 +49,6 @@ const Modal = () => {
     }
 
     try {
-      if (value.notification) {
-        const expDate = new Date(value.expDate);
-        const notificationDate = new Date(expDate);
-        notificationDate.setDate(notificationDate.getDate() - 7);
-
-        const notificationData = {
-          userId: user.id,
-          mediName: value.mediName,
-          expDate: value.expDate,
-          notificationDate: notificationDate,
-          email: user.email,
-          isActive: value.notification,
-        };
-
-        // 알림 설정 API 호출
-        await axios.post('http://localhost:8000/email/notifications', notificationData);
-      }
-
       if (modalType === "create" && myMediList === null) {
         await dispatch(fetchPostMyMediData(value)).unwrap();
         alert("등록되었습니다.");
