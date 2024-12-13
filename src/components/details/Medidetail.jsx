@@ -61,7 +61,7 @@ function Medidetail() {
             name: selectedMedicine.제품명,
             main_ingredient: selectedMedicine.주성분,
             efficacy: selectedMedicine.효능,
-            image: selectedMedicine.이미지URL || "/default-medicine-image.png",
+            image: selectedMedicine.이미지URL || "/defaul t-medicine-image.png",
             viewedAt: new Date().toISOString(),
           };
 
