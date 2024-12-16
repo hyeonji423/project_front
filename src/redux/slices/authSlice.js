@@ -3,8 +3,10 @@ import {
   POST_AUTH_API_URL,
   POST_LOGIN_API_URL,
   POST_EMAIL_VERIFICATION_API_URL,
+  UPDATE_AUTH_API_URL,
+  DELETE_AUTH_API_URL,
 } from "../../utils/apiUrl";
-import { postRequest } from "../../utils/requestMethods";
+import { postRequest, putRequest, deleteRequest } from "../../utils/requestMethods";
 
 // 회원가입 요청
 const postAuthFetchThunk = (actionType, apiURL) => {
@@ -74,6 +76,34 @@ export const fetchPostLoginData = postLoginThunk(
   "fetchPostLogin", // action type
   POST_LOGIN_API_URL // 요청 url
 );
+
+// 회원정보 수정 요청
+const updateAuthFetchThunk = (actionType, apiURL) => {
+  return createAsyncThunk(actionType, async (updateData) => {
+    // console.log(updateData , apiURL);
+    const options = {
+      body: JSON.stringify(updateData), // 표준 json 문자열로 변환
+    };
+    const fullPath = `${apiURL}/${updateData.mediId}`;
+    return await putRequest(fullPath, options);
+  });
+};
+
+// update_item
+export const fetchUpdateAuthData = updateAuthFetchThunk(
+  "fetchUpdateAuth",
+  UPDATE_AUTH_API_URL
+);
+
+
+
+
+
+// 회원정보 삭제 요청
+
+
+
+
 
 // handleFulfilled 함수 정의 : 요청 성공 시 상태 업데이트 로직을 별도의 함수로 분리
 const handleFulfilled = (stateKey) => (state, action) => {
