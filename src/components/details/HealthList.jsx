@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import HealthInfoDatabase from "../../constants/healthdata";
 
 const HealthList = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
+
+  // 현재 페이지의 게시물 계산
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = HealthInfoDatabase.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
+
+  // 전체 페이지 수 계산
+  const totalPages = Math.ceil(HealthInfoDatabase.length / postsPerPage);
+
+  // 페이지 변경 핸들러
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {HealthInfoDatabase.map((info, index) => (
+        {currentPosts.map((info, index) => (
           <Link to={`/healthdetail/${info.id}`} key={index}>
             <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow h-[200px] flex flex-col">
               <h3 className="font-bold">{info.title.substring(0, 18)}...</h3>
@@ -32,6 +51,23 @@ const HealthList = () => {
               )}
             </div>
           </Link>
+        ))}
+      </div>
+
+      {/* 페이지네이션 UI */}
+      <div className="flex justify-center mt-8 gap-2">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+          <button
+            key={pageNum}
+            onClick={() => handlePageChange(pageNum)}
+            className={`px-4 py-2 rounded ${
+              currentPage === pageNum
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 hover:bg-gray-300"
+            }`}
+          >
+            {pageNum}
+          </button>
         ))}
       </div>
     </div>
