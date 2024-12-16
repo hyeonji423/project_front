@@ -1,10 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { POST_AUTH_API_URL, POST_LOGIN_API_URL } from '../../utils/apiUrl'
-import { postRequest } from '../../utils/requestMethods'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { POST_AUTH_API_URL, POST_LOGIN_API_URL, POST_EMAIL_VERIFICATION_API_URL } from "../../utils/apiUrl";
+import { postRequest } from "../../utils/requestMethods";
 
-
-
-const postAuthFetchThunk = (actionType, apiURL)=>{
+// 회원가입 요청
+const postAuthFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (postData, { rejectWithValue }) => {
     // console.log(postData);
     try {
@@ -15,21 +14,40 @@ const postAuthFetchThunk = (actionType, apiURL)=>{
       };
       const response = await postRequest(apiURL, options);
       return response; // { status, data } 형태로 반환
-    }
-    catch (error) {
+    } catch (error) {
       // 에러 시 상태 코드와 메시지를 포함한 값을 rejectWithValue로 전달
       return rejectWithValue(error);
     }
   });
-}
+};
 
 export const fetchPostAuthData = postAuthFetchThunk(
-  'fetchPostAuth', // action type
+  "fetchPostAuth", // action type
   POST_AUTH_API_URL // 요청 url
-)
+);
 
+// 이메일 인증 요청
+const postEmailVerificationFetchThunk = (actionType, apiURL) => {
+  return createAsyncThunk(actionType, async (email, { rejectWithValue }) => {
+    try {
+      const options = {
+        body: JSON.stringify({ email }),
+      };
+      const response = await postRequest(apiURL, options);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  });
+};
 
-const postLoginThunk = (actionType, apiURL)=>{
+export const fetchPostEmailVerificationData = postEmailVerificationFetchThunk(
+  "fetchPostEmailVerification", // action type
+  POST_EMAIL_VERIFICATION_API_URL // 요청 url
+);
+
+// 로그인 요청
+const postLoginThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async (postData, { rejectWithValue }) => {
     // console.log(postData);
     try {
@@ -40,19 +58,17 @@ const postLoginThunk = (actionType, apiURL)=>{
       };
       const response = await postRequest(apiURL, options);
       return response; // { status, data } 형태로 반환
-    }
-    catch (error) {
+    } catch (error) {
       // 에러 시 상태 코드와 메시지를 포함한 값을 rejectWithValue로 전달
       return rejectWithValue(error);
     }
   });
-}
+};
 
 export const fetchPostLoginData = postLoginThunk(
-  'fetchPostLogin', // action type
+  "fetchPostLogin", // action type
   POST_LOGIN_API_URL // 요청 url
-)
-
+);
 
 // handleFulfilled 함수 정의 : 요청 성공 시 상태 업데이트 로직을 별도의 함수로 분리
 const handleFulfilled = (stateKey) => (state, action) => {
@@ -63,27 +79,43 @@ const handleFulfilled = (stateKey) => (state, action) => {
 const handleRejected = (state, action) => {
   // console.log('Error', action.payload);
   state.isError = true;
-  state.errorMessage = action.payload?.msg || "Something went wrong"
+  state.errorMessage = action.payload?.msg || "Something went wrong";
 };
 
-
 const authSlice = createSlice({
-  name: 'auth', // slice 기능 이름
+  name: "auth", // slice 기능 이름
   initialState: {
     // 초기 상태 지정
     postAuthData: null,
     postLoginData: null,
+    verificationCode: null,
+    isEmailVerified: false,
+    isError: false,
+    errorMessage: null,
   },
-  
-  extraReducers: (builder)=>{
+  reducers: {
+    verifyEmail: (state, action) => {
+      if (state.verificationCode === action.payload) {
+        state.isEmailVerified = true;
+      }
+    },
+  },
+
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchPostAuthData.fulfilled, handleFulfilled('postAuthData'))
+      .addCase(fetchPostAuthData.fulfilled, handleFulfilled("postAuthData"))
       .addCase(fetchPostAuthData.rejected, handleRejected)
 
-      .addCase(fetchPostLoginData.fulfilled, handleFulfilled('postLoginData'))
+      .addCase(fetchPostLoginData.fulfilled, handleFulfilled("postLoginData"))
       .addCase(fetchPostLoginData.rejected, handleRejected)
-  }
-})  // slice 객체 저장
+
+      .addCase(fetchPostEmailVerificationData.fulfilled, handleFulfilled("verificationCode"))
+      .addCase(fetchPostEmailVerificationData.rejected, handleRejected);
 
 
+
+  },
+}); // slice 객체 저장
+
+export const { verifyEmail } = authSlice.actions;
 export default authSlice.reducer;
