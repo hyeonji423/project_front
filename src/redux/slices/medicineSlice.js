@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { GET_MEDI_INFO_API_URL } from "../../utils/apiUrl";
 import { getRequest } from "../../utils/requestMethods";
+import axios from "axios";
+
 // get thunk function 정의
 const getMediInfoFetchThunk = (actionType, apiURL) => {
   return createAsyncThunk(actionType, async () => {
@@ -24,11 +26,21 @@ const handleRejected = (state, action) => {
   state.isError = true;
   state.errorMessage = action.payload?.msg || "Something went wrong";
 };
+
+export const fetchMediInfoById = createAsyncThunk(
+  "medicine/fetchMediInfoById",
+  async (id) => {
+    const response = await axios.get(`/api/mediinfo/${id}`);
+    return response.data;
+  }
+);
+
 const medicineSlice = createSlice({
   name: "medicine", // slice 기능 이름
   initialState: {
     // 초기 상태 지정
     getMediInfoData: null,
+    selectedMediInfo: null, // 새로운 상태 추가
   },
   extraReducers: (builder) => {
     builder
@@ -36,7 +48,10 @@ const medicineSlice = createSlice({
         fetchGetMediInfoData.fulfilled,
         handleFulfilled("getMediInfoData")
       )
-      .addCase(fetchGetMediInfoData.rejected, handleRejected);
+      .addCase(fetchGetMediInfoData.rejected, handleRejected)
+      .addCase(fetchMediInfoById.fulfilled, (state, action) => {
+        state.selectedMediInfo = action.payload; // 특정 제품 데이터 저장
+      });
   },
 }); // slice 객체 저장
 export default medicineSlice.reducer;
