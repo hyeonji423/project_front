@@ -105,9 +105,9 @@ const NewPage = () => {
   ];
 
   return (
-    <div className="w-full h-full flex justify-center items-center mb-32">
-      <div className=" flex justify-center items-center w-[70%] h-full m-4">
-        <div className="w-[70%] h-[79vh] rounded-md ml-10">
+    <div className="w-full min-h-screen pb-8 flex justify-center items-start">
+      <div className="flex justify-center items-start w-[70%] h-full m-4">
+        <div className="w-[70%] rounded-md ml-10">
           <div>
             <div className="flex bg-white last:border-b border-gray-300">
               {tabs.map((tab, index) => (
