@@ -97,8 +97,8 @@ const Item = ({ myMediList }) => {
   };
 
   return (
-    <div className="item w-3/5 mx-auto ">
-      <div className="w-full shadow-md border py-3 px-7 flex items-center gap-4">
+    <div className="item w-4/5 mx-auto ">
+      <div className="w-full shadow-md border py-6 px-7 flex items-center gap-4 rounded-lg">
         <div className="w-[8%] flex items-center">
           <img src={favi} alt="list" className="w-6 h-6" />
         </div>

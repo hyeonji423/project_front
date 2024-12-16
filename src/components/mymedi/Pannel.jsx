@@ -36,26 +36,17 @@ const Pannel = () => {
 
   return (
     <div className="w-full flex justify-center items-center py-10">
-      <div className="panel lg:w-4/5 h-full border py-5 px-4 overflow-y-auto">
+      <div className="panel rounded-lg w-full lg:w-4/5 h-full border py-10 overflow-y-auto">
         {userKey ? (
           <div className="panel-wrapper w-full h-full flex flex-col items-center">
             {isOpen && <Modal />}
-            <div className="w-1/3 flex-col justify-center items-center px-3 py-2 mb-4 gap-4">
-              <h2 className="text-[20px] font-semibold flex justify-center">나의 약 목록</h2>
-              <span className="border-b-2 border-blue-300 w-3/4 block mx-auto"></span>
-              <button
-                className="text-sm py-1 px-3 border border-neutral-500 rounded-md cursor-pointer mb-1 sm:block md:hidden xl:hidden"
-                onClick={handleOpenModal}
-              >
-                목록 추가
-              </button>
-            </div>
+              <h2 className="text-4xl mb-4 font-semibold">나의 약 목록</h2>
 
-            <div className="items w-full flex flex-wrap gap-4">
+            <div className="items w-full flex flex-wrap flex-col gap-4">
               {getMyMediList?.length > 0 ? (
                 getMyMediList.map((item) => <Item key={item.created_at} myMediList={item} />)
               ) : (
-                <p>등록된 약이 없습니다.</p>
+                <p className="flex justify-center items-center text-gray-400 py-10">등록된 약이 없습니다.</p>
               )}
               <AddItem />
             </div>
