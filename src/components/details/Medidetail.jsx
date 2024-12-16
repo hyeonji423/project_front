@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
+import {
+  fetchGetMediInfoData,
+  fetchMediInfoById,
+} from "../../redux/slices/medicineSlice";
 
 function Medidetail() {
   const { id } = useParams();
@@ -25,7 +28,7 @@ function Medidetail() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        await dispatch(fetchGetMediInfoData());
+        await dispatch(fetchMediInfoById(id));
         setIsLoading(false);
       } catch (err) {
         setError(err.message);
@@ -33,7 +36,7 @@ function Medidetail() {
       }
     };
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (getMediInfoData && Array.isArray(getMediInfoData)) {
