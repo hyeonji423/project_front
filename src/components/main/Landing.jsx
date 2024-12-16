@@ -15,9 +15,9 @@ const Landing = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const searchResults = useSelector(
-    (state) => state.medicine.searchMediInfoData
-  );
+  // const searchResults = useSelector(
+  //   (state) => state.medicine.searchMediInfoData
+  // );
   // const getMediInfoData = useSelector(
   //   (state) => state.medicine.getMediInfoData
   // );
@@ -57,7 +57,8 @@ const Landing = () => {
       setSearchTerm(""); // 검색어 초기화
 
       if (result && result.length > 0) {
-        navigate(`/medidetail/${result[0].아이디}`);
+        // 검색 결과가 있을 경우 MediInfo 페이지로 이동
+        navigate(`/mediinfo?search=${encodeURIComponent(searchTerm)}`);
       } else {
         alert("검색 결과가 없습니다.");
       }
