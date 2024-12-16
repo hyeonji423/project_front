@@ -140,13 +140,13 @@ const SymptomDetail = () => {
             위 성분이 포함되어 있는 약품
           </h3>
           {currentMedicines &&
-            currentMedicines.types.map((medicine) => (
+            currentMedicines.types.map((medicines) => (
               <button
-                onClick={() => handleMediItemClick(medicine.id)}
-                key={medicine.id}
+                onClick={() => handleMediItemClick(medicines.mediid)}
+                key={medicines.mediid}
                 className="mb-2 block hover:text-blue-500"
               >
-                - {medicine.name}
+                - {medicines.name}
               </button>
             ))}
         </div>
