@@ -5,6 +5,7 @@ import LandingSubBox from "./LandingSubBox";
 import { useNavigate } from "react-router-dom";
 import { summary } from "../../constants/symptomdata";
 import {
+  clearSearchResults,
   fetchGetMediInfoData,
   fetchSearchMediInfoData,
 } from "../../redux/slices/medicineSlice";
@@ -35,22 +36,28 @@ const Landing = () => {
     }
 
     try {
+      // 검색 전에 이전 검색 결과를 초기화
+      await dispatch(clearSearchResults());
+
       // 증상 데이터 검색
       const matchedSymptom = summary.find((symptom) =>
         symptom.title.includes(searchTerm)
       );
 
       if (matchedSymptom) {
+        setSearchTerm(""); // 검색어 초기화
         navigate(`/symptomdetail/${matchedSymptom.id}`);
         return;
       }
 
       // 약품 검색
-      await dispatch(fetchSearchMediInfoData(searchTerm)).unwrap();
+      const result = await dispatch(
+        fetchSearchMediInfoData(searchTerm)
+      ).unwrap();
+      setSearchTerm(""); // 검색어 초기화
 
-      if (searchResults && searchResults.length > 0) {
-        // 검색 결과가 있으면 첫 번째 결과의 상세 페이지로 이동
-        navigate(`/medidetail/${searchResults[0].아이디}`);
+      if (result && result.length > 0) {
+        navigate(`/medidetail/${result[0].아이디}`);
       } else {
         alert("검색 결과가 없습니다.");
       }
