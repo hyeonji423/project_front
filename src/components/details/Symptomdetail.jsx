@@ -96,7 +96,9 @@ const SymptomDetail = () => {
             key={item.id}
             onClick={() => setActiveTab(item.id)}
             className={`flex-1 py-3 text-center ${
-              activeTab === item.id ? "bg-blue-500 text-white" : "bg-gray-50"
+              activeTab === item.id
+                ? "bg-blue-500 text-white"
+                : "bg-gray-50 hover:bg-gray-200 hover:text-black"
             }`}
           >
             {item.id}. {item.title}
