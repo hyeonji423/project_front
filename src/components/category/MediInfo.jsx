@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 import Mediinfoitem from "../details/Mediinfoitem";
@@ -20,8 +20,33 @@ function MediInfo() {
 
   useEffect(() => {
     dispatch(fetchGetMediInfoData());
+    setCurrentPage(1);
+    setCurrentGroup(1);
+    setSearchTerm("");
+    setFilteredData(getMediInfoData || []);
   }, [dispatch]);
 
+  // getMediInfoData가 변경될 때 필터된 데이터 업데이트
+  useEffect(() => {
+    if (getMediInfoData && Array.isArray(getMediInfoData)) {
+      setFilteredData(getMediInfoData);
+      setCurrentPage(1);
+      setCurrentGroup(1);
+    }
+  }, [getMediInfoData]);
+
+  // 라우트 변경 감지
+  useEffect(() => {
+    window.scrollTo(0, 0); // 페이지 최상단으로 스크롤
+    setCurrentPage(1);
+    setCurrentGroup(1);
+    setSearchTerm("");
+    if (getMediInfoData) {
+      setFilteredData(getMediInfoData);
+    }
+  }, [location.pathname, getMediInfoData]);
+
+  // 기존 검색 쿼리 처리 useEffect는 그대로 유지
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get("search");
@@ -46,10 +71,12 @@ function MediInfo() {
     }
   }, [getMediInfoData]);
 
+  // 페이지네이션 처리
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
+  // 검색 처리
   const handleSearch = () => {
     const filtered = getMediInfoData.filter((item) => {
       const productName = item.제품명 ? item.제품명.toLowerCase() : "";
@@ -65,16 +92,19 @@ function MediInfo() {
     setCurrentGroup(1);
   };
 
+  // 엔터 검색 처리
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearch();
     }
   };
 
+  // 약품 상세 페이지 이동
   const handleMediItemClick = (itemId) => {
     navigate(`/medidetail/${itemId}`);
   };
 
+  // 페이지네이션 처리
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const totalGroups = Math.ceil(totalPages / pagesPerGroup);
 
@@ -84,10 +114,12 @@ function MediInfo() {
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   };
 
+  // 페이지 변경 처리
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // 이전 그룹 처리
   const handlePrevGroup = () => {
     if (currentGroup > 1) {
       setCurrentGroup(currentGroup - 1);
@@ -95,6 +127,7 @@ function MediInfo() {
     }
   };
 
+  // 다음 그룹 처리
   const handleNextGroup = () => {
     if (currentGroup < totalGroups) {
       setCurrentGroup(currentGroup + 1);
@@ -102,6 +135,7 @@ function MediInfo() {
     }
   };
 
+  // 데이터 없을 때 로딩 중 표시
   if (getMediInfoData && Array.isArray(getMediInfoData)) {
   }
 
@@ -111,26 +145,62 @@ function MediInfo() {
 
   return (
     <div className="mx-auto p-4 max-w-4xl">
-      <main className="mt-4">
-        <section className="border p-2 mb-2">
-          <h2 className="text-lg font-semibold mb-2">약품 및 성분명 검색</h2>
-          <div className="flex space-x-2 mb-2">
-            <input
-              type="text"
-              placeholder="SearchBar"
-              className="border p-2 flex-grow"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={handleKeyPress}
-            />
-            <button
-              onClick={handleSearch}
-              className="border p-2 hover:bg-gray-100"
+      <main className="mt-16">
+        {/* 검색 컴포넌트 */}
+        <div className="relative">
+          <span className="absolute z-20 -top-6 block bg-sky-100 p-4 w-[30%] rounded-lg"></span>
+          <span className="absolute z-10 -top-5 left-8 block bg-sky-200 p-4 w-[30%] rounded-lg"></span>
+          <section className="bg-sky-100 p-4 px-8 rounded-md relative z-30">
+            <Link 
+              to="/mediinfo" 
+              className="text-3xl font-semibold"
+              onClick={() => {
+                setCurrentPage(1);
+                setCurrentGroup(1);
+                setSearchTerm("");
+                setFilteredData(getMediInfoData || []);
+              }}
             >
-              검색
-            </button>
-          </div>
-        </section>
+              약품 및 성분 검색
+            </Link>
+            <div className="relative w-full flex items-center bg-white rounded-md shadow-sm mt-3">
+              <div className="absolute left-4">
+                <svg
+                  className="w-6 h-6 text-blue-300"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                className="w-full py-3 px-12 text-md text-gray-900 rounded-full outline-none"
+                placeholder="일반의약품 or 성분명 검색"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyPress={handleKeyPress}
+                required
+              />
+              <button
+                onClick={handleSearch}
+                className="absolute right-2 px-4 py-[6px] text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Search
+              </button>
+            </div>
+          </section>
+        </div>
+
+        {/* 약품 리스트 컴포넌트 */}
         <section>
           <div className="flex flex-col justify-center items-center">
             {filteredData.length > 0
@@ -145,7 +215,8 @@ function MediInfo() {
                   <div className="text-center py-4">검색 결과가 없습니다.</div>
                 )}
           </div>
-
+                
+          {/* 페이지네이션 컴포넌트 */}
           {filteredData.length > itemsPerPage && (
             <div className="flex justify-center mt-4 space-x-2">
               {currentGroup > 1 && (
