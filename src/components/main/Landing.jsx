@@ -4,46 +4,58 @@ import landingImg from "../../assets/main_landing.jpg";
 import LandingSubBox from "./LandingSubBox";
 import { useNavigate } from "react-router-dom";
 import { summary } from "../../constants/symptomdata";
-import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
+import {
+  fetchGetMediInfoData,
+  fetchSearchMediInfoData,
+} from "../../redux/slices/medicineSlice";
 
 const Landing = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
-  const getMediInfoData = useSelector(
-    (state) => state.medicine.getMediInfoData
+  const searchResults = useSelector(
+    (state) => state.medicine.searchMediInfoData
   );
+  // const getMediInfoData = useSelector(
+  //   (state) => state.medicine.getMediInfoData
+  // );
 
   useEffect(() => {
     dispatch(fetchGetMediInfoData());
   }, [dispatch]);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
 
-    if (!summary || !getMediInfoData) {
-      alert("데이터를 불러오는 중 오류가 발생했습니다.");
+    if (!searchTerm.trim()) {
+      alert("검색어를 입력해주세요.");
       return;
     }
 
-    const matchedSymptom = summary.find((symptom) =>
-      symptom.title.includes(searchTerm)
-    );
-    const matchedMedicine = getMediInfoData.find((medicine) =>
-      medicine.제품명.includes(searchTerm)
-    );
+    try {
+      // 증상 데이터 검색
+      const matchedSymptom = summary.find((symptom) =>
+        symptom.title.includes(searchTerm)
+      );
 
-    if (matchedSymptom) {
-      navigate(`/symptomdetail/${matchedSymptom.id}`);
-      return;
+      if (matchedSymptom) {
+        navigate(`/symptomdetail/${matchedSymptom.id}`);
+        return;
+      }
+
+      // 약품 검색
+      await dispatch(fetchSearchMediInfoData(searchTerm)).unwrap();
+
+      if (searchResults && searchResults.length > 0) {
+        // 검색 결과가 있으면 첫 번째 결과의 상세 페이지로 이동
+        navigate(`/medidetail/${searchResults[0].아이디}`);
+      } else {
+        alert("검색 결과가 없습니다.");
+      }
+    } catch (error) {
+      console.error("검색 오류:", error);
+      alert("검색 중 오류가 발생했습니다.");
     }
-
-    if (matchedMedicine) {
-      navigate(`/medidetail/${matchedMedicine.아이디}`);
-      return;
-    }
-
-    alert("해당 증상이나 제품을 찾을 수 없습니다.");
   };
 
   return (
@@ -76,21 +88,7 @@ const Landing = () => {
           >
             <div className="relative w-full flex items-center bg-white rounded-md shadow-sm">
               <div className="absolute left-4">
-                <svg
-                  className="w-6 h-6 text-blue-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
+                <svg className="w-6 h-6 text-blue-300" /* ... */ />
               </div>
               <input
                 type="search"

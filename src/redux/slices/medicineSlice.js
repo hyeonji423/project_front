@@ -1,7 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_MEDI_INFO_API_URL } from "../../utils/apiUrl";
+import { GET_MEDI_INFO_API_URL, SEARCH_MEDI_INFO_API_URL } from "../../utils/apiUrl";
 import { getRequest } from "../../utils/requestMethods";
 import axios from "axios";
+
+// 약품정보 검색
+const searchMediInfoFetchThunk = (actionType, apiURL) => {
+  return createAsyncThunk(actionType, async (term) => {
+    const fullPath = `${apiURL}?term=${term}`;
+    return await getRequest(fullPath);
+  });
+};
+
+export const fetchSearchMediInfoData = searchMediInfoFetchThunk(
+  "searchMediInfo", // action type
+  SEARCH_MEDI_INFO_API_URL
+); // thunk 함수 호출
 
 // get thunk function 정의
 const getMediInfoFetchThunk = (actionType, apiURL) => {
@@ -41,6 +54,7 @@ const medicineSlice = createSlice({
     // 초기 상태 지정
     getMediInfoData: null,
     selectedMediInfo: null, // 새로운 상태 추가
+    searchMediInfoData: null,
   },
   extraReducers: (builder) => {
     builder
@@ -49,9 +63,11 @@ const medicineSlice = createSlice({
         handleFulfilled("getMediInfoData")
       )
       .addCase(fetchGetMediInfoData.rejected, handleRejected)
-      .addCase(fetchMediInfoById.fulfilled, (state, action) => {
-        state.selectedMediInfo = action.payload; // 특정 제품 데이터 저장
-      });
+      
+      .addCase(fetchSearchMediInfoData.fulfilled, (state, action) => {
+        state.searchMediInfoData = action.payload; // 특정 제품 데이터 저장
+      })
+      .addCase(fetchSearchMediInfoData.rejected, handleRejected);
   },
 }); // slice 객체 저장
 export default medicineSlice.reducer;

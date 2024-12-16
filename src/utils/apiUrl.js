@@ -9,6 +9,7 @@ const DELETE_MY_MEDI_LIST_API_URL = `${rootPath}/myPage/delete_myMediList`;
 const UPDATE_MY_MEDI_LIST_API_URL = `${rootPath}/myPage/update_myMediList`;
 const GET_MEDI_INFO_API_URL = `${rootPath}/medicine/info`;
 const POST_EMAIL_VERIFICATION_API_URL = `${rootPath}/auth/emailVerification`;
+const SEARCH_MEDI_INFO_API_URL = `${rootPath}/medicine/search`;
 
 export {
   POST_AUTH_API_URL,
@@ -19,4 +20,5 @@ export {
   UPDATE_MY_MEDI_LIST_API_URL,
   GET_MEDI_INFO_API_URL,
   POST_EMAIL_VERIFICATION_API_URL,
+  SEARCH_MEDI_INFO_API_URL,
 };
