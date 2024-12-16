@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 const NewPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
-  const [medicinePage, setMedicinePage] = useState(1);
-  const [newsPage, setNewsPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentGroup, setCurrentGroup] = useState(1);
+  const itemsPerPage = 5;
+  const pagesPerGroup = 10;
+  const user = useSelector((state) => state.login.user);
   const [viewedNews, setViewedNews] = useState([]);
   const [viewedMedicines, setViewedMedicines] = useState([]);
-  const itemsPerPage = 5;
-  const user = useSelector((state) => state.login.user);
 
   useEffect(() => {
     if (user) {
@@ -49,47 +50,68 @@ const NewPage = () => {
     );
   }
 
-  const getPaginatedData = (data, currentPage) => {
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    return {
-      currentItems: data.slice(indexOfFirstItem, indexOfLastItem),
-      totalPages: Math.ceil(data.length / itemsPerPage),
-    };
+  const totalPages = Math.ceil(
+    (activeTab === 0 ? viewedMedicines : viewedNews).length / itemsPerPage
+  );
+  const totalGroups = Math.ceil(totalPages / pagesPerGroup);
+
+  const getPageNumbers = () => {
+    const start = (currentGroup - 1) * pagesPerGroup + 1;
+    const end = Math.min(start + pagesPerGroup - 1, totalPages);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   };
 
-  const handleMedicinePageChange = (pageNumber) => setMedicinePage(pageNumber);
-  const handleNewsPageChange = (pageNumber) => setNewsPage(pageNumber);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-  const PaginationControls = ({ currentPage, totalPages, onPageChange }) => (
-    <div className="flex justify-center gap-2 mt-4">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="px-3 py-1 border rounded disabled:opacity-50"
-      >
-        이전
-      </button>
+  const handlePrevGroup = () => {
+    if (currentGroup > 1) {
+      setCurrentGroup(currentGroup - 1);
+      setCurrentPage((currentGroup - 2) * pagesPerGroup + 1);
+    }
+  };
 
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
+  const handleNextGroup = () => {
+    if (currentGroup < totalGroups) {
+      setCurrentGroup(currentGroup + 1);
+      setCurrentPage(currentGroup * pagesPerGroup + 1);
+    }
+  };
+
+  const PaginationControls = () => (
+    <div className="flex justify-center mt-4 space-x-2">
+      {currentGroup > 1 && (
+        <button
+          onClick={handlePrevGroup}
+          className="px-3 py-1 border rounded hover:bg-gray-100"
+        >
+          &lt;
+        </button>
+      )}
+
+      {getPageNumbers().map((number) => (
         <button
           key={number}
-          onClick={() => onPageChange(number)}
+          onClick={() => handlePageChange(number)}
           className={`px-3 py-1 border rounded ${
-            currentPage === number ? "bg-blue-500 text-white" : ""
+            currentPage === number
+              ? "bg-blue-500 text-white"
+              : "bg-white text-black hover:bg-gray-100"
           }`}
         >
           {number}
         </button>
       ))}
 
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="px-3 py-1 border rounded disabled:opacity-50"
-      >
-        다음
-      </button>
+      {currentGroup < totalGroups && (
+        <button
+          onClick={handleNextGroup}
+          className="px-3 py-1 border rounded hover:bg-gray-100"
+        >
+          &gt;
+        </button>
+      )}
     </div>
   );
 
@@ -136,41 +158,38 @@ const NewPage = () => {
                   {viewedMedicines.length > 0 ? (
                     <>
                       <div className="grid gap-4">
-                        {getPaginatedData(
-                          viewedMedicines,
-                          medicinePage
-                        ).currentItems.map((item) => (
-                          <div
-                            key={item.id}
-                            className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                            onClick={() => navigate(`/medidetail/${item.id}`)}
-                          >
-                            <div className="flex items-center gap-4">
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="w-16 h-16 object-cover"
-                              />
-                              <div>
-                                <h3 className="font-bold">{item.name}</h3>
-                                <p className="text-sm text-gray-600">
-                                  {item.main_ingredient}
-                                </p>
-                                <p className="text-sm mt-2">{item.efficacy}</p>
+                        {viewedMedicines
+                          .slice(
+                            (currentPage - 1) * itemsPerPage,
+                            currentPage * itemsPerPage
+                          )
+                          .map((item) => (
+                            <div
+                              key={item.id}
+                              className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                              onClick={() => navigate(`/medidetail/${item.id}`)}
+                            >
+                              <div className="flex items-center gap-4">
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="w-16 h-16 object-cover"
+                                />
+                                <div>
+                                  <h3 className="font-bold">{item.name}</h3>
+                                  <p className="text-sm text-gray-600">
+                                    {item.main_ingredient}
+                                  </p>
+                                  <p className="text-sm mt-2">
+                                    {item.efficacy}
+                                  </p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
                       </div>
 
-                      <PaginationControls
-                        currentPage={medicinePage}
-                        totalPages={
-                          getPaginatedData(viewedMedicines, medicinePage)
-                            .totalPages
-                        }
-                        onPageChange={handleMedicinePageChange}
-                      />
+                      <PaginationControls />
                     </>
                   ) : (
                     <div className="text-center py-8">
@@ -184,38 +203,34 @@ const NewPage = () => {
                   {viewedNews.length > 0 ? (
                     <>
                       <div className="grid gap-4">
-                        {getPaginatedData(
-                          viewedNews,
-                          newsPage
-                        ).currentItems.map((news, index) => (
-                          <div
-                            key={index}
-                            className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow"
-                          >
-                            <a
-                              href={news.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 font-semibold"
+                        {viewedNews
+                          .slice(
+                            (currentPage - 1) * itemsPerPage,
+                            currentPage * itemsPerPage
+                          )
+                          .map((news, index) => (
+                            <div
+                              key={index}
+                              className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow"
                             >
-                              {news.title.replace(/<\/?b>/g, "")}
-                            </a>
-                            <p className="text-gray-600 text-sm mt-2">
-                              {new Date(news.pubDate).toLocaleDateString(
-                                "ko-KR"
-                              )}
-                            </p>
-                          </div>
-                        ))}
+                              <a
+                                href={news.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:text-blue-800 font-semibold"
+                              >
+                                {news.title.replace(/<\/?b>/g, "")}
+                              </a>
+                              <p className="text-gray-600 text-sm mt-2">
+                                {new Date(news.pubDate).toLocaleDateString(
+                                  "ko-KR"
+                                )}
+                              </p>
+                            </div>
+                          ))}
                       </div>
 
-                      <PaginationControls
-                        currentPage={newsPage}
-                        totalPages={
-                          getPaginatedData(viewedNews, newsPage).totalPages
-                        }
-                        onPageChange={handleNewsPageChange}
-                      />
+                      <PaginationControls />
                     </>
                   ) : (
                     <div className="text-center py-8">
