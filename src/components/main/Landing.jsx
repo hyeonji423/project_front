@@ -12,6 +12,7 @@ import {
 const Landing = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const searchResults = useSelector(
     (state) => state.medicine.searchMediInfoData
@@ -21,7 +22,8 @@ const Landing = () => {
   // );
 
   useEffect(() => {
-    dispatch(fetchGetMediInfoData());
+    setLoading(true); // 데이터 로딩 시작
+    dispatch(fetchGetMediInfoData()).finally(() => setLoading(false));
   }, [dispatch]);
 
   const handleSearch = async (e) => {
@@ -60,6 +62,8 @@ const Landing = () => {
 
   return (
     <div className="relative min-w-[320px]">
+      {loading && <div className="loading-spinner">Loading...</div>}{" "}
+      {/* 로딩 스피너 추가 */}
       <div className="overflow-hidden flex justify-center items-center relative max-h-[600px] min-h-[300px]">
         <div className="absolute opacity-30 overlay w-full h-full bg-white left-0 top-0"></div>
         <div
@@ -113,7 +117,6 @@ const Landing = () => {
           alt=""
         />
       </div>
-
       <div
         className="bottom-box absolute 
         bottom-[-50%]

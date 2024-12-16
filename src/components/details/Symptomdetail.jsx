@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
+// import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 import {
   symptoms,
   disease,
@@ -21,16 +21,16 @@ const SymptomDetail = () => {
     navigate(`/medidetail/${itemId}`);
   };
 
-  useEffect(() => {
-    dispatch(fetchGetMediInfoData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchGetMediInfoData());
+  // }, [dispatch]);
 
-  const getMediInfoData = useSelector(
-    (state) => state.medicine.getMediInfoData
-  );
+  // const getMediInfoData = useSelector(
+  //   (state) => state.medicine.getMediInfoData
+  // );
 
-  // 데이터가 로드되지 않았을 때 로딩 상태 표시
-  if (!getMediInfoData || !symptom || !summary || !disease) {
+  // 데이터가 로드되지 않았을 때 로딩 상태 표시 !getMediInfoData ||
+  if (!symptom || !summary || !disease) {
     return <div>로딩 중...</div>;
   }
 
@@ -44,17 +44,17 @@ const SymptomDetail = () => {
   }
 
   // 약품 필터링
-  const filteredMediInfo = getMediInfoData
-    .filter((medi) => {
-      if (symptomInfo.title === "미열") {
-        return medi.효능 && medi.효능.includes("해열");
-      }
-      if (symptomInfo.title === "피부발진") {
-        return medi.효능 && medi.효능.includes("피부");
-      }
-      return medi.효능 && medi.효능.includes(symptomInfo.title);
-    })
-    .slice(0, 4); // 최대 4개만 선택
+  // const filteredMediInfo = getMediInfoData
+  //   .filter((medi) => {
+  //     if (symptomInfo.title === "미열") {
+  //       return medi.효능 && medi.효능.includes("해열");
+  //     }
+  //     if (symptomInfo.title === "피부발진") {
+  //       return medi.효능 && medi.효능.includes("피부");
+  //     }
+  //     return medi.효능 && medi.효능.includes(symptomInfo.title);
+  //   })
+  //   .slice(0, 4); // 최대 4개만 선택
 
   // medicines에서 현재 증상에 해당하는 약품 찾기
   const currentMedicines = medicines.find(
