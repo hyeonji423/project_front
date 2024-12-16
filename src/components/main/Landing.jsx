@@ -1,35 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import landingImg from "../../assets/main_landing.jpg";
 import LandingSubBox from "./LandingSubBox";
 import { useNavigate } from "react-router-dom";
 import { summary } from "../../constants/symptomdata";
+import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 
 const Landing = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
+  const getMediInfoData = useSelector(
+    (state) => state.medicine.getMediInfoData
+  );
+
+  useEffect(() => {
+    dispatch(fetchGetMediInfoData());
+  }, [dispatch]);
 
   const handleSearch = (e) => {
     e.preventDefault();
+
+    if (!summary || !getMediInfoData) {
+      alert("데이터를 불러오는 중 오류가 발생했습니다.");
+      return;
+    }
+
     const matchedSymptom = summary.find((symptom) =>
       symptom.title.includes(searchTerm)
+    );
+    const matchedMedicine = getMediInfoData.find((medicine) =>
+      medicine.제품명.includes(searchTerm)
     );
 
     if (matchedSymptom) {
       navigate(`/symptomdetail/${matchedSymptom.id}`);
-    } else {
-      alert("해당 증상을 찾을 수 없습니다.");
+      return;
     }
+
+    if (matchedMedicine) {
+      navigate(`/medidetail/${matchedMedicine.아이디}`);
+      return;
+    }
+
+    alert("해당 증상이나 제품을 찾을 수 없습니다.");
   };
 
   return (
     <div className="relative min-w-[320px]">
       <div className="overflow-hidden flex justify-center items-center relative max-h-[600px] min-h-[300px]">
         <div className="absolute opacity-30 overlay w-full h-full bg-white left-0 top-0"></div>
-        <div className="slogan-box absolute 
+        <div
+          className="slogan-box absolute 
           left-1/2 transform -translate-x-1/2 
           lg:left-[20%] lg:transform-none 
-          top-[25%] flex flex-col gap-4">
-          <h2 style={{ fontFamily: "LemonMilk" }} className="text-6xl hidden lg:block">
+          top-[25%] flex flex-col gap-4"
+        >
+          <h2
+            style={{ fontFamily: "LemonMilk" }}
+            className="text-6xl hidden lg:block"
+          >
             MediBook
           </h2>
           <p className="text-base lg:text-lg tracking-tight hidden lg:block">
@@ -79,10 +109,15 @@ const Landing = () => {
             </div>
           </form>
         </div>
-        <img src={landingImg} className="w-full max-h-[600px] min-h-[300px]" alt="" />
+        <img
+          src={landingImg}
+          className="w-full max-h-[600px] min-h-[300px]"
+          alt=""
+        />
       </div>
 
-      <div className="bottom-box absolute 
+      <div
+        className="bottom-box absolute 
         bottom-[-50%]
         sm:bottom-[-40%] 
         md:bottom-[-30%] 
@@ -91,7 +126,8 @@ const Landing = () => {
         sm:w-[600px] 
         lg:w-[800px] 
         xl:w-[1100px] 
-        left-1/2 transform -translate-x-1/2">
+        left-1/2 transform -translate-x-1/2"
+      >
         <LandingSubBox />
       </div>
     </div>
