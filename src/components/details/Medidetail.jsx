@@ -18,6 +18,7 @@ function Medidetail() {
     사용법: "",
     부작용: "",
     이미지URL: "",
+    약음식주의사항: "",
   });
   const user = useSelector((state) => state.login.user);
 
@@ -47,8 +48,10 @@ function Medidetail() {
           효능: selectedMedicine.효능,
           사용법: selectedMedicine.사용법,
           부작용: selectedMedicine.이상반응,
+          업체명: selectedMedicine.업체명,
           이미지URL:
             selectedMedicine.이미지URL || "/default-medicine-image.png",
+          약음식주의사항: selectedMedicine.약음식주의사항,
         });
 
         if (user) {
@@ -62,6 +65,8 @@ function Medidetail() {
             main_ingredient: selectedMedicine.주성분,
             efficacy: selectedMedicine.효능,
             image: selectedMedicine.이미지URL || "/defaul t-medicine-image.png",
+            caution: selectedMedicine.약음식주의사항,
+            company: selectedMedicine.업체명,
             viewedAt: new Date().toISOString(),
           };
 
@@ -91,37 +96,53 @@ function Medidetail() {
   }
 
   return (
-    <div className="flex w-full justify-center my-12 bg-white">
-      <div className="container">
-        <div className="wrapper medi_detail flex flex-col gap-5">
-          <div className="img-name-ingre-box flex gap-4">
-            <div className="img-box border border-slate-500 w-[150px] h-[150px]">
-              <img
-                src={medicineData.이미지URL}
-                alt={medicineData.제품명}
-                onError={(e) => {
-                  e.target.src = "/default-medicine-image.png";
-                  e.target.onerror = null;
-                }}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="name-ingre-box flex flex-col">
-              <p className="description">제품명</p>
-              <p className="medi-name p-2 text-xl">{medicineData.제품명}</p>
-              <p className="description">주성분</p>
-              <p className="ingre p-2 text-md">{medicineData.주성분}</p>
-            </div>
+    <div className="w-full flex flex-col justify-center items-center py-8">
+      <div className="w-[70%] max-w-[1200px] flex flex-col gap-8">
+        <h1 className="text-3xl font-bold mb-8">의약품 상세정보</h1>
+      </div>
+      
+      <div className="flex w-[70%] max-w-[1200px]">
+        <div className="border border-gray-200 rounded-lg p-4 mb-8">
+          <img
+            src={medicineData.이미지URL}
+            onError={(e) => {
+              // e.target.src = "/default-medicine-image.png";
+              // e.target.onerror = null;
+            }}
+            // alt={medicineData.제품명}
+            className="w-[200px] h-[200px] object-cover"
+          />
+        </div>
+        <div className="w-[70%] text-3xl font-bold mb-2 ml-8">
+          {medicineData.제품명}
+          <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-4">
+            <p className="text-gray-400 text-sm">업체명: {medicineData.업체명}</p>
           </div>
-          <div className="medi-detail flex flex-col gap-4">
-            <p className="description">효능</p>
-            <p>{medicineData.효능}</p>
-            <p className="description">사용법</p>
-            <p>{medicineData.사용법}</p>
-            <p className="description">부작용</p>
-            <p>{medicineData.부작용}</p>
-            <p className="description">추가 정보</p>
-          </div>
+          <span className="block border-b my-6 border-gray-300 w-4/5"></span>
+          <h2 className="text-2xl text-blue-600 font-bold mb-2">주성분</h2>
+          <p className="text-sm font-thin">{medicineData.주성분}</p>
+        </div>
+      </div>
+      
+      <div className="w-[70%] max-w-[1200px]">
+        <div className="p-6">
+          <h2 className="text-2xl text-blue-600 font-bold mb-3">효능</h2>
+          <p className="leading-relaxed">{medicineData.효능}</p>
+        </div>
+        
+        <div className="p-6">
+          <h2 className="text-2xl text-blue-600 font-bold mb-3">사용법</h2>
+          <p className="leading-relaxed">{medicineData.사용법}</p>
+        </div>
+        
+        <div className="p-6">
+          <h2 className="text-2xl text-blue-600 font-bold mb-3">부작용</h2>
+          <p className="leading-relaxed">{medicineData.부작용}</p>
+        </div>
+
+        <div className="p-6">
+          <h2 className="text-2xl text-blue-600 font-bold mb-3">약음식 주의사항</h2>
+          <p className="leading-relaxed">{medicineData.약음식주의사항}</p>
         </div>
       </div>
     </div>
