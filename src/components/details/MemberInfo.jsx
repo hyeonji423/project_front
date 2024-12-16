@@ -122,8 +122,21 @@ const Register = () => {
             </label>
             <input type="date" className="w-full px-3 py-2 border" name="birth_date" onChange={handleChange} />
           </div>
-          {/* <input type="file" name="profile_img" onChange={handleFileChange} /> */}
-          <button className="btn w-full h-12" type="submit">수정 완료하기</button>
+
+          <div className="flex justify-between items-center gap-2 my-6">
+            <button
+              className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200"
+              type="submit"
+              // disabled={isSubmitDisabled}
+            >
+              수정하기
+            </button>
+            <Link to="/" className="w-full h-12">
+              <button className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200">
+                회원탈퇴
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>

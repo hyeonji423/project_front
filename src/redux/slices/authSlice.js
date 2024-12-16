@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { POST_AUTH_API_URL, POST_LOGIN_API_URL, POST_EMAIL_VERIFICATION_API_URL } from "../../utils/apiUrl";
+import {
+  POST_AUTH_API_URL,
+  POST_LOGIN_API_URL,
+  POST_EMAIL_VERIFICATION_API_URL,
+} from "../../utils/apiUrl";
 import { postRequest } from "../../utils/requestMethods";
 
 // 회원가입 요청
@@ -34,9 +38,10 @@ const postEmailVerificationFetchThunk = (actionType, apiURL) => {
         body: JSON.stringify({ email }),
       };
       const response = await postRequest(apiURL, options);
+      console.log("서버응답:", response);
       return response;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || "알 수 없는 오류");
     }
   });
 };
@@ -95,9 +100,13 @@ const authSlice = createSlice({
   },
   reducers: {
     verifyEmail: (state, action) => {
-      if (state.verificationCode === action.payload) {
-        state.isEmailVerified = true;
-      }
+      // if (state.verificationCode === action.payload.data.verificationCode) {
+      state.isEmailVerified = true;
+      // }
+    },
+    resetAuthState: (state) => {
+      state.verificationCode = null;
+      state.isEmailVerified = false;
     },
   },
 
@@ -109,13 +118,12 @@ const authSlice = createSlice({
       .addCase(fetchPostLoginData.fulfilled, handleFulfilled("postLoginData"))
       .addCase(fetchPostLoginData.rejected, handleRejected)
 
-      .addCase(fetchPostEmailVerificationData.fulfilled, handleFulfilled("verificationCode"))
+      .addCase(fetchPostEmailVerificationData.fulfilled, (state, action) => {
+        state.verificationCode = action.payload;
+      })
       .addCase(fetchPostEmailVerificationData.rejected, handleRejected);
-
-
-
   },
 }); // slice 객체 저장
 
-export const { verifyEmail } = authSlice.actions;
+export const { verifyEmail, resetAuthState } = authSlice.actions;
 export default authSlice.reducer;

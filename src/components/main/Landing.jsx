@@ -9,20 +9,22 @@ import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 const Landing = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const getMediInfoData = useSelector(
     (state) => state.medicine.getMediInfoData
   );
 
   useEffect(() => {
-    dispatch(fetchGetMediInfoData());
+    setLoading(true); // 데이터 로딩 시작
+    dispatch(fetchGetMediInfoData()).finally(() => setLoading(false));
   }, [dispatch]);
 
   const handleSearch = (e) => {
     e.preventDefault();
 
     if (!summary || !getMediInfoData) {
-      alert("데이터를 불러오는 중 오류가 발생했습니다.");
+      alert("다시 한번 시도 해 주세요.");
       return;
     }
 
@@ -48,6 +50,8 @@ const Landing = () => {
 
   return (
     <div className="relative min-w-[320px]">
+      {loading && <div className="loading-spinner">Loading...</div>}{" "}
+      {/* 로딩 스피너 추가 */}
       <div className="overflow-hidden flex justify-center items-center relative max-h-[600px] min-h-[300px]">
         <div className="absolute opacity-30 overlay w-full h-full bg-white left-0 top-0"></div>
         <div
@@ -85,9 +89,9 @@ const Landing = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                   />
                 </svg>
@@ -115,7 +119,6 @@ const Landing = () => {
           alt=""
         />
       </div>
-
       <div
         className="bottom-box absolute 
         bottom-[-50%]

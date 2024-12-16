@@ -132,7 +132,7 @@ export async function getRequest(url) {
     }
 
     const data = await response.json();
-    console.log("응답 데이터:", data); // 데이터 확인용 로그
+    // console.log("응답 데이터:", data); // 데이터 확인용 로그
     return data;
   } catch (error) {
     console.error("요청 처리 중 오류 발생:", error);
