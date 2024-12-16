@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   fetchPostAuthData,
   fetchPostEmailVerificationData,
+  resetAuthState,
   verifyEmail,
 } from "../../redux/slices/authSlice";
 import mediLogo from "../../assets/medi_logo.png";
@@ -11,7 +12,11 @@ import mediLogo from "../../assets/medi_logo.png";
 const Register = () => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
-  const { isEmailVerified, verificationCode } = useSelector((state) => state.auth);
+  const { verificationCode, isEmailVerified } = useSelector(
+    (state) => state.auth
+  );
+  console.log("verificationCode", verificationCode);
+  console.log("isEmailVerified", isEmailVerified);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,6 +25,11 @@ const Register = () => {
       navigator("/");
     }
   }, [navigator]);
+
+  // 새로운 useEffect 추가 - 컴포넌트 언마운트 시 인증 상태 초기화
+  // useEffect(() => {
+  //   console.log("isEmailVerified", isEmailVerified);
+  // }, [isEmailVerified]);
 
   const [value, setValue] = useState({
     email: "",
@@ -36,7 +46,10 @@ const Register = () => {
       return;
     }
     try {
-      await dispatch(fetchPostEmailVerificationData(value.email)).unwrap();
+      const result = await dispatch(
+        fetchPostEmailVerificationData(value.email)
+      ).unwrap();
+      console.log("이메일 인증 응답:", result); // 디버깅용
       alert("인증 코드가 발송되었습니다.");
     } catch (error) {
       alert("인증 코드 발송 실패");
@@ -45,8 +58,13 @@ const Register = () => {
 
   // 인증 코드 확인
   const handleVerifyCode = () => {
-    if (userInputCode === verificationCode) {
-      dispatch(verifyEmail(userInputCode));
+    console.log("서버 인증코드", verificationCode.data.verificationCode);
+    console.log("유저 인증코드", userInputCode);
+
+    if (userInputCode === verificationCode.data.verificationCode) {
+      // dispatch(verifyEmail({ data: { verificationCode: userInputCode } }));
+      dispatch(verifyEmail());
+
       alert("이메일 인증이 완료되었습니다.");
     } else {
       alert("인증코드가 일치하지 않습니다.");
@@ -67,6 +85,13 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // 쿼리가 잡히지 않게(경로 표시X)
+
+    // 이메일 인증 확인
+    if (!isEmailVerified) {
+      alert("이메일 인증이 필요합니다.");
+      return;
+    }
+    console.log("이메일 인증 확인", isEmailVerified);
 
     if (
       value.email === "" ||
@@ -99,7 +124,7 @@ const Register = () => {
     try {
       const response = await dispatch(fetchPostAuthData(data)).unwrap();
       // console.log(response);
-      if (response.status === 201) {
+      if (response.status === 200) {
         alert(response.data.msg);
         navigator("/login");
         return;
@@ -112,6 +137,9 @@ const Register = () => {
       alert(error.msg);
     }
   };
+
+  // 가입하기 버튼 비활성화 조건
+  // const isSubmitDisabled = !isEmailVerified;
 
   return (
     <div className="flex flex-col justify-center items-center h-auto mb-16">
@@ -230,6 +258,7 @@ const Register = () => {
             <button
               className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200"
               type="submit"
+              // disabled={isSubmitDisabled}
             >
               가입 하기
             </button>
