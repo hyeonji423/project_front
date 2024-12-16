@@ -13,7 +13,6 @@ const Header = () => {
   const user = useSelector((state) => state.login.user);
   // console.log(user);
   const [showMypage, setShowMypage] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -29,6 +28,7 @@ const Header = () => {
     e.preventDefault();
     setShowMypage(!showMypage);
   };
+  
   const openChatWindow = (e) => {
     e.preventDefault();
     const width = 390;
@@ -107,6 +107,17 @@ const Header = () => {
                       className="hover:text-blue-600 transition-all duration-100 block w-full"
                       onClick={(e) => {
                         openChatWindow(e);
+                        setIsMobileMenuOpen(false);
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : item.to === "/mediinfo" ? (
+                    <Link
+                      to={item.to}
+                      className="hover:text-blue-600 transition-all duration-100 block w-full"
+                      onClick={() => {
+                        window.location.href = "/mediinfo";
                         setIsMobileMenuOpen(false);
                       }}
                     >
