@@ -5,9 +5,6 @@ import {
   
   fetchGetMediInfoByIdData,
 } from "../../redux/slices/medicineSlice";
-import { Tooltip } from '@mui/material';
-import { IconButton } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function Medidetail() {
   const { id } = useParams();
@@ -49,7 +46,7 @@ function Medidetail() {
         사용법: medicineInfo.사용법,
         부작용: medicineInfo.이상반응,
         업체명: medicineInfo.업체명,
-        image_url: medicineInfo.image_url || "/default-medicine-image.png",
+        image_url: medicineInfo.image_url || "/mediImage/default_image.png",
         약음식주의사항: medicineInfo.약음식주의사항,
       });
     }
@@ -76,12 +73,12 @@ function Medidetail() {
         <div className="border border-gray-200 rounded-lg mb-4 shadow-sm">
           <img
             // src="/mediImage/게보린정.jpg"
-            src={medicineData.image_url}
+            src={medicineData.image_url}            
             onError={(e) => {
-              // e.target.src = "/default-medicine-image.png";
-              // e.target.onerror = null;
+              e.target.src = "/mediImage/default_image.png";
+              e.target.onerror = null;
             }}
-            // alt={medicineData.제품명}
+            alt={medicineData.제품명}
             className="w-[300px] h-[300px] object-cover"
           />
         </div>
