@@ -38,6 +38,11 @@ a {
   color: inherit;
 }
 
+button {
+  cursor: pointer !important;
+}
+
+
 /* Common Font Style */
 
 /* Common Button Style */
