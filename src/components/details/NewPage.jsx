@@ -129,7 +129,7 @@ const NewPage = () => {
   return (
     <div className="w-full min-h-screen pb-8 flex justify-center items-start">
       <div className="flex justify-center items-start w-[90%] h-full m-4">
-        <div className="w-[70%] rounded-md ml-10">
+        <div className="w-[80%] rounded-md ml-10">
           <div>
             <div className="flex bg-white border-gray-300">
               {tabs.map((tab, index) => (
@@ -139,7 +139,7 @@ const NewPage = () => {
                   ${
                     activeTab === index
                       ? "bg-blue-500 text-white border-blue-500"
-                      : "bg-gray-200 hover:bg-blue-600 hover:text-white"
+                      : "hover:bg-gray-200"
                   }`}
                   onClick={() => setActiveTab(index)}
                 >
@@ -149,7 +149,7 @@ const NewPage = () => {
             </div>
 
             <div className="p-4 border rounded-b-md ">
-              <h2 className="text-xl font-semibold mb-4">
+              <h2 className="text-2xl m-4 font-semibold mb-4">
                 {tabs[activeTab].content}
               </h2>
               {/* 탭 내용에 따른 컴포넌트 렌더링 */}
@@ -192,7 +192,7 @@ const NewPage = () => {
                       <PaginationControls />
                     </>
                   ) : (
-                    <div className="text-center py-8">
+                    <div className="text-center py-8 text-gray-400">
                       <p>열람한 약품이 없습니다.</p>
                     </div>
                   )}
@@ -217,7 +217,7 @@ const NewPage = () => {
                                 href={news.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-800 font-semibold"
+                                className="text-blue-600 hover:text-blue-800 font-semibold text-lg"
                               >
                                 {news.title.replace(/<\/?b>/g, "")}
                               </a>
@@ -233,7 +233,7 @@ const NewPage = () => {
                       <PaginationControls />
                     </>
                   ) : (
-                    <div className="text-center py-8">
+                    <div className="text-center py-8 text-gray-400">
                       <p>열람한 뉴스가 없습니다.</p>
                     </div>
                   )}
