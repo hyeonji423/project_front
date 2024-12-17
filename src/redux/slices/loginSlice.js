@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { jwtDecode } from '../../utils/jwtDecode'
+import { fetchDeleteAuthData } from './authSlice'
 
 const initialToken = localStorage.getItem('token')
 const initialState = {
@@ -21,6 +22,17 @@ const loginSlice = createSlice({
       state.user = null
       localStorage.removeItem('token')
     },
+  },
+  extraReducers: (builder) => {
+    // 회원탈퇴 성공 시 로그인 상태 초기화
+    builder.addCase(fetchDeleteAuthData.fulfilled, (state) => {
+      state.token = null
+      state.user = null
+      localStorage.removeItem('token')
+      // 열람 기록 삭제
+      localStorage.removeItem(`viewedMedicines_${state.user?.userId}`);
+      localStorage.removeItem(`viewedNews_${state.user?.userId}`);
+    })
   }
 })
 

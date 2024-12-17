@@ -1,21 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { fetchUpdateAuthData } from "../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
+import {
+  fetchDeleteAuthData,
+  fetchUpdateAuthData,
+} from "../../redux/slices/authSlice";
 import mediLogo from "../../assets/medi_logo.png";
+import { clearToken } from "../../redux/slices/loginSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
-
   const user = useSelector((state) => state.login.user);
   console.log(user);
+
+  // user가 null일 때 로그인 페이지로 리다이렉트
+  useEffect(() => {
+    if (!user) {
+      navigator('/login');
+      return;
+    }
+  }, [user, navigator]);
+
   const [value, setValue] = useState({
-    email: user.email,
+    email: "",
     password: "",
     birth_date: "",
     confirm_password: "",
   });
+
+    // user 정보가 있을 때 value 업데이트
+    useEffect(() => {
+      if (user) {
+        setValue(prev => ({
+          ...prev,
+          email: user.email
+        }));
+      }
+    }, [user]);
+  
+    // user가 null이면 early return
+    if (!user) {
+      return null;
+    }
 
   // const [file, setFile] = useState(null);
 
@@ -26,9 +53,21 @@ const Register = () => {
     });
   };
 
-  // const handleFileChange = (e) => {
-  //   setFile(e.target.files[0]);
-  // };
+  const handleWithdrawal = async () => {
+    if (window.confirm("정말로 탈퇴하시겠습니까?")) {
+      try {
+        const response = await dispatch(fetchDeleteAuthData(user.id)).unwrap();
+        if (response && response.msg) {
+          dispatch(clearToken());
+
+          alert(response.msg);
+          navigator("/login");
+        }
+      } catch (error) {
+        alert(error.msg || "회원탈퇴 중 오류가 발생했습니다.");
+      }
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // 쿼리가 잡히지 않게(경로 표시X)
@@ -46,42 +85,24 @@ const Register = () => {
       return;
     }
 
-    // const handleWithdrawal = async () => {
-    //   if (window.confirm("정말로 탈퇴하시겠습니까?")) {
-    //     try {
-    //       // API 호출 예시
-    //       const response = await dispatch(fetchDeleteUser(user.id)).unwrap();
-    //       if (response.success) {
-    //         alert("회원탈퇴가 완료되었습니다.");
-    //         navigator("/login");
-    //       }
-    //     } catch (error) {
-    //       alert("회원탈퇴 중 오류가 발생했습니다.");
-    //     }
-    //   }
-    // };
-
     const data = {
       email: value.email,
       password: value.password,
       birth_date: value.birth_date,
       id: user.id,
     };
-    
+
     try {
       const response = await dispatch(fetchUpdateAuthData(data)).unwrap();
-      console.log(response);
-      if (response.status === 201) {
-        alert(response.data.msg);
+      if (response && response.msg) {
+        // response.msg 확인
+        alert(response.msg);
         navigator("/login");
-        return;
-      }
-      if (response.data.success === false) {
-        alert(response.data.msg);
-        return;
+      } else {
+        alert("회원정보 수정에 실패했습니다.");
       }
     } catch (error) {
-      alert(error.msg);
+      alert(error.msg || "회원정보 수정 중 오류가 발생했습니다.");
     }
   };
 
@@ -167,7 +188,7 @@ const Register = () => {
             <button
               className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200"
               type="button"
-              // onClick={handleWithdrawal}
+              onClick={handleWithdrawal}
             >
               회원탈퇴
             </button>

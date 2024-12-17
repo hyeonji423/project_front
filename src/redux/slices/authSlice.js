@@ -89,20 +89,28 @@ const updateAuthFetchThunk = (actionType, apiURL) => {
   });
 };
 
-// update_item
 export const fetchUpdateAuthData = updateAuthFetchThunk(
   "fetchUpdateAuth",
   UPDATE_AUTH_API_URL
 );
 
-
-
-
-
 // 회원정보 삭제 요청
+const deleteAuthFetchThunk = (actionType, apiURL) => {
+  return createAsyncThunk(actionType, async (id) => {
+    console.log("삭제 요청 URL:", `${apiURL}/${id}`);
+    console.log("삭제할 ID:", id);
+    const options = {
+      method: "DELETE",
+    };
+    const fullPath = `${apiURL}/${id}`;
+    return await deleteRequest(fullPath, options);
+  });
+};
 
-
-
+export const fetchDeleteAuthData = deleteAuthFetchThunk(
+  "fetchDeleteAuth",
+  DELETE_AUTH_API_URL
+);
 
 
 // handleFulfilled 함수 정의 : 요청 성공 시 상태 업데이트 로직을 별도의 함수로 분리
@@ -127,6 +135,7 @@ const authSlice = createSlice({
     isEmailVerified: false,
     isError: false,
     errorMessage: null,
+    deleteAuthData: null,
   },
   reducers: {
     verifyEmail: (state, action) => {
@@ -137,6 +146,11 @@ const authSlice = createSlice({
     resetAuthState: (state) => {
       state.verificationCode = null;
       state.isEmailVerified = false;
+    },
+    cancelMembership: (state) => {
+      state.postLoginData = null;
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
     },
   },
 
@@ -151,9 +165,15 @@ const authSlice = createSlice({
       .addCase(fetchPostEmailVerificationData.fulfilled, (state, action) => {
         state.verificationCode = action.payload;
       })
-      .addCase(fetchPostEmailVerificationData.rejected, handleRejected);
+      .addCase(fetchPostEmailVerificationData.rejected, handleRejected)
+
+      .addCase(fetchDeleteAuthData.fulfilled, (state, action) => {
+        state.deleteAuthData = action.payload;
+        state.postLoginData = null;
+      })
+      .addCase(fetchDeleteAuthData.rejected, handleRejected);
   },
 }); // slice 객체 저장
 
-export const { verifyEmail, resetAuthState } = authSlice.actions;
+export const { verifyEmail, resetAuthState, cancelMembership } = authSlice.actions;
 export default authSlice.reducer;
