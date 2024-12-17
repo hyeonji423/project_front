@@ -207,8 +207,8 @@ function MediInfo() {
         {/* 약품 리스트 컴포넌트 */}
         <section>
           <div className="flex flex-col justify-center items-center">
-            {filteredData.length > 0
-              ? filteredData.map((item) => (
+            {currentItems.length > 0
+              ? currentItems.map((item) => (
                   <Mediinfoitem
                     key={item.아이디}
                     mediitem={item}
