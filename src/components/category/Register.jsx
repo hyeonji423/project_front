@@ -26,10 +26,12 @@ const Register = () => {
     }
   }, [navigator]);
 
-  // 새로운 useEffect 추가 - 컴포넌트 언마운트 시 인증 상태 초기화
-  // useEffect(() => {
-  //   console.log("isEmailVerified", isEmailVerified);
-  // }, [isEmailVerified]);
+  // 컴포넌트 마운트/언마운트 시 인증 상태 초기화
+  useEffect(() => {
+    return () => {
+      dispatch(resetAuthState());
+    };
+  }, [dispatch]);
 
   const [value, setValue] = useState({
     email: "",
@@ -164,7 +166,7 @@ const Register = () => {
           <div className="mb-5">
             <label
               htmlFor="email"
-              className="block text-neutral-700 text-lg mb-1"
+              className="block text-neutral-700 text-lg"
             >
               이메일
             </label>
@@ -210,7 +212,7 @@ const Register = () => {
             </div>
           )}
 
-          <div className="mb-1">
+          <div className="mb-2">
             <label
               htmlFor="password"
               className="block text-neutral-700 text-lg mb-1"
@@ -225,7 +227,7 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-1">
+          <div className="mb-2">
             <label
               htmlFor="confirmPassword"
               className="block text-neutral-700 text-lg mb-1"
@@ -240,7 +242,7 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-1">
+          <div className="mb-2">
             <label
               htmlFor="birth_date"
               className="block text-neutral-700 text-lg mb-1"
