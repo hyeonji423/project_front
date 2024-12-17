@@ -9,6 +9,7 @@ import {
   fetchGetMyMediListData,
 } from "../../redux/slices/myMediSlice";
 import { openModal } from "../../redux/slices/modalSlice";
+import { Tooltip } from '@mui/material';
 
 const Item = ({ myMediList }) => {
   // console.log(myMediList);
@@ -97,33 +98,44 @@ const Item = ({ myMediList }) => {
   };
 
   return (
-    <div className="item w-4/5 mx-auto ">
-      <div className="w-full shadow-md border py-6 px-7 flex items-center gap-4 rounded-lg">
-        <div className="w-[8%] flex items-center">
+    <div className="item w-4/5 mx-auto">
+      <div className="w-full shadow-md border py-6 px-7 flex flex-wrap lg:flex-nowrap justify-between items-center gap-4 rounded-lg">
+        <div className="w-[calc(50%-1.5rem)] lg:w-[20%] flex order-1 items-center gap-3">
           <img src={favi} alt="list" className="w-6 h-6" />
+          <div className="title-box px-3 py-1">
+            <h2 className="item-title text-xl font-semibold">{medi_name}</h2>
+          </div>
         </div>
-        <div className="title-box w-[20%] px-3 py-1 flex">
-          <h2 className="item-title text-xl font-semibold">{medi_name}</h2>
-        </div>
-        <p className="w-[30%] px-1 text-[17px]">대표증상: {main_symptom}</p>
-        <div className="exp-date-box w-[30%] flex items-center">
-          <p className="px-1 text-[17px]">유효기간: {formatDate(exp_date)}</p>
+        
+        <p className="lg:order-2 hidden lg:block w-[30%] px-1 text-[17px]">대표증상: {main_symptom}</p>
+        
+        <div className="exp-date-box w-full lg:w-[35%] flex order-3 lg:order-2 items-center justify-center">
           { notification && (
-            <button>
-              <FaCalendarCheck className="w-4 h-4 text-yellow-300" />
-            </button>
+            <Tooltip title="알림설정" arrow placement="top">
+              <div>
+                <FaCalendarCheck className="w-5 h-5 text-yellow-300" />
+              </div>
+            </Tooltip>
           )}
+          <p className="px-1 text-[17px]">유효기간: {formatDate(exp_date)}</p>
         </div>
-        <div className="btn-box w-[12%] flex items-center gap-2">
-          <button onClick={handleOpenDetailModal}>
-            <BiSolidMessageAltDetail className="w-6 h-6 text-blue-600" />
-          </button>
-          <button onClick={handleOpenUpdateModal}>
-            <MdEditDocument className="w-6 h-6 text-sky-300" />
-          </button>
-          <button className="delete text-gray-700" onClick={handleDeleteItem}>
-            <MdDelete className="w-6 h-6" />
-          </button>
+        
+        <div className="btn-box w-[50%] lg:w-[12%] flex order-2 lg:order-3 items-center justify-center gap-2">
+          <Tooltip title="자세히" arrow placement="top">
+            <button onClick={handleOpenDetailModal}>
+              <BiSolidMessageAltDetail className="w-6 h-6 text-blue-600" />
+            </button>
+          </Tooltip>
+          <Tooltip title="수정하기" arrow placement="top">
+            <button onClick={handleOpenUpdateModal}>
+              <MdEditDocument className="w-6 h-6 text-sky-300" />
+            </button>
+          </Tooltip>
+          <Tooltip title="삭제하기" arrow placement="top">
+            <button className="delete text-gray-700" onClick={handleDeleteItem}>
+              <MdDelete className="w-6 h-6" />
+            </button>
+          </Tooltip>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
+import { fetchGetMediInfoData, fetchSearchMediInfoData } from "../../redux/slices/medicineSlice";
 import Mediinfoitem from "../details/Mediinfoitem";
 
 function MediInfo() {
@@ -78,6 +78,7 @@ function MediInfo() {
 
   // 검색 처리
   const handleSearch = () => {
+<<<<<<< HEAD
     const filtered = getMediInfoData.filter((item) => {
       const productName = item.제품명 ? item.제품명.toLowerCase() : "";
       const mainIngredient = item.주성분 ? item.주성분.toLowerCase() : "";
@@ -94,6 +95,23 @@ function MediInfo() {
     setFilteredData(filtered);
     setCurrentPage(1);
     setCurrentGroup(1);
+=======
+    if (searchTerm.trim()) {
+      dispatch(fetchSearchMediInfoData(searchTerm))
+        .then((response) => {
+          if (response.payload) {
+            setFilteredData(response.payload);
+            setCurrentPage(1);
+            setCurrentGroup(1);
+          }
+        })
+        .catch((error) => {
+          console.error("검색 중 오류 발생:", error);
+        });
+    } else {
+      setFilteredData(getMediInfoData || []);
+    }
+>>>>>>> 5b660a722adde2cfe8225f2e024bd2729a0f1992
   };
 
   // 엔터 검색 처리
@@ -146,6 +164,7 @@ function MediInfo() {
   if (!getMediInfoData || !Array.isArray(getMediInfoData)) {
     return <div>로딩 중...</div>;
   }
+  console.log(filteredData)
 
   return (
     <div className="mx-auto p-4 max-w-4xl">
@@ -208,7 +227,7 @@ function MediInfo() {
         <section>
           <div className="flex flex-col justify-center items-center">
             {filteredData.length > 0
-              ? currentItems.map((item) => (
+              ? filteredData.map((item) => (
                   <Mediinfoitem
                     key={item.아이디}
                     mediitem={item}

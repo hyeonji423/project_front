@@ -26,10 +26,12 @@ const Register = () => {
     }
   }, [navigator]);
 
-  // 새로운 useEffect 추가 - 컴포넌트 언마운트 시 인증 상태 초기화
-  // useEffect(() => {
-  //   console.log("isEmailVerified", isEmailVerified);
-  // }, [isEmailVerified]);
+  // 컴포넌트 마운트/언마운트 시 인증 상태 초기화
+  useEffect(() => {
+    return () => {
+      dispatch(resetAuthState());
+    };
+  }, [dispatch]);
 
   const [value, setValue] = useState({
     email: "",
@@ -161,24 +163,24 @@ const Register = () => {
               onChange={handleChange}
             /> */}
           </div>
-          <div className="mb-1">
+          <div className="mb-5">
             <label
               htmlFor="email"
-              className="block text-neutral-700 text-lg mb-1"
+              className="block text-neutral-700 text-lg"
             >
               이메일
             </label>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-1.5">
               <input
                 type="email"
                 placeholder="Email"
-                className="w-full px-3 py-2 border rounded-md mb-2"
+                className="w-[70%] px-3 py-2 border rounded-md"
                 name="email"
                 onChange={handleChange}
               />
               <button
                 onClick={handleSendVerification}
-                className="px-4 py-2 bg-blue-500 text-white rounded-md text-[10px] hover:bg-blue-700 hover:text-white transition-all duration-200"
+                className="w-[30%] py-2 bg-blue-400 text-white rounded-md text-[10px] hover:bg-blue-500 transition-all duration-200 text-base"
                 type="button"
               >
                 인증코드 발송
@@ -189,19 +191,19 @@ const Register = () => {
           {verificationCode && (
             <div className="mb-4">
               <label className="block text-neutral-700 text-lg mb-1">
-                인증코드 확인
+                이메일 확인
               </label>
-              <div className="flex gap-2">
+              <div className="flex gap-1.5">
                 <input
                   type="text"
                   placeholder="인증코드 입력"
-                  className="w-full px-3 py-2 border rounded-md"
+                  className="w-[70%] px-3 py-2 border rounded-md"
                   value={userInputCode}
                   onChange={(e) => setUserInputCode(e.target.value)}
                 />
                 <button
                   onClick={handleVerifyCode}
-                  className="px-4 py-2 bg-green-500 text-white rounded-md"
+                  className="w-[30%] py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all duration-200 text-base"
                   type="button"
                 >
                   확인
@@ -210,7 +212,7 @@ const Register = () => {
             </div>
           )}
 
-          <div className="mb-1">
+          <div className="mb-2">
             <label
               htmlFor="password"
               className="block text-neutral-700 text-lg mb-1"
@@ -225,7 +227,7 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-1">
+          <div className="mb-2">
             <label
               htmlFor="confirmPassword"
               className="block text-neutral-700 text-lg mb-1"
@@ -240,7 +242,7 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-1">
+          <div className="mb-2">
             <label
               htmlFor="birth_date"
               className="block text-neutral-700 text-lg mb-1"
