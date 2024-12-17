@@ -78,6 +78,24 @@ function MediInfo() {
 
   // 검색 처리
   const handleSearch = () => {
+<<<<<<< HEAD
+    const filtered = getMediInfoData.filter((item) => {
+      const productName = item.제품명 ? item.제품명.toLowerCase() : "";
+      const mainIngredient = item.주성분 ? item.주성분.toLowerCase() : "";
+
+      return (
+        productName.includes(searchTerm.toLowerCase()) ||
+        mainIngredient.includes(searchTerm.toLowerCase())
+      );
+    });
+
+    // 필터링된 데이터의 아이디를 콘솔에 출력
+    filtered.forEach((item) => console.log(item.아이디));
+
+    setFilteredData(filtered);
+    setCurrentPage(1);
+    setCurrentGroup(1);
+=======
     if (searchTerm.trim()) {
       dispatch(fetchSearchMediInfoData(searchTerm))
         .then((response) => {
@@ -93,6 +111,7 @@ function MediInfo() {
     } else {
       setFilteredData(getMediInfoData || []);
     }
+>>>>>>> 5b660a722adde2cfe8225f2e024bd2729a0f1992
   };
 
   // 엔터 검색 처리
@@ -155,8 +174,8 @@ function MediInfo() {
           <span className="absolute z-20 -top-6 block bg-sky-100 p-4 w-[30%] rounded-lg"></span>
           <span className="absolute z-10 -top-5 left-8 block bg-sky-200 p-4 w-[30%] rounded-lg"></span>
           <section className="bg-sky-100 p-4 px-8 rounded-md relative z-30">
-            <Link 
-              to="/mediinfo" 
+            <Link
+              to="/mediinfo"
               className="text-3xl font-semibold"
               onClick={() => {
                 setCurrentPage(1);
@@ -219,7 +238,7 @@ function MediInfo() {
                   <div className="text-center py-4">검색 결과가 없습니다.</div>
                 )}
           </div>
-                
+
           {/* 페이지네이션 컴포넌트 */}
           {filteredData.length > itemsPerPage && (
             <div className="flex justify-center mt-4 space-x-2">
