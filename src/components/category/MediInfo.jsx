@@ -78,24 +78,6 @@ function MediInfo() {
 
   // 검색 처리
   const handleSearch = () => {
-<<<<<<< HEAD
-    const filtered = getMediInfoData.filter((item) => {
-      const productName = item.제품명 ? item.제품명.toLowerCase() : "";
-      const mainIngredient = item.주성분 ? item.주성분.toLowerCase() : "";
-
-      return (
-        productName.includes(searchTerm.toLowerCase()) ||
-        mainIngredient.includes(searchTerm.toLowerCase())
-      );
-    });
-
-    // 필터링된 데이터의 아이디를 콘솔에 출력
-    filtered.forEach((item) => console.log(item.아이디));
-
-    setFilteredData(filtered);
-    setCurrentPage(1);
-    setCurrentGroup(1);
-=======
     if (searchTerm.trim()) {
       dispatch(fetchSearchMediInfoData(searchTerm))
         .then((response) => {
@@ -111,7 +93,6 @@ function MediInfo() {
     } else {
       setFilteredData(getMediInfoData || []);
     }
->>>>>>> 5b660a722adde2cfe8225f2e024bd2729a0f1992
   };
 
   // 엔터 검색 처리
