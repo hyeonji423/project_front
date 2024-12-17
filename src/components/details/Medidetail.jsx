@@ -12,6 +12,7 @@ function Medidetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { getMediInfoByIdData: medicineInfo } = useSelector((state) => state.medicine);
+  const user = useSelector((state) => state.login.user);
   
   const [medicineData, setMedicineData] = useState({
     제품명: "",
@@ -46,7 +47,7 @@ function Medidetail() {
         사용법: medicineInfo.사용법,
         부작용: medicineInfo.이상반응,
         업체명: medicineInfo.업체명,
-        image_url: medicineInfo.image_url || "/mediImage/default_image.png",
+        image_url: medicineInfo.image_url || "/mediImage/default.jpg",
         약음식주의사항: medicineInfo.약음식주의사항,
       });
     }
@@ -75,7 +76,7 @@ function Medidetail() {
             // src="/mediImage/게보린정.jpg"
             src={medicineData.image_url}            
             onError={(e) => {
-              e.target.src = "/mediImage/default_image.png";
+              e.target.src = "/mediImage/default.jpg";
               e.target.onerror = null;
             }}
             alt={medicineData.제품명}

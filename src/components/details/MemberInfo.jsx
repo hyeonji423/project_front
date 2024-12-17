@@ -97,6 +97,7 @@ const Register = () => {
       if (response && response.msg) {
         // response.msg 확인
         alert(response.msg);
+        dispatch(clearToken());
         navigator("/login");
       } else {
         alert("회원정보 수정에 실패했습니다.");

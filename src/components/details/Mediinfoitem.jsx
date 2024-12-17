@@ -19,7 +19,10 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
     >
       <div className="flex w-full p-10 rounded-lg hover:shadow-md border">
         <div className="w-[40%] mr-10">          
-          <img src={image_url} alt={제품명} className="w-full" />          
+          <img src={image_url} onError={(e) => {
+              e.target.src = "/mediImage/default.jpg";
+              e.target.onerror = null;
+            }} alt={제품명} className="w-full" />          
         </div>
         <div className="w-4/5">
           <div className="mb-1 flex justify-between items-center">
