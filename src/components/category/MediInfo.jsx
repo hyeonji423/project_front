@@ -87,6 +87,10 @@ function MediInfo() {
         mainIngredient.includes(searchTerm.toLowerCase())
       );
     });
+
+    // 필터링된 데이터의 아이디를 콘솔에 출력
+    filtered.forEach((item) => console.log(item.아이디));
+
     setFilteredData(filtered);
     setCurrentPage(1);
     setCurrentGroup(1);
@@ -151,8 +155,8 @@ function MediInfo() {
           <span className="absolute z-20 -top-6 block bg-sky-100 p-4 w-[30%] rounded-lg"></span>
           <span className="absolute z-10 -top-5 left-8 block bg-sky-200 p-4 w-[30%] rounded-lg"></span>
           <section className="bg-sky-100 p-4 px-8 rounded-md relative z-30">
-            <Link 
-              to="/mediinfo" 
+            <Link
+              to="/mediinfo"
               className="text-3xl font-semibold"
               onClick={() => {
                 setCurrentPage(1);
@@ -215,7 +219,7 @@ function MediInfo() {
                   <div className="text-center py-4">검색 결과가 없습니다.</div>
                 )}
           </div>
-                
+
           {/* 페이지네이션 컴포넌트 */}
           {filteredData.length > itemsPerPage && (
             <div className="flex justify-center mt-4 space-x-2">
