@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { fetchMediInfoById } from "../../redux/slices/medicineSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React from "react";
+
 
 const Mediinfoitem = ({ mediitem, onClick }) => {
   const { 사용법, 업체명, 제품명, 주성분, 효능, image_url } = mediitem;
