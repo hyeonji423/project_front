@@ -99,13 +99,13 @@ function Medidetail() {
   }
 
   return (
-    <div className="w-full flex flex-col justify-center items-center py-8">
-      <div className="w-[70%] max-w-[1200px] flex flex-col gap-8">
-        <h1 className="text-3xl font-bold mb-8">의약품 상세정보</h1>
+    <div className="w-full flex flex-col justify-center items-center py-8 mb-10">
+      <div className="w-[70%] max-w-[1200px] flex flex-col gap-6 mt-10">
+        <h1 className="text-4xl font-bold mb-10">의약품 상세정보</h1>
       </div>
       
       <div className="flex w-[70%] max-w-[1200px]">
-        <div className="border border-gray-200 rounded-lg p-4 mb-8">
+        <div className="border border-gray-200 rounded-lg mb-4 shadow-sm">
           <img
             // src="/mediImage/게보린정.jpg"
             src={medicineData.image_url}
@@ -114,10 +114,10 @@ function Medidetail() {
               // e.target.onerror = null;
             }}
             // alt={medicineData.제품명}
-            className="w-[200px] h-[200px] object-cover"
+            className="w-[300px] h-[300px] object-cover"
           />
         </div>
-        <div className="w-[70%] text-3xl font-bold mb-2 ml-8">
+        <div className="w-[70%] text-3xl font-bold mb-2 ml-12">
           {medicineData.제품명}
           <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-4">
             <p className="text-gray-400 text-sm">업체명: {medicineData.업체명}</p>
@@ -128,23 +128,23 @@ function Medidetail() {
         </div>
       </div>
       
-      <div className="w-[70%] max-w-[1200px]">
-        <div className="p-6">
+      <div className="w-[72%] max-w-[1200px] pr-12">
+        <div className="p-5">
           <h2 className="text-2xl text-blue-600 font-bold mb-3">효능</h2>
           <p className="leading-relaxed">{medicineData.효능}</p>
         </div>
         
-        <div className="p-6">
+        <div className="p-5">
           <h2 className="text-2xl text-blue-600 font-bold mb-3">사용법</h2>
           <p className="leading-relaxed">{medicineData.사용법}</p>
         </div>
         
-        <div className="p-6">
+        <div className="p-5">
           <h2 className="text-2xl text-blue-600 font-bold mb-3">부작용</h2>
           <p className="leading-relaxed">{medicineData.부작용}</p>
         </div>
 
-        <div className="p-6">
+        <div className="p-5">
           <h2 className="text-2xl text-blue-600 font-bold mb-3">약음식 주의사항</h2>
           <p className="leading-relaxed">{medicineData.약음식주의사항}</p>
         </div>

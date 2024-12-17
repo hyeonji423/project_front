@@ -27,11 +27,12 @@ const HealthList = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {currentPosts.map((info, index) => (
           <Link to={`/healthdetail/${info.id}`} key={index}>
-            <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow h-[300px] flex flex-col">
-              <h3 className="font-bold">{info.title.substring(0, 18)}...</h3>
+            <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow h-[300px] flex flex-col group">
+              <h3 className="font-bold">{info.title.substring(0, 24)}...</h3>
               <p className="text-gray-600 text-sm h-[48px] overflow-hidden">
                 {info.sections[0].content?.substring(0, 45)}...
               </p>
+              <p className="text-gray-400 text-xs flex justify-end group-hover:text-blue-500">+자세히</p>
               {info.defaultImage ? (
                 <img
                   src={info.defaultImage}
