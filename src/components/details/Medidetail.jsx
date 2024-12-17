@@ -12,6 +12,7 @@ function Medidetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { getMediInfoByIdData: medicineInfo } = useSelector((state) => state.medicine);
+  const user = useSelector((state) => state.login.user);
   
   const [medicineData, setMedicineData] = useState({
     제품명: "",
