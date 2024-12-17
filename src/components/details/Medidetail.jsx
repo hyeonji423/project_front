@@ -5,6 +5,9 @@ import {
   fetchGetMediInfoData,
   fetchMediInfoById,
 } from "../../redux/slices/medicineSlice";
+import { Tooltip } from '@mui/material';
+import { IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function Medidetail() {
   const { id } = useParams();
