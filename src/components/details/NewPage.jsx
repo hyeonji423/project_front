@@ -128,18 +128,18 @@ const NewPage = () => {
 
   return (
     <div className="w-full min-h-screen pb-8 flex justify-center items-start">
-      <div className="flex justify-center items-start w-[70%] h-full m-4">
+      <div className="flex justify-center items-start w-[90%] h-full m-4">
         <div className="w-[70%] rounded-md ml-10">
           <div>
-            <div className="flex bg-white last:border-b border-gray-300">
+            <div className="flex bg-white border-gray-300">
               {tabs.map((tab, index) => (
                 <button
                   key={index}
-                  className={`px-4 py-2 border cursor-pointer focus:outline-none hover:bg-blue-600 transition-colors hover:text-white rounded-t-md
+                  className={`px-4 py-2 border cursor-pointer focus:outline-none transition-colors rounded-t-md
                   ${
                     activeTab === index
-                      ? "border-t border-x border-gray-200"
-                      : "bg-gray-200"
+                      ? "bg-blue-500 text-white border-blue-500"
+                      : "bg-gray-200 hover:bg-blue-600 hover:text-white"
                   }`}
                   onClick={() => setActiveTab(index)}
                 >
