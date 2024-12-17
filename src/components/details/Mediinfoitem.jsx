@@ -1,15 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { fetchMediInfoById } from "../../redux/slices/medicineSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Mediinfoitem = ({ mediitem, onClick }) => {
-  const {
-    사용법,
-    업체명,
-    제품명,
-    주성분,
-    효능,
-    image_url,
-  } = mediitem;
-
+  const { 아이디, 사용법, 업체명, 제품명, 주성분, 효능, image_url } = mediitem;
+ 
   // 텍스트 길이를 제한하는 함수
   const truncateText = (text, maxLength) => {
     if (text && text.length > maxLength) {
@@ -25,7 +21,11 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
     >
       <div className="flex w-full p-10 rounded-lg hover:shadow-md border">
         <div className="w-[40%] mr-10">
-          <img src={image_url} alt={제품명} className="w-full" />
+          {/* {result.image_url ? (
+            <img src={result.image_url} alt={제품명} className="w-full" />
+          ) : (
+            ""
+          )} */}
         </div>
         <div className="w-4/5">
           <div className="mb-1 flex justify-between items-center">
