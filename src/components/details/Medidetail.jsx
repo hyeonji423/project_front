@@ -20,7 +20,7 @@ function Medidetail() {
     효능: "",
     사용법: "",
     부작용: "",
-    이미지URL: "",
+    image_url: "",
     약음식주의사항: "",
   });
   const user = useSelector((state) => state.login.user);
@@ -52,8 +52,8 @@ function Medidetail() {
           사용법: selectedMedicine.사용법,
           부작용: selectedMedicine.이상반응,
           업체명: selectedMedicine.업체명,
-          이미지URL:
-            selectedMedicine.이미지URL || "/default-medicine-image.png",
+          image_url:
+            selectedMedicine.image_url || "/default-medicine-image.png",
           약음식주의사항: selectedMedicine.약음식주의사항,
         });
 
@@ -67,12 +67,12 @@ function Medidetail() {
             name: selectedMedicine.제품명,
             main_ingredient: selectedMedicine.주성분,
             efficacy: selectedMedicine.효능,
-            image: selectedMedicine.이미지URL || "/defaul t-medicine-image.png",
+            image: selectedMedicine.image_url || "/defaul t-medicine-image.png",
             caution: selectedMedicine.약음식주의사항,
             company: selectedMedicine.업체명,
             viewedAt: new Date().toISOString(),
           };
-
+          console.log(medicineInfo);
           const updatedMedicines = [
             medicineInfo,
             ...viewedMedicines.filter((item) => item.id !== medicineInfo.id),
@@ -107,7 +107,8 @@ function Medidetail() {
       <div className="flex w-[70%] max-w-[1200px]">
         <div className="border border-gray-200 rounded-lg p-4 mb-8">
           <img
-            src={medicineData.이미지URL}
+            // src="/mediImage/게보린정.jpg"
+            src={medicineData.image_url}
             onError={(e) => {
               // e.target.src = "/default-medicine-image.png";
               // e.target.onerror = null;

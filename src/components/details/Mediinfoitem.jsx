@@ -7,6 +7,7 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
     제품명,
     주성분,
     효능,
+    image_url,
   } = mediitem;
 
   // 텍스트 길이를 제한하는 함수
@@ -24,7 +25,7 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
     >
       <div className="flex w-full p-10 rounded-lg hover:shadow-md border">
         <div className="w-[40%] mr-10">
-          <img src="/" alt={제품명} className="w-full" />
+          <img src={image_url} alt={제품명} className="w-full" />
         </div>
         <div className="w-4/5">
           <div className="mb-1 flex justify-between items-center">

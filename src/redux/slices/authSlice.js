@@ -84,7 +84,7 @@ const updateAuthFetchThunk = (actionType, apiURL) => {
     const options = {
       body: JSON.stringify(updateData), // 표준 json 문자열로 변환
     };
-    const fullPath = `${apiURL}/${updateData.mediId}`;
+    const fullPath = `${apiURL}/${updateData.id}`;
     return await putRequest(fullPath, options);
   });
 };
