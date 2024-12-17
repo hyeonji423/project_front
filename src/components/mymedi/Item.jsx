@@ -17,26 +17,10 @@ const Item = ({ myMediList }) => {
     user_email,
     medicine_id,
     medi_name,
-    company_name,
-    buying_date,
     exp_date,
     main_symptom,
-    memo,
-    created_at,
     notification,
   } = myMediList;
-  // console.log(
-  //   user_email,
-  //   medicine_id,
-  //   medi_name,
-  //   company_name,
-  //   buying_date,
-  //   exp_date,
-  //   main_symptom,
-  //   memo,
-  //   created_at,
-  //   notification
-  // );
 
   const dispatch = useDispatch();
 
@@ -49,22 +33,6 @@ const Item = ({ myMediList }) => {
       day: "2-digit",
     });
   };
-
-  // const textLengthOverCut = (text, length, lastText) => {
-  //   if (length === "" || length === null) {
-  //     length = 20;
-  //   }
-
-  //   if (lastText === "" || lastText === null) {
-  //     lastText = "...";
-  //   }
-
-  //   if (text.length > length) {
-  //     return text.substring(0, length) + lastText;
-  //   }
-
-  //   return text;
-  // };
 
   const loginData = useSelector((state) => state.login.user);
   const userKey = loginData?.id;
