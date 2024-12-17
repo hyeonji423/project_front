@@ -64,7 +64,7 @@ const Login = () => {
             <label htmlFor="email" className='block text-neutral-700 text-lg mb-1'>이메일</label>
             <input type="email" placeholder='Email' className='w-full px-3 py-2 border mb-2 rounded-md' name='email' onChange={handleChange} id="emailInput"/>
           </div>
-          <div className='mb-1'>
+          <div className='mb-2'>
             <label htmlFor="password" className='block text-neutral-700 text-lg mb-1'>비밀번호</label>
             <input type="password" placeholder='Password' className='w-full px-3 py-2 border rounded-md' name='password' onChange={handleChange}/>
           </div>

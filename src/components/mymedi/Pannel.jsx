@@ -40,7 +40,7 @@ const Pannel = () => {
         {userKey ? (
           <div className="panel-wrapper w-full h-full flex flex-col items-center">
             {isOpen && <Modal />}
-              <h2 className="text-4xl mb-4 font-semibold">나의 약 목록</h2>
+              <h2 className="text-4xl my-6 mb-10 font-semibold">나의 약품 목록</h2>
 
             <div className="items w-full flex flex-wrap flex-col gap-4">
               {getMyMediList?.length > 0 ? (
