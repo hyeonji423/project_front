@@ -5,9 +5,6 @@ import {
   
   fetchGetMediInfoByIdData,
 } from "../../redux/slices/medicineSlice";
-import { Tooltip } from '@mui/material';
-import { IconButton } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function Medidetail() {
   const { id } = useParams();
@@ -76,12 +73,12 @@ function Medidetail() {
         <div className="border border-gray-200 rounded-lg mb-4 shadow-sm">
           <img
             // src="/mediImage/게보린정.jpg"
-            src={medicineData.image_url}
+            src={medicineData.image_url}            
             onError={(e) => {
-              // e.target.src = "/default-medicine-image.png";
-              // e.target.onerror = null;
+              e.target.src = "/default-medicine-image.png";
+              e.target.onerror = null;
             }}
-            // alt={medicineData.제품명}
+            alt={medicineData.제품명}
             className="w-[300px] h-[300px] object-cover"
           />
         </div>
