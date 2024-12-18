@@ -4,7 +4,7 @@ import axios from "axios";
 import mediLogo from "../../assets/medi_logo.png";
 
 const ResetPwd = () => {
-  const navigate = useNavigate();
+  const navigator = useNavigate();
   const [searchParams] = useSearchParams();
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -17,10 +17,10 @@ const ResetPwd = () => {
 
   useEffect(() => {
     if (!token) {
-      setMessage("유효하지 않은 접근입니다.");
-      setTimeout(() => navigate("/findpwd"), 2000);
+      alert("유효하지 않은 접근입니다.");
+      setTimeout(() => navigator("/findpwd"), 2000);
     }
-  }, [token, navigate]);
+  }, [token, navigator]);
 
   const handleChange = (e) => {
     setPasswords({
@@ -33,7 +33,7 @@ const ResetPwd = () => {
     e.preventDefault();
 
     if (passwords.password !== passwords.confirm_password) {
-      setMessage("비밀번호가 일치하지 않습니다.");
+      alert("비밀번호가 일치하지 않습니다.");
       return;
     }
 
@@ -48,12 +48,10 @@ const ResetPwd = () => {
         }
       );
 
-      setMessage(response.data.message);
-      setTimeout(() => navigate("/login"), 2000);
+      alert(response.data.message);
+      setTimeout(() => navigator("/login"), 2000);
     } catch (error) {
-      setMessage(
-        error.response?.data?.error || "비밀번호 재설정에 실패했습니다."
-      );
+      alert(error.response?.data?.error || "비밀번호 재설정에 실패했습니다.");
     } finally {
       setIsLoading(false);
     }
@@ -115,12 +113,6 @@ const ResetPwd = () => {
             </button>
           </div>
         </form>
-
-        {message && (
-          <div className="text-center mt-4 p-3 bg-blue-50 text-blue-800 rounded-md">
-            {message}
-          </div>
-        )}
       </div>
     </div>
   );
