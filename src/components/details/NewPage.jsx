@@ -172,11 +172,13 @@ const NewPage = () => {
                               onClick={() => navigate(`/medidetail/${item.id}`)}
                             >
                               <div className="flex items-center gap-4">
-                                <img
-                                  src={item.image}
-                                  alt={item.name}
-                                  className="w-16 h-16 object-cover"
-                                />
+                                <div className="w-16 h-16 flex items-center justify-center">
+                                  <img
+                                    src={item.image}
+                                    alt={item.name}
+                                    className="max-w-full max-h-full object-contain"
+                                  />
+                                </div>
                                 <div>
                                   <h3 className="font-bold">{item.name}</h3>
                                   <p className="text-sm text-gray-600">
