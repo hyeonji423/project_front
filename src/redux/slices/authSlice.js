@@ -79,13 +79,18 @@ export const fetchPostLoginData = postLoginThunk(
 
 // 회원정보 수정 요청
 const updateAuthFetchThunk = (actionType, apiURL) => {
-  return createAsyncThunk(actionType, async (updateData) => {
+  return createAsyncThunk(actionType, async (updateData, { rejectWithValue }) => {
     // console.log(updateData , apiURL);
-    const options = {
-      body: JSON.stringify(updateData), // 표준 json 문자열로 변환
-    };
-    const fullPath = `${apiURL}/${updateData.id}`;
-    return await putRequest(fullPath, options);
+    try {
+      const options = {
+        body: JSON.stringify(updateData), // 표준 json 문자열로 변환
+      };
+      const fullPath = `${apiURL}/${updateData.id}`;
+      const response = await putRequest(fullPath, options);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   });
 };
 
@@ -136,6 +141,7 @@ const authSlice = createSlice({
     isError: false,
     errorMessage: null,
     deleteAuthData: null,
+    updateAuthData: null,
   },
   reducers: {
     verifyEmail: (state, action) => {
@@ -171,7 +177,12 @@ const authSlice = createSlice({
         state.deleteAuthData = action.payload;
         state.postLoginData = null;
       })
-      .addCase(fetchDeleteAuthData.rejected, handleRejected);
+      .addCase(fetchDeleteAuthData.rejected, handleRejected)
+
+      .addCase(fetchUpdateAuthData.fulfilled, (state, action) => {
+        state.updateAuthData = action.payload;
+      })
+      .addCase(fetchUpdateAuthData.rejected, handleRejected);  
   },
 }); // slice 객체 저장
 
