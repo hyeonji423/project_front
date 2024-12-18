@@ -97,16 +97,15 @@ function Medidetail() {
       </div>
 
       <div className="flex w-[70%] max-w-[1200px]">
-        <div className="border border-gray-200 rounded-lg mb-4 shadow-sm">
+        <div className="border border-gray-200 rounded-lg mb-4 shadow-sm w-[300px] h-[300px] flex items-center justify-center">
           <img
-            // src="/mediImage/게보린정.jpg"
             src={medicineData.image_url}
             onError={(e) => {
               e.target.src = "/mediImage/default.jpg";
               e.target.onerror = null;
             }}
             alt={medicineData.제품명}
-            className="w-[300px] h-[300px] object-cover"
+            className="w-[250px] h-[250px] object-contain" // 이미지 크기 고정 및 비율 유지
           />
         </div>
         <div className="w-[70%] text-3xl font-bold mb-2 ml-12">
