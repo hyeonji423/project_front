@@ -3,12 +3,8 @@ import { useDispatch } from "react-redux";
 import landingImg from "../../assets/main_landing.jpg";
 import LandingSubBox from "./LandingSubBox";
 import { useNavigate } from "react-router-dom";
-import { summary } from "../../constants/symptomdata";
-import {
-  clearSearchResults,
-  fetchGetMediInfoData,
-  fetchSearchMediInfoData,
-} from "../../redux/slices/medicineSlice";
+import { symptoms } from "../../constants/symptomdata";
+import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -29,29 +25,30 @@ const Landing = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-  
+
     if (!searchTerm.trim()) {
       alert("검색어를 입력해주세요.");
       return;
     }
-  
+
     try {
-      // 증상 데이터 검색
-      const matchedSymptom = summary.find((symptom) =>
-        symptom.title.includes(searchTerm)
+      // symptoms의 title과 types의 title 모두 검색
+      const matchedSymptom = symptoms.find(
+        (symptom) =>
+          symptom.title.includes(searchTerm) || // 메인 증상 검색
+          symptom.types.some((type) => type.title.includes(searchTerm)) // 세부 증상 검색
       );
-  
+
       if (matchedSymptom) {
         setSearchTerm("");
         navigate(`/symptomdetail/${matchedSymptom.id}`);
         return;
       }
-  
+
       // 약품 검색 - 결과 확인 후 페이지 이동
       const searchQuery = encodeURIComponent(searchTerm);
       navigate(`/mediinfo?search=${searchQuery}`);
       setSearchTerm("");
-      
     } catch (error) {
       console.error("검색 오류:", error);
       alert("검색 중 오류가 발생했습니다.");
