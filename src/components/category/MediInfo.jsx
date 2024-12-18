@@ -19,58 +19,34 @@ function MediInfo() {
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(fetchGetMediInfoData());
-    setCurrentPage(1);
-    setCurrentGroup(1);
-    setSearchTerm("");
-    setFilteredData(getMediInfoData || []);
-  }, [dispatch]);
-
-  // getMediInfoData가 변경될 때 필터된 데이터 업데이트
-  useEffect(() => {
-    if (getMediInfoData && Array.isArray(getMediInfoData)) {
-      setFilteredData(getMediInfoData);
-      setCurrentPage(1);
-      setCurrentGroup(1);
-    }
-  }, [getMediInfoData]);
-
-  // 라우트 변경 감지
-  useEffect(() => {
-    window.scrollTo(0, 0); // 페이지 최상단으로 스크롤
-    setCurrentPage(1);
-    setCurrentGroup(1);
-    setSearchTerm("");
-    if (getMediInfoData) {
-      setFilteredData(getMediInfoData);
-    }
-  }, [location.pathname, getMediInfoData]);
-
-  // 기존 검색 쿼리 처리 useEffect는 그대로 유지
-  useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get("search");
+    
     if (searchQuery) {
       setSearchTerm(searchQuery);
-      const filtered = getMediInfoData?.filter(
-        (item) =>
-          item.제품명.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.주성분.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      if (filtered) {
-        setFilteredData(filtered);
-        setCurrentPage(1);
-        setCurrentGroup(1);
-      }
+      dispatch(fetchSearchMediInfoData(searchQuery))
+        .then((response) => {
+          if (response.payload) {
+            setFilteredData(response.payload);
+            setCurrentPage(1);
+            setCurrentGroup(1);
+          }
+        })
+        .catch((error) => {
+          console.error("검색 중 오류 발생:", error);
+        });
+    } else {
+      // 검색어가 없을 때만 전체 데이터 로드
+      dispatch(fetchGetMediInfoData())
+        .then((response) => {
+          if (response.payload) {
+            setFilteredData(response.payload);
+            setCurrentPage(1);
+            setCurrentGroup(1);
+          }
+        });
     }
-  }, [location.search, getMediInfoData]);
-
-  useEffect(() => {
-    if (getMediInfoData && Array.isArray(getMediInfoData)) {
-      setFilteredData(getMediInfoData);
-    }
-  }, [getMediInfoData]);
-
+  }, [location.search, dispatch]);
   // 페이지네이션 처리
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
