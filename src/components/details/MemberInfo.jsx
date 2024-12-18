@@ -34,7 +34,8 @@ const Register = () => {
       if (user) {
         setValue(prev => ({
           ...prev,
-          email: user.email
+          email: user.email,
+          birth_date: user.birth_date
         }));
       }
     }, [user]);
@@ -74,10 +75,9 @@ const Register = () => {
 
     if (
       value.password === "" ||
-      value.confirm_password === "" ||
-      value.birth_date === ""
+      value.confirm_password === ""
     ) {
-      alert("비밀번호와 생년월일은 필수 입력값입니다.");
+      alert("비밀번호는 필수 입력값입니다.");
       return;
     }
     if (value.password !== value.confirm_password) {
@@ -114,7 +114,7 @@ const Register = () => {
       </div>
       <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
         <h2 className="text-3xl font-extrabold mb-6 text-center">
-          회원정보 수정
+          비밀번호 변경
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-1">
@@ -137,7 +137,7 @@ const Register = () => {
               htmlFor="password"
               className="block text-neutral-700 text-lg mb-1"
             >
-              비밀번호 변경
+              새 비밀번호
             </label>
             <input
               type="password"
@@ -153,27 +153,13 @@ const Register = () => {
               htmlFor="confirmPassword"
               className="block text-neutral-700 text-lg mb-1"
             >
-              비밀번호 변경 확인
+              새 비밀번호 확인
             </label>
             <input
               type="password"
               placeholder="Password"
               className="w-full px-3 py-2 border rounded-md"
               name="confirm_password"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-1">
-            <label
-              htmlFor="birth_date"
-              className="block text-neutral-700 text-lg mb-1"
-            >
-              생년월일 수정
-            </label>
-            <input
-              type="date"
-              className="w-full px-3 py-2 border"
-              name="birth_date"
               onChange={handleChange}
             />
           </div>
