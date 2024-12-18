@@ -44,16 +44,8 @@ const Landing = () => {
         navigate(`/symptomdetail/${matchedSymptom.id}`);
         return;
       }
-
-      // 검색어 정규화: '약' 제거 후 다시 추가
-      const normalizedSearch = searchTerm
-        .replace(/약\s*$/, "") // 끝에 있는 '약' 제거
-        .replace(/\s+/g, " ") // 중복 공백 제거
-        .trim();
-
-      const searchQuery = `${normalizedSearch} 약`;
-
-      navigate(`/mediinfo?search=${encodeURIComponent(searchQuery)}`);
+    
+      navigate(`/mediinfo?search=${encodeURIComponent(searchTerm)}`);
 
       setSearchTerm("");
     } catch (error) {
