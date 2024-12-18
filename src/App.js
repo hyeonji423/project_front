@@ -12,7 +12,6 @@ import HealthNews from "./components/details/HealthNews";
 import Chatbot from "./components/category/Chatbot";
 import HealthDetail from "./components/details/HealthDetail";
 import MemberInfo from "./components/details/MemberInfo";
-import Management from "./components/details/Management";
 import Medidetail from "./components/details/Medidetail";
 import SymptomDetail from "./components/details/Symptomdetail";
 import Service from "./components/category/Service";
@@ -22,6 +21,7 @@ import Item from "./components/mymedi/Item";
 import AddItem from "./components/mymedi/AddItem";
 import Chat from "./components/chat/Chat";
 import FindPwd from "./components/details/FindPwd";
+import ResetPwd from "./components/details/ResetPwd";
 
 function App() {
   return (
@@ -44,7 +44,6 @@ function App() {
             <Route path="/healthdetail/:id" element={<HealthDetail />} />
             <Route path="/symptomdetail/:id" element={<SymptomDetail />} />
             <Route path="/memberinfo" element={<MemberInfo />} />
-            <Route path="/management" element={<Management />} />
             <Route path="/mediDetail/:id" element={<Medidetail />} />
             <Route path="/mymedi_list" element={<Pannel />} />
             <Route path="/" element={<Modal />} />
@@ -52,6 +51,7 @@ function App() {
             <Route path="/" element={<AddItem />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/findpwd" element={<FindPwd />} />
+            <Route path="/resetpwd" element={<ResetPwd />} />
           </Routes>
 
           <Footer />
