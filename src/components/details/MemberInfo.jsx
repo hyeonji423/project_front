@@ -17,7 +17,7 @@ const Register = () => {
   // user가 null일 때 로그인 페이지로 리다이렉트
   useEffect(() => {
     if (!user) {
-      navigator('/login');
+      navigator("/login");
       return;
     }
   }, [user, navigator]);
@@ -29,21 +29,21 @@ const Register = () => {
     confirm_password: "",
   });
 
-    // user 정보가 있을 때 value 업데이트
-    useEffect(() => {
-      if (user) {
-        setValue(prev => ({
-          ...prev,
-          email: user.email,
-          birth_date: user.birth_date
-        }));
-      }
-    }, [user]);
-  
-    // user가 null이면 early return
-    if (!user) {
-      return null;
+  // user 정보가 있을 때 value 업데이트
+  useEffect(() => {
+    if (user) {
+      setValue((prev) => ({
+        ...prev,
+        email: user.email,
+        birth_date: user.birth_date,
+      }));
     }
+  }, [user]);
+
+  // user가 null이면 early return
+  if (!user) {
+    return null;
+  }
 
   // const [file, setFile] = useState(null);
 
@@ -73,10 +73,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // 쿼리가 잡히지 않게(경로 표시X)
 
-    if (
-      value.password === "" ||
-      value.confirm_password === ""
-    ) {
+    if (value.password === "" || value.confirm_password === "") {
       alert("비밀번호는 필수 입력값입니다.");
       return;
     }
@@ -86,25 +83,25 @@ const Register = () => {
     }
 
     const data = {
-      email: value.email,
+      email: user.email,
       password: value.password,
-      birth_date: value.birth_date,
       id: user.id,
     };
 
     try {
       const response = await dispatch(fetchUpdateAuthData(data)).unwrap();
-      if (response && response.msg) {
-        // response.msg 확인
-        alert(response.msg);
+      console.log(response);
+      if (response.status === 200) { // 상태 코드 체크 추가
+        alert(response.msg || "비밀번호가 성공적으로 변경되었습니다.");
         dispatch(clearToken());
         navigator("/login");
       } else {
-        alert("회원정보 수정에 실패했습니다.");
+        alert(response.msg || "비밀번호 변경에 실패했습니다.");
       }
     } catch (error) {
-      alert(error.msg || "회원정보 수정 중 오류가 발생했습니다.");
+      alert(error.msg || "비밀번호 변경 중 오류가 발생했습니다.");
     }
+    navigator("/login");
   };
 
   return (
