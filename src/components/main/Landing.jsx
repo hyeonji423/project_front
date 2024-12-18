@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import landingImg from "../../assets/main_landing.jpg";
 import LandingSubBox from "./LandingSubBox";
 import { useNavigate } from "react-router-dom";
@@ -29,39 +29,29 @@ const Landing = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
+  
     if (!searchTerm.trim()) {
       alert("검색어를 입력해주세요.");
       return;
     }
-
+  
     try {
-      // 검색 전에 이전 검색 결과를 초기화
-      await dispatch(clearSearchResults());
-
       // 증상 데이터 검색
       const matchedSymptom = summary.find((symptom) =>
         symptom.title.includes(searchTerm)
       );
-
+  
       if (matchedSymptom) {
-        setSearchTerm(""); // 검색어 초기화
+        setSearchTerm("");
         navigate(`/symptomdetail/${matchedSymptom.id}`);
         return;
       }
-
-      // 약품 검색
-      const result = await dispatch(
-        fetchSearchMediInfoData(searchTerm)
-      ).unwrap();
-      setSearchTerm(""); // 검색어 초기화
-
-      if (result && result.length > 0) {
-        // 검색 결과가 있을 경우 MediInfo 페이지로 이동
-        navigate(`/mediinfo?search=${encodeURIComponent(searchTerm)}`);
-      } else {
-        alert("검색 결과가 없습니다.");
-      }
+  
+      // 약품 검색 - 결과 확인 후 페이지 이동
+      const searchQuery = encodeURIComponent(searchTerm);
+      navigate(`/mediinfo?search=${searchQuery}`);
+      setSearchTerm("");
+      
     } catch (error) {
       console.error("검색 오류:", error);
       alert("검색 중 오류가 발생했습니다.");
