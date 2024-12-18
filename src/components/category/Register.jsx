@@ -72,8 +72,7 @@ const Register = () => {
       alert("인증코드가 일치하지 않습니다.");
     }
   };
-  // const [file, setFile] = useState(null);
-
+  
   const handleChange = (e) => {
     setValue({
       ...value,
@@ -81,12 +80,28 @@ const Register = () => {
     });
   };
 
-  // const handleFileChange = (e) => {
-  //   setFile(e.target.files[0]);
-  // };
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
+    const getTodayDate = () => {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };  
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // 쿼리가 잡히지 않게(경로 표시X)
+
+     // 생년월일 유효성 검사 추가
+     const selectedDate = new Date(value.birth_date);
+     const today = new Date();
+     
+     if (selectedDate > today) {
+      alert("생년월일은 오늘 이후의 날짜를 선택할 수 없습니다.");
+      return;
+    }
 
     // 이메일 인증 확인
     if (!isEmailVerified) {
@@ -108,14 +123,6 @@ const Register = () => {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
-
-    // const formData = new FormData();
-    // formData.append("username", value.username);
-    // formData.append("email", value.email);
-    // formData.append("password", value.password);
-    // if (file) {
-    //   formData.append("profile_img", file); // 파일 추가
-    // }
 
     const data = {
       email: value.email,
@@ -139,10 +146,7 @@ const Register = () => {
       alert(error.msg);
     }
   };
-
-  // 가입하기 버튼 비활성화 조건
-  // const isSubmitDisabled = !isEmailVerified;
-
+  
   return (
     <div className="flex flex-col justify-center items-center h-auto mb-16">
       <div className="logo w-[350px] mt-32 mb-12">
@@ -250,11 +254,13 @@ const Register = () => {
               생년월일
             </label>
             <input
-              type="date"
-              className="w-full px-3 py-2 border rounded-md mb-6"
-              name="birth_date"
-              onChange={handleChange}
-            />
+               type="date"
+               className="w-full px-3 py-2 border rounded-md mb-6"
+               name="birth_date"
+               onChange={handleChange}
+               max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
+               required
+            />  
           </div>
           <div className="flex justify-between items-center gap-2 mb-6">
             <button
