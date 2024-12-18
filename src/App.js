@@ -22,6 +22,8 @@ import Item from "./components/mymedi/Item";
 import AddItem from "./components/mymedi/AddItem";
 import Chat from "./components/chat/Chat";
 import FindPwd from "./components/details/FindPwd";
+import ResetPwd from "./components/details/ResetPwd";
+
 
 function App() {
   return (
@@ -52,6 +54,7 @@ function App() {
             <Route path="/" element={<AddItem />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/findpwd" element={<FindPwd />} />
+            <Route path="/resetpwd" element={<ResetPwd />} />
           </Routes>
 
           <Footer />
