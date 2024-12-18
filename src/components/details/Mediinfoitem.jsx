@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import defaultImage from "../../assets/default.jpg"; // default 이미지를 import
 
 
-const Mediinfoitem = ({ mediitem, onClick }) => {
+const Mediinfoitem = React.memo(({ mediitem, onClick }) => {
   const { 사용법, 업체명, 제품명, 주성분, 효능, image_url } = mediitem;
+  const [imgSrc, setImgSrc] = useState(image_url || defaultImage);
+  
+  const handleImageError = () => {
+    // image_url이 실패하면 public 폴더의 이미지를 시도
+    if (imgSrc !== "/mediImage/default.jpg") {
+      setImgSrc("/mediImage/default.jpg");
+    } 
+    // public 폴더의 이미지도 실패하면 import한 이미지를 사용
+    else if (imgSrc !== defaultImage) {
+      setImgSrc(defaultImage);
+    }
+  };
  
   // 텍스트 길이를 제한하는 함수
   const truncateText = (text, maxLength) => {
@@ -19,10 +32,12 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
     >
       <div className="flex w-full p-10 rounded-lg hover:shadow-md border">
         <div className="w-[40%] mr-10">          
-          <img src={image_url} onError={(e) => {
-              e.target.src = "/mediImage/default.jpg";
-              e.target.onerror = null;
-            }} alt={제품명} className="w-full" />          
+        <img 
+            src={imgSrc}
+            onError={handleImageError}
+            alt={제품명 || "의약품 이미지"} 
+            className="w-full object-contain"
+          />            
         </div>
         <div className="w-4/5">
           <div className="mb-1 flex justify-between items-center">
@@ -52,6 +67,6 @@ const Mediinfoitem = ({ mediitem, onClick }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Mediinfoitem;

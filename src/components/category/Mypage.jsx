@@ -6,6 +6,7 @@ import { IoClose } from "react-icons/io5";
 
 const Mypage = ({ user, onClose, onLogout }) => {
   const modalRef = useRef()
+  console.log(user)
 
   const handleLogout = () => {
     onLogout()
