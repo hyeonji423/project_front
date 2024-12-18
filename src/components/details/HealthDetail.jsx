@@ -35,10 +35,23 @@ const HealthDetail = () => {
   }
 
   return (
-    <div className="w-full flex flex-col justify-center items-center py-8">
+    <div className="w-full flex flex-col justify-center items-center py-8 mt-8">
       <div className="w-[70%] max-w-[1200px]">
         {/* 제목 */}
-        <h1 className="text-3xl font-bold mb-8">{healthInfo.title}</h1>
+        <h1 className="text-4xl font-bold mb-4">{healthInfo.title}</h1>
+        {/* 날짜 */}
+        <div className="text-gray-400 mb-2 text-sm pl-1">
+          {healthInfo.date
+            ? new Date(healthInfo.date)
+                .toLocaleDateString("ko-KR", {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                })
+                .replace(/\./g, ". ")
+            : "날짜 없음"}
+        </div>
+        <span className="block border-b border-gray-200 w-full mb-6"></span>
         {/* 섹션별 내용 */}
         {healthInfo.sections.map((section, index) => (
           <div key={index} className="mb-12">
@@ -46,7 +59,7 @@ const HealthDetail = () => {
             {/* 일반 콘텐츠 */}
             {section.content && (
               <div
-                className="text-gray-700 mb-6"
+                className="text-gray-700 mb-6 text-lg"
                 dangerouslySetInnerHTML={{ __html: section.content }}
               />
             )}

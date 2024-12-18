@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  
-  fetchGetMediInfoByIdData,
-} from "../../redux/slices/medicineSlice";
+import { fetchGetMediInfoByIdData } from "../../redux/slices/medicineSlice";
 
 function Medidetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { getMediInfoByIdData: medicineInfo } = useSelector((state) => state.medicine);
+  const { getMediInfoByIdData: medicineInfo } = useSelector(
+    (state) => state.medicine
+  );
   const user = useSelector((state) => state.login.user);
-  
+
   const [medicineData, setMedicineData] = useState({
     제품명: "",
     주성분: "",
@@ -23,7 +22,7 @@ function Medidetail() {
     image_url: "",
     약음식주의사항: "",
   });
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,6 +52,33 @@ function Medidetail() {
     }
   }, [medicineInfo]);
 
+  useEffect(() => {
+    if (medicineInfo && user) {
+      // 열람 기록 저장
+      const viewedMedicine = {
+        id: id,
+        name: medicineInfo.제품명,
+        image: medicineInfo.image_url || "/mediImage/default.jpg",
+        main_ingredient: medicineInfo.주성분,
+        efficacy: medicineInfo.효능,
+        viewedAt: new Date().toISOString(),
+      };
+
+      const key = `viewedMedicines_${user.userId}`;
+      const existing = JSON.parse(localStorage.getItem(key) || "[]");
+
+      // 중복 제거 후 최신 데이터 추가
+      const updated = [
+        viewedMedicine,
+        ...existing.filter((item) => item.id !== id),
+      ];
+
+      // 최대 20개까지만 저장
+      const limitedHistory = updated.slice(0, 30);
+      localStorage.setItem(key, JSON.stringify(limitedHistory));
+    }
+  }, [medicineInfo, user, id]);
+
   if (isLoading) return <div className="text-center py-8">로딩 중...</div>;
   if (error)
     return <div className="text-center py-8 text-red-500">에러: {error}</div>;
@@ -74,7 +100,7 @@ function Medidetail() {
         <div className="border border-gray-200 rounded-lg mb-4 shadow-sm">
           <img
             // src="/mediImage/게보린정.jpg"
-            src={medicineData.image_url}            
+            src={medicineData.image_url}
             onError={(e) => {
               e.target.src = "/mediImage/default.jpg";
               e.target.onerror = null;
