@@ -6,7 +6,6 @@ import mediLogo from "../../assets/medi_logo.png";
 const ResetPwd = () => {
   const navigator = useNavigate();
   const [searchParams] = useSearchParams();
-  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [passwords, setPasswords] = useState({
     password: "",
