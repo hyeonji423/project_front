@@ -12,6 +12,8 @@ const NewPage = () => {
   const [viewedNews, setViewedNews] = useState([]);
   const [viewedMedicines, setViewedMedicines] = useState([]);
 
+  console.log(viewedMedicines);
+
   useEffect(() => {
     if (user) {
       // 로그인한 사용자의 열람 기록 가져오기

@@ -6,6 +6,7 @@ import { IoClose } from "react-icons/io5";
 
 const Mypage = ({ user, onClose, onLogout }) => {
   const modalRef = useRef()
+  console.log(user)
 
   const handleLogout = () => {
     onLogout()
@@ -82,7 +83,7 @@ const Mypage = ({ user, onClose, onLogout }) => {
         </Link>
         <Link to="/memberinfo" onClick={onClose}>
           <li className="p-1 hover:bg-blue-50 rounded mb-1">
-            회원정보 수정
+            비밀번호 변경
           </li>
         </Link>
         <Link onClick={handleLogout} to="/">

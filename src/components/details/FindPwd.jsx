@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
-  fetchPostAuthData,
   fetchPostEmailVerificationData,
+  fetchUpdateAuthData,
   resetAuthState,
   verifyEmail,
 } from "../../redux/slices/authSlice";
 import mediLogo from "../../assets/medi_logo.png";
+import { clearToken } from "../../redux/slices/loginSlice";
 
-const Register = () => {
+const FindPwd = () => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const { verificationCode, isEmailVerified } = useSelector(
     (state) => state.auth
   );
-  console.log("verificationCode", verificationCode);
-  console.log("isEmailVerified", isEmailVerified);
+
+  const user = useSelector((state) => state.login.user);
+  console.log(user);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -72,7 +74,8 @@ const Register = () => {
       alert("인증코드가 일치하지 않습니다.");
     }
   };
-  
+  // const [file, setFile] = useState(null);
+
   const handleChange = (e) => {
     setValue({
       ...value,
@@ -80,28 +83,12 @@ const Register = () => {
     });
   };
 
-    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
-    const getTodayDate = () => {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };  
-
-
+  // const handleFileChange = (e) => {
+  //   setFile(e.target.files[0]);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // 쿼리가 잡히지 않게(경로 표시X)
-
-     // 생년월일 유효성 검사 추가
-     const selectedDate = new Date(value.birth_date);
-     const today = new Date();
-     
-     if (selectedDate > today) {
-      alert("생년월일은 오늘 이후의 날짜를 선택할 수 없습니다.");
-      return;
-    }
 
     // 이메일 인증 확인
     if (!isEmailVerified) {
@@ -113,8 +100,7 @@ const Register = () => {
     if (
       value.email === "" ||
       value.password === "" ||
-      value.confirm_password === "" ||
-      value.birth_date === ""
+      value.confirm_password === ""
     ) {
       alert("모든 항목은 필수 입력값입니다.");
       return;
@@ -124,36 +110,44 @@ const Register = () => {
       return;
     }
 
+    // const formData = new FormData();
+    // formData.append("username", value.username);
+    // formData.append("email", value.email);
+    // formData.append("password", value.password);
+    // if (file) {
+    //   formData.append("profile_img", file); // 파일 추가
+    // }
+
     const data = {
       email: value.email,
       password: value.password,
-      birth_date: value.birth_date,
     };
 
     try {
-      const response = await dispatch(fetchPostAuthData(data)).unwrap();
-      // console.log(response);
-      if (response.status === 200) {
-        alert(response.data.msg);
+      const response = await dispatch(fetchUpdateAuthData(data)).unwrap();
+      if (response && response.msg) {
+        // response.msg 확인
+        alert(response.msg);
+        dispatch(clearToken());
         navigator("/login");
-        return;
-      }
-      if (response.data.success === false) {
-        alert(response.data.msg);
-        return;
+      } else {
+        alert("회원정보 수정에 실패했습니다.");
       }
     } catch (error) {
-      alert(error.msg);
+      alert(error.msg || "회원정보 수정 중 오류가 발생했습니다.");
     }
   };
-  
+
+  // 가입하기 버튼 비활성화 조건
+  // const isSubmitDisabled = !isEmailVerified;
+
   return (
     <div className="flex flex-col justify-center items-center h-auto mb-16">
       <div className="logo w-[350px] mt-32 mb-12">
         <img src={mediLogo} alt="logo" />
       </div>
       <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
-        <h2 className="text-3xl font-bold mb-6 text-center">회원가입</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">비밀번호 찾기</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             {/* <label htmlFor="username" className="block text-neutral-700">
@@ -221,7 +215,7 @@ const Register = () => {
               htmlFor="password"
               className="block text-neutral-700 text-lg mb-1"
             >
-              비밀번호
+              새 비밀번호
             </label>
             <input
               type="password"
@@ -236,7 +230,7 @@ const Register = () => {
               htmlFor="confirmPassword"
               className="block text-neutral-700 text-lg mb-1"
             >
-              비밀번호 확인
+              새 비밀번호 확인
             </label>
             <input
               type="password"
@@ -246,23 +240,8 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-2">
-            <label
-              htmlFor="birth_date"
-              className="block text-neutral-700 text-lg mb-1"
-            >
-              생년월일
-            </label>
-            <input
-               type="date"
-               className="w-full px-3 py-2 border rounded-md mb-6"
-               name="birth_date"
-               onChange={handleChange}
-               max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
-               required
-            />  
-          </div>
-          <div className="flex justify-between items-center gap-2 mb-6">
+          
+          <div className="flex justify-center items-center gap-2 mb-6">
             <button
               className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200"
               type="submit"
@@ -270,11 +249,6 @@ const Register = () => {
             >
               가입 하기
             </button>
-            <Link to="/" className="w-full h-12">
-              <button className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200">
-                가입 취소
-              </button>
-            </Link>
           </div>
         </form>
       </div>
@@ -282,4 +256,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default FindPwd;

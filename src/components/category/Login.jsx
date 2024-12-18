@@ -77,11 +77,9 @@ const Login = () => {
         </form>
         
         <div className='mt-10 mb-2 text-center text-gray-500'>
-          <Link to='/' className='hover:text-black hover:underline'>이메일 찾기</Link>
+          <Link to='/findpwd' className='hover:text-black hover:underline'>비밀번호 찾기</Link>
           <span> &nbsp; | &nbsp; </span>
-          <Link to='/' className='hover:text-black hover:underline'>비밀번호 찾기</Link>
-          <span> &nbsp; | &nbsp; </span>
-          <Link to='/register' className='hover:text-black hover:underline'>회원가입</Link>
+          <Link to='/register' className='hover:text-black hover:underline'>회원가입 하기</Link>
         </div>
       </div>
     </div>
