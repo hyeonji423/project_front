@@ -20,12 +20,14 @@ class ActionProvider {
         messages: [...prevState.messages, loadingMessage],
       }));
 
+      const searchQuery = message.includes('약') ? message : `${message} 약`;
+
       const response = await fetch("http://localhost:8000/chat1", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question: message }),
+        body: JSON.stringify({ question: searchQuery }),
       });
 
       const data = await response.json();

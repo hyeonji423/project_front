@@ -45,9 +45,16 @@ const Landing = () => {
         return;
       }
 
-      // 약품 검색 - 결과 확인 후 페이지 이동
-      const searchQuery = encodeURIComponent(searchTerm);
-      navigate(`/mediinfo?search=${searchQuery}`);
+      // 검색어 정규화: '약' 제거 후 다시 추가
+      const normalizedSearch = searchTerm
+        .replace(/약\s*$/, "") // 끝에 있는 '약' 제거
+        .replace(/\s+/g, " ") // 중복 공백 제거
+        .trim();
+
+      const searchQuery = `${normalizedSearch} 약`;
+
+      navigate(`/mediinfo?search=${encodeURIComponent(searchQuery)}`);
+
       setSearchTerm("");
     } catch (error) {
       console.error("검색 오류:", error);
