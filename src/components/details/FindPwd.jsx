@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import mediLogo from "../../assets/medi_logo.png";
 
 const FindPwd = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   // 비밀번호 찾기 요청 처리
@@ -16,13 +13,13 @@ const FindPwd = () => {
 
     try {
       const response = await axios.post("http://localhost:8000/auth/find_pwd", {
-        email
+        email,
       });
 
-      setMessage(response.data.message);
-      setEmail(''); // 입력 필드 초기화
+      alert(response.data.message);
+      setEmail(""); // 입력 필드 초기화
     } catch (error) {
-      setMessage(error.response?.data?.error || '서버와 연결할 수 없습니다.');
+      alert(error.response?.data?.error || "서버와 연결할 수 없습니다.");
     } finally {
       setIsLoading(false);
     }
@@ -35,7 +32,7 @@ const FindPwd = () => {
       </div>
       <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
         <h2 className="text-3xl font-bold mb-6 text-center">비밀번호 찾기</h2>
-        
+
         <form onSubmit={handleForgotPassword}>
           <div className="mb-5">
             <label htmlFor="email" className="block text-neutral-700 text-lg">
@@ -59,16 +56,10 @@ const FindPwd = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? '처리중...' : '비밀번호 재설정 링크 받기'}
+              {isLoading ? "처리중..." : "비밀번호 재설정 링크 받기"}
             </button>
           </div>
         </form>
-
-        {message && (
-          <div className="text-center mt-4 p-3 bg-blue-50 text-blue-800 rounded-md">
-            {message}
-          </div>
-        )}
       </div>
     </div>
   );
