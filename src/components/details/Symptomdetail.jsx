@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // import { fetchGetMediInfoData } from "../../redux/slices/medicineSlice";
 import {
@@ -11,11 +11,20 @@ import {
 import { symptom } from "../../constants/data";
 
 const SymptomDetail = () => {
-  const [activeTab, setActiveTab] = useState(1);
+  const [searchParams] = useSearchParams();
+  const initialTab = parseInt(searchParams.get("tab")) || 1;
+  const [activeTab, setActiveTab] = useState(initialTab);
   const params = useParams();
   const { id } = params;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const tabParam = searchParams.get("tab");
+    if (tabParam) {
+      setActiveTab(parseInt(tabParam));
+    }
+  }, [searchParams]);
 
   const handleMediItemClick = (itemId) => {
     navigate(`/medidetail/${itemId}`);
@@ -94,8 +103,13 @@ const SymptomDetail = () => {
         {disease[Number(id)].types.map((item) => (
           <button
             key={item.id}
-            onClick={() => setActiveTab(item.id)}
-            className={`border-r flex-1 py-3 text-center ${
+            onClick={() => {
+              setActiveTab(item.id);
+              navigate(`/symptomdetail/${id}?tab=${item.id}`, {
+                replace: true,
+              });
+            }}
+            className={`flex-1 py-3 text-center ${
               activeTab === item.id
                 ? "bg-blue-500 text-white"
                 : "bg-gray-50 hover:bg-gray-200 hover:text-black"

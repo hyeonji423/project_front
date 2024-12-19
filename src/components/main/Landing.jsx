@@ -40,11 +40,21 @@ const Landing = () => {
       );
 
       if (matchedSymptom) {
+        // 세부 증상과 일치하는 경우 해당 탭 인덱스 찾기
+        const typeIndex = matchedSymptom.types.findIndex((type) =>
+          type.title.includes(searchTerm)
+        );
+
         setSearchTerm("");
-        navigate(`/symptomdetail/${matchedSymptom.id}`);
+        // 세부 증상이 있으면 해당 탭 인덱스 + 1을, 없으면 1을 전달
+        navigate(
+          `/symptomdetail/${matchedSymptom.id}?tab=${
+            typeIndex !== -1 ? typeIndex + 1 : 1
+          }`
+        );
         return;
       }
-    
+
       navigate(`/mediinfo?search=${encodeURIComponent(searchTerm)}`);
 
       setSearchTerm("");
