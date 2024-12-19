@@ -35,10 +35,10 @@ const HealthDetail = () => {
   }
 
   return (
-    <div className="w-full flex flex-col justify-center items-center py-8 mt-8">
+    <div className="w-full flex flex-col justify-center items-center py-8 mt-6 lg:mt-8">
       <div className="w-[70%] max-w-[1200px]">
         {/* 제목 */}
-        <h1 className="text-4xl font-bold mb-4">{healthInfo.title}</h1>
+        <h1 className="text-3xl lg:text-4xl font-bold mb-4">{healthInfo.title}</h1>
         {/* 날짜 */}
         <div className="text-gray-400 mb-2 text-sm pl-1">
           {healthInfo.date
@@ -51,15 +51,15 @@ const HealthDetail = () => {
                 .replace(/\./g, ". ")
             : "날짜 없음"}
         </div>
-        <span className="block border-b border-gray-200 w-full mb-6"></span>
+        <span className="block border-b border-gray-200 w-full mb-4 lg:mb-6"></span>
         {/* 섹션별 내용 */}
         {healthInfo.sections.map((section, index) => (
           <div key={index} className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
+            <h2 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4">{section.title}</h2>
             {/* 일반 콘텐츠 */}
             {section.content && (
               <div
-                className="text-gray-700 mb-6 text-lg"
+                className="text-gray-700 mb-6 text-sm lg:text-lg"
                 dangerouslySetInnerHTML={{ __html: section.content }}
               />
             )}
@@ -108,7 +108,7 @@ const HealthDetail = () => {
                 <img
                   src={section.image}
                   alt={section.title}
-                  className="w-2/3 md:w-1/2 mx-auto rounded-lg"
+                  className="w-full lg:w-1/2 mx-auto rounded-lg"
                 />
               </div>
             )}

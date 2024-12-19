@@ -6,6 +6,7 @@ import { clearToken } from "../../redux/slices/loginSlice";
 import mediLogo from "../../assets/medi_logo.png";
 import Mypage from "../category/Mypage";
 import { IoMenu, IoClose } from "react-icons/io5";
+import chatIcon from "../../assets/챗봇icon/simple.png";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -89,7 +90,7 @@ const Header = () => {
             {/* 모바일 메뉴 아이콘 */}
             <div className="flex justify-end mt-4 sm:mt-0">
               <button 
-                className="hidden max-sm:block fixed top-4 right-4 z-[60] mt-3 sm:mt-0" 
+                className="hidden max-sm:block fixed top-4 right-4 z-40 mt-3 sm:mt-0" 
                 onClick={toggleMobileMenu}
               >
                 {isMobileMenuOpen ? <IoClose size={24} /> : <IoMenu size={24} />}
@@ -104,12 +105,13 @@ const Header = () => {
                   {item.to === "/chat" ? (
                     <Link
                       to={item.to}
-                      className="hover:text-blue-600 transition-all duration-100 block w-full"
+                      className="hover:text-blue-600 transition-all duration-100 w-full flex items-center justify-center gap-1"
                       onClick={(e) => {
                         openChatWindow(e);
                         setIsMobileMenuOpen(false);
                       }}
                     >
+                      <img src={chatIcon} alt="챗봇 아이콘" className="w-5 h-5 mb-px" />
                       {item.label}
                     </Link>
                   ) : item.to === "/mediinfo" ? (

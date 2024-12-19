@@ -56,7 +56,7 @@ const Login = () => {
       <div className='logo w-[350px] mt-32 mb-12'>
         <img src={mediLogo} alt="logo" />
       </div>
-      <div className='shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg'>
+      <div className='shadow-lg px-12 py-10 w-[80%] md:w-[500px] border mb-16 rounded-lg'>
         <h2 className='text-3xl font-extrabold mb-6 text-center'>로그인</h2>
         
         <form onSubmit={handleSubmit}>

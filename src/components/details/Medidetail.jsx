@@ -92,12 +92,12 @@ function Medidetail() {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8 mb-10">
-      <div className="w-[70%] max-w-[1200px] flex flex-col gap-6 mt-10">
+      <div className="w-[90%] md:w-[70%] max-w-[1200px] flex flex-col gap-6 mt-10">
         <h1 className="text-4xl font-bold mb-10">의약품 상세정보</h1>
       </div>
 
-      <div className="flex w-[70%] max-w-[1200px]">
-        <div className="border border-gray-200 rounded-lg mb-4 shadow-sm w-[300px] h-[300px] flex items-center justify-center">
+      <div className="flex w-[90%] md:w-[70%] max-w-[1200px] flex-col md:flex-row">
+        <div className="border border-gray-200 rounded-lg mb-4 shadow-sm w-full md:w-[300px] h-[300px] flex items-center justify-center">
           <img
             src={medicineData.image_url}
             onError={(e) => {
@@ -108,7 +108,7 @@ function Medidetail() {
             className="w-[250px] h-[250px] object-contain" // 이미지 크기 고정 및 비율 유지
           />
         </div>
-        <div className="w-[70%] text-3xl font-bold mb-2 ml-12">
+        <div className="w-[90%] md:w-[70%] text-3xl font-bold mb-2 md:ml-12 p-6 md:p-0">
           {medicineData.제품명}
           <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-4">
             <p className="text-gray-400 text-sm">
@@ -121,7 +121,7 @@ function Medidetail() {
         </div>
       </div>
 
-      <div className="w-[70%] max-w-[1200px]">
+      <div className="w-[90%] md:w-[70%]  max-w-[1200px]">
         <div className="p-6">
           <h2 className="text-2xl text-blue-600 font-bold mb-3">효능</h2>
           <p className="leading-relaxed">{medicineData.효능}</p>
