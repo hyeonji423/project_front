@@ -14,7 +14,12 @@ export async function postRequest(url, options) {
 
     if (!response.ok) {
       // 상태 코드와 메시지를 포함하여 명확한 에러 전달
-      throw { status: response.status, msg: data.msg || "Request failed" };
+      throw new Error(
+        JSON.stringify({
+          status: response.status,
+          msg: data.msg || "Request failed",
+        })
+      );
     }
     return { status: response.status, data }; // 성공 시 상태 코드와 데이터를 반환
   } catch (error) {
@@ -41,15 +46,24 @@ export async function postMyMediRequest(url, options) {
     const data = await response.json();
 
     if (!response.ok) {
-      // 상태 코드와 메시지를 포함하여 명확한 에러 전달
-      throw { status: response.status, msg: data.msg || "Request failed" };
+      throw new Error(
+        JSON.stringify({
+          status: response.status,
+          msg: data.msg || "Request failed",
+        })
+      );
     }
     return { status: response.status, data }; // 성공 시 상태 코드와 데이터를 반환
   } catch (error) {
     // 네트워크 오류나 다른 오류를 처리
-    throw error.status
-      ? error // 서버 응답 오류
-      : { status: 500, msg: error.message || "Unknown error occurred" }; // 네트워크 오류 등
+    throw error instanceof Error
+      ? error
+      : new Error(
+          JSON.stringify({
+            status: 500,
+            msg: error.message || "Unknown error occurred",
+          })
+        );
   }
 }
 
@@ -118,12 +132,10 @@ export async function deleteRequest(url, options) {
 /* ====== Common GET Request Function ====== */
 export async function getRequest(url) {
   try {
-    console.log("요청 URL:", url); // URL 확인용 로그
-
     const response = await fetch(url);
 
     // 응답 상태 확인용 로그
-    console.log("응답 상태:", response.status);
+    // console.log("응답 상태:", response.status);
 
     if (!response.ok) {
       const errorData = await response.json();
