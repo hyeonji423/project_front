@@ -51,7 +51,7 @@ const Register = () => {
       const result = await dispatch(
         fetchPostEmailVerificationData(value.email)
       ).unwrap();
-      console.log("이메일 인증 응답:", result); // 디버깅용
+      // console.log("이메일 인증 응답:", result); // 디버깅용
       alert("인증 코드가 발송되었습니다.");
     } catch (error) {
       alert("인증 코드 발송 실패");
@@ -60,8 +60,8 @@ const Register = () => {
 
   // 인증 코드 확인
   const handleVerifyCode = () => {
-    console.log("서버 인증코드", verificationCode.data.verificationCode);
-    console.log("유저 인증코드", userInputCode);
+    // console.log("서버 인증코드", verificationCode.data.verificationCode);
+    // console.log("유저 인증코드", userInputCode);
 
     if (userInputCode === verificationCode.data.verificationCode) {
       // dispatch(verifyEmail({ data: { verificationCode: userInputCode } }));
@@ -152,7 +152,7 @@ const Register = () => {
       <div className="logo w-[350px] mt-32 mb-12">
         <img src={mediLogo} alt="logo" />
       </div>
-      <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
+      <div className="shadow-lg px-12 py-10 w-[80%] md:w-[500px] border mb-16 rounded-lg">
         <h2 className="text-3xl font-bold mb-6 text-center">회원가입</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

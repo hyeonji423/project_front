@@ -107,7 +107,7 @@ const Service = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-20">
-      <div className="w-[40%] max-w-[1200px]">
+      <div className="w-[80%] lg:w-[40%] max-w-[1200px]">
         <h2 className="text-3xl font-extrabold mb-6 text-center">
           건의사항
         </h2>

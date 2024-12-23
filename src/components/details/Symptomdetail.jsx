@@ -73,8 +73,8 @@ const SymptomDetail = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8">
-      <div className="w-[70%] max-w-[1200px] flex flex-col gap-8">
-        <h1 className="text-3xl font-bold mb-8">대표증상</h1>
+      <div className="w-[70%] max-w-[1200px] flex flex-col gap-8 mt-6">
+        <h1 className="text-4xl font-bold mb-6">대표증상</h1>
       </div>
       <div className="flex w-[70%] max-w-[1200px]">
         <div className="border border-gray-200 rounded-lg p-4 mb-8">
@@ -84,7 +84,7 @@ const SymptomDetail = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="w-[70%] text-2xl font-bold gap-4 ml-8">
+        <div className="w-[70%] text-3xl font-bold gap-4 ml-8 mt-4">
           {symptomInfo.title}
           <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-8">
             {symptomInfo.content.map((item, index) => (
@@ -99,7 +99,7 @@ const SymptomDetail = () => {
       <div className="w-[70%] max-w-[1200px] mt-8">
         <h1 className="text-2xl font-bold mb-4">세부증상</h1>
       </div>
-      <div className="flex w-[70%] max-w-[1200px] border-t border-x border-gray-200 rounded-t-lg overflow-hidden">
+      <div className="flex w-[70%] max-w-[1200px] border-t border-x border-gray-200 border-collapse rounded-t-lg overflow-hidden">
         {disease[Number(id)].types.map((item) => (
           <button
             key={item.id}
@@ -135,7 +135,7 @@ const SymptomDetail = () => {
         )}
       </div>
 
-      <div className="w-[70%] max-w-[1200px] mt-4">
+      <div className="w-[70%] max-w-[1200px] mt-10">
         <h1 className="text-2xl font-bold mb-4">치료방법</h1>
       </div>
       <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-lg p-6">
@@ -152,7 +152,7 @@ const SymptomDetail = () => {
             )
         )}
         <div>
-          <h3 className="text-lg font-bold mt-4 mb-2">
+          <h3 className="text-xl font-bold my-4 mt-8">
             위 성분이 포함되어 있는 약품
           </h3>
           {currentMedicines &&

@@ -131,7 +131,7 @@ const NewPage = () => {
   return (
     <div className="w-full min-h-screen pb-8 flex justify-center items-start">
       <div className="flex justify-center items-start w-[90%] h-full m-4">
-        <div className="w-[80%] rounded-md ml-10">
+        <div className="w-[90%] md:w-[70%] rounded-md">
           <div>
             <div className="flex bg-white border-gray-300">
               {tabs.map((tab, index) => (
@@ -172,7 +172,7 @@ const NewPage = () => {
                               onClick={() => navigate(`/medidetail/${item.id}`)}
                             >
                               <div className="flex items-center gap-4">
-                                <div className="w-16 h-16 flex items-center justify-center">
+                                <div className="w-[200px] h-[200px] flex items-center justify-center">
                                   <img
                                     src={item.image}
                                     alt={item.name}

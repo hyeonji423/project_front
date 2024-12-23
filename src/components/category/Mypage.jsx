@@ -11,7 +11,6 @@ const Mypage = ({ user, onClose, onLogout }) => {
   const handleLogout = () => {
     onLogout()
     onClose()
-    alert('로그아웃 되었습니다.')
   }
 
   useEffect(() => {

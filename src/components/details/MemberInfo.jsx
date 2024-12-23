@@ -109,12 +109,12 @@ const Register = () => {
       <div className="logo w-[350px] mt-32 mb-12">
         <img src={mediLogo} alt="" />
       </div>
-      <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
+      <div className="shadow-lg px-12 py-10 w-[80%] md:w-[500px] border mb-16 rounded-lg">
         <h2 className="text-3xl font-extrabold mb-6 text-center">
           비밀번호 변경
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-1">
+          <div className="mb-2">
             <label
               htmlFor="email"
               className="block text-neutral-700 text-lg mb-1"
@@ -129,7 +129,7 @@ const Register = () => {
             />
           </div>
 
-          <div className="mb-1">
+          <div className="mb-4">
             <label
               htmlFor="password"
               className="block text-neutral-700 text-lg mb-1"
