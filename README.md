@@ -7,72 +7,69 @@
 
 
 # Medibook Web Page v1.0
-> **코드랩 아카데미 AICC 4기 2팀** <br/> **개발기간: 2024. 11. 20 ~ 2024. 12. 19**
+> **코드랩 아카데미 AICC 4기 2팀** <br/> **개발기간: 2024. 11. 20 ~ 2024. 12. 19**<br/>
 ## 배포 주소
 > **프론트 서버** : [https://project-front-eight.vercel.app](https://project-front-eight.vercel.app)<br>
 > **백엔드 서버** : [https://back.aicc4hyeonji.site](https://back.aicc4hyeonji.site)<br>
 > **데이터베이스** : [https://107.21.20.220](https://107.21.20.220)<br>
 
 
-
-# 웹개발팀 소개
+## 웹개발팀 소개
 > **김용주**, **유인규**, **이경욱**, **이영선**, **황현지**
 
 
-
 ## 프로젝트 소개
-발룬테인은 온라인 코딩 교육 봉사를 하는 단체입니다. 기존에 소프트웨어학과에서 월드프렌즈 ICT 봉사단이라는 개발도상국에서 약 학 달 간 코딩 교육 봉사를 하는 활동이 있었는데, 봉사가 일회성으로 끝나는 점에 아쉬움을 느껴 지속적인 봉사를 하고자 만들어졌습니다. 발룬테인에서는 스크래치, 파이썬 등 프로그래밍 언어에 관한 강의를 제공하고, 질의응답과 라이브 세션을 통해 한국 학생과 외국 학생 간에 소통이 이루어집니다.
-#### Voluntain will share the knowledge of programming.
-You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
-#### Voluntain's website will give you a learning-friendly environment.
-Our website supports the following component.
-1. Various online lectures with detailed descriptions and exercise questions.
-2. Q&A section to ask questions freely.
-3. Function to check the lecture you watched recently.
+저희는 약물의 효능, 성분, 부작용을 잘 파악하여 안전한 셀프 메디케이션을 할 수 있도록 돕는 가정용 약물 정보 및 관리 사이트 **메디북**을 개발하였습니다.
+
+
 ## 시작 가이드
 ### Requirements
 For building and running the application you need:
-- [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
-- [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
-- [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
+- [Node.js v20.18.0](https://nodejs.org/ko/download/package-manager)
+- [Npm 10.8.2](https://www.npmjs.com/package/npm/v/9.2.0)
+- [Python 3.12.7](https://www.python.org/downloads/windows/)
 ### Installation
-``` bash
-$ git clone https://github.com/Voluntain-SKKU/Voluntain-2nd.git
-$ cd Voluntain-2nd
+> **Frontend**
+``` Frontend
+$ git clone https://github.com/hyeonji423/project_front.git
+$ cd project_front
 ```
-#### Backend
 ```
-$ cd strapi-backend
-$ nvm use v.14.19.3
 $ npm install
-$ npm run develop
+$ npm start
 ```
-#### Frontend
+> **Backend**
+``` backend
+$ git clone https://github.com/hyeonji423/team2backprod.git
+$ cd team2backprod
 ```
-$ cd voluntain-app
-$ nvm use v.14.19.3
+```
 $ npm install
-$ npm run dev
+$ npm run start
 ```
+
 ---
-## Stacks :고양이2:
+## Stacks💊
 ### Environment
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Cursor](https://img.shields.io/badge/Cursor-000000?style=for-the-badge&logo=Cursor&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
 ![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
+
 ### Config
 ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
+![pip](https://img.shields.io/badge/pip-3776AB?style=for-the-badge&logo=pip&logoColor=white)
+
 ### Development
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Strapi](https://img.shields.io/badge/Strapi-2F2E8B?style=for-the-badge&logo=Strapi&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white)
-![Material UI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
+![Tailwind](https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+
 ### Communication
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
-![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
-![GoogleMeet](https://img.shields.io/badge/GoogleMeet-00897B?style=for-the-badge&logo=Google%20Meet&logoColor=white)
+![GoogleDrive](https://img.shields.io/badge/GoogleDrive-4285F4?style=for-the-badge&logo=GoogleDrive&logoColor=white)
+
+
 ---
 ## 화면 구성 :tv:
 | 메인 페이지  |  소개 페이지   |
