@@ -5,16 +5,18 @@ const HealthNews = () => {
   const [newsList, setNewsList] = useState([]); // 전체 뉴스 목록
   const [error, setError] = useState(null); // 에러 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [newsPerPage] = useState(5); // 한 페이지에 표시할 뉴스 수
+  const [newsPerPage] = useState(2); // 한 페이지에 표시할 뉴스 수를 2로 설정
 
   // 로그인한 사용자 정보 가져오기
   const user = useSelector((state) => state.login.user);
 
   // 화면 크기에 따른 글자 수 제한 함수 추가
   const getTruncateLength = () => {
-    if (window.innerWidth >= 1280) { // xl
+    if (window.innerWidth >= 1280) {
+      // xl
       return { title: 70, desc: 150 };
-    } else if (window.innerWidth >= 1024) { // lg
+    } else if (window.innerWidth >= 1024) {
+      // lg
       return { title: 50, desc: 100 };
     } else {
       return { title: 30, desc: 60 };
@@ -30,22 +32,25 @@ const HealthNews = () => {
       setTruncateLength(getTruncateLength());
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("/v1/search/news?query=의약품&display=30", {
-          method: "GET",
-          headers: {
-            "X-Naver-Client-Id": "dCa8QUFNyajk81l0ykKk",
-            "X-Naver-Client-Secret": "J76Yqr6w01",
-            "Accept": "application/json",
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "/v1/search/news?query=의약품&display=30",
+          {
+            method: "GET",
+            headers: {
+              "X-Naver-Client-Id": "dCa8QUFNyajk81l0ykKk",
+              "X-Naver-Client-Secret": "J76Yqr6w01",
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
           }
-        });
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -90,6 +95,10 @@ const HealthNews = () => {
     pageNumbers.push(i);
   }
 
+  // 페이지 네비게이션
+  const startPage = Math.floor((currentPage - 1) / 5) * 5;
+  const visiblePages = pageNumbers.slice(startPage, startPage + 5);
+
   // 뉴스 클릭 시 호출될 함수
   const handleNewsClick = (news) => {
     if (user) {
@@ -122,14 +131,14 @@ const HealthNews = () => {
     <div className="news">
       <div className="grid grid-cols-12 gap-6">
         {/* 메인 뉴스 섹션 */}
-        <div className="col-span-12 lg:col-span-8">
+        <div className="col-span-12">
           {error ? (
             <p className="text-red-500">{error}</p>
           ) : newsList.length === 0 ? (
             <p className="text-gray-600">Loading...</p>
           ) : (
             <div className="space-y-4">
-              {newsList.slice(0, 2).map((news, index) => (
+              {currentNews.map((news, index) => (
                 <div
                   key={index}
                   className="rounded-lg border border-gray-200 hover:border-blue-400 group p-4"
@@ -142,12 +151,16 @@ const HealthNews = () => {
                     onClick={() => handleNewsClick(news)}
                   >
                     <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700">
-                      {news.title.replace(/<\/?b>/g, "").length > truncateLength.title
-                        ? `${news.title.replace(/<\/?b>/g, "").slice(0, truncateLength.title)}...`
+                      {news.title.replace(/<\/?b>/g, "").length >
+                      truncateLength.title
+                        ? `${news.title
+                            .replace(/<\/?b>/g, "")
+                            .slice(0, truncateLength.title)}...`
                         : news.title.replace(/<\/?b>/g, "")}
                     </h2>
                     <p className="text-gray-600 text-sm">
-                      {news.description.replace(/<\/?b>/g, "").length > truncateLength.desc
+                      {news.description.replace(/<\/?b>/g, "").length >
+                      truncateLength.desc
                         ? `${news.description
                             .replace(/<\/?b>/g, "")
                             .slice(0, truncateLength.desc)}...`
@@ -161,29 +174,6 @@ const HealthNews = () => {
               ))}
             </div>
           )}
-        </div>
-
-        {/* 사이드 뉴스 목록 */}
-        <div className="hidden lg:block col-span-12 lg:col-span-4 rounded-lg border border-gray-200 p-4">
-          <ul className="space-y-2">
-            {currentNews.map((news, index) => (
-              <li key={index} className="w-full px-1 py-1">
-                <a
-                  href={news.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center hover:underline"
-                  onClick={() => handleNewsClick(news)}
-                >
-                  <span className="line-clamp-1">
-                    {news.title.replace(/<\/?b>/g, "").length > truncateLength.title
-                      ? `${news.title.replace(/<\/?b>/g, "").slice(0, truncateLength.title)}...`
-                      : news.title.replace(/<\/?b>/g, "")}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
 
           {/* 페이지 네비게이션 */}
           <div className="flex justify-center mt-4 space-x-2">
@@ -195,7 +185,7 @@ const HealthNews = () => {
             >
               &lt;
             </span>
-            {pageNumbers.map((page) => (
+            {visiblePages.map((page) => (
               <span
                 key={page}
                 className={`cursor-pointer ${
