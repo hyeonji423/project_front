@@ -250,7 +250,7 @@ const Modal = () => {
                     {...(modalType === "details" && { disabled: true })}
                   />
                 </div>
-                <div className="flex justify-center gap-2">
+                <div className="flex justify-center items-baseline gap-2">
                   <input
                     type="checkbox"
                     id="notification"
@@ -258,7 +258,7 @@ const Modal = () => {
                     checked={value.notification}
                     onChange={handleNotificationChange}
                     {...(modalType === "details" && { disabled: true })}
-                    className="w-4 h-4"
+                    className="form-checkbox w-3 h-3 text-blue-700 border border-gray-400 cursor-pointer focus:ring-blue-500 mb-[2px]"
                   />
                   <label
                     htmlFor="notification"
