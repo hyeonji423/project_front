@@ -29,6 +29,7 @@ For building and running the application you need:
 - [Npm 10.8.2](https://www.npmjs.com/package/npm/v/9.2.0)
 - [Python 3.12.7](https://www.python.org/downloads/windows/)
 ### Installation
+> **Frontend**
 ``` Frontend
 $ git clone https://github.com/hyeonji423/project_front.git
 $ cd project_front
@@ -37,6 +38,7 @@ $ cd project_front
 $ npm install
 $ npm start
 ```
+> **Backend**
 ``` backend
 $ git clone https://github.com/hyeonji423/team2backprod.git
 $ cd team2backprod
