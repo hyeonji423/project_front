@@ -37,34 +37,33 @@ const HealthNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch(
-          "/v1/search/news.xml?query=의약품&display=30"
-        );
+        const response = await fetch("/v1/search/news", {
+          method: "GET",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          params: {
+            query: "의약품",
+            display: 30,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const text = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(text, "application/xml");
-        const items = Array.from(xmlDoc.getElementsByTagName("item"));
-
-        const news = items.map((item) => {
-          const title = item.getElementsByTagName("title")[0]?.textContent;
-          const description =
-            item.getElementsByTagName("description")[0]?.textContent;
-
-          return {
-            title: title ? decodeHTML(title) : "", // HTML 엔티티 디코딩
-            link: item.getElementsByTagName("link")[0]?.textContent,
-            description: description ? decodeHTML(description) : "",
-            pubDate: item.getElementsByTagName("pubDate")[0]?.textContent,
-          };
-        });
+        const data = await response.json();
+        const news = data.items.map((item) => ({
+          title: decodeHTML(item.title),
+          link: item.link,
+          description: decodeHTML(item.description),
+          pubDate: item.pubDate,
+        }));
 
         setNewsList(news);
       } catch (err) {
+        console.error("API 에러:", err);
         setError(err.message);
       }
     };
