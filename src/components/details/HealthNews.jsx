@@ -5,7 +5,7 @@ const HealthNews = () => {
   const [newsList, setNewsList] = useState([]); // 전체 뉴스 목록
   const [error, setError] = useState(null); // 에러 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [newsPerPage] = useState(2); // 한 페이지에 표시할 뉴스 수를 2로 설정
+  const [newsPerPage] = useState(5); // 한 페이지에 표시할 뉴스 수
 
   // 로그인한 사용자 정보 가져오기
   const user = useSelector((state) => state.login.user);
@@ -95,10 +95,6 @@ const HealthNews = () => {
     pageNumbers.push(i);
   }
 
-  // 페이지 네비게이션
-  const startPage = Math.floor((currentPage - 1) / 5) * 5;
-  const visiblePages = pageNumbers.slice(startPage, startPage + 5);
-
   // 뉴스 클릭 시 호출될 함수
   const handleNewsClick = (news) => {
     if (user) {
@@ -131,14 +127,14 @@ const HealthNews = () => {
     <div className="news">
       <div className="grid grid-cols-12 gap-6">
         {/* 메인 뉴스 섹션 */}
-        <div className="col-span-12">
+        <div className="col-span-12 lg:col-span-8">
           {error ? (
             <p className="text-red-500">{error}</p>
           ) : newsList.length === 0 ? (
             <p className="text-gray-600">Loading...</p>
           ) : (
             <div className="space-y-4">
-              {currentNews.map((news, index) => (
+              {newsList.slice(0, 2).map((news, index) => (
                 <div
                   key={index}
                   className="rounded-lg border border-gray-200 hover:border-blue-400 group p-4"
@@ -150,7 +146,7 @@ const HealthNews = () => {
                     className="block"
                     onClick={() => handleNewsClick(news)}
                   >
-                    <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700">
+                    <h2 className="text-xl sm:text font-bold mb-2 group-hover:text-blue-700">
                       {news.title.replace(/<\/?b>/g, "").length >
                       truncateLength.title
                         ? `${news.title
@@ -174,6 +170,32 @@ const HealthNews = () => {
               ))}
             </div>
           )}
+        </div>
+
+        {/* 사이드 뉴스 목록 */}
+        <div className="hidden lg:block col-span-12 lg:col-span-4 rounded-lg border border-gray-200 p-4">
+          <ul className="space-y-2">
+            {currentNews.map((news, index) => (
+              <li key={index} className="w-full px-1 py-1">
+                <a
+                  href={news.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center hover:underline"
+                  onClick={() => handleNewsClick(news)}
+                >
+                  <span className="line-clamp-1">
+                    {news.title.replace(/<\/?b>/g, "").length >
+                    truncateLength.title
+                      ? `${news.title
+                          .replace(/<\/?b>/g, "")
+                          .slice(0, truncateLength.title)}...`
+                      : news.title.replace(/<\/?b>/g, "")}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
 
           {/* 페이지 네비게이션 */}
           <div className="flex justify-center mt-4 space-x-2">
@@ -185,7 +207,7 @@ const HealthNews = () => {
             >
               &lt;
             </span>
-            {visiblePages.map((page) => (
+            {pageNumbers.map((page) => (
               <span
                 key={page}
                 className={`cursor-pointer ${
