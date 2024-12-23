@@ -93,7 +93,10 @@ const HealthNews = () => {
   const pageGroupSize = 5; // 한 번에 보여줄 페이지 번호 수
   const currentGroup = Math.ceil(currentPage / pageGroupSize);
   const startPage = (currentGroup - 1) * pageGroupSize + 1;
-  const endPage = Math.min(startPage + pageGroupSize - 1, Math.ceil(newsList.length / newsPerPage));
+  const endPage = Math.min(
+    startPage + pageGroupSize - 1,
+    Math.ceil(newsList.length / newsPerPage)
+  );
 
   // 페이지 번호 배열 생성
   const pageNumbers = [];
@@ -131,7 +134,7 @@ const HealthNews = () => {
 
   // HTML 태그 제거 함수
   const removeHtmlTags = (str) => {
-    return str.replace(/<[^>]*>/g, '');
+    return str.replace(/<[^>]*>/g, "");
   };
 
   // 메인 뉴스 (첫 2개)
@@ -157,7 +160,10 @@ const HealthNews = () => {
           ) : (
             <>
               <div className="space-y-4 h-full">
-                {(window.innerWidth >= 1024 ? newsList.slice(0, 2) : getMainNewsForCurrentPage()).map((news, index) => (
+                {(window.innerWidth >= 1024
+                  ? newsList.slice(0, 2)
+                  : getMainNewsForCurrentPage()
+                ).map((news, index) => (
                   <div
                     key={index}
                     className="rounded-lg border border-gray-200 hover:border-blue-400 group p-4 h-[calc(50%-0.5rem)]"
@@ -169,11 +175,12 @@ const HealthNews = () => {
                       className="block h-full flex flex-col"
                       onClick={() => handleNewsClick(news)}
                     >
-                      <h2 className="text-xl font-bold mb-2 group-hover:text-blue-700 break-words">
+                      <h2 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-blue-700 break-words">
                         {news.title.replace(/<\/?b>/g, "")}
                       </h2>
                       <p className="text-gray-600 text-sm flex-grow">
-                        {news.description.replace(/<\/?b>/g, "").length > truncateLength.desc
+                        {news.description.replace(/<\/?b>/g, "").length >
+                        truncateLength.desc
                           ? `${news.description
                               .replace(/<\/?b>/g, "")
                               .slice(0, truncateLength.desc)}...`
@@ -202,8 +209,8 @@ const HealthNews = () => {
                   <button
                     key={page}
                     className={`px-2 py-1 rounded ${
-                      currentPage === page 
-                        ? "text-blue-600 font-semibold" 
+                      currentPage === page
+                        ? "text-blue-600 font-semibold"
                         : "text-gray-600 hover:text-blue-600"
                     }`}
                     onClick={() => paginate(page)}
@@ -231,8 +238,8 @@ const HealthNews = () => {
             <h3 className="text-lg font-semibold mb-4">최신 뉴스</h3>
             <ul className="space-y-3 flex-grow overflow-y-auto">
               {currentNews.map((news, index) => (
-                <li 
-                  key={index} 
+                <li
+                  key={index}
                   className="w-full border-b border-gray-100 last:border-b-0 pb-2 last:pb-0"
                 >
                   <a
@@ -268,8 +275,8 @@ const HealthNews = () => {
                 <button
                   key={page}
                   className={`px-2 py-1 rounded ${
-                    currentPage === page 
-                      ? "text-blue-600 font-semibold" 
+                    currentPage === page
+                      ? "text-blue-600 font-semibold"
                       : "text-gray-600 hover:text-blue-600"
                   }`}
                   onClick={() => paginate(page)}
