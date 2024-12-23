@@ -40,6 +40,8 @@ const HealthNews = () => {
         const response = await fetch("/v1/search/news?query=의약품&display=30", {
           method: "GET",
           headers: {
+            "X-Naver-Client-Id": "dCa8QUFNyajk81l0ykKk",
+            "X-Naver-Client-Secret": "J76Yqr6w01",
             "Accept": "application/json",
             "Content-Type": "application/json",
           }
