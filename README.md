@@ -33,12 +33,14 @@ For building and running the application you need:
 $ git clone https://github.com/hyeonji423/project_front.git
 $ cd project_front
 ```
+```
 $ npm install
 $ npm start
-#### Backend
-``` bash
+```
+``` backend
 $ git clone https://github.com/hyeonji423/team2backprod.git
 $ cd team2backprod
+```
 ```
 $ npm install
 $ npm run start
