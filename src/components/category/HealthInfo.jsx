@@ -11,7 +11,7 @@ function App() {
         </div>
       </div>
 
-      <div className="health mt-12 w-[90%] lg:w-[80%] mb-14">
+      <div className="health mt-20 md:mt-12 w-[90%] lg:w-[80%] mb-14">
         <h2 className="text-3xl font-semibold mb-4">건강정보</h2>
         <HealthList />
       </div>

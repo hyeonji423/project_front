@@ -187,8 +187,8 @@ const HealthNews = () => {
                 ))}
               </div>
 
-              {/* 모바일 환경의 페이지네이션 */}
-              <div className="lg:hidden flex justify-center mt-6 space-x-2">
+              {/* 모바일 환경의 페이지네이션 - 하단 여백 추가 */}
+              <div className="lg:hidden flex justify-center mt-6 mb-8 space-x-2">
                 {currentGroup > 1 && (
                   <button
                     className="px-2 py-1 rounded text-gray-600 hover:text-blue-600"
