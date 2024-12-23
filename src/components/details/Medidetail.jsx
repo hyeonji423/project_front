@@ -91,13 +91,13 @@ function Medidetail() {
   }
 
   return (
-    <div className="w-full flex flex-col justify-center items-center py-8 mb-10">
-      <div className="w-[90%] md:w-[70%] max-w-[1200px] flex flex-col gap-6 mt-10">
-        <h1 className="text-4xl font-bold mb-10">의약품 상세정보</h1>
+    <div className="w-full flex flex-col justify-center items-center py-4 md:py-8 mb-6 md:mb-10">
+      <div className="w-[95%] md:w-[70%] max-w-[1200px] flex flex-col gap-4 md:gap-6 mt-4 md:mt-10">
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 md:mb-10">의약품 상세정보</h1>
       </div>
 
-      <div className="flex w-[90%] md:w-[70%] max-w-[1200px] flex-col md:flex-row">
-        <div className="border border-gray-200 rounded-lg mb-4 shadow-sm w-full md:w-[300px] h-[300px] flex items-center justify-center">
+      <div className="flex w-[95%] md:w-[70%] max-w-[1200px] flex-col md:flex-row">
+        <div className="border border-gray-200 rounded-lg mb-4 shadow-sm w-full md:w-[300px] h-[250px] md:h-[300px] flex items-center justify-center">
           <img
             src={medicineData.image_url}
             onError={(e) => {
@@ -105,43 +105,43 @@ function Medidetail() {
               e.target.onerror = null;
             }}
             alt={medicineData.제품명}
-            className="w-[250px] h-[250px] object-contain" // 이미지 크기 고정 및 비율 유지
+            className="w-[200px] md:w-[250px] h-[200px] md:h-[250px] object-contain"
           />
         </div>
-        <div className="w-[90%] md:w-[70%] text-3xl font-bold mb-2 md:ml-12 p-6 md:p-0">
+        <div className="w-full md:w-[70%] text-xl md:text-3xl font-bold mb-2 md:ml-12 p-4 md:p-6">
           {medicineData.제품명}
-          <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-4">
-            <p className="text-gray-400 text-sm">
+          <div className="flex w-full text-sm md:text-[18px] font-medium flex-col gap-2 md:gap-4 mt-2 md:mt-4">
+            <p className="text-gray-400 text-xs md:text-sm">
               업체명: {medicineData.업체명}
             </p>
           </div>
-          <span className="block border-b my-6 border-gray-300 w-4/5"></span>
-          <h2 className="text-2xl text-blue-600 font-bold mb-2">주성분</h2>
-          <p className="text-sm font-thin">{medicineData.주성분}</p>
+          <span className="block border-b my-4 md:my-6 border-gray-300 w-full md:w-4/5"></span>
+          <h2 className="text-xl md:text-2xl text-blue-600 font-bold mb-2">주성분</h2>
+          <p className="text-xs md:text-sm font-thin">{medicineData.주성분}</p>
         </div>
       </div>
 
-      <div className="w-[90%] md:w-[70%]  max-w-[1200px]">
-        <div className="p-6">
-          <h2 className="text-2xl text-blue-600 font-bold mb-3">효능</h2>
-          <p className="leading-relaxed">{medicineData.효능}</p>
+      <div className="w-[95%] md:w-[70%] max-w-[1200px]">
+        <div className="p-3 md:p-6">
+          <h2 className="text-xl md:text-2xl text-blue-600 font-bold mb-2 md:mb-3">효능</h2>
+          <p className="text-sm md:text-base leading-relaxed">{medicineData.효능}</p>
         </div>
 
-        <div className="p-6">
-          <h2 className="text-2xl text-blue-600 font-bold mb-3">사용법</h2>
-          <p className="leading-relaxed">{medicineData.사용법}</p>
+        <div className="p-3 md:p-6">
+          <h2 className="text-xl md:text-2xl text-blue-600 font-bold mb-2 md:mb-3">사용법</h2>
+          <p className="text-sm md:text-base leading-relaxed">{medicineData.사용법}</p>
         </div>
 
-        <div className="p-6">
-          <h2 className="text-2xl text-blue-600 font-bold mb-3">부작용</h2>
-          <p className="leading-relaxed">{medicineData.부작용}</p>
+        <div className="p-3 md:p-6">
+          <h2 className="text-xl md:text-2xl text-blue-600 font-bold mb-2 md:mb-3">부작용</h2>
+          <p className="text-sm md:text-base leading-relaxed">{medicineData.부작용}</p>
         </div>
 
-        <div className="p-6">
-          <h2 className="text-2xl text-blue-600 font-bold mb-3">
+        <div className="p-3 md:p-6">
+          <h2 className="text-xl md:text-2xl text-blue-600 font-bold mb-2 md:mb-3">
             약음식 주의사항
           </h2>
-          <p className="leading-relaxed">{medicineData.약음식주의사항}</p>
+          <p className="text-sm md:text-base leading-relaxed">{medicineData.약음식주의사항}</p>
         </div>
       </div>
     </div>

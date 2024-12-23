@@ -9,14 +9,33 @@ function MediInfo() {
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentGroup, setCurrentGroup] = useState(1);
+  const [pagesPerGroup, setPagesPerGroup] = useState(10);
   const itemsPerPage = 4;
-  const pagesPerGroup = 10;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const getMediInfoData = useSelector(
     (state) => state.medicine.getMediInfoData
   );
   const location = useLocation();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) { // 모바일 환경
+        setPagesPerGroup(5);
+      } else { // 데스크톱 환경
+        setPagesPerGroup(10);
+      }
+    };
+
+    // 초기 실행
+    handleResize();
+
+    // 리사이즈 이벤트 리스너 등록
+    window.addEventListener('resize', handleResize);
+
+    // 클린업
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
