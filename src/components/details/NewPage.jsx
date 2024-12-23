@@ -129,15 +129,15 @@ const NewPage = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen pb-8 flex justify-center items-start">
-      <div className="flex justify-center items-start w-[90%] h-full m-4">
-        <div className="w-[90%] md:w-[70%] rounded-md">
+    <div className="w-full min-h-screen pb-4 md:pb-8 flex justify-center items-start">
+      <div className="flex justify-center items-start w-[95%] md:w-[90%] h-full m-2 md:m-4">
+        <div className="w-full md:w-[70%] rounded-md">
           <div>
             <div className="flex bg-white border-gray-300">
               {tabs.map((tab, index) => (
                 <button
                   key={index}
-                  className={`px-4 py-2 border cursor-pointer focus:outline-none transition-colors rounded-t-md
+                  className={`px-2 md:px-4 py-1 md:py-2 text-sm md:text-base border cursor-pointer focus:outline-none transition-colors rounded-t-md
                   ${
                     activeTab === index
                       ? "bg-blue-500 text-white border-blue-500"
@@ -150,16 +150,16 @@ const NewPage = () => {
               ))}
             </div>
 
-            <div className="p-4 border rounded-b-md ">
-              <h2 className="text-2xl m-4 font-semibold mb-4">
+            <div className="p-2 md:p-4 border rounded-b-md">
+              <h2 className="text-xl md:text-2xl m-2 md:m-4 font-semibold mb-4">
                 {tabs[activeTab].content}
               </h2>
-              {/* 탭 내용에 따른 컴포넌트 렌더링 */}
+              
               {activeTab === 0 && (
                 <div>
                   {viewedMedicines.length > 0 ? (
                     <>
-                      <div className="grid gap-4">
+                      <div className="grid gap-2 md:gap-4">
                         {viewedMedicines
                           .slice(
                             (currentPage - 1) * itemsPerPage,
@@ -168,23 +168,23 @@ const NewPage = () => {
                           .map((item) => (
                             <div
                               key={item.id}
-                              className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                              className="p-2 md:p-4 border rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer"
                               onClick={() => navigate(`/medidetail/${item.id}`)}
                             >
-                              <div className="flex items-center gap-4">
-                                <div className="w-[200px] h-[200px] flex items-center justify-center">
+                              <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+                                <div className="w-[150px] md:w-[200px] h-[150px] md:h-[200px] flex items-center justify-center">
                                   <img
                                     src={item.image}
                                     alt={item.name}
                                     className="max-w-full max-h-full object-contain"
                                   />
                                 </div>
-                                <div>
-                                  <h3 className="font-bold">{item.name}</h3>
-                                  <p className="text-sm text-gray-600">
+                                <div className="text-center md:text-left w-full md:w-auto">
+                                  <h3 className="text-base md:text-lg font-bold">{item.name}</h3>
+                                  <p className="text-xs md:text-sm text-gray-600">
                                     {item.main_ingredient}
                                   </p>
-                                  <p className="text-sm mt-2">
+                                  <p className="text-xs md:text-sm mt-1 md:mt-2">
                                     {item.efficacy}
                                   </p>
                                 </div>
@@ -196,17 +196,18 @@ const NewPage = () => {
                       <PaginationControls />
                     </>
                   ) : (
-                    <div className="text-center py-8 text-gray-400">
+                    <div className="text-center py-4 md:py-8 text-gray-400">
                       <p>열람한 약품이 없습니다.</p>
                     </div>
                   )}
                 </div>
               )}
+
               {activeTab === 1 && (
                 <div>
                   {viewedNews.length > 0 ? (
                     <>
-                      <div className="grid gap-4">
+                      <div className="grid gap-2 md:gap-4">
                         {viewedNews
                           .slice(
                             (currentPage - 1) * itemsPerPage,
@@ -215,20 +216,18 @@ const NewPage = () => {
                           .map((news, index) => (
                             <div
                               key={index}
-                              className="p-4 border rounded shadow-sm hover:shadow-md transition-shadow"
+                              className="p-2 md:p-4 border rounded shadow-sm hover:shadow-md transition-shadow"
                             >
                               <a
                                 href={news.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-800 font-semibold text-lg"
+                                className="text-base md:text-lg text-blue-600 hover:text-blue-800 font-semibold"
                               >
                                 {news.title.replace(/<\/?b>/g, "")}
                               </a>
-                              <p className="text-gray-600 text-sm mt-2">
-                                {new Date(news.pubDate).toLocaleDateString(
-                                  "ko-KR"
-                                )}
+                              <p className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">
+                                {new Date(news.pubDate).toLocaleDateString("ko-KR")}
                               </p>
                             </div>
                           ))}
@@ -237,7 +236,7 @@ const NewPage = () => {
                       <PaginationControls />
                     </>
                   ) : (
-                    <div className="text-center py-8 text-gray-400">
+                    <div className="text-center py-4 md:py-8 text-gray-400">
                       <p>열람한 뉴스가 없습니다.</p>
                     </div>
                   )}
