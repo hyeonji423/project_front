@@ -7,8 +7,8 @@ const Home = () => {
     <div className='w-full'>
       <Landing/>
       <div className='flex justify-center items-center'>
-        <div className='mt-44 mx-10 lg:mx-28 mb-14'>
-          <div className="container">
+        <div className='mt-44 mb-14 w-[90%] sm:w-[600px] lg:w-[800px] xl:w-[1100px] mx-auto'>
+          <div className="">
             <h2 className="text-3xl font-semibold mb-4">건강정보</h2>
             <HealthList/>
           </div>
