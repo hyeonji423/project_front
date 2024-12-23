@@ -1,21 +1,23 @@
-# Voluntain-2nd
-<div align="center">
-  <img width="329" alt="image" src="../front/src/assets/medi_logo.png">
+# Medibook Project
+<div align="center" margin="20px 0">
+  <br/><br/>
+    <img alt="image" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/medi_logo.png?raw=true">
+  <br/><br/>
 </div>
 
 
-# Voluntain Web Page v2.0
-> **성균관대학교 소프트웨어학과 온라인 해외봉사 단체** <br/> **개발기간: 2022.03 ~ 2022.10**
+# Medibook Web Page v1.0
+> **코드랩 아카데미 AICC 4기 2팀** <br/> **개발기간: 2024. 11. 20 ~ 2024. 12. 19**
 ## 배포 주소
-> **개발 버전** : [http://voluntain.cs.skku.edu/](http://voluntain.cs.skku.edu/) <br>
-> **프론트 서버** : [http://voluntain.cs.skku.edu:33307/](http://voluntain.cs.skku.edu:33307/)<br>
-> **백엔드 서버** : [http://voluntain.cs.skku.edu:2223/](http://voluntain.cs.skku.edu:2223/)<br>
-## 웹개발팀 소개
-|      박지예       |          서채연         |       이현정         |
-| :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|   <img width="160px" src="https://user-images.githubusercontent.com/50205887/205326013-af001243-a77d-4601-8bfc-aa713931cf95.png" />    |                      <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570536-f5a82e48-99a1-4399-91d3-75fc5f8f3349.png" />    |                   <img width="160px" src="https://user-images.githubusercontent.com/50205887/207570634-247c3715-a54e-4f63-8c08-9b266f8a35f7.png"/>   |
-|   [@parkjiye](https://github.com/parkjiye)   |    [@ChaeyeonSeo](https://github.com/ChaeyeonSeo)  | [@hyunjeong408](https://github.com/hyunjeong408)  |
-| 성균관대학교 소프트웨어학과 4학년 | 성균관대학교 소프트웨어학과 4학년 | 성균관대학교 소프트웨어학과 4학년 |
+> **프론트 서버** : [https://project-front-eight.vercel.app](https://project-front-eight.vercel.app)<br>
+> **백엔드 서버** : [https://back.aicc4hyeonji.site](https://back.aicc4hyeonji.site)<br>
+> **데이터베이스** : [https://107.21.20.220](https://107.21.20.220)<br>
+
+
+# 웹개발팀 소개
+> **김용주**, **유인규**, **이경욱**, **이영선**, **황현지**
+
+
 ## 프로젝트 소개
 발룬테인은 온라인 코딩 교육 봉사를 하는 단체입니다. 기존에 소프트웨어학과에서 월드프렌즈 ICT 봉사단이라는 개발도상국에서 약 학 달 간 코딩 교육 봉사를 하는 활동이 있었는데, 봉사가 일회성으로 끝나는 점에 아쉬움을 느껴 지속적인 봉사를 하고자 만들어졌습니다. 발룬테인에서는 스크래치, 파이썬 등 프로그래밍 언어에 관한 강의를 제공하고, 질의응답과 라이브 세션을 통해 한국 학생과 외국 학생 간에 소통이 이루어집니다.
 #### Voluntain will share the knowledge of programming.
