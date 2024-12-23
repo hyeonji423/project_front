@@ -37,16 +37,12 @@ const HealthNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("/v1/search/news", {
+        const response = await fetch("/v1/search/news?query=의약품&display=30", {
           method: "GET",
           headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-          },
-          params: {
-            query: "의약품",
-            display: 30,
-          },
+          }
         });
 
         if (!response.ok) {
