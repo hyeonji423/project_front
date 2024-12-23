@@ -8,8 +8,8 @@ module.exports = function (app) {
       changeOrigin: true,
       secure: false,
       headers: {
-        "X-Naver-Client-Id": process.env.NAVER_CLIENT_ID,
-        "X-Naver-Client-Secret": process.env.NAVER_CLIENT_SECRET,
+        "X-Naver-Client-Id": Pn41ty2TZMse8pqazHPe,
+        "X-Naver-Client-Secret": yU6BfqbmNL,
       },
       onError: (err, req, res) => {
         console.error("Proxy error:", err);
