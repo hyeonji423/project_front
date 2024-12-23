@@ -1,0 +1,23 @@
+{
+  "rewrites": [
+    {
+      "source": "/v1/search/:path*",
+      "destination": "https://openapi.naver.com/v1/search/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/v1/search/:path*",
+      "headers": [
+        {
+          "key": "X-Naver-Client-Id",
+          "value": "@naver_client_id"
+        },
+        {
+          "key": "X-Naver-Client-Secret",
+          "value": "@naver_client_secret"
+        }
+      ]
+    }
+  ]
+} 

@@ -38,7 +38,7 @@ const HealthNews = () => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "/v1/search/news.xml?query=의약품&display=30"
+          "/api/search?type=news.xml?query=의약품&display=30"
         );
 
         if (!response.ok) {
