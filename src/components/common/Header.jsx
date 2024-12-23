@@ -48,12 +48,16 @@ const Header = () => {
       <div className="container flex justify-between items-center relative">
         <div className="logo left-0">
           <Link to="/">
-            <img src={mediLogo} alt="메디 로고" className="w-[200px]" />
+            <img 
+              src={mediLogo} 
+              alt="메디 로고" 
+              className="w-[120px] md:w-[200px]"
+            />
           </Link>
         </div>
         <div className="head-all">
           <div className="head-top w-full text-xs md:text-sm info mt-2">
-            <ul className="flex gap-4 md:gap-6 items-center justify-end">
+            <ul className="flex gap-2 md:gap-6 items-center justify-end">
               {user !== null ? (
                 <>
                   <li className="text-neutral-500 hover:text-black transition-all duration-100">

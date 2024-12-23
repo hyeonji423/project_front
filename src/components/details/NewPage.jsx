@@ -7,7 +7,7 @@ const NewPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentGroup, setCurrentGroup] = useState(1);
   const itemsPerPage = 5;
-  const pagesPerGroup = 10;
+  const [pagesPerGroup, setPagesPerGroup] = useState(10);
   const user = useSelector((state) => state.login.user);
   const [viewedNews, setViewedNews] = useState([]);
   const [viewedMedicines, setViewedMedicines] = useState([]);
@@ -40,6 +40,26 @@ const NewPage = () => {
       setViewedNews([]);
     }
   }, [user]);
+
+  // 화면 크기에 따라 페이지네이션 그룹 크기 조절
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) { // 모바일 환경
+        setPagesPerGroup(5);
+      } else { // 데스크톱 환경
+        setPagesPerGroup(10);
+      }
+    };
+
+    // 초기 실행
+    handleResize();
+
+    // 리사이즈 이벤트 리스너 등록
+    window.addEventListener('resize', handleResize);
+
+    // 클린업
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // 로그인하지 않은 경우 메시지 표시
   if (!user) {
