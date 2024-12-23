@@ -1,8 +1,9 @@
 # Voluntain-2nd
 <div align="center">
 <img width="329" alt="image" src="https://user-images.githubusercontent.com/50205887/207568862-cdc9e2c0-b03c-43ff-bf46-3ba79a110d0c.png">
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 </div>
+
+
 # Voluntain Web Page v2.0
 > **성균관대학교 소프트웨어학과 온라인 해외봉사 단체** <br/> **개발기간: 2022.03 ~ 2022.10**
 ## 배포 주소
@@ -76,13 +77,13 @@ $ npm run dev
 | 강좌 소개 페이지   |  강의 영상 페이지   |
 | <img width="329" src="https://user-images.githubusercontent.com/50205887/208038737-2b32b7d2-25f4-4949-baf5-83b5c02915a3.png"/>   |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208038965-43a6318a-7b05-44bb-97c8-b08b0495fba7.png"/>     |
 ---
-## 주요 기능 :포장:
-### :별:️ 강좌 선택 및 강의 영상 시청 기능
+## 주요 기능 📦
+### ⭐ 강좌 선택 및 강의 영상 시청 기능
 - Scratch, Python 2개 강좌 및 각 강좌마다 10개 가량의 강의 영상 제공
 - 추후 지속적으로 강좌 추가 및 업로드 예정
-### :별:️ 강의 관련 및 단체에 대한 자유로운 댓글 작성 가능
+### ⭐ 강의 관련 및 단체에 대한 자유로운 댓글 작성 가능
 - Disqus를 이용하여 강의 관련 질문이나 단체에 대한 질문 작성 가능
-### :별:️ 이어 학습하기 기능
+### ⭐ 이어 학습하기 기능
 - Cookie 기능을 이용하여 이전에 학습했던 내용 이후부터 바로 학습 가능
 ---
 ## 아키텍쳐
@@ -117,7 +118,7 @@ $ npm run dev
     │   ├── Footer.js
     │   ├── LectureCards.js
     │   ├── MainBanner.js : 메인 페이지에 있는 남색 배너 컴포넌트, 커뮤니티 이름과 슬로건을 포함.
-    │   ├── MainCard.js
+    │   ├─�� MainCard.js
     │   ├── MainCookieCard.js
     │   ├── NavigationBar.js : 네비게이션 바 컴포넌트, _app.js에서 공통으로 전체 페이지에 포함됨.
     │   ├── RecentLecture.js
