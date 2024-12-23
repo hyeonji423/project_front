@@ -1,6 +1,6 @@
 # Voluntain-2nd
 <div align="center">
-<img width="329" alt="image" src="https://user-images.githubusercontent.com/50205887/207568862-cdc9e2c0-b03c-43ff-bf46-3ba79a110d0c.png">
+  <img width="329" alt="image" src="../front/src/assets/medi_logo.png">
 </div>
 
 
