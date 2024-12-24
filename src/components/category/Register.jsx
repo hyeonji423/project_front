@@ -147,11 +147,13 @@ const Register = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-auto mb-16">
-      <div className="logo w-[350px] mt-32 mb-12">
+      <div className="logo w-[250px] md:w-[350px] mt-20 md:mt-32 mb-10 md:mb-12">
         <img src={mediLogo} alt="logo" />
       </div>
-      <div className="shadow-lg px-12 py-10 w-[80%] md:w-[500px] border mb-16 rounded-lg">
-        <h2 className="text-3xl font-bold mb-6 text-center">회원가입</h2>
+      <div className="shadow-lg px-6 md:px-12 py-8 md:py-10 w-[90%] md:w-[500px] border mb-16 rounded-lg">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center">
+          회원가입
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             {/* <label htmlFor="username" className="block text-neutral-700">
@@ -179,7 +181,7 @@ const Register = () => {
               />
               <button
                 onClick={handleSendVerification}
-                className="w-[30%] py-2 bg-blue-400 text-white rounded-md text-[13px] md:text-[15px] hover:bg-blue-500 transition-all duration-200 "
+                className="w-[30%] py-2 bg-blue-400 text-white rounded-md text-[11px] md:text-[15px] hover:bg-blue-500 transition-all duration-200 "
                 type="button"
               >
                 인증코드 발송
@@ -259,14 +261,13 @@ const Register = () => {
           </div>
           <div className="flex justify-between items-center gap-2 mb-6">
             <button
-              className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200"
+              className="w-full h-10 md:h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200 text-sm md:text-base"
               type="submit"
-              // disabled={isSubmitDisabled}
             >
               가입 하기
             </button>
-            <Link to="/" className="w-full h-12">
-              <button className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200">
+            <Link to="/" className="w-full h-10 md:h-12">
+              <button className="w-full h-10 md:h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200 text-sm md:text-base">
                 가입 취소
               </button>
             </Link>
