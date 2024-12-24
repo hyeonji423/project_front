@@ -97,7 +97,7 @@ const Landing = () => {
             <div className="relative w-full flex items-center rounded-md bg-white shadow-sm">
               <input
                 type="search"
-                className="w-[300px] md:w-full py-4 pl-4 pr-12 text-md text-gray-900 outline-none bg-white rounded-md"
+                className="w-[260px] md:w-full py-4 pl-4 pr-12 text-md text-gray-900 outline-none bg-white rounded-md"
                 placeholder="증상 or 일반의약품 검색"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
