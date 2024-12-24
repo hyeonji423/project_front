@@ -103,7 +103,7 @@ const Header = () => {
 
             {/* 네비게이션 메뉴 */}
             <ul className={`flex sm:gap-6 items-center justify-center sm:justify-end ${!isMobileMenuOpen && 'max-sm:hidden'}
-              ${isMobileMenuOpen && 'max-sm:flex max-sm:fixed max-sm:left-0 max-sm:right-0 max-sm:bg-white max-sm:shadow-lg max-sm:flex-col max-sm:py-2 max-sm:z-50'}`}>
+              ${isMobileMenuOpen && 'max-sm:flex max-sm:fixed max-sm:left-0 max-sm:right-0 max-sm:bg-white max-sm:shadow-lg max-sm:flex-col max-sm:py-2 max-sm:z-40'}`}>
               {navItems.map((item, idx) => (
                 <li key={idx} className={`max-sm:w-full max-sm:text-center max-sm:py-2 ${(item.label === "챗봇" || item.label === "건강정보") ? 'max-sm:bg-blue-50' : ''}`}>
                   {item.to === "/chat" ? (

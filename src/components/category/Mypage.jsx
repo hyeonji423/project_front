@@ -28,7 +28,7 @@ const Mypage = ({ user, onClose, onLogout }) => {
   
   if (!user) {
     return (
-      <div ref={modalRef} className="absolute right-0 top-full w-60 bg-white rounded-lg p-4 z-50 shadow-[0_2px_6px_rgba(0,0,0,0.05),0_-2px_6px_rgba(0,0,0,0.05)]">
+      <div ref={modalRef} className="absolute right-0 top-full w-60 bg-white rounded-lg p-4 z-60 shadow-[0_2px_6px_rgba(0,0,0,0.05),0_-2px_6px_rgba(0,0,0,0.05)]">
         <div className="flex justify-end">
           <IoClose onClick={onClose} className="cursor-pointer text-xl text-gray-500 hover:text-black" />
         </div>

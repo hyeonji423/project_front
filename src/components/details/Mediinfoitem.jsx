@@ -23,7 +23,7 @@ const Mediinfoitem = React.memo(({ mediitem, onClick }) => {
   return (
     <div className="p-2 my-2 w-full max-w-full cursor-pointer" onClick={onClick}>
       <div className="flex flex-col md:flex-row w-full p-4 md:p-10 rounded-lg hover:shadow-md border">
-        <div className="w-full md:w-[40%] mb-4 md:mb-0 md:mr-10 h-[200px] md:h-[300px] flex items-center justify-center">
+        <div className="w-full md:w-[40%] mb-4 md:mb-0 md:mr-10 h-[150px] md:h-[300px] flex items-center justify-center">
           <img
             src={imgSrc}
             onError={handleImageError}
@@ -36,27 +36,27 @@ const Mediinfoitem = React.memo(({ mediitem, onClick }) => {
             <button className="text-lg md:text-xl font-bold mb-2 tracking-wide">
               {truncateText(제품명, 20)}
             </button>
-            <p className="text-gray-400 text-xs md:text-sm hidden md:block">{업체명}</p>
+            <p className="text-gray-400 text-xs md:text-sm mb-2 md:mb-0">{업체명}</p>
           </div>
 
-          <span className="block border-b mb-3 md:mb-4 border-gray-300 mx-auto"></span>
+          <span className="block border-b mb-3 border-gray-300 mx-auto"></span>
 
-          <div className="mb-3 md:mb-4">
-            <h4 className="font-bold mb-1 text-blue-600 text-sm md:text-base">주성분</h4>
-            <p className="text-gray-700 text-xs md:text-sm">
+          <div className="mb-3">
+            <h4 className="font-bold mb-1 text-blue-600 text-sm">주성분</h4>
+            <p className="text-gray-700 text-xs">
               {truncateText(주성분, 40)}
             </p>
           </div>
 
-          <div className="hidden md:block">
-            <div className="mb-3 md:mb-4">
-              <h4 className="font-bold mb-1 text-blue-600 text-sm md:text-base">효능</h4>
-              <p className="text-gray-700 text-xs md:text-sm">
-                {truncateText(효능, 90)}
-              </p>
-            </div>
+          <div className="mb-3">
+            <h4 className="font-bold mb-1 text-blue-600 text-sm">효능</h4>
+            <p className="text-gray-700 text-xs">
+              {truncateText(효능, 60)}
+            </p>
+          </div>
 
-            <div className="mb-3 md:mb-4">
+          <div className="hidden md:block">
+            <div className="mb-3">
               <h4 className="font-bold mb-1 text-blue-600 text-sm md:text-base">사용법</h4>
               <p className="text-gray-700 text-xs md:text-sm">
                 {truncateText(사용법, 90)}
