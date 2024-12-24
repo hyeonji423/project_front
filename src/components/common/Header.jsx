@@ -19,6 +19,8 @@ const Header = () => {
   // ref 추가
   const mypageRef = useRef(null);
   const mobileMenuRef = useRef(null);
+  const containerRef = useRef(null);
+  const [menuTop, setMenuTop] = useState(0);
 
   // 외부 클릭 감지 핸들러 추가
   useEffect(() => {
@@ -38,6 +40,10 @@ const Header = () => {
   }, []);
 
   const toggleMobileMenu = () => {
+    if (containerRef.current) {
+      const containerHeight = containerRef.current.offsetHeight;
+      setMenuTop(containerHeight);
+    }
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
@@ -66,7 +72,7 @@ const Header = () => {
   };
   return (
     <div className="w-full flex justify-center shadow-custom sticky top-0 z-50 bg-white">
-      <div className="container flex justify-between items-center relative">
+      <div ref={containerRef} className="container flex justify-between items-center relative">
         <div className="logo left-0">
           <Link to="/">
             <img 
@@ -123,7 +129,8 @@ const Header = () => {
               </button>
               
               <ul className={`flex sm:gap-6 items-center justify-center sm:justify-end ${!isMobileMenuOpen && 'max-sm:hidden'}
-                ${isMobileMenuOpen && 'max-sm:flex max-sm:fixed max-sm:left-0 max-sm:right-0 max-sm:bg-white max-sm:shadow-lg max-sm:flex-col max-sm:py-2 max-sm:z-40'}`}>
+                ${isMobileMenuOpen && 'max-sm:flex max-sm:fixed max-sm:left-0 max-sm:right-0 max-sm:bg-white max-sm:shadow-lg max-sm:flex-col max-sm:py-2 max-sm:z-40'}`}
+                style={isMobileMenuOpen ? { top: `${menuTop - 2}px` } : undefined}>
                 {navItems.map((item, idx) => (
                   <li key={idx} className={`tracking-tight max-sm:w-full max-sm:text-center max-sm:py-2 ${(item.label === "챗봇" || item.label === "건강정보") ? 'max-sm:bg-blue-50' : ''}`}>
                     {item.to === "/chat" ? (
