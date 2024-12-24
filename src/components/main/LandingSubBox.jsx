@@ -50,11 +50,11 @@ export default () => {
             },
             480: {
               slidesPerView: 2,
-              spaceBetween: 10,
+              spaceBetween: 12,
             },
             0: {
               slidesPerView: 2,
-              spaceBetween: 8,
+              spaceBetween: 12,
             },
           }}
           onSlideChange={() => console.log("slide change")}
