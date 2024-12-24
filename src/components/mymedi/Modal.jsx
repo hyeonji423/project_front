@@ -34,12 +34,12 @@ const Modal = () => {
     }));
   };
 
-    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
-    const getTodayDate = () => {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const day = String(today.getDate()).padStart(2, '0');
+  // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -51,11 +51,11 @@ const Modal = () => {
       return;
     }
 
-        // 날짜 유효성 검사 추가
-        const today = new Date();
-        const buyingDate = new Date(value.buyingDate);
-        const expDate = new Date(value.expDate);
-    
+    // 날짜 유효성 검사 추가
+    const today = new Date();
+    const buyingDate = new Date(value.buyingDate);
+    const expDate = new Date(value.expDate);
+
     if (buyingDate > today) {
       alert("구입/개봉날짜는 미래 날짜를 선택할 수 없습니다.");
       return;
@@ -65,23 +65,23 @@ const Modal = () => {
       alert("유효기간은 과거 날짜를 선택할 수 없습니다.");
       return;
     }
-    
+
     if (value.mediName === "" || value.expDate === "") {
       alert("제품명과 유효기간은 필수 입력값입니다.");
       return;
     }
 
-      // 알림 설정 시 유효기간 체크
+    // 알림 설정 시 유효기간 체크
     if (value.notification && value.expDate) {
       const today = new Date();
       const expDate = new Date(value.expDate);
       const diffDays = Math.ceil((expDate - today) / (1000 * 60 * 60 * 24));
 
       if (diffDays <= 7) {
-      alert("유효기간이 7일 이내인 경우 알림 설정이 불가합니다.");
-      return;
-     } 
-    }   
+        alert("유효기간이 7일 이내인 경우 알림 설정이 불가합니다.");
+        return;
+      }
+    }
 
     try {
       if (modalType === "create" && myMediList === null) {
@@ -164,7 +164,7 @@ const Modal = () => {
 
   const handleNotificationChange = (e) => {
     const isChecked = e.target.checked;
-    
+
     if (isChecked && value.expDate) {
       // 유효기간과 오늘 날짜의 차이 계산
       const today = new Date();
@@ -182,7 +182,6 @@ const Modal = () => {
       notification: isChecked,
     }));
   };
-
 
   if (!isOpen) return null;
 
@@ -236,6 +235,12 @@ const Modal = () => {
                   max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
                   {...(modalType === "details" && { disabled: true })}
                   placeholder="YYYY-MM-DD"
+                  onFocus={(e) => (e.target.type = "date")}
+                  onBlur={(e) => {
+                    if (!e.target.value) {
+                      e.target.type = "text";
+                    }
+                  }}
                 />
               </div>
               <div className="form-item">
@@ -250,6 +255,12 @@ const Modal = () => {
                     min={getTodayDate()} // 오늘 날짜를 최소값으로 설정
                     {...(modalType === "details" && { disabled: true })}
                     placeholder="YYYY-MM-DD"
+                    onFocus={(e) => (e.target.type = "date")}
+                    onBlur={(e) => {
+                      if (!e.target.value) {
+                        e.target.type = "text";
+                      }
+                    }}
                   />
                 </div>
                 <div className="flex justify-center items-baseline gap-2">
@@ -272,11 +283,11 @@ const Modal = () => {
 
                 {value.notification && (
                   <div className="text-sm text-gray-500 mt-1">
-                  <p>※ 유효기간 7일 전에 이메일로 알림을 보내드립니다.</p>
-                  <p className="text-xs text-red-500">
-                    (유효기간까지 7일 이상 남아있어야 알림 설정이 가능합니다.)
-                  </p>
-                </div>
+                    <p>※ 유효기간 7일 전에 이메일로 알림을 보내드립니다.</p>
+                    <p className="text-xs text-red-500">
+                      (유효기간까지 7일 이상 남아있어야 알림 설정이 가능합니다.)
+                    </p>
+                  </div>
                 )}
               </div>
               <div className="form-item">
