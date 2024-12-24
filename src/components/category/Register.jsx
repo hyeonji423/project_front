@@ -240,7 +240,7 @@ const Register = () => {
               생년월일
             </label>
             <input
-              type={value.birth_date ? "date" : "text"}
+              type={`${window.innerWidth < 768 ? (value.birth_date ? "date" : "text") : "date"}`}
               className="w-full px-3 py-2 border rounded-md mb-6"
               name="birth_date"
               onChange={handleChange}
