@@ -111,7 +111,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="head-bottom w-full text-lg py-2 relative">
+          <div className="head-bottom w-full text-lg py-2 relative h-8">
             {/* ref 추가된 모바일 메뉴 영역 */}
             <div ref={mobileMenuRef}>
               {/* 모바일 메뉴 버튼과 내용 */}
