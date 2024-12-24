@@ -76,7 +76,7 @@ const Register = () => {
   const handleChange = (e) => {
     setValue({
       ...value,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value || "",
     });
   };
 
@@ -153,18 +153,7 @@ const Register = () => {
       <div className="shadow-lg px-12 py-10 w-[80%] md:w-[500px] border mb-16 rounded-lg">
         <h2 className="text-3xl font-bold mb-6 text-center">회원가입</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            {/* <label htmlFor="username" className="block text-neutral-700">
-              Username
-            </label>
-            <input
-              type="text"
-              placeholder="Enter username"
-              className="w-full px-3 py-2 border"
-              name="username"
-              onChange={handleChange}
-            /> */}
-          </div>
+          <div className="mb-3"></div>
           <div className="mb-5">
             <label htmlFor="email" className="block text-neutral-700 text-lg">
               이메일
@@ -249,12 +238,15 @@ const Register = () => {
               생년월일
             </label>
             <input
-              type="date"
+              type={value.birth_date ? "date" : "text"}
               className="w-full px-3 py-2 border rounded-md mb-6"
               name="birth_date"
               onChange={handleChange}
               max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
               required
+              placeholder="YYYY-MM-DD"
+              onFocus={(e) => (e.target.type = "date")}
+              value={value.birth_date}
             />
           </div>
           <div className="flex justify-between items-center gap-2 mb-6">
