@@ -205,30 +205,4 @@ $ npm run start
     │
     └── package.json
 
-
-    ├── config/
-    │   └── next.config.js
-    │
-    ├── lib/
-    │   └── ga/
-    │   │   └── index.js
-    │   └── context.js
-    │
-    ├── pages/
-    │   ├── courses/
-    │   │   └── [id].js : 강의 페이지
-    │   ├── _app.js : Next.js에서 전체 컴포넌트 구조를 결정, 공통 컴포넌트(navbar, footer)가 선언되도록 customizing 됨.
-    │   ├── _document.js : Next.js에서 전체 html 문서의 구조를 결정, lang 속성과 meta tag가 customizing 됨.
-    │   ├── about.js : 단체 소개 페이지
-    │   ├── index.js : 메인 페이지
-    │   ├── question.js : Q&A 페이지
-    │   └── setting.js : 쿠키, 구글 애널리틱스 정보 수집 정책 페이지
-    │
-    ├── public/
-    │   ├── favicon.ico : 네비게이션바 이미지
-    │   └── logo_about.png : about 페이지 로고 이미지
-    │
-    └── styles/
-        └── Home.module.css
 ```
--->
