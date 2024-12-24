@@ -192,7 +192,7 @@ const Modal = () => {
         <div className="relative bg-white rounded-lg p-10 flex flex-col gap-6">
           <div className="wrapper">
             <h2 className="title text-2xl font-bold flex justify-center">
-              My 상비약 관리 {modalTitle}
+              My 약품 관리 {modalTitle}
             </h2>
             <br></br>
             <IoMdClose
@@ -235,6 +235,7 @@ const Modal = () => {
                   onChange={handleChange}
                   max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
                   {...(modalType === "details" && { disabled: true })}
+                  placeholder="YYYY-MM-DD"
                 />
               </div>
               <div className="form-item">
@@ -248,6 +249,7 @@ const Modal = () => {
                     onChange={handleChange}
                     min={getTodayDate()} // 오늘 날짜를 최소값으로 설정
                     {...(modalType === "details" && { disabled: true })}
+                    placeholder="YYYY-MM-DD"
                   />
                 </div>
                 <div className="flex justify-center items-baseline gap-2">

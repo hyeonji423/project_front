@@ -168,8 +168,9 @@ const Service = () => {
                 checked={useUserEmail}
                 onChange={handleCheckboxChange}
                 id="useCustomEmail"
+                className="form-checkbox w-3 h-3 text-blue-700 border border-gray-400 cursor-pointer focus:ring-blue-500 mb-[2px]"
               />
-              <label htmlFor="useCustomEmail" className="text-sm text-gray-600">다른 이메일 사용</label>
+              <label htmlFor="useCustomEmail" className="text-sm text-blue-700">다른 이메일 사용</label>
             </div>
           </div>
           <div className="flex justify-between items-center gap-2 mb-6 mt-10">
