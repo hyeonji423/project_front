@@ -33,6 +33,10 @@ body {
   font-family: "Pretendard", sans-serif;
 }
 
+.zindex{
+  z-index: 1000 !important;
+}
+
 .container {
   width: 100%;
   margin: 0 1rem;
@@ -134,4 +138,3 @@ footer ul a:hover {
   font-weight: bold;
   width: fit-content;
 }
-
