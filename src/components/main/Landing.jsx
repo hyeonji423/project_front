@@ -91,13 +91,24 @@ const Landing = () => {
           </p>
 
           <form
-            className="flex items-center w-full max-w-xl mx-auto"
+            className="flex items-center w-[90%] sm:w-full max-w-xl mx-auto"
             onSubmit={handleSearch}
           >
             <div className="relative w-full flex items-center bg-white rounded-md shadow-sm">
-              <div className="absolute left-4">
+              <input
+                type="search"
+                className="w-full py-4 pl-4 pr-12 text-md text-gray-900 rounded-full outline-none"
+                placeholder="증상 or 일반의약품 검색"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                required
+              />
+              <button
+                type="submit"
+                className="absolute right-4 text-blue-300 hover:text-blue-600 transition-colors"
+              >
                 <svg
-                  className="w-6 h-6 text-blue-300"
+                  className="w-6 h-6"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -111,20 +122,6 @@ const Landing = () => {
                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                   />
                 </svg>
-              </div>
-              <input
-                type="search"
-                className="w-full py-4 px-12 text-md text-gray-900 rounded-full outline-none"
-                placeholder="증상 or 일반의약품 검색"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                required
-              />
-              <button
-                type="submit"
-                className="absolute right-2 px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
-              >
-                Search
               </button>
             </div>
           </form>
