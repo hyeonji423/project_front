@@ -60,7 +60,7 @@ const HealthList = () => {
       </div>
 
       {/* 페이지네이션 UI */}
-      <div className="flex justify-center mt-8 gap-2">
+      <div className="flex justify-center mt-5 gap-2">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
           <button
             key={pageNum}
