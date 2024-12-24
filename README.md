@@ -156,23 +156,43 @@ $ npm run start
     │
     ├── src
     │   ├── assets
-    │   │   ├── medi_logo.png
-    │   │   └── 일반의약품.jpg
+    │   │   ├── 챗봇icon
+    │   │   ├── fonts
+    │   │   ├── healthimg
+    │   │   ├── healthmain
+    │   │   ├── mediDetailTest
+    │   │   ├── symptom
+    │   │   ├── main_landing.jpg
+    │   │   ├── default.jpg
+    │   │   ├── medi_favi.png
+    │   │   └── medi_logo.png
     │   │
     │   ├── chatbot
-    │   │   └── 
+    │   │   ├── ActionProvider.js
+    │   │   ├── MessageParser.js
+    │   │   └── Chatbot.js
     │   │
     │   ├── components
-    │   │   └── 
+    │   │   ├── category
+    │   │   ├── chat
+    │   │   ├── common
+    │   │   ├── details
+    │   │   ├── main
+    │   │   └── mymedi
     │   │
     │   ├── constants
-    │   │   └── 
+    │   │   ├── data.jsx
+    │   │   ├── healthdata.jsx
+    │   │   └── symptomdata.jsx
     │   │
     │   ├── redux
-    │   │   └── 
+    │   │   ├── slices
+    │   │   └── store.js
     │   │
     │   ├── utils
-    │   │   └── 
+    │   │   ├── apiUrl.js
+    │   │   ├── jwtDecode.js
+    │   │   └── requestMethods.js
     │   │
     │   ├── App.js
     │   ├── index.js
