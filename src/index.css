@@ -4,7 +4,11 @@
 
 @font-face {
   font-family: "Pretendard";
-  src: url("assets/fonts/Pretendard-Regular.otf") format("opentype");
+  src: url("assets/fonts/Pretendard-Regular.woff2") format("woff2"),
+       url("assets/fonts/Pretendard-Regular.woff") format("woff"),
+       url("assets/fonts/Pretendard-Regular.otf") format("opentype"),
+       url("assets/fonts/Pretendard-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 
 @font-face {
@@ -130,3 +134,4 @@ footer ul a:hover {
   font-weight: bold;
   width: fit-content;
 }
+
