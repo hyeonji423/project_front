@@ -81,7 +81,7 @@ const Item = ({ myMediList }) => {
           </div>
         </div>
 
-        <p className="lg:order-2 hidden lg:block w-[30%] px-1 text-[17px]">
+        <p className="lg:order-2 hidden lg:block w-[30%] px-1 text-sm sm:text-xl">
           대표증상: {main_symptom}
         </p>
 
