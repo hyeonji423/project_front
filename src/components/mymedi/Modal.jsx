@@ -227,40 +227,30 @@ const Modal = () => {
               <div className="form-item">
                 <label htmlFor="buying_date">구입/개봉날짜</label>
                 <input
-                  type="date"
+                  type={value.buyingDate ? "date" : "text"}
                   id="buyingDate"
                   name="buyingDate"
                   value={value.buyingDate}
                   onChange={handleChange}
-                  max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
+                  max={getTodayDate()}
                   {...(modalType === "details" && { disabled: true })}
                   placeholder="YYYY-MM-DD"
                   onFocus={(e) => (e.target.type = "date")}
-                  onBlur={(e) => {
-                    if (!e.target.value) {
-                      e.target.type = "text";
-                    }
-                  }}
                 />
               </div>
               <div className="form-item">
                 <div className="expDate-box">
                   <label htmlFor="exp_date">유효기간</label>
                   <input
-                    type="date"
+                    type={value.expDate ? "date" : "text"}
                     id="expDate"
                     name="expDate"
                     value={value.expDate}
                     onChange={handleChange}
-                    min={getTodayDate()} // 오늘 날짜를 최소값으로 설정
+                    min={getTodayDate()}
                     {...(modalType === "details" && { disabled: true })}
                     placeholder="YYYY-MM-DD"
                     onFocus={(e) => (e.target.type = "date")}
-                    onBlur={(e) => {
-                      if (!e.target.value) {
-                        e.target.type = "text";
-                      }
-                    }}
                   />
                 </div>
                 <div className="flex justify-center items-baseline gap-2">
