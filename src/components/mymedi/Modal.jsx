@@ -30,7 +30,7 @@ const Modal = () => {
     const { name, value, checked, type } = e.target;
     setValue((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ? checked : value || "",
     }));
   };
 
@@ -236,6 +236,7 @@ const Modal = () => {
                   {...(modalType === "details" && { disabled: true })}
                   placeholder="YYYY-MM-DD"
                   onFocus={(e) => (e.target.type = "date")}
+                  className="w-full p-2" 
                 />
               </div>
               <div className="form-item">
@@ -251,6 +252,7 @@ const Modal = () => {
                     {...(modalType === "details" && { disabled: true })}
                     placeholder="YYYY-MM-DD"
                     onFocus={(e) => (e.target.type = "date")}
+                    className="w-full p-2" 
                   />
                 </div>
                 <div className="flex justify-center items-baseline gap-2">
