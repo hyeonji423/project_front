@@ -152,7 +152,7 @@ function MediInfo() {
           <section className="bg-sky-100 p-4 px-8 rounded-md relative z-30">
             <Link
               to="/mediinfo"
-              className="text-3xl font-semibold"
+              className="md:2xl lg:text-3xl font-semibold"
               onClick={() => {
                 setCurrentPage(1);
                 setCurrentGroup(1);
@@ -182,7 +182,7 @@ function MediInfo() {
               </div>
               <input
                 type="search"
-                className="w-full py-3 px-12 text-md text-gray-900 rounded-full outline-none"
+                className="w-full py-3 px-12 text-md text-gray-900 rounded-md bg-white outline-none"
                 placeholder="일반의약품 or 성분명 검색"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}

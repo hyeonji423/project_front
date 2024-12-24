@@ -90,7 +90,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="head-bottom w-full text-lg py-2 relative">
+          <div className="head-bottom w-full text-lg py-1 relative">
             {/* 모바일 메뉴 아이콘 */}
             <div className="flex justify-end mt-4 sm:mt-0">
               <button 

@@ -45,14 +45,14 @@ const Mediinfoitem = React.memo(({ mediitem, onClick }) => {
 
           <div className="mb-3">
             <h4 className="font-bold mb-1 text-blue-600 text-sm">주성분</h4>
-            <p className="text-gray-700 text-xs">
+            <p className="text-gray-700 text-xs md:text-sm">
               {truncateText(주성분, 40)}
             </p>
           </div>
 
           <div className="mb-3">
             <h4 className="font-bold mb-1 text-blue-600 text-sm">효능</h4>
-            <p className="text-gray-700 text-xs">
+            <p className="text-gray-700 text-xs md:text-sm">
               {truncateText(효능, 60)}
             </p>
           </div>

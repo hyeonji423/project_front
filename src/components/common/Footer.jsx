@@ -14,9 +14,8 @@ const Footer = () => {
               className="w-[120px] md:w-[200px] mb-2"
             />
             <p className="text-xs md:text-sm text-gray-600">
-              (08503) 서울 금천구 가산디지털2로 144 현대테라타워 가산DK A동 20층
-            </p>
-            <p className="text-xs md:text-sm text-gray-600">
+              (08503) 서울 금천구 가산디지털2로 144 현대테라타워 가산DK A동 20층 &nbsp;
+              <br className="hidden md:block" />
               대표전화: 02-2038-0800 | FAX: 02-000-0000
             </p>
           </div>
