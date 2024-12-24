@@ -150,9 +150,9 @@ $ npm run start
 ```
 <!--
 ```bash
-├── README.md : 리드미 파일
+├── Medibook
 │
-├── strapi-backend/ : 백엔드
+├── back : 백엔드
 │   ├── api/ : db model, api 관련 정보 폴더
 │   │   └── [table 이름] : database table 별로 분리되는 api 폴더 (table 구조, 해당 table 관련 api 정보 저장)
 │   │       ├── Config/routes.json : api 설정 파일 (api request에 따른 handler 지정)
@@ -178,7 +178,7 @@ $ npm run start
 │   └── public/
 │       └── uploads/ : 강의 별 사진
 │
-└── voluntain-app/ : 프론트엔드
+└── front : 프론트엔드
     ├── components/
     │   ├── NavigationBar.js : 네비게이션 바 컴포넌트, _app.js에서 공통으로 전체 페이지에 포함됨.
     │   ├── MainBanner.js : 메인 페이지에 있는 남색 배너 컴포넌트, 커뮤니티 이름과 슬로건을 포함.
