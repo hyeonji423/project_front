@@ -227,7 +227,7 @@ const Modal = () => {
               <div className="form-item">
                 <label htmlFor="buying_date">구입/개봉날짜</label>
                 <input
-                  type={value.buyingDate ? "date" : "text"}
+                  type={`${window.innerWidth < 768 ? (value.birth_date ? "date" : "text") : "date"}`}
                   id="buyingDate"
                   name="buyingDate"
                   value={value.buyingDate}
@@ -243,7 +243,7 @@ const Modal = () => {
                 <div className="expDate-box">
                   <label htmlFor="exp_date">유효기간</label>
                   <input
-                    type={value.expDate ? "date" : "text"}
+                    type={`${window.innerWidth < 768 ? (value.birth_date ? "date" : "text") : "date"}`}
                     id="expDate"
                     name="expDate"
                     value={value.expDate}

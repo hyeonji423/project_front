@@ -36,7 +36,7 @@ const Pannel = () => {
 
   return (
     <div className="w-full flex justify-center items-center py-10">
-      <div className="panel rounded-lg w-full lg:w-4/5 h-full border py-10 overflow-y-auto">
+      <div className="panel rounded-lg md:w-full lg:w-4/5 h-full md:border py-10 md:overflow-y-auto  ">
         {userKey ? (
           <div className="panel-wrapper w-full h-full flex flex-col items-center">
             {isOpen && <Modal />}

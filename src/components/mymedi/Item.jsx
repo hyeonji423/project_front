@@ -68,10 +68,10 @@ const Item = ({ myMediList }) => {
   return (
     <div className="item w-4/5 mx-auto">
       <div className="w-full shadow-md border py-6 px-7 flex flex-wrap lg:flex-nowrap justify-between items-center gap-4 rounded-lg">
-        <div className="w-[calc(50%-1.5rem)] lg:w-[20%] flex order-1 items-center gap-3">
+        <div className="w-[calc(60%-1.5rem)] lg:w-[20%] flex order-1 items-center gap-3">
           <img src={favi} alt="list" className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 " />
           <div className="title-box lg:px-3 py-1">
-            <h2 className="item-title font-semibold text-md md:text-2xl">
+            <h2 className="item-title font-semibold text-xl md:text-2xl ">
               {medi_name}
             </h2>
           </div>
@@ -89,10 +89,10 @@ const Item = ({ myMediList }) => {
               </div>
             </Tooltip>
           )}
-          <p className="px-1 text-sm sm:text-xl 2xl:text-2xl">유효기간: {formatDate(exp_date)}</p>
+          <p className="px-1 text-sm sm:text-xl">유효기간: {formatDate(exp_date)}</p>
         </div>
 
-        <div className="btn-box w-[50%] lg:w-[12%] flex order-2 lg:order-3 items-center justify-center lg:gap-2">
+        <div className="btn-box w-[30%] lg:w-[12%] flex order-2 lg:order-3 items-center justify-end lg:gap-2">
           <Tooltip title="자세히" arrow placement="top">
             <button onClick={handleOpenDetailModal}>
               <BiSolidMessageAltDetail className="w-6 h-6 text-blue-600" />

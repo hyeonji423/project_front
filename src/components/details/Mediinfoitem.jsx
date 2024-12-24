@@ -36,7 +36,9 @@ const Mediinfoitem = React.memo(({ mediitem, onClick }) => {
             <button className="text-lg md:text-xl font-bold mb-2 tracking-wide">
               {truncateText(제품명, 20)}
             </button>
-            <p className="text-gray-400 text-xs md:text-sm mb-2 md:mb-0">{업체명}</p>
+            <p className="text-gray-400 text-xs md:text-sm mb-2 md:mb-0 text-center md:text-right">
+              {업체명}
+            </p>
           </div>
 
           <span className="block border-b mb-3 border-gray-300 mx-auto"></span>
