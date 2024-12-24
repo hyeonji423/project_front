@@ -94,10 +94,10 @@ const Landing = () => {
             className="flex items-center w-full"
             onSubmit={handleSearch}
           >
-            <div className="relative w-full flex items-center bg-white rounded-md shadow-sm">
+            <div className="relative w-full flex items-center rounded-md bg-white shadow-sm">
               <input
                 type="search"
-                className="w-[400px] md:w-full py-4 pl-4 pr-12 text-md text-gray-900 rounded-full outline-none"
+                className="w-[260px] md:w-full py-4 pl-4 pr-12 text-md text-gray-900 outline-none bg-white rounded-md"
                 placeholder="증상 or 일반의약품 검색"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}

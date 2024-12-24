@@ -51,7 +51,7 @@ const Header = () => {
             <img 
               src={mediLogo} 
               alt="메디 로고" 
-              className="w-[120px] md:w-[200px]"
+              className="w-[150px] md:w-[200px]"
             />
           </Link>
         </div>
