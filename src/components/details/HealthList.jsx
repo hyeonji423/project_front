@@ -28,7 +28,7 @@ const HealthList = () => {
         {currentPosts.map((info, index) => (
           <Link to={`/healthdetail/${info.id}`} key={index}>
             <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow h-[300px] flex flex-col group">
-              <h2 className="text-md sm:text-xl font-bold mb-2 group-hover:text-blue-700">
+              <h2 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-blue-700">
                 {info.title.substring(0, 24)}...
               </h2>
               <p className="text-gray-600 text-sm h-[48px] overflow-hidden">
@@ -41,7 +41,7 @@ const HealthList = () => {
                 <img
                   src={info.defaultImage}
                   alt={info.title}
-                  className="w-full h-40 object-cover rounded-md mt-2 overflow-hidden"
+                  className="w-full h-32 md:h-40 object-cover rounded-md mt-2 overflow-hidden"
                 />
               ) : info.sections[0].image ? (
                 <img

@@ -72,7 +72,7 @@ const Register = () => {
       alert("인증코드가 일치하지 않습니다.");
     }
   };
-  
+
   const handleChange = (e) => {
     setValue({
       ...value,
@@ -80,25 +80,23 @@ const Register = () => {
     });
   };
 
-    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
-    const getTodayDate = () => {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const day = String(today.getDate()).padStart(2, '0');
+  // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
-  };  
-
-
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // 쿼리가 잡히지 않게(경로 표시X)
 
-     // 생년월일 유효성 검사 추가
-     const selectedDate = new Date(value.birth_date);
-     const today = new Date();
-     
-     if (selectedDate > today) {
+    // 생년월일 유효성 검사 추가
+    const selectedDate = new Date(value.birth_date);
+    const today = new Date();
+
+    if (selectedDate > today) {
       alert("생년월일은 오늘 이후의 날짜를 선택할 수 없습니다.");
       return;
     }
@@ -146,7 +144,7 @@ const Register = () => {
       alert(error.msg);
     }
   };
-  
+
   return (
     <div className="flex flex-col justify-center items-center h-auto mb-16">
       <div className="logo w-[350px] mt-32 mb-12">
@@ -168,10 +166,7 @@ const Register = () => {
             /> */}
           </div>
           <div className="mb-5">
-            <label
-              htmlFor="email"
-              className="block text-neutral-700 text-lg"
-            >
+            <label htmlFor="email" className="block text-neutral-700 text-lg">
               이메일
             </label>
             <div className="flex items-center justify-center gap-1.5">
@@ -184,7 +179,7 @@ const Register = () => {
               />
               <button
                 onClick={handleSendVerification}
-                className="w-[30%] py-2 bg-blue-400 text-white rounded-md text-[10px] hover:bg-blue-500 transition-all duration-200 text-base"
+                className="w-[30%] py-2 bg-blue-400 text-white rounded-md text-[13px] md:text-[15px] hover:bg-blue-500 transition-all duration-200 "
                 type="button"
               >
                 인증코드 발송
@@ -254,13 +249,13 @@ const Register = () => {
               생년월일
             </label>
             <input
-               type="date"
-               className="w-full px-3 py-2 border rounded-md mb-6"
-               name="birth_date"
-               onChange={handleChange}
-               max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
-               required
-            />  
+              type="date"
+              className="w-full px-3 py-2 border rounded-md mb-6"
+              name="birth_date"
+              onChange={handleChange}
+              max={getTodayDate()} // 오늘 날짜를 최대값으로 설정
+              required
+            />
           </div>
           <div className="flex justify-between items-center gap-2 mb-6">
             <button
