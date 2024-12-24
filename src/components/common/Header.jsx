@@ -94,7 +94,7 @@ const Header = () => {
             {/* 모바일 메뉴 아이콘 */}
             <div className="flex justify-end mt-4 sm:mt-0">
               <button 
-                className="hidden max-sm:block fixed top-4 right-4 z-40 mt-3 sm:mt-0" 
+                className="hidden max-sm:block fixed top-4 right-4 webkit-z-40 z-40 mt-3 sm:mt-0" 
                 onClick={toggleMobileMenu}
               >
                 {isMobileMenuOpen ? <IoClose size={24} /> : <IoMenu size={24} />}
