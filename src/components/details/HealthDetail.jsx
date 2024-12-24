@@ -36,9 +36,9 @@ const HealthDetail = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-8 mt-6 lg:mt-8">
-      <div className="w-[70%] max-w-[1200px]">
+      <div className="w-[85%] md:w-[70%] max-w-[1200px]">
         {/* 제목 */}
-        <h1 className="text-3xl lg:text-4xl font-bold mb-4">
+        <h1 className="tracking-tight text-2xl md:text-3xl xl:text-4xl font-bold mb-4">
           {healthInfo.title}
         </h1>
         {/* 날짜 */}

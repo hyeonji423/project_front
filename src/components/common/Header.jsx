@@ -94,7 +94,7 @@ const Header = () => {
             {/* 모바일 메뉴 아이콘 */}
             <div className="flex justify-end mt-4 sm:mt-0">
               <button 
-                className="hidden max-sm:block fixed top-4 right-4 webkit-z-40 z-40 mt-3 sm:mt-0" 
+                className="hidden max-sm:block fixed top-4 right-4 webkit-z-40 z-40 mt-2 sm:mt-0" 
                 onClick={toggleMobileMenu}
               >
                 {isMobileMenuOpen ? <IoClose size={24} /> : <IoMenu size={24} />}
@@ -105,7 +105,7 @@ const Header = () => {
             <ul className={`flex sm:gap-6 items-center justify-center sm:justify-end ${!isMobileMenuOpen && 'max-sm:hidden'}
               ${isMobileMenuOpen && 'max-sm:flex max-sm:fixed max-sm:left-0 max-sm:right-0 max-sm:bg-white max-sm:shadow-lg max-sm:flex-col max-sm:py-2 max-sm:z-40'}`}>
               {navItems.map((item, idx) => (
-                <li key={idx} className={`max-sm:w-full max-sm:text-center max-sm:py-2 ${(item.label === "챗봇" || item.label === "건강정보") ? 'max-sm:bg-blue-50' : ''}`}>
+                <li key={idx} className={`tracking-tight max-sm:w-full max-sm:text-center max-sm:py-2 ${(item.label === "챗봇" || item.label === "건강정보") ? 'max-sm:bg-blue-50' : ''}`}>
                   {item.to === "/chat" ? (
                     <Link
                       to={item.to}

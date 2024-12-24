@@ -28,7 +28,7 @@ const HealthList = () => {
         {currentPosts.map((info, index) => (
           <Link to={`/healthdetail/${info.id}`} key={index}>
             <div className="border p-4 rounded-lg hover:shadow-lg transition-shadow h-[300px] flex flex-col group">
-              <h2 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-blue-700">
+              <h2 className="tracking-tight text-lg sm:text-xl font-bold mb-2 group-hover:text-blue-700">
                 {info.title.substring(0, 24)}...
               </h2>
               <p className="text-gray-600 text-sm h-[48px] overflow-hidden">

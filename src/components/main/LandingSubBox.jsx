@@ -21,7 +21,7 @@ export default () => {
     <div className="box-wrapper w-full flex flex-col md:flex-row justify-between items-center p-2 md:p-4 bg-white border rounded-md">
       <div className="text-center w-full md:w-[20%]">
         <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-2 md:mt-0">
-          자주 나타나는 
+          자주 나타나는 &nbsp;
           <br className="hidden md:block" />
           증상
         </h3>
