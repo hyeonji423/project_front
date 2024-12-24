@@ -152,7 +152,7 @@ const HealthNews = () => {
     <div className="news">
       <div className="grid grid-cols-12 gap-6">
         {/* 메인 뉴스 섹션 - 왼쪽 */}
-        <div className="col-span-12 lg:col-span-8 lg:h-[400px]">
+        <div className="col-span-12 lg:col-span-8 lg:h-[350px]">
           {error ? (
             <p className="text-red-500">{error}</p>
           ) : newsList.length === 0 ? (
@@ -166,7 +166,7 @@ const HealthNews = () => {
                 ).map((news, index) => (
                   <div
                     key={index}
-                    className="rounded-lg border border-gray-200 hover:border-blue-400 group p-4 h-[calc(50%-0.5rem)]"
+                    className="rounded-lg border border-gray-200 hover:border-blue-400 group p-3 h-[calc(50%-0.5rem)]"
                   >
                     <a
                       href={news.link}
@@ -233,10 +233,10 @@ const HealthNews = () => {
         </div>
 
         {/* 사이드 뉴스 목록 - 오른쪽 */}
-        <div className="hidden lg:block col-span-12 lg:col-span-4 rounded-lg border border-gray-200 p-4 lg:h-[400px]">
+        <div className="hidden lg:block col-span-12 lg:col-span-4 rounded-lg border border-gray-200 p-3 lg:h-[350px]">
           <div className="h-full flex flex-col">
-            <h3 className="text-lg font-semibold mb-4">최신 뉴스</h3>
-            <ul className="space-y-3 flex-grow overflow-y-auto">
+            <h3 className="text-base font-semibold mb-3">최신 뉴스</h3>
+            <ul className="space-y-2 flex-grow overflow-y-auto">
               {currentNews.map((news, index) => (
                 <li
                   key={index}
@@ -246,14 +246,11 @@ const HealthNews = () => {
                     href={news.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col hover:text-blue-600"
+                    className="group flex flex-col hover:text-blue-600 py-1"
                     onClick={() => handleNewsClick(news)}
                   >
-                    <span className="text-sm font-medium group-hover:text-blue-600 break-words">
+                    <span className="text-sm font-medium group-hover:text-blue-600 break-words leading-snug">
                       {news.title.replace(/<\/?b>/g, "")}
-                    </span>
-                    <span className="text-xs text-gray-500 mt-1">
-                      {new Date(news.pubDate).toLocaleDateString("ko-KR")}
                     </span>
                   </a>
                 </li>
@@ -261,7 +258,7 @@ const HealthNews = () => {
             </ul>
 
             {/* 데스크톱 환경의 페이지네이션 */}
-            <div className="hidden lg:flex justify-center mt-4 space-x-2 pt-2 border-t border-gray-100">
+            <div className="hidden lg:flex justify-center mt-3 space-x-2 pt-2 border-t border-gray-100">
               {currentGroup > 1 && (
                 <button
                   className="px-2 py-1 rounded text-gray-600 hover:text-blue-600"

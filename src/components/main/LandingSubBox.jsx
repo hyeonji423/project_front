@@ -18,39 +18,43 @@ export default () => {
   const nextRef = useRef(null);
   // console.log(prevRef.current);
   return (
-    <div className="box-wrapper w-full flex justify-between items-center p-4 bg-white border rounded-md">
-      <div className="text-center w-[20%]">
-        <h3 className="text-base lg:text-xl font-semibold">
+    <div className="box-wrapper w-full flex flex-col md:flex-row justify-between items-center p-2 md:p-4 bg-white border rounded-md">
+      <div className="text-center w-full md:w-[20%]">
+        <h3 className="text-sm md:text-base lg:text-xl font-semibold">
           자주 나타나는
           <br />
           증상
         </h3>
       </div>
-      <div className="relative w-[80%]">
+      <div className="relative w-full md:w-[80%]">
         <div className="flex gap-3 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute justify-between w-full">
           <button className="text-xl" ref={prevRef}>
-            <img src={previc} alt="" className="w-5 h-5" />
+            <img src={previc} alt="" className="w-4 h-4 md:w-5 md:h-5" />
           </button>
           <button className="text-xl" ref={nextRef}>
-            <img src={nextic} alt="" className="w-5 h-5" />
+            <img src={nextic} alt="" className="w-4 h-4 md:w-5 md:h-5" />
           </button>
         </div>
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={20}
+          spaceBetween={10}
           slidesPerView={4}
           breakpoints={{
             1024: {
               slidesPerView: 4,
+              spaceBetween: 20,
             },
             768: {
               slidesPerView: 3,
+              spaceBetween: 15,
             },
             480: {
               slidesPerView: 2,
+              spaceBetween: 10,
             },
             0: {
-              slidesPerView: 1,
+              slidesPerView: 2,
+              spaceBetween: 8,
             },
           }}
           onSlideChange={() => console.log("slide change")}

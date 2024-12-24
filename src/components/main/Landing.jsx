@@ -65,7 +65,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="relative min-w-[320px]">
+    <div className="relative">
       {loading && <div className="loading-spinner">Loading...</div>}{" "}
       {/* 로딩 스피너 추가 */}
       <div className="overflow-hidden flex justify-center items-center relative max-h-[600px] min-h-[300px]">
@@ -91,13 +91,13 @@ const Landing = () => {
           </p>
 
           <form
-            className="flex items-center w-[90%] sm:w-full max-w-xl mx-auto"
+            className="flex items-center w-full"
             onSubmit={handleSearch}
           >
-            <div className="relative w-full flex items-center bg-white rounded-md shadow-sm">
+            <div className="relative w-full flex items-center rounded-md bg-white shadow-sm">
               <input
                 type="search"
-                className="w-full py-4 pl-4 pr-12 text-md text-gray-900 rounded-full outline-none"
+                className="w-[300px] md:w-full py-4 pl-4 pr-12 text-md text-gray-900 outline-none bg-white rounded-md"
                 placeholder="증상 or 일반의약품 검색"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
