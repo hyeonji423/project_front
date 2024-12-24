@@ -90,95 +90,53 @@ $ npm run start
 ## 아키텍쳐
 ### 디렉토리 구조
 ```bash
-├── README.md
-├── package-lock.json
-├── package.json
-├── strapi-backend :
-│   ├── README.md
-│   ├── api : db model, api 관련 정보 폴더
-│   │   ├── about
-│   │   ├── course
-│   │   └── lecture
-│   ├── config : 서버, 데이터베이스 관련 정보 폴더
-│   │   ├── database.js
-│   │   ├── env : 배포 환경(NODE_ENV = production) 일 때 설정 정보 폴더
-│   │   ├── functions : 프로젝트에서 실행되는 함수 관련 정보 폴더
-│   │   └── server.js
-│   ├── extensions
-│   │   └── users-permissions : 권한 정보
-│   ├── favicon.ico
-│   ├── package-lock.json
-│   ├── package.json
-│   └── public
-│       ├── robots.txt
-│       └── uploads : 강의 별 사진
-└── voluntain-app : 프론트엔드
-    ├── README.md
-    ├── components
-    │   ├── CourseCard.js
-    │   ├── Footer.js
-    │   ├── LectureCards.js
-    │   ├── MainBanner.js : 메인 페이지에 있는 남색 배너 컴포넌트, 커뮤니티 이름과 슬로건을 포함.
-    │   ├─�� MainCard.js
-    │   ├── MainCookieCard.js
-    │   ├── NavigationBar.js : 네비게이션 바 컴포넌트, _app.js에서 공통으로 전체 페이지에 포함됨.
-    │   ├── RecentLecture.js
-    │   └── useWindowSize.js
-    ├── config
-    │   └── next.config.js
-    ├── lib
-    │   ├── context.js
-    │   └── ga
-    ├── next.config.js
-    ├── package-lock.json
-    ├── package.json
-    ├── pages
-    │   ├── _app.js
-    │   ├── _document.js
-    │   ├── about.js
-    │   ├── course
-    │   ├── index.js
-    │   ├── lecture
-    │   ├── newcourse
-    │   ├── question.js
-    │   └── setting.js
-    ├── public
-    │   ├── favicon.ico
-    │   └── logo_about.png
-    └── styles
-        └── Home.module.css
-```
-<!--
-```bash
-├── README.md : 리드미 파일
+├── Medibook
 │
-├── strapi-backend/ : 백엔드
-│   ├── api/ : db model, api 관련 정보 폴더
-│   │   └── [table 이름] : database table 별로 분리되는 api 폴더 (table 구조, 해당 table 관련 api 정보 저장)
-│   │       ├── Config/routes.json : api 설정 파일 (api request에 따른 handler 지정)
-│   │       ├── Controllers/ [table 이름].js : api controller 커스텀 파일
-│   │       ├── Models : db model 관련 정보 폴더
-│   │       │   ├── [table 이름].js : (사용 X) api 커스텀 파일
-│   │       │   └── [table 이름].settings.json : model 정보 파일 (field 정보)
-│   │       └─── Services/ course.js : (사용 X) api 커스텀 파일
-│   │
-│   ├── config/ : 서버, 데이터베이스 관련 정보 폴더
-│   │   ├── Env/production : 배포 환경(NODE_ENV = production) 일 때 설정 정보 폴더
-│   │   │   └── database.js : production 환경에서 database 설정 파일
-│   │   ├── Functions : 프로젝트에서 실행되는 함수 관련 정보 폴더
-│   │   │   │   ├── responses : (사용 X) 커스텀한 응답 저장 폴더
-│   │   │   │   ├── bootstrap.js : 어플리케이션 시작 시 실행되는 코드 파일
-│   │   │   │   └── cron.js : (사용 X) cron task 관련 파일
+├── back : 백엔드
+│   ├── database : 데이터베이스 관련 정보 폴더
 │   │   ├── database.js : 기본 개발 환경(NODE_ENV = development)에서 database 설정 파일
-│   │   └── server.js : 서버 설정 정보 파일
+│   │   └─── db.sql
 │   │
-│   ├── extensions/
-│   │   └── users-permissions/config/ : 권한 정보
+│   ├── controllers : [table 이름]Ctrl.js : controller 커스텀 파일
+│   │   ├── postAuthCtrl.js : 회원가입/로그인
+|   |   ├── updateAuthCtrl.js : 비밀번호 변경
+│   │   ├── deleteAuthCtrl.js : 회원탈퇴
+|   |   |
+│   │   ├── postMyMediCtrl.js : 약품 등록
+│   │   ├── getMyMediCtrl.js : 약품 목록
+│   │   ├── updateMyMediCtrl.js : 약품 수정
+│   │   ├── deleteMyMediCtrl.js : 약품 삭제
+|   |   |
+│   │   ├── getMediInfoCtrl.js : 일반의약품 정보/검색
+|   |   |
+|   |   └── emailCtril.js : 이메일 인증/알림/건의사항 수신
 │   │
-│   └── public/
-│       └── uploads/ : 강의 별 사진
+│   ├── routes
+│   │   ├── authRoutes.js
+│   │   ├── myPageRoutes.js
+|   |   ├── searchRoutes.js
+|   |   ├── emailRoutes.js
+│   ├── chatenv
+│   │   ├── uploads/ : 강의 별 사진
+│   │
+│   ├── chat1.py
 │
-└── voluntain-app/ : 프론트엔드
+│   ├── data.json
+|
+│   ├── index.js
+|
+│   ├── requirement.txt
+|
+│   ├── package.json
+
+
+
+
+
+
+│
+│
+└── front : 프론트엔드
     ├── components/
     │   ├── NavigationBar.js : 네비게이션 바 컴포넌트, _app.js에서 공통으로 전체 페이지에 포함됨.
     │   ├── MainBanner.js : 메인 페이지에 있는 남색 배너 컴포넌트, 커뮤니티 이름과 슬로건을 포함.
