@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGetMediInfoData, fetchSearchMediInfoData } from "../../redux/slices/medicineSlice";
+import {
+  fetchGetMediInfoData,
+  fetchSearchMediInfoData,
+} from "../../redux/slices/medicineSlice";
 import Mediinfoitem from "../details/Mediinfoitem";
 
 function MediInfo() {
@@ -20,9 +23,11 @@ function MediInfo() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) { // 모바일 환경
+      if (window.innerWidth < 768) {
+        // 모바일 환경
         setPagesPerGroup(5);
-      } else { // 데스크톱 환경
+      } else {
+        // 데스크톱 환경
         setPagesPerGroup(10);
       }
     };
@@ -31,16 +36,16 @@ function MediInfo() {
     handleResize();
 
     // 리사이즈 이벤트 리스너 등록
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // 클린업
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get("search");
-    
+
     if (searchQuery) {
       setSearchTerm(searchQuery);
       dispatch(fetchSearchMediInfoData(searchQuery))
@@ -56,14 +61,13 @@ function MediInfo() {
         });
     } else {
       // 검색어가 없을 때만 전체 데이터 로드
-      dispatch(fetchGetMediInfoData())
-        .then((response) => {
-          if (response.payload) {
-            setFilteredData(response.payload);
-            setCurrentPage(1);
-            setCurrentGroup(1);
-          }
-        });
+      dispatch(fetchGetMediInfoData()).then((response) => {
+        if (response.payload) {
+          setFilteredData(response.payload);
+          setCurrentPage(1);
+          setCurrentGroup(1);
+        }
+      });
     }
   }, [location.search, dispatch]);
   // 페이지네이션 처리
@@ -138,9 +142,18 @@ function MediInfo() {
   }
 
   if (!getMediInfoData || !Array.isArray(getMediInfoData)) {
-    return <div>로딩 중...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen text-xl text-gray-500">
+        <div className="content w-[50vmin] h-[50vmin] flex items-center justify-center">
+          <div className="pill w-[15vmin] h-[40vmin] flex items-center justify-center flex-col transform rotate-180 animate-spin">
+            <div className="side bg-blue-500 relative overflow-hidden w-[11vmin] h-[15vmin] rounded-t-[6vmin]"></div>
+            <div className="side bg-gray-300 relative overflow-hidden w-[11vmin] h-[15vmin] rounded-b-[6vmin] border-t-[1vmin] border-gray-800 animate-open"></div>
+          </div>
+        </div>
+      </div>
+    );
   }
-  console.log(filteredData)
+  console.log(filteredData);
 
   return (
     <div className="mx-auto p-4 max-w-4xl">
@@ -234,7 +247,7 @@ function MediInfo() {
                   />
                 ))
               : searchTerm && (
-                  <div className="text-center py-4">검색 결과가 없습니다.</div>
+                  <div className="text-center py-4">검색 결과가 없습��다.</div>
                 )}
           </div>
 

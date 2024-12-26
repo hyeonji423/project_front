@@ -90,10 +90,7 @@ const Landing = () => {
             가정용 약물 정보 및 관리 사이트입니다.
           </p>
 
-          <form
-            className="flex items-center w-full"
-            onSubmit={handleSearch}
-          >
+          <form className="flex items-center w-full" onSubmit={handleSearch}>
             <div className="relative w-full flex items-center rounded-md bg-white shadow-sm">
               <input
                 type="search"
