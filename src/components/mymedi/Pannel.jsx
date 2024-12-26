@@ -36,11 +36,11 @@ const Pannel = () => {
 
   return (
     <div className="flex justify-center items-center py-10 w-full">
-      <div className="panel rounded-lg h-full w-[90%] md:w-[80%] xl:w-[65%] md:border">
+      <div className="panel rounded-lg h-full w-[90%] md:w-[80%] :w-[65%] md:border">
         {userKey ? (
           <div className="panel-wrapper w-full h-full flex flex-col items-center">
             {isOpen && <Modal />}
-            <h2 className="text-4xl my-6 mb-10 font-semibold">
+            <h2 className="text-3xl my-6 mb-10 md:mb-12 md:text-4xl font-semibold">
               나의 약품 목록
             </h2>
 
