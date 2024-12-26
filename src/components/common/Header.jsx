@@ -72,7 +72,7 @@ const Header = () => {
   };
   return (
     <div className="w-full flex justify-center shadow-custom sticky top-0 z-50 bg-white">
-      <div ref={containerRef} className="container flex justify-between items-center relative">
+      <div ref={containerRef} className="container p-1 flex justify-between items-center relative">
         <div className="logo left-0">
           <Link to="/">
             <img 
@@ -83,7 +83,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="head-all">
-          <div className="head-top w-full text-xs md:text-sm info mt-2">
+          <div className="head-top w-full text-xs md:text-sm info">
             <ul className="flex gap-2 md:gap-6 items-center justify-end">
               {user !== null ? (
                 <>
@@ -117,7 +117,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="head-bottom w-full text-lg py-2 relative h-8">
+          <div className="head-bottom pt-1 w-full text-lg relative h-8">
             {/* ref 추가된 모바일 메뉴 영역 */}
             <div ref={mobileMenuRef}>
               {/* 모바일 메뉴 버튼과 내용 */}

@@ -117,7 +117,7 @@ const Service = () => {
           </div>
           <div className="w-4/5">
             <select
-              className="w-full rounded-r-md border border-gray-300 p-2"
+              className="w-full rounded-r-md border border-gray-300 p-2 outline-none"
               value={category}
               onChange={handleCategoryChange}
             >
