@@ -9,14 +9,33 @@ function MediInfo() {
   const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentGroup, setCurrentGroup] = useState(1);
+  const [pagesPerGroup, setPagesPerGroup] = useState(10);
   const itemsPerPage = 4;
-  const pagesPerGroup = 10;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const getMediInfoData = useSelector(
     (state) => state.medicine.getMediInfoData
   );
   const location = useLocation();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) { // 모바일 환경
+        setPagesPerGroup(5);
+      } else { // 데스크톱 환경
+        setPagesPerGroup(10);
+      }
+    };
+
+    // 초기 실행
+    handleResize();
+
+    // 리사이즈 이벤트 리스너 등록
+    window.addEventListener('resize', handleResize);
+
+    // 클린업
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -130,10 +149,10 @@ function MediInfo() {
         <div className="relative">
           <span className="absolute z-20 -top-6 block bg-sky-100 p-4 w-[30%] rounded-lg"></span>
           <span className="absolute z-10 -top-5 left-8 block bg-sky-200 p-4 w-[30%] rounded-lg"></span>
-          <section className="bg-sky-100 p-4 px-8 rounded-md relative z-30">
+          <section className="bg-sky-100 p-4 lg:px-8 rounded-md relative z-30">
             <Link
               to="/mediinfo"
-              className="text-3xl font-semibold"
+              className="text-2xl lg:text-3xl font-semibold"
               onClick={() => {
                 setCurrentPage(1);
                 setCurrentGroup(1);
@@ -144,7 +163,8 @@ function MediInfo() {
               약품 및 성분 검색
             </Link>
             <div className="relative w-full flex items-center bg-white rounded-md shadow-sm mt-3">
-              <div className="absolute left-4">
+              {/* 데스크톱 장식용 돋보기 */}
+              <div className="absolute left-4 hidden md:block">
                 <svg
                   className="w-6 h-6 text-blue-300"
                   aria-hidden="true"
@@ -163,18 +183,40 @@ function MediInfo() {
               </div>
               <input
                 type="search"
-                className="w-full py-3 px-12 text-md text-gray-900 rounded-full outline-none"
+                className="w-full py-3 px-4 md:px-12 text-md text-gray-900 rounded-md bg-white outline-none" // 모바일에서는 px-4, 데스크톱에서는 px-12
                 placeholder="일반의약품 or 성분명 검색"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyPress={handleKeyPress}
                 required
               />
+              {/* 데스크톱 검색 버튼 */}
               <button
                 onClick={handleSearch}
-                className="absolute right-2 px-4 py-[6px] text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+                className="absolute right-2 px-4 py-[6px] text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors hidden md:block"
               >
                 Search
+              </button>
+              {/* 모바일 검색 버튼 */}
+              <button
+                onClick={handleSearch}
+                className="absolute right-2 p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors md:hidden"
+              >
+                <svg
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
               </button>
             </div>
           </section>

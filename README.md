@@ -1,70 +1,197 @@
-# Getting Started with Create React App
+# Medibook Project
+<div align="center" margin="20px 0">
+  <br/><br/>
+    <img alt="image" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/medi_logo.png?raw=true">
+  <br/><br/>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Medibook Web Page v1.0
+> **코드랩 아카데미 AICC 4기 2팀** <br/> **개발기간: 2024. 11. 20 ~ 2024. 12. 19**<br/>
+## 배포 주소
+> **프론트 서버** : [https://project-front-eight.vercel.app](https://project-front-eight.vercel.app)<br>
+> **백엔드 서버** : [https://back.aicc4hyeonji.site](https://back.aicc4hyeonji.site)<br>
+> **데이터베이스** : [https://107.21.20.220](https://107.21.20.220)<br>
 
-In the project directory, you can run:
 
-### `npm start`
+## 웹개발팀 소개
+> **김용주**, **유인규**, **이경욱**, **이영선**, **황현지**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 프로젝트 소개
+코로나 이후 건강에 대한 관심이 올라가게 되면서, 스스로 처방을 내리고 구매 및 복용을 하는 <셀프 메디케이션> 열풍이 불게 되었습니다. 이에따라 일반의약품, 건강기능식품 등을 손쉽게 구매하고 복용하는 것이 가능해져 약물 오남용이 우려되는 상황이 발생하게 되었습니다.
 
-### `npm test`
+저희는 이런 상황을 개선하기 위해 약물의 효능, 성분, 부작용을 잘 파악하여 안전한 셀프 메디케이션을 할 수 있도록 돕는 가정용 약물 정보 및 관리 사이트 **메디북**을 개발하였습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## 시작 가이드
+### Requirements
+For building and running the application you need:
+- [Node.js v20.18.0](https://nodejs.org/ko/download/package-manager)
+- [Npm 10.8.2](https://www.npmjs.com/package/npm/v/9.2.0)
+- [Python 3.12.7](https://www.python.org/downloads/windows/)
+### Installation
+> **Frontend**
+``` Frontend
+$ git clone https://github.com/hyeonji423/project_front.git
+$ cd project_front
+```
+```
+$ npm install
+$ npm start
+```
+> **Backend**
+``` backend
+$ git clone https://github.com/hyeonji423/team2backprod.git
+$ cd team2backprod
+```
+```
+$ npm install
+$ npm run start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
+## Stacks💊
+### Environment
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Cursor](https://img.shields.io/badge/Cursor-000000?style=for-the-badge&logo=Cursor&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Config
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
+![pip](https://img.shields.io/badge/pip-3776AB?style=for-the-badge&logo=pip&logoColor=white)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Development
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind](https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-### `npm run eject`
+### Communication
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
+![GoogleDrive](https://img.shields.io/badge/GoogleDrive-4285F4?style=for-the-badge&logo=GoogleDrive&logoColor=white)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
+## 화면 구성 🖥
+| 메인 페이지  |  소개 페이지   |
+| :-------------------------------------------: | :------------: |
+|  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036155-a57900f7-c68a-470d-923c-ff3c296ea635.png"/> |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208036645-a76cf400-85bc-4fa2-af72-86d2abf61366.png"/>|
+| 강좌 소개 페이지   |  강의 영상 페이지   |
+| <img width="329" src="https://user-images.githubusercontent.com/50205887/208038737-2b32b7d2-25f4-4949-baf5-83b5c02915a3.png"/>   |  <img width="329" src="https://user-images.githubusercontent.com/50205887/208038965-43a6318a-7b05-44bb-97c8-b08b0495fba7.png"/>     |
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 주요 기능 📦
+### ⭐ 대표 증상 검색 기능
+* **대표 증상 검색**: 사용자가 증상을 검색하면 해당 증상에 대한 설명과 치료방법을 제시 <br>
+* **완화 성분 및 약품 추천**: 증상 완화에 도움이 되는 성분이 포함된 일반의약품 추천
 
-## Learn More
+### ⭐ 약품 정보 검색 기능
+* **성분 또는 약품 검색**: 사용자가 약품 성분 또는 약품명을 검색하면 관련된 약품 목록 형식으로 제공 <br>
+* **약품 정보 제공**: 약품 목록에는 주성분, 효능, 사용법 등 간략히 표시되며 약품을 클릭하면 해당 약품의 세부 정보를 상세 페이지로 제공
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ⭐ 약품 관리 기능
+* **약품 정보 및 유효 기간 관리**: 사용자가 보유 중이거나 새로 구매한 약품 정보를 등록하면 필요 시 유효 기간 만료 7일 전 알림 서비스 제공
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ⭐ 건강 관련 뉴스 및 정보
+* **건강 정보 제공**: 사용자에게 유익한 건강 관련 뉴스 기사와 정보를 제공
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
+## 아키텍쳐
+### 디렉토리 구조
+```bash
+├── Medibook
+│
+├── back : 백엔드
+│   │
+│   ├── database : 데이터베이스 관련 정보 폴더
+│   │   ├── database.js : 기본 개발 환경(NODE_ENV = development)에서 database 설정 파일
+│   │   └─── db.sql
+│   │
+│   ├── controllers
+│   │   ├── AuthCtrl : post, update, delete (회원가입, 로그인, 비밀번호 변경, 회원탈퇴)
+│   │   ├── MyMediCtrl : post, get, update, delete (약품 등록, 수정, 삭제, 목록)
+│   │   ├── getMediInfoCtrl.js : 일반의약품 정보/검색
+│   │   └── emailCtril.js : 이메일 인증/알림/건의사항 수신
+│   │
+│   ├── routes
+│   │   ├── authRoutes.js
+│   │   ├── myPageRoutes.js
+│   │   ├── searchRoutes.js
+│   │   └── emailRoutes.js
+│   │
+│   ├── vector_cache
+│   │   ├── index.faiss
+│   │   └── index.pkl
+│   │
+│   ├── data.json
+│   ├── chat1.py
+│   │
+│   ├── index.js
+│   │
+│   ├── requirement.txt
+│   │
+│   ├── package.json
+│   │
+│   └── .env : 환경변수 파일(데이터베이스, 이메일, 오픈API 관련 정보)
+│
+│
+│
+└── front : 프론트엔드
+    │
+    ├── README.md
+    │
+    ├── public
+    │   ├── mediImage
+    │   │   └── 일반의약품.jpg
+    │   ├── favicon.ico
+    │   └── index.html
+    │
+    ├── src
+    │   ├── assets
+    │   │   ├── fonts
+    │   │   ├── icons
+    │   │   ├── healthimg
+    │   │   ├── symptomimg
+    │   │   └── medi_logo.png
+    │   │
+    │   ├── chatbot
+    │   │   ├── ActionProvider.js
+    │   │   ├── MessageParser.js
+    │   │   └── Chatbot.js
+    │   │
+    │   ├── components
+    │   │   ├── category : 헤더에 들어간 카테고리 관련 컴포넌트
+    │   │   ├── chat : 챗봇 관련 컴포넌트
+    │   │   ├── common : 공통 컴포넌트(헤더, 푸터)
+    │   │   ├── details : 건강정보, 약품 관련 상세 페이지 컴포넌트
+    │   │   ├── main : 메인 화면 컴포넌트
+    │   │   └── mymedi : 마이페이지의 약품 관리 컴포넌트
+    │   │
+    │   ├── constants
+    │   │   ├── healthdata.jsx
+    │   │   └── symptomdata.jsx
+    │   │
+    │   ├── redux
+    │   │   ├── slices
+    │   │   └── store.js
+    │   │
+    │   ├── utils
+    │   │   ├── apiUrl.js
+    │   │   ├── jwtDecode.js
+    │   │   └── requestMethods.js
+    │   │
+    │   ├── App.js
+    │   ├── index.js
+    │   ├── index.css
+    │   └── setupProxy.js
+    │
+    ├── tailwind.config.js
+    │
+    ├── vercel.json
+    │
+    └── package.json
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```

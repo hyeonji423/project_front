@@ -91,7 +91,8 @@ const Register = () => {
     try {
       const response = await dispatch(fetchUpdateAuthData(data)).unwrap();
       console.log(response);
-      if (response.status === 200) { // 상태 코드 체크 추가
+      if (response.status === 200) {
+        // 상태 코드 체크 추가
         alert(response.msg || "비밀번호가 성공적으로 변경되었습니다.");
         dispatch(clearToken());
         navigator("/login");
@@ -106,7 +107,7 @@ const Register = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-auto w-full mb-16">
-      <div className="logo w-[350px] mt-32 mb-12">
+      <div className="logo w-[250px] md:w-[350px] mt-20 md:mt-32 mb-10 md:mb-12">
         <img src={mediLogo} alt="" />
       </div>
       <div className="shadow-lg px-12 py-10 w-[80%] md:w-[500px] border mb-16 rounded-lg">

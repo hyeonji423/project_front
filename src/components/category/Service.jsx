@@ -20,10 +20,10 @@ const Service = () => {
   }, [user]);
 
   useEffect(() => {
-    const emailInput = document.getElementById('emailInput');
+    const emailInput = document.getElementById("emailInput");
     if (emailInput) {
       emailInput.disabled = !useUserEmail;
-      emailInput.style.color = useUserEmail ? 'black' : 'gray';
+      emailInput.style.color = useUserEmail ? "black" : "gray";
     }
   }, []);
 
@@ -47,18 +47,18 @@ const Service = () => {
 
   const handleCheckboxChange = (e) => {
     setUseUserEmail(e.target.checked);
-    const emailInput = document.getElementById('emailInput');
-    
+    const emailInput = document.getElementById("emailInput");
+
     if (e.target.checked) {
-      setEmail('');
+      setEmail("");
       emailInput.disabled = false;
-      emailInput.style.color = 'black';
+      emailInput.style.color = "black";
     } else {
       if (user?.email) {
         setEmail(user.email);
       }
       emailInput.disabled = true;
-      emailInput.style.color = 'gray';
+      emailInput.style.color = "gray";
     }
   };
 
@@ -81,7 +81,7 @@ const Service = () => {
       title,
       content,
       email,
-      category
+      category,
     };
 
     try {
@@ -107,19 +107,17 @@ const Service = () => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-20">
-      <div className="w-[80%] lg:w-[40%] max-w-[1200px]">
-        <h2 className="text-3xl font-extrabold mb-6 text-center">
-          건의사항
-        </h2>
+      <div className="w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%]">
+        <h2 className="text-3xl font-extrabold mb-6 text-center">건의사항</h2>
         <div className="flex mb-8 items-center">
-          <div className="w-1/4">
+          <div className="w-[30%] md:w-[20%]">
             <div className="w-full rounded-l-md bg-blue-500 text-white p-2 text-center">
               카테고리
             </div>
           </div>
-          <div className="w-3/4">
-            <select 
-              className="w-full rounded-r-md border border-gray-300 p-2"
+          <div className="w-4/5">
+            <select
+              className="w-full rounded-r-md border border-gray-300 p-2 outline-none"
               value={category}
               onChange={handleCategoryChange}
             >
@@ -129,10 +127,12 @@ const Service = () => {
             </select>
           </div>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="title" className="block text-xl mb-1">제목</label>
+            <label htmlFor="title" className="block text-xl mb-1">
+              제목
+            </label>
             <input
               id="title"
               type="text"
@@ -143,7 +143,9 @@ const Service = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="content" className="block text-xl mb-1">내용</label>
+            <label htmlFor="content" className="block text-xl mb-1">
+              내용
+            </label>
             <textarea
               id="content"
               value={content}
@@ -153,7 +155,9 @@ const Service = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="email" className="block text-xl mb-1">이메일</label>
+            <label htmlFor="email" className="block text-xl mb-1">
+              이메일
+            </label>
             <input
               type="email"
               id="emailInput"
@@ -168,14 +172,24 @@ const Service = () => {
                 checked={useUserEmail}
                 onChange={handleCheckboxChange}
                 id="useCustomEmail"
+                className="form-checkbox w-3 h-3 text-blue-700 border border-gray-400 cursor-pointer focus:ring-blue-500 mb-[2px]"
               />
-              <label htmlFor="useCustomEmail" className="text-sm text-gray-600">다른 이메일 사용</label>
+              <label htmlFor="useCustomEmail" className="text-sm text-blue-700">
+                다른 이메일 사용
+              </label>
             </div>
           </div>
           <div className="flex justify-between items-center gap-2 mb-6 mt-10">
-            <button className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200" type="submit">전송하기</button>
-            <Link to='/' className="w-full h-12">
-              <button className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200">전송 취소</button>
+            <button
+              className="w-full h-12 bg-blue-600 text-white rounded-md hover:bg-blue-700 hover:text-white transition-all duration-200"
+              type="submit"
+            >
+              전송하기
+            </button>
+            <Link to="/" className="w-full h-12">
+              <button className="w-full h-12 border border-neutral-700 rounded-md hover:text-blue-600 hover:border-blue-600 transition-all duration-200">
+                전송 취소
+              </button>
             </Link>
           </div>
         </form>

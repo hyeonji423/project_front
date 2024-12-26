@@ -4,7 +4,11 @@
 
 @font-face {
   font-family: "Pretendard";
-  src: url("assets/fonts/Pretendard-Regular.otf") format("opentype");
+  src: url("assets/fonts/Pretendard-Regular.woff2") format("woff2"),
+       url("assets/fonts/Pretendard-Regular.woff") format("woff"),
+       url("assets/fonts/Pretendard-Regular.otf") format("opentype"),
+       url("assets/fonts/Pretendard-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 
 @font-face {
@@ -27,6 +31,12 @@ input, select, button {
 
 body {
   font-family: "Pretendard", sans-serif;
+}
+
+.zindex{
+  z-index: 1000 !important;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 .container {

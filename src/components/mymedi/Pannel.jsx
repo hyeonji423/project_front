@@ -14,7 +14,7 @@ const Pannel = () => {
 
   const getMyMediList = useSelector((state) => state.myMedi.getMyMediListData);
   const isOpen = useSelector((state) => state.modal.isOpen);
-  console.log(isOpen)
+  console.log(isOpen);
 
   useEffect(() => {
     if (!userKey) return;
@@ -35,18 +35,24 @@ const Pannel = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center py-10">
-      <div className="panel rounded-lg w-full lg:w-4/5 h-full border py-10 overflow-y-auto">
+    <div className="flex justify-center items-center py-10 w-full">
+      <div className="panel rounded-lg h-full w-[90%] md:w-[80%] :w-[65%] md:border">
         {userKey ? (
           <div className="panel-wrapper w-full h-full flex flex-col items-center">
             {isOpen && <Modal />}
-              <h2 className="text-4xl my-6 mb-10 font-semibold">나의 약품 목록</h2>
+            <h2 className="text-3xl my-6 mb-10 md:mb-12 md:text-4xl font-semibold">
+              나의 약품 목록
+            </h2>
 
             <div className="items w-full flex flex-wrap flex-col gap-4">
               {getMyMediList?.length > 0 ? (
-                getMyMediList.map((item) => <Item key={item.created_at} myMediList={item} />)
+                getMyMediList.map((item) => (
+                  <Item key={item.created_at} myMediList={item} />
+                ))
               ) : (
-                <p className="flex justify-center items-center text-gray-400 py-10">등록된 약이 없습니다.</p>
+                <p className="flex justify-center items-center text-gray-400 py-10">
+                  등록된 약이 없습니다.
+                </p>
               )}
               <AddItem />
             </div>

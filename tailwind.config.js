@@ -10,6 +10,10 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'class', // 'base' 대신 'class' 전략을 사용
+    }),
+  ],
 }
 

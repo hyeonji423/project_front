@@ -72,21 +72,21 @@ const SymptomDetail = () => {
   );
 
   return (
-    <div className="w-full flex flex-col justify-center items-center py-8">
-      <div className="w-[70%] max-w-[1200px] flex flex-col gap-8 mt-6">
-        <h1 className="text-4xl font-bold mb-6">대표증상</h1>
+    <div className="w-full flex flex-col justify-center items-center py-4 md:py-8">
+      <div className="w-[90%] md:w-[70%] max-w-[1200px] flex flex-col gap-4 md:gap-8 mt-3 md:mt-6">
+        <h1 className="text-2xl md:text-4xl font-bold mb-3 md:mb-6">대표증상</h1>
       </div>
-      <div className="flex w-[70%] max-w-[1200px]">
-        <div className="border border-gray-200 rounded-lg p-4 mb-8">
+      <div className="flex flex-col md:flex-row w-[90%] md:w-[70%] max-w-[1200px]">
+        <div className="border border-gray-200 rounded-lg p-2 md:p-4 mb-4 md:mb-8">
           <img
             src={symptomImage}
             alt="증상 이미지"
-            className="w-full h-full object-cover"
+            className="w-full h-[200px] md:h-full object-cover"
           />
         </div>
-        <div className="w-[70%] text-3xl font-bold gap-4 ml-8 mt-4">
+        <div className="w-full md:w-[70%] text-xl md:text-3xl font-bold gap-2 md:gap-4 md:ml-8 mt-2 md:mt-4">
           {symptomInfo.title}
-          <div className="flex w-full text-[18px] font-medium flex-col gap-4 mt-8">
+          <div className="flex w-full text-[14px] md:text-[18px] font-medium flex-col gap-2 md:gap-4 mt-4 md:mt-8">
             {symptomInfo.content.map((item, index) => (
               <p key={index} className="leading-relaxed">
                 {item}
@@ -96,10 +96,10 @@ const SymptomDetail = () => {
         </div>
       </div>
 
-      <div className="w-[70%] max-w-[1200px] mt-8">
-        <h1 className="text-2xl font-bold mb-4">세부증상</h1>
+      <div className="w-[90%] md:w-[70%] max-w-[1200px] mt-6 md:mt-8">
+        <h1 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">세부증상</h1>
       </div>
-      <div className="flex w-[70%] max-w-[1200px] border-t border-x border-gray-200 border-collapse rounded-t-lg overflow-hidden">
+      <div className="flex w-[90%] md:w-[70%] max-w-[1200px] border-t border-x border-gray-200 border-collapse rounded-t-lg overflow-hidden">
         {disease[Number(id)].types.map((item) => (
           <button
             key={item.id}
@@ -120,7 +120,7 @@ const SymptomDetail = () => {
         ))}
       </div>
 
-      <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-b-lg p-6">
+      <div className="w-[90%] md:w-[70%] max-w-[1200px] border border-gray-200 rounded-b-lg p-4 md:p-6">
         {symptoms[Number(id)].types.map(
           (item) =>
             activeTab === item.id && (
@@ -135,10 +135,10 @@ const SymptomDetail = () => {
         )}
       </div>
 
-      <div className="w-[70%] max-w-[1200px] mt-10">
+      <div className="w-[90%] md:w-[70%] max-w-[1200px] mt-10">
         <h1 className="text-2xl font-bold mb-4">치료방법</h1>
       </div>
-      <div className="w-[70%] max-w-[1200px] border border-gray-200 rounded-lg p-6">
+      <div className="w-[90%] md:w-[70%] max-w-[1200px] border border-gray-200 rounded-lg p-6">
         {disease[Number(id)].types.map(
           (item) =>
             activeTab === item.id && (
@@ -152,7 +152,7 @@ const SymptomDetail = () => {
             )
         )}
         <div>
-          <h3 className="text-xl font-bold my-4 mt-8">
+          <h3 className="text-lg md:text-xl font-bold my-3 md:my-4 mt-6 md:mt-8">
             위 성분이 포함되어 있는 약품
           </h3>
           {currentMedicines &&

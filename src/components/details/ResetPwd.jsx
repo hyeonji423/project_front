@@ -58,7 +58,7 @@ const ResetPwd = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-auto mb-16">
-      <div className="logo w-[350px] mt-32 mb-12">
+      <div className="logo w-[250px] md:w-[350px] mt-20 md:mt-32 mb-10 md:mb-12">
         <img src={mediLogo} alt="logo" />
       </div>
       <div className="shadow-lg px-12 py-10 w-[500px] border mb-16 rounded-lg">
