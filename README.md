@@ -10,8 +10,6 @@
 > **코드랩 아카데미 AICC 4기 2팀** <br/> **개발기간: 2024. 11. 20 ~ 2024. 12. 19**<br/>
 ## 배포 주소
 > **프론트 서버** : [https://project-front-eight.vercel.app](https://project-front-eight.vercel.app)<br>
-> **백엔드 서버** : [https://back.aicc4hyeonji.site](https://back.aicc4hyeonji.site)<br>
-> **데이터베이스** : [https://107.21.20.220](https://107.21.20.220)<br>
 
 
 ## 웹개발팀 소개
@@ -39,15 +37,6 @@ $ cd project_front
 ```
 $ npm install
 $ npm start
-```
-> **Backend**
-``` backend
-$ git clone https://github.com/hyeonji423/team2backprod.git
-$ cd team2backprod
-```
-```
-$ npm install
-$ npm run start
 ```
 
 ---
@@ -117,42 +106,6 @@ $ npm run start
 ## 아키텍쳐
 ### 디렉토리 구조
 ```bash
-├── Medibook
-│
-├── back : 백엔드
-│   │
-│   ├── database : 데이터베이스 관련 정보 폴더
-│   │   ├── database.js : 기본 개발 환경(NODE_ENV = development)에서 database 설정 파일
-│   │   └─── db.sql
-│   │
-│   ├── controllers
-│   │   ├── AuthCtrl : post, update, delete (회원가입, 로그인, 비밀번호 변경, 회원탈퇴)
-│   │   ├── MyMediCtrl : post, get, update, delete (약품 등록, 수정, 삭제, 목록)
-│   │   ├── getMediInfoCtrl.js : 일반의약품 정보/검색
-│   │   └── emailCtril.js : 이메일 인증/알림/건의사항 수신
-│   │
-│   ├── routes
-│   │   ├── authRoutes.js
-│   │   ├── myPageRoutes.js
-│   │   ├── searchRoutes.js
-│   │   └── emailRoutes.js
-│   │
-│   ├── vector_cache
-│   │   ├── index.faiss
-│   │   └── index.pkl
-│   │
-│   ├── data.json
-│   ├── chat1.py
-│   │
-│   ├── index.js
-│   │
-│   ├── requirement.txt
-│   │
-│   ├── package.json
-│   │
-│   └── .env : 환경변수 파일(데이터베이스, 이메일, 오픈API 관련 정보)
-│
-│
 │
 └── front : 프론트엔드
     │
