@@ -74,10 +74,10 @@ $ npm run start
 
 ---
 ## 화면 구성 🖥
-| 메인 페이지  |  증상 페이지   |
+| <span style="background-color: #f0f0f0">메인 페이지</span>  |  <span style="background-color: #f0f0f0">증상 페이지</span>   |
 | :-------------------------------------------: | :------------: |
 |  <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%98.JPG"/> |  <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%981.JPG"/>|
-| 약품 페이지   |  뉴스/정보 페이지   |
+| <span style="background-color: #f0f0f0">약품 페이지</span>   |  <span style="background-color: #f0f0f0">뉴스/정보 페이지</span>   |
 | <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%982.JPG"/>   |  <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%983.JPG"/>     |
 ---
 
