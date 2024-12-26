@@ -91,7 +91,6 @@ $ npm start
     <td><img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%985.JPG"/></td>
   </tr>
 </table>
----
 
 
 ## 주요 기능 📦
