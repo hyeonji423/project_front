@@ -79,7 +79,7 @@ $ npm start
     <th style="background-color: #fff; text-align: center;">약품 관리 페이지</th>
   </tr>
   <tr>
-    <td><img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%982.JPG"/></td>
+    <td><img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%983.PNG"/></td>
     <td><img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%983.JPG"/></td>
   </tr>
 </table>
