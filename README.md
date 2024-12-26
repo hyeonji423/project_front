@@ -74,7 +74,6 @@ $ npm run start
 
 ---
 ## 화면 구성 🖥
-<<<<<<< HEAD
 <table>
   <tr>
     <th style="background-color: #f0f0f0; text-align: center;">메인 페이지</th>
@@ -93,13 +92,6 @@ $ npm run start
     <td><img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%983.JPG"/></td>
   </tr>
 </table>
-=======
-| <div style="background-color: #f8f9fa">메인 페이지</div> | <div style="background-color: #f8f9fa">증상 페이지</div> |
-| :--------------------------------------------: | :--------------------------------: |
-| <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%98.JPG"/> | <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%981.JPG"/> |
-| 약품 페이지  | 뉴스/정보 페이지  |
-| <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%982.JPG"/>   | <img width="329" src="https://github.com/hyeonji423/project_front/blob/main/src/assets/github/%EC%BA%A1%EC%B2%983.JPG"/> |
->>>>>>> d8c24aebb42887037130da365f3a814f85af07e5
 ---
 
 
