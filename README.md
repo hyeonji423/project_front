@@ -19,7 +19,9 @@
 
 
 ## 프로젝트 소개
-저희는 약물의 효능, 성분, 부작용을 잘 파악하여 안전한 셀프 메디케이션을 할 수 있도록 돕는 가정용 약물 정보 및 관리 사이트 **메디북**을 개발하였습니다.
+코로나 이후 건강에 대한 관심이 올라가게 되면서, 스스로 처방을 내리고 구매 및 복용을 하는 <셀프 메디케이션> 열풍이 불게 되었습니다. 이에따라 일반의약품, 건강기능식품 등을 손쉽게 구매하고 복용하는 것이 가능해져 약물 오남용이 우려되는 상황이 발생하게 되었습니다.
+
+저희는 이런 상황을 개선하기 위해 약물의 효능, 성분, 부작용을 잘 파악하여 안전한 셀프 메디케이션을 할 수 있도록 돕는 가정용 약물 정보 및 관리 사이트 **메디북**을 개발하였습니다.
 
 
 ## 시작 가이드
@@ -109,17 +111,9 @@ $ npm run start
 │   │   └─── db.sql
 │   │
 │   ├── controllers
-│   │   ├── postAuthCtrl.js : 회원가입/로그인
-│   │   ├── updateAuthCtrl.js : 비밀번호 변경
-│   │   ├── deleteAuthCtrl.js : 회원탈퇴
-│   │   │
-│   │   ├── postMyMediCtrl.js : 약품 등록
-│   │   ├── getMyMediCtrl.js : 약품 목록
-│   │   ├── updateMyMediCtrl.js : 약품 수정
-│   │   ├── deleteMyMediCtrl.js : 약품 삭제
-│   │   │
+│   │   ├── AuthCtrl : post, update, delete (회원가입, 로그인, 비밀번호 변경, 회원탈퇴)
+│   │   ├── MyMediCtrl : post, get, update, delete (약품 등록, 수정, 삭제, 목록)
 │   │   ├── getMediInfoCtrl.js : 일반의약품 정보/검색
-│   │   │
 │   │   └── emailCtril.js : 이메일 인증/알림/건의사항 수신
 │   │
 │   ├── routes
@@ -131,6 +125,7 @@ $ npm run start
 │   ├── vector_cache
 │   │   ├── index.faiss
 │   │   └── index.pkl
+│   │
 │   ├── data.json
 │   ├── chat1.py
 │   │
@@ -156,15 +151,10 @@ $ npm run start
     │
     ├── src
     │   ├── assets
-    │   │   ├── 챗봇icon
     │   │   ├── fonts
+    │   │   ├── icons
     │   │   ├── healthimg
-    │   │   ├── healthmain
-    │   │   ├── mediDetailTest
-    │   │   ├── symptom
-    │   │   ├── main_landing.jpg
-    │   │   ├── default.jpg
-    │   │   ├── medi_favi.png
+    │   │   ├── symptomimg
     │   │   └── medi_logo.png
     │   │
     │   ├── chatbot
@@ -173,15 +163,14 @@ $ npm run start
     │   │   └── Chatbot.js
     │   │
     │   ├── components
-    │   │   ├── category
-    │   │   ├── chat
-    │   │   ├── common
-    │   │   ├── details
-    │   │   ├── main
-    │   │   └── mymedi
+    │   │   ├── category : 헤더에 들어간 카테고리 관련 컴포넌트
+    │   │   ├── chat : 챗봇 관련 컴포넌트
+    │   │   ├── common : 공통 컴포넌트(헤더, 푸터)
+    │   │   ├── details : 건강정보, 약품 관련 상세 페이지 컴포넌트
+    │   │   ├── main : 메인 화면 컴포넌트
+    │   │   └── mymedi : 마이페이지의 약품 관리 컴포넌트
     │   │
     │   ├── constants
-    │   │   ├── data.jsx
     │   │   ├── healthdata.jsx
     │   │   └── symptomdata.jsx
     │   │
